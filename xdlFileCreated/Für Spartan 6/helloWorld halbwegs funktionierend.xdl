@@ -1,0 +1,118 @@
+
+# =======================================================
+# edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
+# time: Mi Jul 09 18:56:24 2014
+
+# =======================================================
+
+
+# =======================================================
+# The syntax for the design statement is:                
+# design <design_name> <part> <ncd version>;             
+# or                                                     
+# design <design_name> <device> <package> <speed> <ncd_version>
+# =======================================================
+design "helloWorld" xc6slx45csg324-3 v3.2 ,
+  cfg "";
+
+
+#  =======================================================
+#  The syntax for instances is:
+#      instance <name> <sitedef>, placed <tile> <site>, cfg <string> ;
+#  or
+#      instance <name> <sitedef>, unplaced, cfg <string> ;
+# 
+#  For typing convenience you can abbreviate instance to inst.
+# 
+#  For IOs there are two special keywords: bonded and unbonded
+#  that can be used to designate whether the PAD of an unplaced IO is
+#  bonded out. If neither keyword is specified, bonded is assumed.
+# 
+#  The bonding of placed IOs is determined by the site they are placed in.
+# 
+#  If you specify bonded or unbonded for an instance that is not an
+#  IOB it is ignored.
+# 
+#  Shown below are three examples for IOs. 
+#     instance IO1 IOB, unplaced ;          # This will be bonded
+#     instance IO1 IOB, unplaced bonded ;   # This will be bonded
+#     instance IO1 IOB, unplaced unbonded ; # This will be unbonded
+#  =======================================================
+inst "input2" "IOB",placed RIOB_X37Y87 G13  ,
+  cfg " "
+  ;
+inst "input" "IOB",placed RIOB_X37Y90 G14  ,
+  cfg " "
+  ;
+inst "Bob" "SLICEL",placed CLEXL_X1Y125 SLICE_X0Y125  ,
+#  cfg " D6LUT:AnnLut:#LUT:06=~A2 C6LUT:BobLut:#LUT:06=~A1 "
+# ;
+  cfg " A5FFSRINIT::#OFF A5LUT::#OFF A6LUT::#OFF AFF::#OFF AFFMUX::#OFF
+       AFFSRINIT::#OFF AOUTMUX::#OFF AUSED::#OFF B5FFSRINIT::#OFF B5LUT::#OFF
+       B6LUT::#OFF BFF::#OFF BFFMUX::#OFF BFFSRINIT::#OFF BOUTMUX::#OFF
+       BUSED::#OFF C5FFSRINIT::#OFF C5LUT::#OFF C6LUT:berndOutput1:#LUT:O6=(A5*A6)
+       CEUSED::#OFF CFF::#OFF CFFMUX::#OFF CFFSRINIT::#OFF CLKINV::#OFF
+       COUTMUX::#OFF CUSED::0 D5FFSRINIT::#OFF D5LUT::#OFF D6LUT::#OFF DFF::#OFF
+       DFFMUX::#OFF DFFSRINIT::#OFF DOUTMUX::#OFF DUSED::#OFF SRUSED::#OFF
+       SYNC_ATTR::#OFF "
+	;   
+ 
+ 
+#  ================================================
+#  The syntax for nets is:
+#     net <name> <type>,
+#       outpin <inst_name> <inst_pin>,
+#       .
+#       .
+#       inpin <inst_name> <inst_pin>,
+#       .
+#       .
+#       pip <tile> <wire0> <dir> <wire1> , # [<rt>]
+#       .
+#       .
+#       ;
+# 
+#  There are three available wire types: wire, power and ground.
+#  If no type is specified, wire is assumed.
+# 
+#  Wire indicates that this a normal wire.
+#  Power indicates that this net is tied to a DC power source.
+#  You can use "power", "vcc" or "vdd" to specify a power net.
+# 
+#  Ground indicates that this net is tied to ground.
+#  You can use "ground", or "gnd" to specify a ground net.
+# 
+#  The <dir> token will be one of the following:
+# 
+#     Symbol Description
+#     ====== ==========================================
+#       ==   Bidirectional, unbuffered.
+#       =>   Bidirectional, buffered in one direction.
+#       =-   Bidirectional, buffered in both directions.
+#       ->   Directional, buffered.
+# 
+#  No pips exist for unrouted nets.
+#  ================================================
+  net "fred2" ,
+    outpin "input2" I ,
+    inpin "Bob" C5 ,
+    ;
+  net "fred" ,
+   outpin "input" I ,
+    inpin "Bob" C6 ,
+   ;
+
+
+
+# =======================================================
+# SUMMARY
+# Number of Module Defs: 0
+# Number of Module Insts: 0
+# Number of Primitive Insts: 3
+#     Number of SLICES: 1
+#     Number of DSP48s: 0
+#     Number of BRAMs: 0
+# Number of Nets: 2
+# =======================================================
+
+

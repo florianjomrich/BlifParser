@@ -1,0 +1,179 @@
+
+# =======================================================
+# edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
+# time: Mi Jul 09 18:56:24 2014
+
+# =======================================================
+
+
+# =======================================================
+# The syntax for the design statement is:                
+# design <design_name> <part> <ncd version>;             
+# or                                                     
+# design <design_name> <device> <package> <speed> <ncd_version>
+# =======================================================
+design "helloWorld" xc6slx45csg324-3 v3.2 ,
+  cfg "";
+
+
+#  =======================================================
+#  The syntax for instances is:
+#      instance <name> <sitedef>, placed <tile> <site>, cfg <string> ;
+#  or
+#      instance <name> <sitedef>, unplaced, cfg <string> ;
+# 
+#  For typing convenience you can abbreviate instance to inst.
+# 
+#  For IOs there are two special keywords: bonded and unbonded
+#  that can be used to designate whether the PAD of an unplaced IO is
+#  bonded out. If neither keyword is specified, bonded is assumed.
+# 
+#  The bonding of placed IOs is determined by the site they are placed in.
+# 
+#  If you specify bonded or unbonded for an instance that is not an
+#  IOB it is ignored.
+# 
+#  Shown below are three examples for IOs. 
+#     instance IO1 IOB, unplaced ;          # This will be bonded
+#     instance IO1 IOB, unplaced bonded ;   # This will be bonded
+#     instance IO1 IOB, unplaced unbonded ; # This will be unbonded
+#  =======================================================
+
+########ANMERKUNG ES DUERFEN KEINE DEUTSCHEN SONDERZEICHEN IM XDL FILE STEHEN AN KEINER STELLE######
+
+#INPUT IOBS
+
+inst "input2" "IOB",placed RIOB_X37Y87 G13  ,
+  cfg "  BYPASS_MUX::I DIFFI_INUSED::#OFF DIFF_TERM::#OFF DRIVEATTRBOX::#OFF
+       DRIVE_0MA::#OFF IMUX:ProtoComp0.IMUX.1:I IN_TERM::#OFF OUSED::#OFF
+       OUT_TERM::#OFF PADOUTUSED::#OFF PCI_RDYUSED::#OFF PRE_EMPHASIS::OFF
+       PULLTYPE::#OFF SLEW::#OFF SUSPEND::#OFF TUSED::#OFF INBUF:fred2:
+       OUTBUF:input2.OUTBUF: PAD:input2:
+         ISTANDARD::LVCMOS25"
+  ;
+  
+#ISTANDARD::LVCMOS25 spezifiert den verwendeten Input Standard 
+#DIE IOBS MUESSEN AUCH KONFIGURIERT WERDEN WIE SLICES
+ 
+inst "input" "IOB",placed RIOB_X37Y90 G14  ,
+  cfg " BYPASS_MUX::I DIFFI_INUSED::#OFF DIFF_TERM::#OFF DRIVEATTRBOX::#OFF
+       DRIVE_0MA::#OFF IMUX:ProtoComp0.IMUX.1:I IN_TERM::#OFF OUSED::#OFF
+       OUT_TERM::#OFF PADOUTUSED::#OFF PCI_RDYUSED::#OFF PRE_EMPHASIS::OFF
+       PULLTYPE::#OFF SLEW::#OFF SUSPEND::#OFF TUSED::#OFF INBUF:fred:
+       OUTBUF:input.OUTBUF: PAD:input:
+         ISTANDARD::LVCMOS25"
+  ;
+  
+  
+  
+#OUTPUT IOBS  
+  
+inst "berndOutput" "IOB", placed RIOB_X37Y90 F14  ,
+  cfg " BYPASS_MUX::#OFF DIFFI_INUSED::#OFF DIFF_TERM::#OFF DRIVEATTRBOX::12
+       DRIVE_0MA::#OFF IMUX::#OFF IN_TERM::#OFF OUSED::0 OUT_TERM::#OFF
+       PADOUTUSED::#OFF PCI_RDYUSED::#OFF PRE_EMPHASIS::OFF PULLTYPE::#OFF
+       SLEW::SLOW SUSPEND::3STATE TUSED::#OFF OUTBUF:berndOutput_OBUF: PAD:berndOutput:
+         OSTANDARD::LVCMOS25 " 
+;   
+#DAS SIGNAL BENOETIGT AUCH EINEN AUSGANGS IOB ZUR AUSGABE DES ENDSIGNALS
+#OSTANDARD::LVCMOS25 spezifiert den verwendeten Input Standard  
+
+#SLICEL DEFINITION 
+ 
+inst "Bob" "SLICEL",placed CLEXL_X1Y125 SLICE_X0Y125  ,
+#DIESE ANGABEN REICHEN AUS UM DIE FUNKTION ZU REALISIEREN
+#  cfg "  C6LUT:berndOutput1:#LUT:O6=(A5*A6) CUSED::0
+#       "
+#	; 
+
+	
+  cfg " A5FFSRINIT::#OFF A5LUT::#OFF A6LUT::#OFF AFF::#OFF AFFMUX::#OFF
+       AFFSRINIT::#OFF AOUTMUX::#OFF AUSED::#OFF B5FFSRINIT::#OFF B5LUT::#OFF
+       B6LUT::#OFF BFF::#OFF BFFMUX::#OFF BFFSRINIT::#OFF BOUTMUX::#OFF
+       BUSED::#OFF C5FFSRINIT::#OFF C5LUT::#OFF C6LUT:berndOutput1:#LUT:O6=(A5*A6)
+      CEUSED::#OFF CFF::#OFF CFFMUX::#OFF CFFSRINIT::#OFF CLKINV::#OFF
+       COUTMUX::#OFF CUSED::0 D5FFSRINIT::#OFF D5LUT::#OFF D6LUT::#OFF DFF::#OFF
+      DFFMUX::#OFF DFFSRINIT::#OFF DOUTMUX::#OFF DUSED::#OFF SRUSED::#OFF
+       SYNC_ATTR::#OFF "
+	   ;   
+#VOLLSTAENDIGE AUFLISTUNG ALLER PORTS INNERHALB DES SLICEL MACHT SINN ZUR BESSEREN UEBERSICHTLICHKEIT UEBER ALLE PORTS
+	
+#  ================================================
+#  The syntax for nets is:
+#     net <name> <type>,
+#       outpin <inst_name> <inst_pin>,
+#       .
+#       .
+#       inpin <inst_name> <inst_pin>,
+#       .
+#       .
+#       pip <tile> <wire0> <dir> <wire1> , # [<rt>]
+#       .
+#       .
+#       ;
+# 
+#  There are three available wire types: wire, power and ground.
+#  If no type is specified, wire is assumed.
+# 
+#  Wire indicates that this a normal wire.
+#  Power indicates that this net is tied to a DC power source.
+#  You can use "power", "vcc" or "vdd" to specify a power net.
+# 
+#  Ground indicates that this net is tied to ground.
+#  You can use "ground", or "gnd" to specify a ground net.
+# 
+#  The <dir> token will be one of the following:
+# 
+#     Symbol Description
+#     ====== ==========================================
+#       ==   Bidirectional, unbuffered.
+#       =>   Bidirectional, buffered in one direction.
+#       =-   Bidirectional, buffered in both directions.
+#       ->   Directional, buffered.
+# 
+#  No pips exist for unrouted nets.
+#  ================================================
+  
+ # Im UEBERTRAGENEN SINN DIE KABEL VERBINDUNGEN 
+  net "fred2" ,
+    outpin "input2" I ,
+    inpin "Bob" C5 ,
+    ;
+  net "fred" ,
+   outpin "input" I ,
+    inpin "Bob" C6 ,
+   ;
+   
+   
+
+#DAS SLICEL BOB WIRD AUCH ALS NETZ DEFINIERT DAS IST DER TRICK   
+  net "Bob" , 
+  outpin "Bob" C ,
+  inpin "berndOutput" O ,
+  ; 
+  #Internes Kabel geht von C in Bob an O und dort an das berndOutput Kabel weiter
+  
+  
+#Verknuepfen der Leitungen in den IOBS mit ihren Eingangs bzw. Ausgangspads  
+net "berndOutput" , cfg " _BELSIG:PAD,PAD,berndOutput:berndOutput",
+  ;
+  
+net "input2" , cfg " _BELSIG:PAD,PAD,input2:input2",
+  ;
+  
+net "input" , cfg " _BELSIG:PAD,PAD,input:input",
+  ;  
+  
+
+# =======================================================
+# SUMMARY
+# Number of Module Defs: 0
+# Number of Module Insts: 0
+# Number of Primitive Insts: 3
+#     Number of SLICES: 1
+#     Number of DSP48s: 0
+#     Number of BRAMs: 0
+# Number of Nets: 2
+# =======================================================
+
+

@@ -1,0 +1,4555 @@
+
+# =======================================================
+# edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
+# time: Sa Jul 26 13:46:05 2014
+
+# =======================================================
+
+
+# =======================================================
+# The syntax for the design statement is:                
+# design <design_name> <part> <ncd version>;             
+# or                                                     
+# design <design_name> <device> <package> <speed> <ncd_version>
+# =======================================================
+design "helloWorld" xc6slx45csg324-3 v3.2 ,
+  cfg "";
+
+
+#  =======================================================
+#  The syntax for instances is:
+#      instance <name> <sitedef>, placed <tile> <site>, cfg <string> ;
+#  or
+#      instance <name> <sitedef>, unplaced, cfg <string> ;
+# 
+#  For typing convenience you can abbreviate instance to inst.
+# 
+#  For IOs there are two special keywords: bonded and unbonded
+#  that can be used to designate whether the PAD of an unplaced IO is
+#  bonded out. If neither keyword is specified, bonded is assumed.
+# 
+#  The bonding of placed IOs is determined by the site they are placed in.
+# 
+#  If you specify bonded or unbonded for an instance that is not an
+#  IOB it is ignored.
+# 
+#  Shown below are three examples for IOs. 
+#     instance IO1 IOB, unplaced ;          # This will be bonded
+#     instance IO1 IOB, unplaced bonded ;   # This will be bonded
+#     instance IO1 IOB, unplaced unbonded ; # This will be unbonded
+#  =======================================================
+inst "n198_SLICEL" "SLICEL",placed CLEXL_X16Y5 SLICE_X24Y5  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A3) "
+  ;
+inst "n140_SLICEL" "SLICEL",placed CLEXM_X19Y58 SLICE_X30Y58  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*A2*~A4)+~(A2*~A4*~A5*~A6)+~(A3) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n30_SLICEL" "SLICEL",placed CLEXM_X8Y7 SLICE_X10Y7  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n48_SLICEL" "SLICEL",placed CLEXM_X17Y3 SLICE_X26Y3  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2) "
+  ;
+inst "n46_SLICEL" "SLICEL",placed CLEXM_X17Y4 SLICE_X26Y4  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "s_SLICEL" "SLICEL",placed CLEXL_X22Y5 SLICE_X36Y5  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2)+(A1*A2) "
+  ;
+inst "n226_SLICEL" "SLICEL",placed CLEXM_X5Y4 SLICE_X6Y4  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3)+(A1*~A2*~A4)+(~A2*~A3*~A4) "
+  ;
+inst "n80_SLICEL" "SLICEL",placed CLEXM_X19Y76 SLICE_X30Y76  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2)+(A1*~A3) "
+  ;
+inst "n166_SLICEL" "SLICEL",placed CLEXM_X5Y97 SLICE_X6Y97  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*A2*A3)+~(A1*A3*A4)+~(A2*A4) "
+  ;
+inst "n232_SLICEL" "SLICEL",placed CLEXM_X5Y2 SLICE_X6Y2  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A5)+(A2*A3*A5)+(A2*A4*A5)+(A3*A4*A5) "
+  ;
+inst "n69_SLICEL" "SLICEL",placed CLEXL_X7Y5 SLICE_X8Y5  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n235_SLICEL" "SLICEL",placed CLEXM_X19Y32 SLICE_X30Y32  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A3)+(~A1*~A2*A4)+(~A1*~A3*A5)+(~A1*A4*A5)+(~A2*~A3*A4)+(~A2*A5)+(~A3*A4*A5) "
+  ;
+inst "n194_SLICEL" "SLICEL",placed CLEXL_X16Y4 SLICE_X24Y4  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n156_SLICEL" "SLICEL",placed CLEXM_X19Y73 SLICE_X30Y73  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A3*~A4*A5)+(A2*~A3*~A4*A5) "
+  ;
+inst "n31_SLICEL" "SLICEL",placed CLEXL_X26Y99 SLICE_X42Y99  ,
+  cfg " A6LUT::#LUT:O6=(~A1*~A2*~A6)+(A1*A2*~A5)+(A1*~A4*~A5)+(A2*~A3*~A5*~A6)+(~A4*~A5*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n101_SLICEL" "SLICEL",placed CLEXM_X19Y77 SLICE_X30Y77  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A3*A4) "
+  ;
+inst "n98_SLICEL" "SLICEL",placed CLEXM_X19Y21 SLICE_X30Y21  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2)+(~A2*~A3*~A4) "
+  ;
+inst "n70_SLICEL" "SLICEL",placed CLEXL_X26Y97 SLICE_X42Y97  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1)+~(~A2*~A3*A4) "
+  ;
+inst "n154_SLICEL" "SLICEL",placed CLEXM_X19Y53 SLICE_X30Y53  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2)+(~A1*A3)+(~A2*A3) "
+  ;
+inst "n25_SLICEL" "SLICEL",placed CLEXM_X19Y35 SLICE_X30Y35  ,
+  cfg " A6LUT::#LUT:O6=(A1*A2*A4)+(A1*A2*~A5*A6)+(A2*~A3) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n85_SLICEL" "SLICEL",placed CLEXM_X5Y80 SLICE_X6Y80  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2) "
+  ;
+inst "n185_SLICEL" "SLICEL",placed CLEXM_X19Y15 SLICE_X30Y15  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A4)+(~A1*A3) "
+  ;
+inst "n127_SLICEL" "SLICEL",placed CLEXM_X19Y56 SLICE_X30Y56  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A4)+~(~A2*~A3) "
+  ;
+inst "n231_SLICEL" "SLICEL",placed CLEXL_X22Y6 SLICE_X36Y6  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A3*~A4)+~(A1*A2*~A3) "
+  ;
+inst "n89_SLICEL" "SLICEL",placed CLEXM_X5Y85 SLICE_X6Y85  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*A5)+~(~A1*~A2*A3*~A4)+~(A1*A2*~A3*A4*A5)+~(~A2*A3*~A4*A5) "
+  ;
+inst "n116_SLICEL" "SLICEL",placed CLEXM_X19Y25 SLICE_X30Y25  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3) "
+  ;
+inst "n35_SLICEL" "SLICEL",placed CLEXM_X8Y4 SLICE_X10Y4  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A3*~A5)+(~A1*~A3*~A4*~A5) "
+  ;
+inst "n181_SLICEL" "SLICEL",placed CLEXM_X5Y94 SLICE_X6Y94  ,
+  cfg " A6LUT::#LUT:O6=(~A1*~A2*~A3*A4)+(~A1*~A2*A4*A6)+(~A1*~A3*A4*A5)+(~A1*A4*A5*A6)+(~A2*~A3*A5)+(~A2*A5*A6)+(~A3*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n36_SLICEL" "SLICEL",placed CLEXM_X8Y3 SLICE_X10Y3  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A3*~A4)+~(A1*A2*~A3*A4) "
+  ;
+inst "n210_SLICEL" "SLICEL",placed CLEXM_X19Y37 SLICE_X30Y37  ,
+  cfg " A6LUT::#LUT:O6=(~A1*~A2*~A3*A6)+(~A1*~A2*A4*A6)+(~A1*~A3*A5*A6)+(~A1*A4*A5*A6)+(A1*A2*A3*~A6)+(A1*A2*~A4*~A6)+(A1*A3*~A5*~A6)+(A1*~A4*~A5*~A6)+(~A2*~A3*A4*A6)+(~A2*A5*A6)+(A2*A3*~A4*~A6)+(A2*~A5*~A6)+(~A3*A4*A5*A6)+(A3*~A4*~A5*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n212_SLICEL" "SLICEL",placed CLEXM_X19Y86 SLICE_X30Y86  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A3*A5)+(~A2*A3*A5)+(~A3*A4*A5) "
+  ;
+inst "n168_SLICEL" "SLICEL",placed CLEXM_X19Y94 SLICE_X30Y94  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A3)+~(~A2*~A4)+~(~A5) "
+  ;
+inst "n220_SLICEL" "SLICEL",placed CLEXM_X19Y33 SLICE_X30Y33  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A3*~A4)+~(~A2*A3*A5)+~(A2*~A3*~A4*A5) "
+  ;
+inst "n105_SLICEL" "SLICEL",placed CLEXM_X19Y61 SLICE_X30Y61  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3*~A4)+(~A1*A2*A3*A4)+(~A1*A5) "
+  ;
+inst "n135_SLICEL" "SLICEL",placed CLEXM_X19Y59 SLICE_X30Y59  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A3)+(A2*A3) "
+  ;
+inst "n58_SLICEL" "SLICEL",placed CLEXM_X5Y71 SLICE_X6Y71  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*~A3) "
+  ;
+inst "n236_SLICEL" "SLICEL",placed CLEXL_X9Y7 SLICE_X12Y7  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A4)+(~A1*~A4*A5)+(~A2*~A4*A5)+(~A3*~A4) "
+  ;
+inst "n117_SLICEL" "SLICEL",placed CLEXM_X5Y54 SLICE_X6Y54  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3) "
+  ;
+inst "v_SLICEL" "SLICEL",placed CLEXL_X9Y8 SLICE_X12Y8  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2) "
+  ;
+inst "n100_SLICEL" "SLICEL",placed CLEXM_X19Y22 SLICE_X30Y22  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2)+(A1*A3*A4)+(A1*A3*~A5) "
+  ;
+inst "n60_SLICEL" "SLICEL",placed CLEXM_X19Y68 SLICE_X30Y68  ,
+  cfg " A6LUT::#LUT:O6=~(A1*~A2*A4*A5)+~(A1*~A3*A4)+~(A2*~A3*A4*~A5)+~(~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n158_SLICEL" "SLICEL",placed CLEXM_X5Y62 SLICE_X6Y62  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4)+~(A1*A3*A4)+~(A2*A3*A4) "
+  ;
+inst "n24_SLICEL" "SLICEL",placed CLEXM_X19Y81 SLICE_X30Y81  ,
+  cfg " A6LUT::#LUT:O6=~(~A1)+~(~A2*~A3*A4*~A5*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "f" "IOB",placed RIOB_X37Y62 H18  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:f.OUTBUF: PAD:f: IMUX::I "
+  ;
+inst "n160_SLICEL" "SLICEL",placed CLEXM_X19Y49 SLICE_X30Y49  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*~A4*~A5)+(A1*~A3*~A4*~A5)+(A2*~A3*~A4*~A5) "
+  ;
+inst "g" "IOB",placed RIOB_X37Y70 H15  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:g.OUTBUF: PAD:g: IMUX::I "
+  ;
+inst "n200_SLICEL" "SLICEL",placed CLEXM_X19Y75 SLICE_X30Y75  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2*~A3*A4)+~(~A1*~A2*A3*~A4)+~(A2*~A5*A6)+~(A2*A5*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "d" "IOB",placed RIOB_X37Y69 G16  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:d.OUTBUF: PAD:d: IMUX::I "
+  ;
+inst "n87_SLICEL" "SLICEL",placed CLEXL_X26Y95 SLICE_X42Y95  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3*A4)+(A1*A2*~A5) "
+  ;
+inst "e" "IOB",placed RIOB_X37Y62 H17  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:e.OUTBUF: PAD:e: IMUX::I "
+  ;
+inst "n176_SLICEL" "SLICEL",placed CLEXM_X19Y72 SLICE_X30Y72  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2) "
+  ;
+inst "b" "IOB",placed RIOB_X37Y87 G13  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:b.OUTBUF: PAD:b: IMUX::I "
+  ;
+inst "c" "IOB",placed RIOB_X37Y69 G18  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:c.OUTBUF: PAD:c: IMUX::I "
+  ;
+inst "n95_SLICEL" "SLICEL",placed CLEXM_X19Y29 SLICE_X30Y29  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2)+~(A2*~A3*~A4*A5)+~(~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "a" "IOB",placed RIOB_X37Y90 G14  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:a.OUTBUF: PAD:a: IMUX::I "
+  ;
+inst "n72_SLICEL" "SLICEL",placed CLEXM_X19Y30 SLICE_X30Y30  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A5)+(~A2*A4*A5)+(A3*A4*A5) "
+  ;
+inst "n" "IOB",placed LIOB_X0Y85 E3  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:n.OUTBUF: PAD:n: IMUX::I "
+  ;
+inst "n221_SLICEL" "SLICEL",placed CLEXL_X22Y7 SLICE_X36Y7  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A2*~A4)+~(~A2*~A3*~A4)+~(~A3*A4*A5) "
+  ;
+inst "o" "IOB",placed TIOB_SINGLE_X20Y127 F9  ,
+  cfg " OSTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I OUTBUF:o_OBUF: PAD:o: IMUX::I "
+  ;
+inst "l" "IOB",placed LIOB_X0Y85 E1  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:l.OUTBUF: PAD:l: IMUX::I "
+  ;
+inst "m" "IOB",placed LIOB_X0Y90 E4  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:m.OUTBUF: PAD:m: IMUX::I "
+  ;
+inst "n150_SLICEL" "SLICEL",placed CLEXM_X19Y10 SLICE_X30Y10  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2)+(~A2*~A3*~A4) "
+  ;
+inst "j" "IOB",placed RIOB_X37Y71 H14  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:j.OUTBUF: PAD:j: IMUX::I "
+  ;
+inst "k" "IOB",placed RIOB_X37Y87 H12  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:k.OUTBUF: PAD:k: IMUX::I "
+  ;
+inst "h" "IOB",placed RIOB_X37Y70 H16  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:h.OUTBUF: PAD:h: IMUX::I "
+  ;
+inst "n234_SLICEL" "SLICEL",placed CLEXL_X22Y3 SLICE_X36Y3  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2)+(A1*~A3)+(A2*~A3) "
+  ;
+inst "n41_SLICEL" "SLICEL",placed CLEXL_X26Y93 SLICE_X42Y93  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4)+~(~A5) "
+  ;
+inst "i" "IOB",placed RIOB_X37Y71 H13  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I OUTBUF:i.OUTBUF: PAD:i: IMUX::I "
+  ;
+inst "n187_SLICEL" "SLICEL",placed CLEXL_X16Y1 SLICE_X24Y1  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3*~A4*A5) "
+  ;
+inst "n174_SLICEL" "SLICEL",placed CLEXM_X5Y96 SLICE_X6Y96  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*~A3) "
+  ;
+inst "v" "IOB",placed TIOB_SINGLE_X20Y127 G9  ,
+  cfg " OSTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I OUTBUF:v_OBUF: PAD:v: IMUX::I "
+  ;
+inst "u" "IOB",placed LIOB_X0Y71 F2  ,
+  cfg " OSTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I OUTBUF:u_OBUF: PAD:u: IMUX::I "
+  ;
+inst "n199_SLICEL" "SLICEL",placed CLEXL_X16Y6 SLICE_X24Y6  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2)+(~A1*A3)+(~A2*A3) "
+  ;
+inst "t" "IOB",placed LIOB_X0Y86 F3  ,
+  cfg " OSTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I OUTBUF:t_OBUF: PAD:t: IMUX::I "
+  ;
+inst "n134_SLICEL" "SLICEL",placed CLEXM_X19Y90 SLICE_X30Y90  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
+  ;
+inst "s" "IOB",placed LIOB_X0Y86 F4  ,
+  cfg " OSTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I OUTBUF:s_OBUF: PAD:s: IMUX::I "
+  ;
+inst "n33_SLICEL" "SLICEL",placed CLEXM_X8Y6 SLICE_X10Y6  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
+  ;
+inst "r" "IOB",placed LIOB_X0Y92 F5  ,
+  cfg " OSTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I OUTBUF:r_OBUF: PAD:r: IMUX::I "
+  ;
+inst "q" "IOB",placed LIOB_X0Y71 F1  ,
+  cfg " OSTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I OUTBUF:q_OBUF: PAD:q: IMUX::I "
+  ;
+inst "n26_SLICEL" "SLICEL",placed CLEXL_X9Y5 SLICE_X12Y5  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A4)+(~A1*~A3*A4) "
+  ;
+inst "p" "IOB",placed LIOB_X0Y92 F6  ,
+  cfg " OSTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I OUTBUF:p_OBUF: PAD:p: IMUX::I "
+  ;
+inst "n68_SLICEL" "SLICEL",placed CLEXM_X19Y80 SLICE_X30Y80  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A5)+(~A2*A4*A5)+(~A3*A4*A5) "
+  ;
+inst "n86_SLICEL" "SLICEL",placed CLEXM_X5Y83 SLICE_X6Y83  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2*A3*~A4)+~(A1*~A2*A4*A5*~A6)+~(A1*A2*~A4)+~(~A2*~A3*A4*A5*~A6)+~(A2*~A3*~A4) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "p_SLICEL" "SLICEL",placed CLEXM_X2Y98 SLICE_X2Y98  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A4)+~(A1*A2*A3) "
+  ;
+inst "n39_SLICEL" "SLICEL",placed CLEXL_X26Y94 SLICE_X42Y94  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n219_SLICEL" "SLICEL",placed CLEXM_X19Y85 SLICE_X30Y85  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A3)+~(~A2*~A4)+~(~A5) "
+  ;
+inst "n144_SLICEL" "SLICEL",placed CLEXM_X19Y12 SLICE_X30Y12  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*A4)+(A1*A3*A4) "
+  ;
+inst "n79_SLICEL" "SLICEL",placed CLEXM_X5Y8 SLICE_X6Y8  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3*A4)+(~A1*A2*A3*~A5)+(A1*~A2)+(A1*~A4*A5)+(~A2*~A3)+(~A3*~A4*A5) "
+  ;
+inst "n132_SLICEL" "SLICEL",placed CLEXM_X5Y9 SLICE_X6Y9  ,
+  cfg " A6LUT::#LUT:O6=~(~A1)+~(~A2*~A4*~A5*A6)+~(A3*~A4*~A5*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n82_SLICEL" "SLICEL",placed CLEXM_X19Y69 SLICE_X30Y69  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3) "
+  ;
+inst "n112_SLICEL" "SLICEL",placed CLEXM_X5Y56 SLICE_X6Y56  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3*~A4) "
+  ;
+inst "n108_SLICEL" "SLICEL",placed CLEXM_X5Y57 SLICE_X6Y57  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*~A3) "
+  ;
+inst "n157_SLICEL" "SLICEL",placed CLEXM_X19Y16 SLICE_X30Y16  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A5)+(~A2*A4*A5)+(A2*A3*~A4*A5)+(~A3*A4*A5) "
+  ;
+inst "n203_SLICEL" "SLICEL",placed CLEXM_X19Y40 SLICE_X30Y40  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2*~A3*~A5)+~(~A1*~A2*~A3*~A6)+~(~A1*~A2*~A4*~A5)+~(~A1*~A2*~A4*~A6)+~(~A3*~A4*~A5)+~(~A3*~A4*~A6)+~(~A5*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n114_SLICEL" "SLICEL",placed CLEXM_X19Y55 SLICE_X30Y55  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A4*A5)+(A1*A2*~A4*A5)+(A3*~A4*A5) "
+  ;
+inst "n93_SLICEL" "SLICEL",placed CLEXL_X26Y90 SLICE_X42Y90  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A3*~A4*A5)+~(~A2) "
+  ;
+inst "o_SLICEL" "SLICEL",placed CLEXM_X5Y3 SLICE_X6Y3  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A3*A4)+~(A1*A2*~A3*A4)+~(~A2*A4*A5) "
+  ;
+inst "n146_SLICEL" "SLICEL",placed CLEXM_X5Y61 SLICE_X6Y61  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n167_SLICEL" "SLICEL",placed CLEXM_X19Y46 SLICE_X30Y46  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3) "
+  ;
+inst "n173_SLICEL" "SLICEL",placed CLEXM_X2Y90 SLICE_X2Y90  ,
+  cfg " A6LUT::#LUT:O6=~(~A1)+~(~A2*~A3*~A5*A6)+~(~A3*A4*~A5*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n71_SLICEL" "SLICEL",placed CLEXL_X7Y4 SLICE_X8Y4  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*~A5)+~(A1*A2*~A3*A4)+~(A1*A2*A5)+~(A2*~A3*A5) "
+  ;
+inst "n149_SLICEL" "SLICEL",placed CLEXM_X19Y51 SLICE_X30Y51  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A4*A5)+(~A1*~A3*A4*A5)+(A1*~A2*~A4*A5)+(A1*A3*~A4*A5)+(~A2*A3*~A4*A5)+(A2*~A3*A4*A5) "
+  ;
+inst "n111_SLICEL" "SLICEL",placed CLEXM_X5Y58 SLICE_X6Y58  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A4)+(~A1*A3*A4)+(~A2*A3*A4) "
+  ;
+inst "n73_SLICEL" "SLICEL",placed CLEXL_X7Y7 SLICE_X8Y7  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2)+~(A1*~A2*~A3) "
+  ;
+inst "n29_SLICEL" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*A5)+~(~A1*~A2*A3*~A4)+~(A1*A2*~A3*A4*A5) "
+  ;
+inst "n178_SLICEL" "SLICEL",placed CLEXM_X19Y44 SLICE_X30Y44  ,
+  cfg " A6LUT::#LUT:O6=(A1*~A5*A6)+(~A2*~A3*~A4*~A5*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n238_SLICEL" "SLICEL",placed CLEXL_X22Y4 SLICE_X36Y4  ,
+  cfg " A6LUT::#LUT:O6=(~A1*A4)+(A1*~A4)+(~A2*A5)+(A2*~A5)+(~A3*A6)+(A3*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n115_SLICEL" "SLICEL",placed CLEXM_X5Y55 SLICE_X6Y55  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3)+~(~A1*A3*A4)+~(~A2*A3*A4) "
+  ;
+inst "n188_SLICEL" "SLICEL",placed CLEXL_X9Y0 SLICE_X12Y0  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2)+(~A1*~A3*A4) "
+  ;
+inst "n91_SLICEL" "SLICEL",placed CLEXM_X19Y60 SLICE_X30Y60  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*A2*~A4)+~(A2*~A4*~A5*~A6)+~(A3) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n131_SLICEL" "SLICEL",placed CLEXM_X19Y78 SLICE_X30Y78  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3*A4)+(~A1*A2*A3*~A5) "
+  ;
+inst "n222_SLICEL" "SLICEL",placed CLEXL_X22Y8 SLICE_X36Y8  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*A2*A3*~A4*~A5*A6)+~(A1*~A2*~A4*A6)+~(A1*~A3*~A4*A6)+~(A1*A5*A6)+~(A2*~A3*A4*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n119_SLICEL" "SLICEL",placed CLEXM_X19Y54 SLICE_X30Y54  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A3*~A4)+~(A1*~A2*A3)+~(~A5) "
+  ;
+inst "n155_SLICEL" "SLICEL",placed CLEXM_X19Y11 SLICE_X30Y11  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A4*~A5)+(~A1*~A3*A4*~A5)+(A1*~A2*A4*A5)+(A1*A3*A4*A5)+(~A2*A3*A4*A5)+(A2*~A3*A4*~A5) "
+  ;
+inst "n110_SLICEL" "SLICEL",placed CLEXM_X19Y62 SLICE_X30Y62  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3)+(A1*A2*A3) "
+  ;
+inst "n193_SLICEL" "SLICEL",placed CLEXM_X19Y96 SLICE_X30Y96  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A3*~A4)+~(A2) "
+  ;
+inst "n170_SLICEL" "SLICEL",placed CLEXM_X5Y98 SLICE_X6Y98  ,
+  cfg " A6LUT::#LUT:O6=~(A1*A3*A4*A5)+~(A2*~A3*~A5)+~(~A3*~A4*~A5)+~(~A4*A5*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n179_SLICEL" "SLICEL",placed CLEXM_X19Y14 SLICE_X30Y14  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2)+(A1*A3*A4) "
+  ;
+inst "n230_SLICEL" "SLICEL",placed CLEXM_X2Y97 SLICE_X2Y97  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A5)+~(A2*A3*~A4) "
+  ;
+inst "n225_SLICEL" "SLICEL",placed CLEXM_X5Y7 SLICE_X6Y7  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3)+(~A1*A2*A4)+(~A1*~A5) "
+  ;
+inst "n43_SLICEL" "SLICEL",placed CLEXM_X17Y6 SLICE_X26Y6  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3*A4) "
+  ;
+inst "n186_SLICEL" "SLICEL",placed CLEXL_X16Y0 SLICE_X24Y0  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A4)+(~A2*~A3*~A4) "
+  ;
+inst "n97_SLICEL" "SLICEL",placed CLEXM_X19Y63 SLICE_X30Y63  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A2*~A3*A5)+~(A1*~A2*A3*~A5)+~(A4) "
+  ;
+inst "t_SLICEL" "SLICEL",placed CLEXM_X5Y90 SLICE_X6Y90  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n76_SLICEL" "SLICEL",placed CLEXL_X7Y3 SLICE_X8Y3  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n183_SLICEL" "SLICEL",placed CLEXM_X5Y92 SLICE_X6Y92  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A3*A4)+(A2*A3) "
+  ;
+inst "n42_SLICEL" "SLICEL",placed CLEXM_X17Y7 SLICE_X26Y7  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2) "
+  ;
+inst "n163_SLICEL" "SLICEL",placed CLEXM_X19Y47 SLICE_X30Y47  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A3*~A4)+(~A2*~A3*~A4)+(~A4*A5) "
+  ;
+inst "n136_SLICEL" "SLICEL",placed CLEXM_X19Y28 SLICE_X30Y28  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2*A3*~A5)+~(~A1*A2*A3*A4*A5)+~(A1*~A2*A3*A5)+~(A1*A2*A4*~A5)+~(A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n175_SLICEL" "SLICEL",placed CLEXM_X5Y6 SLICE_X6Y6  ,
+  cfg " A6LUT::#LUT:O6=(A1*A2*~A3*~A4*~A5)+(A1*A2*~A3*A4*A5)+(A1*A2*A3*~A4*A5)+(A1*A2*A3*A4*~A5)+(A1*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n171_SLICEL" "SLICEL",placed CLEXM_X5Y95 SLICE_X6Y95  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2*~A3*A4*A5*~A6)+~(~A1*A2*A3*~A4*~A5*A6)+~(A1*~A2*~A4*A6)+~(A1*A2*~A3*A4*A5)+~(A1*A2*A4*A6)+~(A1*~A3*~A4*A6)+~(A1*A5*A6)+~(A2*~A3*A4*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n165_SLICEL" "SLICEL",placed CLEXM_X19Y17 SLICE_X30Y17  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3*A4*~A5)+(~A1*A2*A4*A5)+(A1*~A2*A4*A5)+(A1*A2*A4*~A5) "
+  ;
+inst "n53_SLICEL" "SLICEL",placed CLEXL_X26Y98 SLICE_X42Y98  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2)+(~A1*~A3*A4) "
+  ;
+inst "n142_SLICEL" "SLICEL",placed CLEXM_X5Y66 SLICE_X6Y66  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n67_SLICEL" "SLICEL",placed CLEXL_X7Y8 SLICE_X8Y8  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*A3*A4*~A5)+~(A1*A2*~A3*~A4*A5) "
+  ;
+inst "n34_SLICEL" "SLICEL",placed CLEXM_X8Y5 SLICE_X10Y5  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3*~A4*~A5)+(A1*~A2*A3*A5) "
+  ;
+inst "n113_SLICEL" "SLICEL",placed CLEXM_X19Y99 SLICE_X30Y99  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A3)+(A2*A3) "
+  ;
+inst "n62_SLICEL" "SLICEL",placed CLEXM_X5Y76 SLICE_X6Y76  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*A2*A3*~A4*~A5)+~(~A1*A3*A4*A5*A6)+~(A1*~A2*A3*~A4*~A5) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n77_SLICEL" "SLICEL",placed CLEXL_X7Y2 SLICE_X8Y2  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A2*~A4)+~(~A2*~A3*~A4)+~(~A3*A4*A5) "
+  ;
+inst "n52_SLICEL" "SLICEL",placed CLEXL_X9Y9 SLICE_X12Y9  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A4)+(~A1*A3) "
+  ;
+inst "n32_SLICEL" "SLICEL",placed CLEXM_X8Y2 SLICE_X10Y2  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2) "
+  ;
+inst "n103_SLICEL" "SLICEL",placed CLEXM_X5Y88 SLICE_X6Y88  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*~A3*A4) "
+  ;
+inst "n47_SLICEL" "SLICEL",placed CLEXL_X26Y91 SLICE_X42Y91  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*~A3*A4)+~(A5) "
+  ;
+inst "n209_SLICEL" "SLICEL",placed CLEXM_X19Y88 SLICE_X30Y88  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2)+(A1*~A3*A4)+(A2*~A3*A4)+(A3*~A4)+(A4*~A5) "
+  ;
+inst "n45_SLICEL" "SLICEL",placed CLEXL_X26Y92 SLICE_X42Y92  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3)+(A1*A2*A4)+(A1*A2*~A5) "
+  ;
+inst "n202_SLICEL" "SLICEL",placed CLEXM_X19Y89 SLICE_X30Y89  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3)+(A1*~A3*~A4*~A5)+(~A2*A3*A4)+(~A2*A3*A5)+(A2*~A3) "
+  ;
+inst "n213_SLICEL" "SLICEL",placed CLEXM_X19Y39 SLICE_X30Y39  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A4*~A5)+(A3*~A5) "
+  ;
+inst "n227_SLICEL" "SLICEL",placed CLEXM_X19Y84 SLICE_X30Y84  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3)+(A1*~A2*~A4)+(A1*~A3*~A4) "
+  ;
+inst "n92_SLICEL" "SLICEL",placed CLEXM_X5Y87 SLICE_X6Y87  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3) "
+  ;
+inst "n196_SLICEL" "SLICEL",placed CLEXM_X19Y42 SLICE_X30Y42  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*A3*~A5)+~(A4) "
+  ;
+inst "n123_SLICEL" "SLICEL",placed CLEXM_X19Y91 SLICE_X30Y91  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A4)+~(~A2*~A3)+~(~A5) "
+  ;
+inst "n180_SLICEL" "SLICEL",placed CLEXM_X5Y93 SLICE_X6Y93  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*A3*A4) "
+  ;
+inst "n38_SLICEL" "SLICEL",placed CLEXL_X9Y6 SLICE_X12Y6  ,
+  cfg " A6LUT::#LUT:O6=~(A1)+~(~A2*~A3*A6)+~(~A2*~A4*A5*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n189_SLICEL" "SLICEL",placed CLEXL_X16Y2 SLICE_X24Y2  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*A3*A4) "
+  ;
+inst "n56_SLICEL" "SLICEL",placed CLEXM_X19Y34 SLICE_X30Y34  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A3*A5)+(~A2*A5)+(~A3*~A4*A5) "
+  ;
+inst "n59_SLICEL" "SLICEL",placed CLEXM_X5Y78 SLICE_X6Y78  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2) "
+  ;
+inst "u_SLICEL" "SLICEL",placed CLEXM_X2Y92 SLICE_X2Y92  ,
+  cfg " A6LUT::#LUT:O6=(A1*A2*A3*A4)+(A1*A5)+(A1*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n64_SLICEL" "SLICEL",placed CLEXM_X5Y75 SLICE_X6Y75  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*A3*~A4) "
+  ;
+inst "n74_SLICEL" "SLICEL",placed CLEXL_X7Y6 SLICE_X8Y6  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A3*~A4*A5)+~(A1*~A2*A5)+~(~A2*A3*A4*~A5) "
+  ;
+inst "n44_SLICEL" "SLICEL",placed CLEXM_X17Y5 SLICE_X26Y5  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*A3) "
+  ;
+inst "n153_SLICEL" "SLICEL",placed CLEXM_X19Y93 SLICE_X30Y93  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*~A3*A4)+(~A1*A5) "
+  ;
+inst "n195_SLICEL" "SLICEL",placed CLEXM_X19Y41 SLICE_X30Y41  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A4)+(A1*A2*A5)+(A1*~A3*A4)+(A1*~A3*A5)+(A2*~A3*A4)+(A2*~A3*A5)+(A4*A5) "
+  ;
+inst "n145_SLICEL" "SLICEL",placed CLEXM_X19Y13 SLICE_X30Y13  ,
+  cfg " A6LUT::#LUT:O6=(A1*~A2*A6)+(A2*A3*~A4*A6)+(A2*~A5*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n104_SLICEL" "SLICEL",placed CLEXM_X19Y23 SLICE_X30Y23  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2)+(A1*A3*A4)+(A1*A3*~A5) "
+  ;
+inst "n121_SLICEL" "SLICEL",placed CLEXM_X19Y26 SLICE_X30Y26  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2*A3*A4*A5)+~(~A1*A2*~A4*A5)+~(A1*A2*A4*A5)+~(A3*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n205_SLICEL" "SLICEL",placed CLEXL_X16Y7 SLICE_X24Y7  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3) "
+  ;
+inst "n65_SLICEL" "SLICEL",placed CLEXL_X7Y9 SLICE_X8Y9  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A3*A5)+(~A1*A4*A5) "
+  ;
+inst "n49_SLICEL" "SLICEL",placed CLEXM_X17Y2 SLICE_X26Y2  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3*~A4) "
+  ;
+inst "n57_SLICEL" "SLICEL",placed CLEXM_X5Y72 SLICE_X6Y72  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2) "
+  ;
+inst "n94_SLICEL" "SLICEL",placed CLEXM_X19Y20 SLICE_X30Y20  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3*A4) "
+  ;
+inst "n122_SLICEL" "SLICEL",placed CLEXM_X5Y51 SLICE_X6Y51  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3*A4*A5) "
+  ;
+inst "n233_SLICEL" "SLICEL",placed CLEXM_X19Y82 SLICE_X30Y82  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A3*A5)+(~A1*A4*A5)+(A2*A5)+(A3*A4*A5) "
+  ;
+inst "n37_SLICEL" "SLICEL",placed CLEXM_X17Y9 SLICE_X26Y9  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*A4)+(A1*~A3*A4) "
+  ;
+inst "n169_SLICEL" "SLICEL",placed CLEXM_X19Y45 SLICE_X30Y45  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A3*~A4)+~(~A2*A3*A5)+~(A2*~A3*~A4*A5) "
+  ;
+inst "n216_SLICEL" "SLICEL",placed CLEXM_X19Y70 SLICE_X30Y70  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2)+(A2*~A3*A4) "
+  ;
+inst "n138_SLICEL" "SLICEL",placed CLEXM_X5Y64 SLICE_X6Y64  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*A3*A4) "
+  ;
+inst "n151_SLICEL" "SLICEL",placed CLEXM_X5Y63 SLICE_X6Y63  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2) "
+  ;
+inst "n152_SLICEL" "SLICEL",placed CLEXM_X19Y52 SLICE_X30Y52  ,
+  cfg " A6LUT::#LUT:O6=(~A1*~A2*A3*~A5*~A6)+(~A1*~A2*A3*A5*A6)+(~A1*A3*A4*~A5*~A6)+(~A1*A3*A4*A5*A6)+(A1*A2*A3*~A5*A6)+(A1*A2*A3*A5*~A6)+(A1*A3*~A4*~A5*A6)+(A1*A3*~A4*A5*~A6)+(~A2*A3*A4*~A5*~A6)+(~A2*A3*A4*A5*A6)+(A2*A3*~A4*~A5*A6)+(A2*A3*~A4*A5*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n218_SLICEL" "SLICEL",placed CLEXL_X22Y9 SLICE_X36Y9  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*~A5)+~(A1*A2*~A3*A4)+~(A1*A2*A5) "
+  ;
+inst "n28_SLICEL" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*~A3*A5)+~(~A1*A2*A4*A5)+~(A1*~A2*A3*A4*~A5)+~(A1*A2*A3*~A4) "
+  ;
+inst "n55_SLICEL" "SLICEL",placed CLEXM_X5Y73 SLICE_X6Y73  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*~A3*A4) "
+  ;
+inst "n66_SLICEL" "SLICEL",placed CLEXM_X19Y66 SLICE_X30Y66  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3)+(A3*~A4*A5) "
+  ;
+inst "n129_SLICEL" "SLICEL",placed CLEXM_X5Y69 SLICE_X6Y69  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*~A5)+~(A1*A2*~A3*A4)+~(A1*A2*A5)+~(A2*~A3*A5) "
+  ;
+inst "n99_SLICEL" "SLICEL",placed CLEXM_X5Y89 SLICE_X6Y89  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*~A3) "
+  ;
+inst "n206_SLICEL" "SLICEL",placed CLEXL_X16Y8 SLICE_X24Y8  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*~A3*~A4) "
+  ;
+inst "n182_SLICEL" "SLICEL",placed CLEXM_X5Y91 SLICE_X6Y91  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3) "
+  ;
+inst "n120_SLICEL" "SLICEL",placed CLEXM_X5Y52 SLICE_X6Y52  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*~A4)+~(A1*A2*~A3*A4) "
+  ;
+inst "n126_SLICEL" "SLICEL",placed CLEXM_X19Y57 SLICE_X30Y57  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*A4)+~(A1*A2*A3*~A5)+~(A3*A4) "
+  ;
+inst "n192_SLICEL" "SLICEL",placed CLEXM_X19Y43 SLICE_X30Y43  ,
+  cfg " A6LUT::#LUT:O6=(A1*A2*A3*A4*~A6)+(~A2*~A3*A4*A6)+(A2*~A3*A4*A5) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n133_SLICEL" "SLICEL",placed CLEXM_X19Y79 SLICE_X30Y79  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A4*~A5)+(~A2*A3*~A4*~A5)+(A2*~A3*~A4*~A5) "
+  ;
+inst "n128_SLICEL" "SLICEL",placed CLEXM_X5Y68 SLICE_X6Y68  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A2*~A4)+~(~A2*~A3*~A4)+~(~A3*A4*A5) "
+  ;
+inst "n106_SLICEL" "SLICEL",placed CLEXM_X5Y59 SLICE_X6Y59  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3) "
+  ;
+inst "n84_SLICEL" "SLICEL",placed CLEXM_X5Y81 SLICE_X6Y81  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2) "
+  ;
+inst "n40_SLICEL" "SLICEL",placed CLEXM_X17Y8 SLICE_X26Y8  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*~A3*A4*A5) "
+  ;
+inst "n147_SLICEL" "SLICEL",placed CLEXM_X19Y50 SLICE_X30Y50  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3)+~(~A1*~A2*~A4)+~(~A3*~A4) "
+  ;
+inst "n61_SLICEL" "SLICEL",placed CLEXM_X5Y77 SLICE_X6Y77  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2) "
+  ;
+inst "n51_SLICEL" "SLICEL",placed CLEXM_X5Y70 SLICE_X6Y70  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3) "
+  ;
+inst "n214_SLICEL" "SLICEL",placed CLEXL_X9Y2 SLICE_X12Y2  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A2*A3*A4)+~(A1*A2*A3*~A4)+~(A5) "
+  ;
+inst "n102_SLICEL" "SLICEL",placed CLEXM_X19Y64 SLICE_X30Y64  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3*A4)+(~A1*A2*A3*~A4)+(A1*~A2*A3*~A4)+(A1*A2*A3*A4) "
+  ;
+inst "q_SLICEL" "SLICEL",placed CLEXM_X2Y99 SLICE_X2Y99  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A5)+~(A1*A2*~A3*~A4)+~(A1*A2*A3*A4) "
+  ;
+inst "n197_SLICEL" "SLICEL",placed CLEXL_X9Y4 SLICE_X12Y4  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
+  ;
+inst "n177_SLICEL" "SLICEL",placed CLEXM_X19Y97 SLICE_X30Y97  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2)+(A2*~A3) "
+  ;
+inst "n148_SLICEL" "SLICEL",placed CLEXM_X5Y60 SLICE_X6Y60  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*~A3) "
+  ;
+inst "n190_SLICEL" "SLICEL",placed CLEXL_X9Y3 SLICE_X12Y3  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*A2*A3*~A5)+~(A1*A4)+~(A2*A4) "
+  ;
+inst "n81_SLICEL" "SLICEL",placed CLEXM_X19Y31 SLICE_X30Y31  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3*~A4*~A5)+(A1*~A2*~A3*A4*A5)+(A1*A2*~A4*A5)+(A1*A2*A4*~A5)+(A1*A3*~A4*A5)+(A1*A3*A4*~A5) "
+  ;
+inst "n96_SLICEL" "SLICEL",placed CLEXM_X5Y86 SLICE_X6Y86  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n54_SLICEL" "SLICEL",placed CLEXM_X5Y74 SLICE_X6Y74  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A3*A4*~A5) "
+  ;
+inst "n124_SLICEL" "SLICEL",placed CLEXM_X19Y27 SLICE_X30Y27  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4)+~(~A5) "
+  ;
+inst "n83_SLICEL" "SLICEL",placed CLEXL_X26Y96 SLICE_X42Y96  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A4*~A5)+(A2*A3*A4) "
+  ;
+inst "n107_SLICEL" "SLICEL",placed CLEXM_X19Y24 SLICE_X30Y24  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1)+~(~A2*~A3*A4) "
+  ;
+inst "n201_SLICEL" "SLICEL",placed CLEXL_X9Y1 SLICE_X12Y1  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3)+(~A1*~A2*~A4)+(~A1*A3*A5)+(~A1*~A4*A5)+(~A2*A3*~A4)+(~A2*A5)+(A3*~A4*A5) "
+  ;
+inst "n109_SLICEL" "SLICEL",placed CLEXM_X19Y98 SLICE_X30Y98  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A3*A5)+(~A1*A2*A3*A5)+(~A1*A4) "
+  ;
+inst "n141_SLICEL" "SLICEL",placed CLEXM_X19Y18 SLICE_X30Y18  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n63_SLICEL" "SLICEL",placed CLEXM_X19Y67 SLICE_X30Y67  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3)+(~A1*A4) "
+  ;
+inst "n161_SLICEL" "SLICEL",placed CLEXM_X19Y48 SLICE_X30Y48  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A4*~A5)+(A1*~A3*A4*A5) "
+  ;
+inst "n143_SLICEL" "SLICEL",placed CLEXM_X19Y19 SLICE_X30Y19  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2)+(A2*A3*~A4)+(A2*~A5) "
+  ;
+inst "n191_SLICEL" "SLICEL",placed CLEXL_X16Y3 SLICE_X24Y3  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4)+~(A1*A2*~A3*A4)+~(~A2*A3*~A4) "
+  ;
+inst "n137_SLICEL" "SLICEL",placed CLEXM_X5Y65 SLICE_X6Y65  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*A3)+~(~A1*A3*A4)+~(~A2*A4) "
+  ;
+inst "n125_SLICEL" "SLICEL",placed CLEXM_X5Y50 SLICE_X6Y50  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A3*~A4*A5)+~(A1*~A2*A5)+~(~A2*A3*A4*~A5) "
+  ;
+inst "n211_SLICEL" "SLICEL",placed CLEXM_X19Y36 SLICE_X30Y36  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*~A4)+~(A2*A3) "
+  ;
+inst "n207_SLICEL" "SLICEL",placed CLEXM_X19Y87 SLICE_X30Y87  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A5*~A6)+~(A1*A3*A4*A5)+~(A1*A3*A4*A6)+~(~A2)+~(~A3*~A5*~A6)+~(~A4*~A5*~A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n159_SLICEL" "SLICEL",placed CLEXM_X19Y92 SLICE_X30Y92  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3*~A4)+(A1*A5) "
+  ;
+inst "n139_SLICEL" "SLICEL",placed CLEXM_X5Y67 SLICE_X6Y67  ,
+  cfg " A6LUT::#LUT:O6=(~A1*~A2*A3*~A5)+(~A1*A2*~A4*~A5)+(A1*~A2*A3*~A4)+(A1*A2*~A4*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "n90_SLICEL" "SLICEL",placed CLEXM_X5Y84 SLICE_X6Y84  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*A3*~A5)+(A1*A2*~A4)+(A1*A3*~A4)+(A2*~A4*~A5) "
+  ;
+inst "n27_SLICEL" "SLICEL",placed CLEXL_X22Y2 SLICE_X36Y2  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2) "
+  ;
+inst "n217_SLICEL" "SLICEL",placed CLEXM_X19Y38 SLICE_X30Y38  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3*~A4)+(A2*~A5) "
+  ;
+inst "n75_SLICEL" "SLICEL",placed CLEXM_X19Y65 SLICE_X30Y65  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*A4)+~(A2*A4)+~(~A3*~A5) "
+  ;
+inst "n228_SLICEL" "SLICEL",placed CLEXM_X5Y5 SLICE_X6Y5  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A3)+(~A2) "
+  ;
+inst "n208_SLICEL" "SLICEL",placed CLEXM_X19Y71 SLICE_X30Y71  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A3*A4)+(A1*A2*A4) "
+  ;
+inst "n118_SLICEL" "SLICEL",placed CLEXM_X5Y53 SLICE_X6Y53  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=~(A1*A2*A3*A4*A5)+~(~A2*~A4*~A5)+~(~A3*~A4*~A5) "
+  ;
+inst "n162_SLICEL" "SLICEL",placed CLEXM_X19Y95 SLICE_X30Y95  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3)+(~A2*~A3*~A4) "
+  ;
+inst "n88_SLICEL" "SLICEL",placed CLEXM_X5Y82 SLICE_X6Y82  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3*~A4) "
+  ;
+inst "n50_SLICEL" "SLICEL",placed CLEXM_X5Y79 SLICE_X6Y79  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*A3*~A4*A5) "
+  ;
+inst "n204_SLICEL" "SLICEL",placed CLEXM_X19Y74 SLICE_X30Y74  ,
+  cfg " A6LUT::#LUT:O6=(~A1*~A2*~A3*A4)+(~A1*A2*A3*A4)+(~A1*A5)+(~A1*A6) AOUTMUX::O6 AUSED::0 "
+  ;
+inst "r_SLICEL" "SLICEL",placed CLEXM_X2Y91 SLICE_X2Y91  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*A4)+(A1*A2*A3*~A4)+(A1*~A3*A4)+(~A5) "
+  ;
+inst "n164_SLICEL" "SLICEL",placed CLEXM_X5Y99 SLICE_X6Y99  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*~A3*~A4) "
+  ;
+inst "n215_SLICEL" "SLICEL",placed CLEXL_X16Y9 SLICE_X24Y9  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3*~A4) "
+  ;
+inst "n229_SLICEL" "SLICEL",placed CLEXM_X19Y83 SLICE_X30Y83  ,
+  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3*~A4*~A5) "
+  ;
+
+#  ================================================
+#  The syntax for nets is:
+#     net <name> <type>,
+#       outpin <inst_name> <inst_pin>,
+#       .
+#       .
+#       inpin <inst_name> <inst_pin>,
+#       .
+#       .
+#       pip <tile> <wire0> <dir> <wire1> , # [<rt>]
+#       .
+#       .
+#       ;
+# 
+#  There are three available wire types: wire, power and ground.
+#  If no type is specified, wire is assumed.
+# 
+#  Wire indicates that this a normal wire.
+#  Power indicates that this net is tied to a DC power source.
+#  You can use "power", "vcc" or "vdd" to specify a power net.
+# 
+#  Ground indicates that this net is tied to ground.
+#  You can use "ground", or "gnd" to specify a ground net.
+# 
+#  The <dir> token will be one of the following:
+# 
+#     Symbol Description
+#     ====== ==========================================
+#       ==   Bidirectional, unbuffered.
+#       =>   Bidirectional, buffered in one direction.
+#       =-   Bidirectional, buffered in both directions.
+#       ->   Directional, buffered.
+# 
+#  No pips exist for unrouted nets.
+#  ================================================
+  net "l.I->n64_SLICEL.A4" ,
+    outpin "n64_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n193_SLICEL.AMUX->n232_SLICEL.A3" ,
+    outpin "n232_SLICEL" A3 ,
+    inpin "n193_SLICEL" AMUX ,
+    ;
+  net "n98_SLICEL.AMUX->n155_SLICEL.A2" ,
+    outpin "n155_SLICEL" A2 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "n101_SLICEL.AMUX->n131_SLICEL.A5" ,
+    outpin "n131_SLICEL" A5 ,
+    inpin "n101_SLICEL" AMUX ,
+    ;
+  net "n60_SLICEL.AMUX->n56_SLICEL.A5" ,
+    outpin "n56_SLICEL" A5 ,
+    inpin "n60_SLICEL" AMUX ,
+    ;
+  net "n57_SLICEL.AMUX->n56_SLICEL.A2" ,
+    outpin "n56_SLICEL" A2 ,
+    inpin "n57_SLICEL" AMUX ,
+    ;
+  net "n87_SLICEL.AMUX->n93_SLICEL.A4" ,
+    outpin "n93_SLICEL" A4 ,
+    inpin "n87_SLICEL" AMUX ,
+    ;
+  net "j.I->n221_SLICEL.A3" ,
+    outpin "n221_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "n198_SLICEL.AMUX->n215_SLICEL.A4" ,
+    outpin "n215_SLICEL" A4 ,
+    inpin "n198_SLICEL" AMUX ,
+    ;
+  net "g.I->n139_SLICEL.A2" ,
+    outpin "n139_SLICEL" A2 ,
+    inpin "g" I ,
+    ;
+  net "k.I->n128_SLICEL.A4" ,
+    outpin "n128_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "a.I->n45_SLICEL.A1" ,
+    outpin "n45_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n230_SLICEL.AMUX->u_SLICEL.A6" ,
+    outpin "u_SLICEL" A6 ,
+    inpin "n230_SLICEL" AMUX ,
+    ;
+  net "n35_SLICEL.AMUX->n90_SLICEL.A5" ,
+    outpin "n90_SLICEL" A5 ,
+    inpin "n35_SLICEL" AMUX ,
+    ;
+  net "n211_SLICEL.AMUX->n208_SLICEL.A3" ,
+    outpin "n208_SLICEL" A3 ,
+    inpin "n211_SLICEL" AMUX ,
+    ;
+  net "n178_SLICEL.AMUX->n220_SLICEL.A5" ,
+    outpin "n220_SLICEL" A5 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "n38_SLICEL.AMUX->n147_SLICEL.A2" ,
+    outpin "n147_SLICEL" A2 ,
+    inpin "n38_SLICEL" AMUX ,
+    ;
+  net "n94_SLICEL.AMUX->n91_SLICEL.A5" ,
+    outpin "n91_SLICEL" A5 ,
+    inpin "n94_SLICEL" AMUX ,
+    ;
+  net "a.I->n37_SLICEL.A1" ,
+    outpin "n37_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n140_SLICEL.AMUX->n152_SLICEL.A6" ,
+    outpin "n152_SLICEL" A6 ,
+    inpin "n140_SLICEL" AMUX ,
+    ;
+  net "h.I->s_SLICEL.A2" ,
+    outpin "s_SLICEL" A2 ,
+    inpin "h" I ,
+    ;
+  net "n65_SLICEL.AMUX->n63_SLICEL.A4" ,
+    outpin "n63_SLICEL" A4 ,
+    inpin "n65_SLICEL" AMUX ,
+    ;
+  net "i.I->n51_SLICEL.A1" ,
+    outpin "n51_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "g.I->n169_SLICEL.A1" ,
+    outpin "n169_SLICEL" A1 ,
+    inpin "g" I ,
+    ;
+  net "n90_SLICEL.AMUX->n94_SLICEL.A4" ,
+    outpin "n94_SLICEL" A4 ,
+    inpin "n90_SLICEL" AMUX ,
+    ;
+  net "g.I->n238_SLICEL.A6" ,
+    outpin "n238_SLICEL" A6 ,
+    inpin "g" I ,
+    ;
+  net "n53_SLICEL.AMUX->n207_SLICEL.A1" ,
+    outpin "n207_SLICEL" A1 ,
+    inpin "n53_SLICEL" AMUX ,
+    ;
+  net "n27_SLICEL.AMUX->n45_SLICEL.A3" ,
+    outpin "n45_SLICEL" A3 ,
+    inpin "n27_SLICEL" AMUX ,
+    ;
+  net "n43_SLICEL.AMUX->n143_SLICEL.A2" ,
+    outpin "n143_SLICEL" A2 ,
+    inpin "n43_SLICEL" AMUX ,
+    ;
+  net "n66_SLICEL.AMUX->n24_SLICEL.A6" ,
+    outpin "n24_SLICEL" A6 ,
+    inpin "n66_SLICEL" AMUX ,
+    ;
+  net "n26_SLICEL.AMUX->n163_SLICEL.A1" ,
+    outpin "n163_SLICEL" A1 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n31_SLICEL.AMUX->n70_SLICEL.A4" ,
+    outpin "n70_SLICEL" A4 ,
+    inpin "n31_SLICEL" AMUX ,
+    ;
+  net "e.I->n62_SLICEL.A2" ,
+    outpin "n62_SLICEL" A2 ,
+    inpin "e" I ,
+    ;
+  net "n26_SLICEL.AMUX->n203_SLICEL.A1" ,
+    outpin "n203_SLICEL" A1 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n174_SLICEL.AMUX->n173_SLICEL.A2" ,
+    outpin "n173_SLICEL" A2 ,
+    inpin "n174_SLICEL" AMUX ,
+    ;
+  net "n210_SLICEL.AMUX->n211_SLICEL.A4" ,
+    outpin "n211_SLICEL" A4 ,
+    inpin "n210_SLICEL" AMUX ,
+    ;
+  net "n159_SLICEL.AMUX->n156_SLICEL.A3" ,
+    outpin "n156_SLICEL" A3 ,
+    inpin "n159_SLICEL" AMUX ,
+    ;
+  net "k.I->n170_SLICEL.A5" ,
+    outpin "n170_SLICEL" A5 ,
+    inpin "k" I ,
+    ;
+  net "n82_SLICEL.AMUX->n163_SLICEL.A2" ,
+    outpin "n163_SLICEL" A2 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "k.I->n99_SLICEL.A3" ,
+    outpin "n99_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n199_SLICEL.AMUX->n211_SLICEL.A2" ,
+    outpin "n211_SLICEL" A2 ,
+    inpin "n199_SLICEL" AMUX ,
+    ;
+  net "l.I->n180_SLICEL.A4" ,
+    outpin "n180_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "l.I->n174_SLICEL.A3" ,
+    outpin "n174_SLICEL" A3 ,
+    inpin "l" I ,
+    ;
+  net "a.I->n198_SLICEL.A1" ,
+    outpin "n198_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "i.I->n54_SLICEL.A2" ,
+    outpin "n54_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "c.I->n143_SLICEL.A1" ,
+    outpin "n143_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "n36_SLICEL.AMUX->n119_SLICEL.A2" ,
+    outpin "n119_SLICEL" A2 ,
+    inpin "n36_SLICEL" AMUX ,
+    ;
+  net "n201_SLICEL.AMUX->n200_SLICEL.A4" ,
+    outpin "n200_SLICEL" A4 ,
+    inpin "n201_SLICEL" AMUX ,
+    ;
+  net "n48_SLICEL.AMUX->n94_SLICEL.A1" ,
+    outpin "n94_SLICEL" A1 ,
+    inpin "n48_SLICEL" AMUX ,
+    ;
+  net "c.I->n151_SLICEL.A1" ,
+    outpin "n151_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "n.I->n132_SLICEL.A1" ,
+    outpin "n132_SLICEL" A1 ,
+    inpin "n" I ,
+    ;
+  net "h.I->n196_SLICEL.A2" ,
+    outpin "n196_SLICEL" A2 ,
+    inpin "h" I ,
+    ;
+  net "n155_SLICEL.AMUX->n153_SLICEL.A5" ,
+    outpin "n153_SLICEL" A5 ,
+    inpin "n155_SLICEL" AMUX ,
+    ;
+  net "l.I->n218_SLICEL.A5" ,
+    outpin "n218_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "n98_SLICEL.AMUX->n157_SLICEL.A3" ,
+    outpin "n157_SLICEL" A3 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "d.I->s_SLICEL.A1" ,
+    outpin "s_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "j.I->n64_SLICEL.A2" ,
+    outpin "n64_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n136_SLICEL.AMUX->n135_SLICEL.A2" ,
+    outpin "n135_SLICEL" A2 ,
+    inpin "n136_SLICEL" AMUX ,
+    ;
+  net "i.I->n99_SLICEL.A2" ,
+    outpin "n99_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n82_SLICEL.AMUX->n213_SLICEL.A2" ,
+    outpin "n213_SLICEL" A2 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "l.I->n32_SLICEL.A2" ,
+    outpin "n32_SLICEL" A2 ,
+    inpin "l" I ,
+    ;
+  net "i.I->n69_SLICEL.A1" ,
+    outpin "n69_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "l.I->n89_SLICEL.A4" ,
+    outpin "n89_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n101_SLICEL.AMUX->n79_SLICEL.A5" ,
+    outpin "n79_SLICEL" A5 ,
+    inpin "n101_SLICEL" AMUX ,
+    ;
+  net "n41_SLICEL.AMUX->n53_SLICEL.A1" ,
+    outpin "n53_SLICEL" A1 ,
+    inpin "n41_SLICEL" AMUX ,
+    ;
+  net "n36_SLICEL.AMUX->n162_SLICEL.A1" ,
+    outpin "n162_SLICEL" A1 ,
+    inpin "n36_SLICEL" AMUX ,
+    ;
+  net "i.I->n151_SLICEL.A2" ,
+    outpin "n151_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n95_SLICEL.AMUX->n91_SLICEL.A6" ,
+    outpin "n91_SLICEL" A6 ,
+    inpin "n95_SLICEL" AMUX ,
+    ;
+  net "l.I->n225_SLICEL.A1" ,
+    outpin "n225_SLICEL" A1 ,
+    inpin "l" I ,
+    ;
+  net "k.I->n103_SLICEL.A3" ,
+    outpin "n103_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "l.I->n165_SLICEL.A3" ,
+    outpin "n165_SLICEL" A3 ,
+    inpin "l" I ,
+    ;
+  net "n116_SLICEL.AMUX->n114_SLICEL.A4" ,
+    outpin "n114_SLICEL" A4 ,
+    inpin "n116_SLICEL" AMUX ,
+    ;
+  net "n150_SLICEL.AMUX->n229_SLICEL.A3" ,
+    outpin "n229_SLICEL" A3 ,
+    inpin "n150_SLICEL" AMUX ,
+    ;
+  net "l.I->n220_SLICEL.A4" ,
+    outpin "n220_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "i.I->n74_SLICEL.A3" ,
+    outpin "n74_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "c.I->n142_SLICEL.A1" ,
+    outpin "n142_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "n115_SLICEL.AMUX->n161_SLICEL.A3" ,
+    outpin "n161_SLICEL" A3 ,
+    inpin "n115_SLICEL" AMUX ,
+    ;
+  net "f.I->n181_SLICEL.A5" ,
+    outpin "n181_SLICEL" A5 ,
+    inpin "f" I ,
+    ;
+  net "c.I->n161_SLICEL.A1" ,
+    outpin "n161_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "l.I->n187_SLICEL.A4" ,
+    outpin "n187_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n106_SLICEL.AMUX->n215_SLICEL.A3" ,
+    outpin "n215_SLICEL" A3 ,
+    inpin "n106_SLICEL" AMUX ,
+    ;
+  net "n53_SLICEL.AMUX->n66_SLICEL.A3" ,
+    outpin "n66_SLICEL" A3 ,
+    inpin "n53_SLICEL" AMUX ,
+    ;
+  net "n80_SLICEL.AMUX->n79_SLICEL.A4" ,
+    outpin "n79_SLICEL" A4 ,
+    inpin "n80_SLICEL" AMUX ,
+    ;
+  net "l.I->n67_SLICEL.A4" ,
+    outpin "n67_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n54_SLICEL.AMUX->n52_SLICEL.A3" ,
+    outpin "n52_SLICEL" A3 ,
+    inpin "n54_SLICEL" AMUX ,
+    ;
+  net "n82_SLICEL.AMUX->n210_SLICEL.A4" ,
+    outpin "n210_SLICEL" A4 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "n28_SLICEL.AMUX->n139_SLICEL.A3" ,
+    outpin "n139_SLICEL" A3 ,
+    inpin "n28_SLICEL" AMUX ,
+    ;
+  net "f.I->n99_SLICEL.A1" ,
+    outpin "n99_SLICEL" A1 ,
+    inpin "f" I ,
+    ;
+  net "b.I->n121_SLICEL.A1" ,
+    outpin "n121_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n98_SLICEL.AMUX->n109_SLICEL.A2" ,
+    outpin "n109_SLICEL" A2 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "n27_SLICEL.AMUX->n47_SLICEL.A1" ,
+    outpin "n47_SLICEL" A1 ,
+    inpin "n27_SLICEL" AMUX ,
+    ;
+  net "k.I->n117_SLICEL.A3" ,
+    outpin "n117_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "a.I->n62_SLICEL.A1" ,
+    outpin "n62_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n198_SLICEL.AMUX->n197_SLICEL.A3" ,
+    outpin "n197_SLICEL" A3 ,
+    inpin "n198_SLICEL" AMUX ,
+    ;
+  net "n38_SLICEL.AMUX->n203_SLICEL.A2" ,
+    outpin "n203_SLICEL" A2 ,
+    inpin "n38_SLICEL" AMUX ,
+    ;
+  net "n48_SLICEL.AMUX->n144_SLICEL.A1" ,
+    outpin "n144_SLICEL" A1 ,
+    inpin "n48_SLICEL" AMUX ,
+    ;
+  net "k.I->n169_SLICEL.A3" ,
+    outpin "n169_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n28_SLICEL.AMUX->n188_SLICEL.A2" ,
+    outpin "n188_SLICEL" A2 ,
+    inpin "n28_SLICEL" AMUX ,
+    ;
+  net "b.I->n166_SLICEL.A2" ,
+    outpin "n166_SLICEL" A2 ,
+    inpin "b" I ,
+    ;
+  net "b.I->n137_SLICEL.A2" ,
+    outpin "n137_SLICEL" A2 ,
+    inpin "b" I ,
+    ;
+  net "l.I->n158_SLICEL.A4" ,
+    outpin "n158_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n68_SLICEL.AMUX->o_SLICEL.A5" ,
+    outpin "o_SLICEL" A5 ,
+    inpin "n68_SLICEL" AMUX ,
+    ;
+  net "l.I->n120_SLICEL.A4" ,
+    outpin "n120_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n.I->n50_SLICEL.A5" ,
+    outpin "n50_SLICEL" A5 ,
+    inpin "n" I ,
+    ;
+  net "n34_SLICEL.AMUX->n90_SLICEL.A4" ,
+    outpin "n90_SLICEL" A4 ,
+    inpin "n34_SLICEL" AMUX ,
+    ;
+  net "l.I->n65_SLICEL.A5" ,
+    outpin "n65_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "h.I->n218_SLICEL.A2" ,
+    outpin "n218_SLICEL" A2 ,
+    inpin "h" I ,
+    ;
+  net "n208_SLICEL.AMUX->n173_SLICEL.A6" ,
+    outpin "n173_SLICEL" A6 ,
+    inpin "n208_SLICEL" AMUX ,
+    ;
+  net "i.I->n200_SLICEL.A2" ,
+    outpin "n200_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "d.I->n215_SLICEL.A1" ,
+    outpin "n215_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n27_SLICEL.AMUX->n41_SLICEL.A2" ,
+    outpin "n41_SLICEL" A2 ,
+    inpin "n27_SLICEL" AMUX ,
+    ;
+  net "a.I->n49_SLICEL.A1" ,
+    outpin "n49_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "k.I->n106_SLICEL.A3" ,
+    outpin "n106_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "a.I->n59_SLICEL.A1" ,
+    outpin "n59_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "d.I->t_SLICEL.A1" ,
+    outpin "t_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n63_SLICEL.AMUX->n24_SLICEL.A5" ,
+    outpin "n24_SLICEL" A5 ,
+    inpin "n63_SLICEL" AMUX ,
+    ;
+  net "n26_SLICEL.AMUX->n167_SLICEL.A1" ,
+    outpin "n167_SLICEL" A1 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n233_SLICEL.AMUX->n232_SLICEL.A5" ,
+    outpin "n232_SLICEL" A5 ,
+    inpin "n233_SLICEL" AMUX ,
+    ;
+  net "j.I->n187_SLICEL.A2" ,
+    outpin "n187_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n203_SLICEL.AMUX->n200_SLICEL.A6" ,
+    outpin "n200_SLICEL" A6 ,
+    inpin "n203_SLICEL" AMUX ,
+    ;
+  net "j.I->n95_SLICEL.A2" ,
+    outpin "n95_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n42_SLICEL.AMUX->n45_SLICEL.A4" ,
+    outpin "n45_SLICEL" A4 ,
+    inpin "n42_SLICEL" AMUX ,
+    ;
+  net "n100_SLICEL.AMUX->n109_SLICEL.A3" ,
+    outpin "n109_SLICEL" A3 ,
+    inpin "n100_SLICEL" AMUX ,
+    ;
+  net "n124_SLICEL.AMUX->n123_SLICEL.A3" ,
+    outpin "n123_SLICEL" A3 ,
+    inpin "n124_SLICEL" AMUX ,
+    ;
+  net "j.I->n77_SLICEL.A3" ,
+    outpin "n77_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "n67_SLICEL.AMUX->o_SLICEL.A4" ,
+    outpin "o_SLICEL" A4 ,
+    inpin "n67_SLICEL" AMUX ,
+    ;
+  net "n82_SLICEL.AMUX->n126_SLICEL.A5" ,
+    outpin "n126_SLICEL" A5 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "n176_SLICEL.AMUX->n200_SLICEL.A3" ,
+    outpin "n200_SLICEL" A3 ,
+    inpin "n176_SLICEL" AMUX ,
+    ;
+  net "k.I->n34_SLICEL.A3" ,
+    outpin "n34_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "k.I->n62_SLICEL.A5" ,
+    outpin "n62_SLICEL" A5 ,
+    inpin "k" I ,
+    ;
+  net "i.I->n33_SLICEL.A1" ,
+    outpin "n33_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n156_SLICEL.AMUX->n132_SLICEL.A6" ,
+    outpin "n132_SLICEL" A6 ,
+    inpin "n156_SLICEL" AMUX ,
+    ;
+  net "n53_SLICEL.AMUX->n56_SLICEL.A1" ,
+    outpin "n56_SLICEL" A1 ,
+    inpin "n53_SLICEL" AMUX ,
+    ;
+  net "k.I->n115_SLICEL.A3" ,
+    outpin "n115_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n70_SLICEL.AMUX->n210_SLICEL.A3" ,
+    outpin "n210_SLICEL" A3 ,
+    inpin "n70_SLICEL" AMUX ,
+    ;
+  net "h.I->t_SLICEL.A2" ,
+    outpin "t_SLICEL" A2 ,
+    inpin "h" I ,
+    ;
+  net "f.I->n128_SLICEL.A1" ,
+    outpin "n128_SLICEL" A1 ,
+    inpin "f" I ,
+    ;
+  net "j.I->n68_SLICEL.A1" ,
+    outpin "n68_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "c.I->n235_SLICEL.A2" ,
+    outpin "n235_SLICEL" A2 ,
+    inpin "c" I ,
+    ;
+  net "n50_SLICEL.AMUX->n140_SLICEL.A2" ,
+    outpin "n140_SLICEL" A2 ,
+    inpin "n50_SLICEL" AMUX ,
+    ;
+  net "n163_SLICEL.AMUX->n162_SLICEL.A2" ,
+    outpin "n162_SLICEL" A2 ,
+    inpin "n163_SLICEL" AMUX ,
+    ;
+  net "n53_SLICEL.AMUX->n229_SLICEL.A1" ,
+    outpin "n229_SLICEL" A1 ,
+    inpin "n53_SLICEL" AMUX ,
+    ;
+  net "n178_SLICEL.AMUX->n219_SLICEL.A2" ,
+    outpin "n219_SLICEL" A2 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "i.I->n125_SLICEL.A3" ,
+    outpin "n125_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "f.I->n87_SLICEL.A2" ,
+    outpin "n87_SLICEL" A2 ,
+    inpin "f" I ,
+    ;
+  net "i.I->n129_SLICEL.A3" ,
+    outpin "n129_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "n146_SLICEL.AMUX->n145_SLICEL.A6" ,
+    outpin "n145_SLICEL" A6 ,
+    inpin "n146_SLICEL" AMUX ,
+    ;
+  net "n85_SLICEL.AMUX->n87_SLICEL.A4" ,
+    outpin "n87_SLICEL" A4 ,
+    inpin "n85_SLICEL" AMUX ,
+    ;
+  net "n137_SLICEL.AMUX->n136_SLICEL.A5" ,
+    outpin "n136_SLICEL" A5 ,
+    inpin "n137_SLICEL" AMUX ,
+    ;
+  net "l.I->n77_SLICEL.A5" ,
+    outpin "n77_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "n145_SLICEL.AMUX->n150_SLICEL.A4" ,
+    outpin "n150_SLICEL" A4 ,
+    inpin "n145_SLICEL" AMUX ,
+    ;
+  net "j.I->n72_SLICEL.A1" ,
+    outpin "n72_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "n92_SLICEL.AMUX->n91_SLICEL.A3" ,
+    outpin "n91_SLICEL" A3 ,
+    inpin "n92_SLICEL" AMUX ,
+    ;
+  net "n47_SLICEL.AMUX->n100_SLICEL.A5" ,
+    outpin "n100_SLICEL" A5 ,
+    inpin "n47_SLICEL" AMUX ,
+    ;
+  net "n91_SLICEL.AMUX->n195_SLICEL.A2" ,
+    outpin "n195_SLICEL" A2 ,
+    inpin "n91_SLICEL" AMUX ,
+    ;
+  net "a.I->n100_SLICEL.A1" ,
+    outpin "n100_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n85_SLICEL.AMUX->n144_SLICEL.A2" ,
+    outpin "n144_SLICEL" A2 ,
+    inpin "n85_SLICEL" AMUX ,
+    ;
+  net "j.I->n192_SLICEL.A3" ,
+    outpin "n192_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "i.I->n231_SLICEL.A1" ,
+    outpin "n231_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n44_SLICEL.AMUX->n140_SLICEL.A1" ,
+    outpin "n140_SLICEL" A1 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "n98_SLICEL.AMUX->n149_SLICEL.A2" ,
+    outpin "n149_SLICEL" A2 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "n229_SLICEL.AMUX->n228_SLICEL.A3" ,
+    outpin "n228_SLICEL" A3 ,
+    inpin "n229_SLICEL" AMUX ,
+    ;
+  net "n154_SLICEL.AMUX->n153_SLICEL.A4" ,
+    outpin "n153_SLICEL" A4 ,
+    inpin "n154_SLICEL" AMUX ,
+    ;
+  net "j.I->n222_SLICEL.A4" ,
+    outpin "n222_SLICEL" A4 ,
+    inpin "j" I ,
+    ;
+  net "n164_SLICEL.AMUX->n213_SLICEL.A5" ,
+    outpin "n213_SLICEL" A5 ,
+    inpin "n164_SLICEL" AMUX ,
+    ;
+  net "n125_SLICEL.AMUX->n124_SLICEL.A5" ,
+    outpin "n124_SLICEL" A5 ,
+    inpin "n125_SLICEL" AMUX ,
+    ;
+  net "d.I->n217_SLICEL.A1" ,
+    outpin "n217_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "i.I->n43_SLICEL.A1" ,
+    outpin "n43_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "i.I->n36_SLICEL.A1" ,
+    outpin "n36_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "i.I->n50_SLICEL.A1" ,
+    outpin "n50_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "i.I->n64_SLICEL.A1" ,
+    outpin "n64_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n131_SLICEL.AMUX->r_SLICEL.A2" ,
+    outpin "r_SLICEL" A2 ,
+    inpin "n131_SLICEL" AMUX ,
+    ;
+  net "b.I->n158_SLICEL.A2" ,
+    outpin "n158_SLICEL" A2 ,
+    inpin "b" I ,
+    ;
+  net "j.I->n205_SLICEL.A3" ,
+    outpin "n205_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "d.I->n177_SLICEL.A1" ,
+    outpin "n177_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n109_SLICEL.AMUX->n101_SLICEL.A3" ,
+    outpin "n101_SLICEL" A3 ,
+    inpin "n109_SLICEL" AMUX ,
+    ;
+  net "n178_SLICEL.AMUX->n210_SLICEL.A6" ,
+    outpin "n210_SLICEL" A6 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "e.I->n137_SLICEL.A3" ,
+    outpin "n137_SLICEL" A3 ,
+    inpin "e" I ,
+    ;
+  net "a.I->n74_SLICEL.A1" ,
+    outpin "n74_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n134_SLICEL.AMUX->n133_SLICEL.A2" ,
+    outpin "n133_SLICEL" A2 ,
+    inpin "n134_SLICEL" AMUX ,
+    ;
+  net "j.I->n171_SLICEL.A4" ,
+    outpin "n171_SLICEL" A4 ,
+    inpin "j" I ,
+    ;
+  net "b.I->n122_SLICEL.A2" ,
+    outpin "n122_SLICEL" A2 ,
+    inpin "b" I ,
+    ;
+  net "n82_SLICEL.AMUX->n203_SLICEL.A3" ,
+    outpin "n203_SLICEL" A3 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "n89_SLICEL.AMUX->n87_SLICEL.A5" ,
+    outpin "n87_SLICEL" A5 ,
+    inpin "n89_SLICEL" AMUX ,
+    ;
+  net "e.I->n238_SLICEL.A4" ,
+    outpin "n238_SLICEL" A4 ,
+    inpin "e" I ,
+    ;
+  net "n96_SLICEL.AMUX->n95_SLICEL.A6" ,
+    outpin "n95_SLICEL" A6 ,
+    inpin "n96_SLICEL" AMUX ,
+    ;
+  net "n117_SLICEL.AMUX->n165_SLICEL.A4" ,
+    outpin "n165_SLICEL" A4 ,
+    inpin "n117_SLICEL" AMUX ,
+    ;
+  net "n132_SLICEL.AMUX->q_SLICEL.A4" ,
+    outpin "q_SLICEL" A4 ,
+    inpin "n132_SLICEL" AMUX ,
+    ;
+  net "j.I->n62_SLICEL.A4" ,
+    outpin "n62_SLICEL" A4 ,
+    inpin "j" I ,
+    ;
+  net "n38_SLICEL.AMUX->n63_SLICEL.A2" ,
+    outpin "n63_SLICEL" A2 ,
+    inpin "n38_SLICEL" AMUX ,
+    ;
+  net "n128_SLICEL.AMUX->n127_SLICEL.A3" ,
+    outpin "n127_SLICEL" A3 ,
+    inpin "n128_SLICEL" AMUX ,
+    ;
+  net "n98_SLICEL.AMUX->n229_SLICEL.A2" ,
+    outpin "n229_SLICEL" A2 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "a.I->n31_SLICEL.A1" ,
+    outpin "n31_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n94_SLICEL.AMUX->n98_SLICEL.A3" ,
+    outpin "n98_SLICEL" A3 ,
+    inpin "n94_SLICEL" AMUX ,
+    ;
+  net "i.I->n71_SLICEL.A3" ,
+    outpin "n71_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "k.I->n234_SLICEL.A3" ,
+    outpin "n234_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "j.I->n112_SLICEL.A2" ,
+    outpin "n112_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "b.I->n181_SLICEL.A2" ,
+    outpin "n181_SLICEL" A2 ,
+    inpin "b" I ,
+    ;
+  net "n34_SLICEL.AMUX->n190_SLICEL.A4" ,
+    outpin "n190_SLICEL" A4 ,
+    inpin "n34_SLICEL" AMUX ,
+    ;
+  net "n44_SLICEL.AMUX->n38_SLICEL.A3" ,
+    outpin "n38_SLICEL" A3 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "n192_SLICEL.AMUX->n202_SLICEL.A5" ,
+    outpin "n202_SLICEL" A5 ,
+    inpin "n192_SLICEL" AMUX ,
+    ;
+  net "d.I->n189_SLICEL.A1" ,
+    outpin "n189_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n95_SLICEL.AMUX->n98_SLICEL.A4" ,
+    outpin "n98_SLICEL" A4 ,
+    inpin "n95_SLICEL" AMUX ,
+    ;
+  net "n44_SLICEL.AMUX->n192_SLICEL.A4" ,
+    outpin "n192_SLICEL" A4 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "n173_SLICEL.AMUX->r_SLICEL.A4" ,
+    outpin "r_SLICEL" A4 ,
+    inpin "n173_SLICEL" AMUX ,
+    ;
+  net "n135_SLICEL.AMUX->n161_SLICEL.A4" ,
+    outpin "n161_SLICEL" A4 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "n82_SLICEL.AMUX->n110_SLICEL.A2" ,
+    outpin "n110_SLICEL" A2 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "l.I->n28_SLICEL.A4" ,
+    outpin "n28_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n26_SLICEL.AMUX->n60_SLICEL.A5" ,
+    outpin "n60_SLICEL" A5 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n135_SLICEL.AMUX->n163_SLICEL.A4" ,
+    outpin "n163_SLICEL" A4 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "n238_SLICEL.AMUX->v_SLICEL.A2" ,
+    outpin "v_SLICEL" A2 ,
+    inpin "n238_SLICEL" AMUX ,
+    ;
+  net "l.I->n29_SLICEL.A4" ,
+    outpin "n29_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "l.I->n37_SLICEL.A4" ,
+    outpin "n37_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n74_SLICEL.AMUX->n72_SLICEL.A4" ,
+    outpin "n72_SLICEL" A4 ,
+    inpin "n74_SLICEL" AMUX ,
+    ;
+  net "n206_SLICEL.AMUX->n204_SLICEL.A5" ,
+    outpin "n204_SLICEL" A5 ,
+    inpin "n206_SLICEL" AMUX ,
+    ;
+  net "n76_SLICEL.AMUX->n75_SLICEL.A4" ,
+    outpin "n75_SLICEL" A4 ,
+    inpin "n76_SLICEL" AMUX ,
+    ;
+  net "i.I->n89_SLICEL.A1" ,
+    outpin "n89_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "k.I->n171_SLICEL.A5" ,
+    outpin "n171_SLICEL" A5 ,
+    inpin "k" I ,
+    ;
+  net "n188_SLICEL.AMUX->n178_SLICEL.A5" ,
+    outpin "n178_SLICEL" A5 ,
+    inpin "n188_SLICEL" AMUX ,
+    ;
+  net "n31_SLICEL.AMUX->n26_SLICEL.A4" ,
+    outpin "n26_SLICEL" A4 ,
+    inpin "n31_SLICEL" AMUX ,
+    ;
+  net "n.I->n79_SLICEL.A2" ,
+    outpin "n79_SLICEL" A2 ,
+    inpin "n" I ,
+    ;
+  net "n73_SLICEL.AMUX->n124_SLICEL.A1" ,
+    outpin "n124_SLICEL" A1 ,
+    inpin "n73_SLICEL" AMUX ,
+    ;
+  net "n82_SLICEL.AMUX->n119_SLICEL.A3" ,
+    outpin "n119_SLICEL" A3 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "l.I->n71_SLICEL.A5" ,
+    outpin "n71_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "n69_SLICEL.AMUX->n217_SLICEL.A3" ,
+    outpin "n217_SLICEL" A3 ,
+    inpin "n69_SLICEL" AMUX ,
+    ;
+  net "i.I->n205_SLICEL.A2" ,
+    outpin "n205_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "k.I->n206_SLICEL.A4" ,
+    outpin "n206_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "n26_SLICEL.AMUX->n25_SLICEL.A2" ,
+    outpin "n25_SLICEL" A2 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "l.I->n60_SLICEL.A3" ,
+    outpin "n60_SLICEL" A3 ,
+    inpin "l" I ,
+    ;
+  net "n91_SLICEL.AMUX->n102_SLICEL.A2" ,
+    outpin "n102_SLICEL" A2 ,
+    inpin "n91_SLICEL" AMUX ,
+    ;
+  net "b.I->n198_SLICEL.A2" ,
+    outpin "n198_SLICEL" A2 ,
+    inpin "b" I ,
+    ;
+  net "n104_SLICEL.AMUX->n102_SLICEL.A4" ,
+    outpin "n102_SLICEL" A4 ,
+    inpin "n104_SLICEL" AMUX ,
+    ;
+  net "n91_SLICEL.AMUX->n147_SLICEL.A4" ,
+    outpin "n147_SLICEL" A4 ,
+    inpin "n91_SLICEL" AMUX ,
+    ;
+  net "n219_SLICEL.AMUX->n216_SLICEL.A4" ,
+    outpin "n216_SLICEL" A4 ,
+    inpin "n219_SLICEL" AMUX ,
+    ;
+  net "c.I->n198_SLICEL.A3" ,
+    outpin "n198_SLICEL" A3 ,
+    inpin "c" I ,
+    ;
+  net "s_SLICEL.AMUX->s.O" ,
+    outpin "s" O ,
+    inpin "s_SLICEL" AMUX ,
+    ;
+  net "g.I->n145_SLICEL.A1" ,
+    outpin "n145_SLICEL" A1 ,
+    inpin "g" I ,
+    ;
+  net "n67_SLICEL.AMUX->p_SLICEL.A2" ,
+    outpin "p_SLICEL" A2 ,
+    inpin "n67_SLICEL" AMUX ,
+    ;
+  net "n26_SLICEL.AMUX->n147_SLICEL.A1" ,
+    outpin "n147_SLICEL" A1 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n181_SLICEL.AMUX->n188_SLICEL.A3" ,
+    outpin "n188_SLICEL" A3 ,
+    inpin "n181_SLICEL" AMUX ,
+    ;
+  net "n83_SLICEL.AMUX->n93_SLICEL.A3" ,
+    outpin "n93_SLICEL" A3 ,
+    inpin "n83_SLICEL" AMUX ,
+    ;
+  net "n177_SLICEL.AMUX->n229_SLICEL.A4" ,
+    outpin "n229_SLICEL" A4 ,
+    inpin "n177_SLICEL" AMUX ,
+    ;
+  net "n182_SLICEL.AMUX->n179_SLICEL.A4" ,
+    outpin "n179_SLICEL" A4 ,
+    inpin "n182_SLICEL" AMUX ,
+    ;
+  net "n218_SLICEL.AMUX->n217_SLICEL.A5" ,
+    outpin "n217_SLICEL" A5 ,
+    inpin "n218_SLICEL" AMUX ,
+    ;
+  net "b.I->n149_SLICEL.A1" ,
+    outpin "n149_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n.I->o_SLICEL.A2" ,
+    outpin "o_SLICEL" A2 ,
+    inpin "n" I ,
+    ;
+  net "l.I->n231_SLICEL.A4" ,
+    outpin "n231_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n100_SLICEL.AMUX->n97_SLICEL.A5" ,
+    outpin "n97_SLICEL" A5 ,
+    inpin "n100_SLICEL" AMUX ,
+    ;
+  net "k.I->n159_SLICEL.A2" ,
+    outpin "n159_SLICEL" A2 ,
+    inpin "k" I ,
+    ;
+  net "n139_SLICEL.AMUX->n145_SLICEL.A5" ,
+    outpin "n145_SLICEL" A5 ,
+    inpin "n139_SLICEL" AMUX ,
+    ;
+  net "n71_SLICEL.AMUX->n68_SLICEL.A4" ,
+    outpin "n68_SLICEL" A4 ,
+    inpin "n71_SLICEL" AMUX ,
+    ;
+  net "n90_SLICEL.AMUX->n93_SLICEL.A5" ,
+    outpin "n93_SLICEL" A5 ,
+    inpin "n90_SLICEL" AMUX ,
+    ;
+  net "i.I->n65_SLICEL.A2" ,
+    outpin "n65_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "a.I->n122_SLICEL.A1" ,
+    outpin "n122_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n26_SLICEL.AMUX->n72_SLICEL.A2" ,
+    outpin "n72_SLICEL" A2 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n236_SLICEL.AMUX->n233_SLICEL.A5" ,
+    outpin "n233_SLICEL" A5 ,
+    inpin "n236_SLICEL" AMUX ,
+    ;
+  net "n43_SLICEL.AMUX->n177_SLICEL.A2" ,
+    outpin "n177_SLICEL" A2 ,
+    inpin "n43_SLICEL" AMUX ,
+    ;
+  net "i.I->n128_SLICEL.A2" ,
+    outpin "n128_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n40_SLICEL.AMUX->n194_SLICEL.A1" ,
+    outpin "n194_SLICEL" A1 ,
+    inpin "n40_SLICEL" AMUX ,
+    ;
+  net "n120_SLICEL.AMUX->n163_SLICEL.A3" ,
+    outpin "n163_SLICEL" A3 ,
+    inpin "n120_SLICEL" AMUX ,
+    ;
+  net "n.I->n33_SLICEL.A3" ,
+    outpin "n33_SLICEL" A3 ,
+    inpin "n" I ,
+    ;
+  net "d.I->n182_SLICEL.A1" ,
+    outpin "n182_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n83_SLICEL.AMUX->n94_SLICEL.A2" ,
+    outpin "n94_SLICEL" A2 ,
+    inpin "n83_SLICEL" AMUX ,
+    ;
+  net "n64_SLICEL.AMUX->n63_SLICEL.A3" ,
+    outpin "n63_SLICEL" A3 ,
+    inpin "n64_SLICEL" AMUX ,
+    ;
+  net "n199_SLICEL.AMUX->n236_SLICEL.A5" ,
+    outpin "n236_SLICEL" A5 ,
+    inpin "n199_SLICEL" AMUX ,
+    ;
+  net "n.I->n24_SLICEL.A1" ,
+    outpin "n24_SLICEL" A1 ,
+    inpin "n" I ,
+    ;
+  net "l.I->n186_SLICEL.A3" ,
+    outpin "n186_SLICEL" A3 ,
+    inpin "l" I ,
+    ;
+  net "n176_SLICEL.AMUX->n226_SLICEL.A3" ,
+    outpin "n226_SLICEL" A3 ,
+    inpin "n176_SLICEL" AMUX ,
+    ;
+  net "n231_SLICEL.AMUX->n230_SLICEL.A4" ,
+    outpin "n230_SLICEL" A4 ,
+    inpin "n231_SLICEL" AMUX ,
+    ;
+  net "i.I->n189_SLICEL.A2" ,
+    outpin "n189_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "k.I->n180_SLICEL.A3" ,
+    outpin "n180_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "k.I->n228_SLICEL.A1" ,
+    outpin "n228_SLICEL" A1 ,
+    inpin "k" I ,
+    ;
+  net "k.I->n221_SLICEL.A4" ,
+    outpin "n221_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "b.I->n129_SLICEL.A1" ,
+    outpin "n129_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "j.I->n191_SLICEL.A2" ,
+    outpin "n191_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n228_SLICEL.AMUX->n225_SLICEL.A5" ,
+    outpin "n225_SLICEL" A5 ,
+    inpin "n228_SLICEL" AMUX ,
+    ;
+  net "j.I->n136_SLICEL.A3" ,
+    outpin "n136_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "c.I->n165_SLICEL.A1" ,
+    outpin "n165_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "l.I->n222_SLICEL.A6" ,
+    outpin "n222_SLICEL" A6 ,
+    inpin "l" I ,
+    ;
+  net "d.I->n218_SLICEL.A1" ,
+    outpin "n218_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n82_SLICEL.AMUX->n127_SLICEL.A2" ,
+    outpin "n127_SLICEL" A2 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "k.I->n209_SLICEL.A3" ,
+    outpin "n209_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n38_SLICEL.AMUX->n66_SLICEL.A4" ,
+    outpin "n66_SLICEL" A4 ,
+    inpin "n38_SLICEL" AMUX ,
+    ;
+  net "j.I->n231_SLICEL.A2" ,
+    outpin "n231_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n53_SLICEL.AMUX->n52_SLICEL.A1" ,
+    outpin "n52_SLICEL" A1 ,
+    inpin "n53_SLICEL" AMUX ,
+    ;
+  net "k.I->n54_SLICEL.A4" ,
+    outpin "n54_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "i.I->n178_SLICEL.A1" ,
+    outpin "n178_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n36_SLICEL.AMUX->n212_SLICEL.A1" ,
+    outpin "n212_SLICEL" A1 ,
+    inpin "n36_SLICEL" AMUX ,
+    ;
+  net "g.I->n171_SLICEL.A2" ,
+    outpin "n171_SLICEL" A2 ,
+    inpin "g" I ,
+    ;
+  net "n46_SLICEL.AMUX->n159_SLICEL.A4" ,
+    outpin "n159_SLICEL" A4 ,
+    inpin "n46_SLICEL" AMUX ,
+    ;
+  net "n41_SLICEL.AMUX->n104_SLICEL.A2" ,
+    outpin "n104_SLICEL" A2 ,
+    inpin "n41_SLICEL" AMUX ,
+    ;
+  net "b.I->n97_SLICEL.A1" ,
+    outpin "n97_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n45_SLICEL.AMUX->n38_SLICEL.A4" ,
+    outpin "n38_SLICEL" A4 ,
+    inpin "n45_SLICEL" AMUX ,
+    ;
+  net "n176_SLICEL.AMUX->n232_SLICEL.A2" ,
+    outpin "n232_SLICEL" A2 ,
+    inpin "n176_SLICEL" AMUX ,
+    ;
+  net "n167_SLICEL.AMUX->n162_SLICEL.A4" ,
+    outpin "n162_SLICEL" A4 ,
+    inpin "n167_SLICEL" AMUX ,
+    ;
+  net "b.I->n86_SLICEL.A2" ,
+    outpin "n86_SLICEL" A2 ,
+    inpin "b" I ,
+    ;
+  net "n82_SLICEL.AMUX->n160_SLICEL.A3" ,
+    outpin "n160_SLICEL" A3 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "v_SLICEL.AMUX->v.O" ,
+    outpin "v" O ,
+    inpin "v_SLICEL" AMUX ,
+    ;
+  net "n177_SLICEL.AMUX->n207_SLICEL.A5" ,
+    outpin "n207_SLICEL" A5 ,
+    inpin "n177_SLICEL" AMUX ,
+    ;
+  net "k.I->n222_SLICEL.A5" ,
+    outpin "n222_SLICEL" A5 ,
+    inpin "k" I ,
+    ;
+  net "n167_SLICEL.AMUX->n212_SLICEL.A2" ,
+    outpin "n212_SLICEL" A2 ,
+    inpin "n167_SLICEL" AMUX ,
+    ;
+  net "n176_SLICEL.AMUX->n175_SLICEL.A3" ,
+    outpin "n175_SLICEL" A3 ,
+    inpin "n176_SLICEL" AMUX ,
+    ;
+  net "n149_SLICEL.AMUX->n133_SLICEL.A5" ,
+    outpin "n133_SLICEL" A5 ,
+    inpin "n149_SLICEL" AMUX ,
+    ;
+  net "a.I->n65_SLICEL.A1" ,
+    outpin "n65_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n38_SLICEL.AMUX->n25_SLICEL.A5" ,
+    outpin "n25_SLICEL" A5 ,
+    inpin "n38_SLICEL" AMUX ,
+    ;
+  net "k.I->n231_SLICEL.A3" ,
+    outpin "n231_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "d.I->n190_SLICEL.A1" ,
+    outpin "n190_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n30_SLICEL.AMUX->n42_SLICEL.A2" ,
+    outpin "n42_SLICEL" A2 ,
+    inpin "n30_SLICEL" AMUX ,
+    ;
+  net "n104_SLICEL.AMUX->n195_SLICEL.A3" ,
+    outpin "n195_SLICEL" A3 ,
+    inpin "n104_SLICEL" AMUX ,
+    ;
+  net "n136_SLICEL.AMUX->n143_SLICEL.A4" ,
+    outpin "n143_SLICEL" A4 ,
+    inpin "n136_SLICEL" AMUX ,
+    ;
+  net "n106_SLICEL.AMUX->n207_SLICEL.A2" ,
+    outpin "n207_SLICEL" A2 ,
+    inpin "n106_SLICEL" AMUX ,
+    ;
+  net "e.I->n71_SLICEL.A2" ,
+    outpin "n71_SLICEL" A2 ,
+    inpin "e" I ,
+    ;
+  net "n45_SLICEL.AMUX->n53_SLICEL.A3" ,
+    outpin "n53_SLICEL" A3 ,
+    inpin "n45_SLICEL" AMUX ,
+    ;
+  net "j.I->n189_SLICEL.A3" ,
+    outpin "n189_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "n164_SLICEL.AMUX->n163_SLICEL.A5" ,
+    outpin "n163_SLICEL" A5 ,
+    inpin "n164_SLICEL" AMUX ,
+    ;
+  net "n178_SLICEL.AMUX->n227_SLICEL.A2" ,
+    outpin "n227_SLICEL" A2 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "n200_SLICEL.AMUX->n173_SLICEL.A4" ,
+    outpin "n173_SLICEL" A4 ,
+    inpin "n200_SLICEL" AMUX ,
+    ;
+  net "l.I->n170_SLICEL.A6" ,
+    outpin "n170_SLICEL" A6 ,
+    inpin "l" I ,
+    ;
+  net "n140_SLICEL.AMUX->n195_SLICEL.A5" ,
+    outpin "n195_SLICEL" A5 ,
+    inpin "n140_SLICEL" AMUX ,
+    ;
+  net "j.I->n174_SLICEL.A1" ,
+    outpin "n174_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "n85_SLICEL.AMUX->n83_SLICEL.A4" ,
+    outpin "n83_SLICEL" A4 ,
+    inpin "n85_SLICEL" AMUX ,
+    ;
+  net "n31_SLICEL.AMUX->n47_SLICEL.A4" ,
+    outpin "n47_SLICEL" A4 ,
+    inpin "n31_SLICEL" AMUX ,
+    ;
+  net "n.I->n34_SLICEL.A5" ,
+    outpin "n34_SLICEL" A5 ,
+    inpin "n" I ,
+    ;
+  net "n56_SLICEL.AMUX->n24_SLICEL.A4" ,
+    outpin "n24_SLICEL" A4 ,
+    inpin "n56_SLICEL" AMUX ,
+    ;
+  net "i.I->n170_SLICEL.A3" ,
+    outpin "n170_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "k.I->n71_SLICEL.A4" ,
+    outpin "n71_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "n152_SLICEL.AMUX->n132_SLICEL.A4" ,
+    outpin "n132_SLICEL" A4 ,
+    inpin "n152_SLICEL" AMUX ,
+    ;
+  net "k.I->n138_SLICEL.A3" ,
+    outpin "n138_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n135_SLICEL.AMUX->n213_SLICEL.A4" ,
+    outpin "n213_SLICEL" A4 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "n140_SLICEL.AMUX->n134_SLICEL.A2" ,
+    outpin "n134_SLICEL" A2 ,
+    inpin "n140_SLICEL" AMUX ,
+    ;
+  net "n30_SLICEL.AMUX->n39_SLICEL.A1" ,
+    outpin "n39_SLICEL" A1 ,
+    inpin "n30_SLICEL" AMUX ,
+    ;
+  net "h.I->n221_SLICEL.A1" ,
+    outpin "n221_SLICEL" A1 ,
+    inpin "h" I ,
+    ;
+  net "f.I->n116_SLICEL.A1" ,
+    outpin "n116_SLICEL" A1 ,
+    inpin "f" I ,
+    ;
+  net "n53_SLICEL.AMUX->n105_SLICEL.A2" ,
+    outpin "n105_SLICEL" A2 ,
+    inpin "n53_SLICEL" AMUX ,
+    ;
+  net "n.I->n44_SLICEL.A3" ,
+    outpin "n44_SLICEL" A3 ,
+    inpin "n" I ,
+    ;
+  net "n104_SLICEL.AMUX->n152_SLICEL.A4" ,
+    outpin "n152_SLICEL" A4 ,
+    inpin "n104_SLICEL" AMUX ,
+    ;
+  net "n207_SLICEL.AMUX->n204_SLICEL.A6" ,
+    outpin "n204_SLICEL" A6 ,
+    inpin "n207_SLICEL" AMUX ,
+    ;
+  net "i.I->n59_SLICEL.A2" ,
+    outpin "n59_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "i.I->n108_SLICEL.A1" ,
+    outpin "n108_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "r_SLICEL.AMUX->r.O" ,
+    outpin "r" O ,
+    inpin "r_SLICEL" AMUX ,
+    ;
+  net "e.I->n86_SLICEL.A3" ,
+    outpin "n86_SLICEL" A3 ,
+    inpin "e" I ,
+    ;
+  net "l.I->n159_SLICEL.A3" ,
+    outpin "n159_SLICEL" A3 ,
+    inpin "l" I ,
+    ;
+  net "n.I->n187_SLICEL.A5" ,
+    outpin "n187_SLICEL" A5 ,
+    inpin "n" I ,
+    ;
+  net "n69_SLICEL.AMUX->n133_SLICEL.A1" ,
+    outpin "n133_SLICEL" A1 ,
+    inpin "n69_SLICEL" AMUX ,
+    ;
+  net "n220_SLICEL.AMUX->n219_SLICEL.A3" ,
+    outpin "n219_SLICEL" A3 ,
+    inpin "n220_SLICEL" AMUX ,
+    ;
+  net "n144_SLICEL.AMUX->n140_SLICEL.A5" ,
+    outpin "n140_SLICEL" A5 ,
+    inpin "n144_SLICEL" AMUX ,
+    ;
+  net "n32_SLICEL.AMUX->n31_SLICEL.A3" ,
+    outpin "n31_SLICEL" A3 ,
+    inpin "n32_SLICEL" AMUX ,
+    ;
+  net "f.I->n137_SLICEL.A4" ,
+    outpin "n137_SLICEL" A4 ,
+    inpin "f" I ,
+    ;
+  net "n46_SLICEL.AMUX->n45_SLICEL.A2" ,
+    outpin "n45_SLICEL" A2 ,
+    inpin "n46_SLICEL" AMUX ,
+    ;
+  net "n42_SLICEL.AMUX->n41_SLICEL.A3" ,
+    outpin "n41_SLICEL" A3 ,
+    inpin "n42_SLICEL" AMUX ,
+    ;
+  net "n91_SLICEL.AMUX->n81_SLICEL.A5" ,
+    outpin "n81_SLICEL" A5 ,
+    inpin "n91_SLICEL" AMUX ,
+    ;
+  net "i.I->n220_SLICEL.A2" ,
+    outpin "n220_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n178_SLICEL.AMUX->n192_SLICEL.A6" ,
+    outpin "n192_SLICEL" A6 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "k.I->n35_SLICEL.A3" ,
+    outpin "n35_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "i.I->n97_SLICEL.A2" ,
+    outpin "n97_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "i.I->n29_SLICEL.A1" ,
+    outpin "n29_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "k.I->n84_SLICEL.A2" ,
+    outpin "n84_SLICEL" A2 ,
+    inpin "k" I ,
+    ;
+  net "n70_SLICEL.AMUX->n114_SLICEL.A1" ,
+    outpin "n114_SLICEL" A1 ,
+    inpin "n70_SLICEL" AMUX ,
+    ;
+  net "l.I->n44_SLICEL.A2" ,
+    outpin "n44_SLICEL" A2 ,
+    inpin "l" I ,
+    ;
+  net "j.I->n170_SLICEL.A4" ,
+    outpin "n170_SLICEL" A4 ,
+    inpin "j" I ,
+    ;
+  net "d.I->n226_SLICEL.A1" ,
+    outpin "n226_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "j.I->n37_SLICEL.A3" ,
+    outpin "n37_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "n140_SLICEL.AMUX->n203_SLICEL.A6" ,
+    outpin "n203_SLICEL" A6 ,
+    inpin "n140_SLICEL" AMUX ,
+    ;
+  net "m.I->n79_SLICEL.A1" ,
+    outpin "n79_SLICEL" A1 ,
+    inpin "m" I ,
+    ;
+  net "a.I->n158_SLICEL.A1" ,
+    outpin "n158_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "p_SLICEL.AMUX->p.O" ,
+    outpin "p" O ,
+    inpin "p_SLICEL" AMUX ,
+    ;
+  net "n204_SLICEL.AMUX->n173_SLICEL.A5" ,
+    outpin "n173_SLICEL" A5 ,
+    inpin "n204_SLICEL" AMUX ,
+    ;
+  net "n44_SLICEL.AMUX->n183_SLICEL.A1" ,
+    outpin "n183_SLICEL" A1 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "d.I->n192_SLICEL.A1" ,
+    outpin "n192_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "k.I->n186_SLICEL.A2" ,
+    outpin "n186_SLICEL" A2 ,
+    inpin "k" I ,
+    ;
+  net "n131_SLICEL.AMUX->u_SLICEL.A2" ,
+    outpin "u_SLICEL" A2 ,
+    inpin "n131_SLICEL" AMUX ,
+    ;
+  net "j.I->n123_SLICEL.A2" ,
+    outpin "n123_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "l.I->n105_SLICEL.A1" ,
+    outpin "n105_SLICEL" A1 ,
+    inpin "l" I ,
+    ;
+  net "n158_SLICEL.AMUX->n157_SLICEL.A5" ,
+    outpin "n157_SLICEL" A5 ,
+    inpin "n158_SLICEL" AMUX ,
+    ;
+  net "n117_SLICEL.AMUX->n116_SLICEL.A3" ,
+    outpin "n116_SLICEL" A3 ,
+    inpin "n117_SLICEL" AMUX ,
+    ;
+  net "n73_SLICEL.AMUX->n72_SLICEL.A3" ,
+    outpin "n72_SLICEL" A3 ,
+    inpin "n73_SLICEL" AMUX ,
+    ;
+  net "n150_SLICEL.AMUX->n201_SLICEL.A5" ,
+    outpin "n201_SLICEL" A5 ,
+    inpin "n150_SLICEL" AMUX ,
+    ;
+  net "n27_SLICEL.AMUX->n26_SLICEL.A1" ,
+    outpin "n26_SLICEL" A1 ,
+    inpin "n27_SLICEL" AMUX ,
+    ;
+  net "h.I->n236_SLICEL.A2" ,
+    outpin "n236_SLICEL" A2 ,
+    inpin "h" I ,
+    ;
+  net "n93_SLICEL.AMUX->n91_SLICEL.A4" ,
+    outpin "n91_SLICEL" A4 ,
+    inpin "n93_SLICEL" AMUX ,
+    ;
+  net "n160_SLICEL.AMUX->n159_SLICEL.A5" ,
+    outpin "n159_SLICEL" A5 ,
+    inpin "n160_SLICEL" AMUX ,
+    ;
+  net "n.I->u_SLICEL.A1" ,
+    outpin "u_SLICEL" A1 ,
+    inpin "n" I ,
+    ;
+  net "n136_SLICEL.AMUX->n145_SLICEL.A4" ,
+    outpin "n145_SLICEL" A4 ,
+    inpin "n136_SLICEL" AMUX ,
+    ;
+  net "k.I->n164_SLICEL.A3" ,
+    outpin "n164_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "j.I->n118_SLICEL.A3" ,
+    outpin "n118_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "h.I->n206_SLICEL.A1" ,
+    outpin "n206_SLICEL" A1 ,
+    inpin "h" I ,
+    ;
+  net "n138_SLICEL.AMUX->n136_SLICEL.A6" ,
+    outpin "n136_SLICEL" A6 ,
+    inpin "n138_SLICEL" AMUX ,
+    ;
+  net "j.I->n186_SLICEL.A1" ,
+    outpin "n186_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "n154_SLICEL.AMUX->n161_SLICEL.A5" ,
+    outpin "n161_SLICEL" A5 ,
+    inpin "n154_SLICEL" AMUX ,
+    ;
+  net "n82_SLICEL.AMUX->n235_SLICEL.A4" ,
+    outpin "n235_SLICEL" A4 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "n.I->n29_SLICEL.A5" ,
+    outpin "n29_SLICEL" A5 ,
+    inpin "n" I ,
+    ;
+  net "o_SLICEL.AMUX->o.O" ,
+    outpin "o" O ,
+    inpin "o_SLICEL" AMUX ,
+    ;
+  net "n131_SLICEL.AMUX->q_SLICEL.A3" ,
+    outpin "q_SLICEL" A3 ,
+    inpin "n131_SLICEL" AMUX ,
+    ;
+  net "a.I->n88_SLICEL.A1" ,
+    outpin "n88_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n.I->r_SLICEL.A1" ,
+    outpin "r_SLICEL" A1 ,
+    inpin "n" I ,
+    ;
+  net "n67_SLICEL.AMUX->q_SLICEL.A2" ,
+    outpin "q_SLICEL" A2 ,
+    inpin "n67_SLICEL" AMUX ,
+    ;
+  net "n34_SLICEL.AMUX->n139_SLICEL.A4" ,
+    outpin "n139_SLICEL" A4 ,
+    inpin "n34_SLICEL" AMUX ,
+    ;
+  net "c.I->n146_SLICEL.A1" ,
+    outpin "n146_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "n84_SLICEL.AMUX->n83_SLICEL.A3" ,
+    outpin "n83_SLICEL" A3 ,
+    inpin "n84_SLICEL" AMUX ,
+    ;
+  net "i.I->n209_SLICEL.A1" ,
+    outpin "n209_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "i.I->n106_SLICEL.A1" ,
+    outpin "n106_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n166_SLICEL.AMUX->n199_SLICEL.A3" ,
+    outpin "n199_SLICEL" A3 ,
+    inpin "n166_SLICEL" AMUX ,
+    ;
+  net "b.I->n93_SLICEL.A1" ,
+    outpin "n93_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "f.I->n86_SLICEL.A4" ,
+    outpin "n86_SLICEL" A4 ,
+    inpin "f" I ,
+    ;
+  net "g.I->n165_SLICEL.A2" ,
+    outpin "n165_SLICEL" A2 ,
+    inpin "g" I ,
+    ;
+  net "g.I->n148_SLICEL.A1" ,
+    outpin "n148_SLICEL" A1 ,
+    inpin "g" I ,
+    ;
+  net "n217_SLICEL.AMUX->n216_SLICEL.A3" ,
+    outpin "n216_SLICEL" A3 ,
+    inpin "n217_SLICEL" AMUX ,
+    ;
+  net "n205_SLICEL.AMUX->n204_SLICEL.A4" ,
+    outpin "n204_SLICEL" A4 ,
+    inpin "n205_SLICEL" AMUX ,
+    ;
+  net "j.I->n55_SLICEL.A2" ,
+    outpin "n55_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n177_SLICEL.AMUX->n176_SLICEL.A1" ,
+    outpin "n176_SLICEL" A1 ,
+    inpin "n177_SLICEL" AMUX ,
+    ;
+  net "j.I->n122_SLICEL.A4" ,
+    outpin "n122_SLICEL" A4 ,
+    inpin "j" I ,
+    ;
+  net "n26_SLICEL.AMUX->n119_SLICEL.A1" ,
+    outpin "n119_SLICEL" A1 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n192_SLICEL.AMUX->n229_SLICEL.A5" ,
+    outpin "n229_SLICEL" A5 ,
+    inpin "n192_SLICEL" AMUX ,
+    ;
+  net "n42_SLICEL.AMUX->n47_SLICEL.A3" ,
+    outpin "n47_SLICEL" A3 ,
+    inpin "n42_SLICEL" AMUX ,
+    ;
+  net "n28_SLICEL.AMUX->n90_SLICEL.A3" ,
+    outpin "n90_SLICEL" A3 ,
+    inpin "n28_SLICEL" AMUX ,
+    ;
+  net "n108_SLICEL.AMUX->n107_SLICEL.A1" ,
+    outpin "n107_SLICEL" A1 ,
+    inpin "n108_SLICEL" AMUX ,
+    ;
+  net "n106_SLICEL.AMUX->n197_SLICEL.A2" ,
+    outpin "n197_SLICEL" A2 ,
+    inpin "n106_SLICEL" AMUX ,
+    ;
+  net "i.I->n118_SLICEL.A2" ,
+    outpin "n118_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n194_SLICEL.AMUX->n193_SLICEL.A2" ,
+    outpin "n193_SLICEL" A2 ,
+    inpin "n194_SLICEL" AMUX ,
+    ;
+  net "d.I->n222_SLICEL.A1" ,
+    outpin "n222_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "i.I->n126_SLICEL.A1" ,
+    outpin "n126_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "l.I->n103_SLICEL.A4" ,
+    outpin "n103_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n30_SLICEL.AMUX->n121_SLICEL.A4" ,
+    outpin "n121_SLICEL" A4 ,
+    inpin "n30_SLICEL" AMUX ,
+    ;
+  net "n191_SLICEL.AMUX->n190_SLICEL.A5" ,
+    outpin "n190_SLICEL" A5 ,
+    inpin "n191_SLICEL" AMUX ,
+    ;
+  net "n206_SLICEL.AMUX->n211_SLICEL.A3" ,
+    outpin "n211_SLICEL" A3 ,
+    inpin "n206_SLICEL" AMUX ,
+    ;
+  net "n38_SLICEL.AMUX->n52_SLICEL.A2" ,
+    outpin "n52_SLICEL" A2 ,
+    inpin "n38_SLICEL" AMUX ,
+    ;
+  net "c.I->n139_SLICEL.A1" ,
+    outpin "n139_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "j.I->n117_SLICEL.A2" ,
+    outpin "n117_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n47_SLICEL.AMUX->n53_SLICEL.A4" ,
+    outpin "n53_SLICEL" A4 ,
+    inpin "n47_SLICEL" AMUX ,
+    ;
+  net "b.I->n154_SLICEL.A1" ,
+    outpin "n154_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "a.I->n54_SLICEL.A1" ,
+    outpin "n54_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n186_SLICEL.AMUX->n185_SLICEL.A3" ,
+    outpin "n185_SLICEL" A3 ,
+    inpin "n186_SLICEL" AMUX ,
+    ;
+  net "n79_SLICEL.AMUX->p_SLICEL.A3" ,
+    outpin "p_SLICEL" A3 ,
+    inpin "n79_SLICEL" AMUX ,
+    ;
+  net "n28_SLICEL.AMUX->n27_SLICEL.A2" ,
+    outpin "n27_SLICEL" A2 ,
+    inpin "n28_SLICEL" AMUX ,
+    ;
+  net "e.I->n27_SLICEL.A1" ,
+    outpin "n27_SLICEL" A1 ,
+    inpin "e" I ,
+    ;
+  net "b.I->n92_SLICEL.A1" ,
+    outpin "n92_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n181_SLICEL.AMUX->n179_SLICEL.A3" ,
+    outpin "n179_SLICEL" A3 ,
+    inpin "n181_SLICEL" AMUX ,
+    ;
+  net "b.I->n138_SLICEL.A1" ,
+    outpin "n138_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n43_SLICEL.AMUX->n93_SLICEL.A2" ,
+    outpin "n93_SLICEL" A2 ,
+    inpin "n43_SLICEL" AMUX ,
+    ;
+  net "n98_SLICEL.AMUX->n105_SLICEL.A4" ,
+    outpin "n105_SLICEL" A4 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "n91_SLICEL.AMUX->n203_SLICEL.A4" ,
+    outpin "n203_SLICEL" A4 ,
+    inpin "n91_SLICEL" AMUX ,
+    ;
+  net "i.I->n171_SLICEL.A3" ,
+    outpin "n171_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "n87_SLICEL.AMUX->n107_SLICEL.A3" ,
+    outpin "n107_SLICEL" A3 ,
+    inpin "n87_SLICEL" AMUX ,
+    ;
+  net "c.I->n181_SLICEL.A3" ,
+    outpin "n181_SLICEL" A3 ,
+    inpin "c" I ,
+    ;
+  net "d.I->n233_SLICEL.A1" ,
+    outpin "n233_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n41_SLICEL.AMUX->n38_SLICEL.A2" ,
+    outpin "n38_SLICEL" A2 ,
+    inpin "n41_SLICEL" AMUX ,
+    ;
+  net "n150_SLICEL.AMUX->n149_SLICEL.A4" ,
+    outpin "n149_SLICEL" A4 ,
+    inpin "n150_SLICEL" AMUX ,
+    ;
+  net "l.I->n169_SLICEL.A4" ,
+    outpin "n169_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n201_SLICEL.AMUX->n204_SLICEL.A3" ,
+    outpin "n204_SLICEL" A3 ,
+    inpin "n201_SLICEL" AMUX ,
+    ;
+  net "k.I->n50_SLICEL.A3" ,
+    outpin "n50_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "c.I->n159_SLICEL.A1" ,
+    outpin "n159_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "a.I->n60_SLICEL.A1" ,
+    outpin "n60_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "j.I->n46_SLICEL.A2" ,
+    outpin "n46_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "b.I->n109_SLICEL.A1" ,
+    outpin "n109_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n143_SLICEL.AMUX->n150_SLICEL.A2" ,
+    outpin "n150_SLICEL" A2 ,
+    inpin "n143_SLICEL" AMUX ,
+    ;
+  net "n126_SLICEL.AMUX->n123_SLICEL.A4" ,
+    outpin "n123_SLICEL" A4 ,
+    inpin "n126_SLICEL" AMUX ,
+    ;
+  net "n46_SLICEL.AMUX->n228_SLICEL.A2" ,
+    outpin "n228_SLICEL" A2 ,
+    inpin "n46_SLICEL" AMUX ,
+    ;
+  net "a.I->n137_SLICEL.A1" ,
+    outpin "n137_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "b.I->n155_SLICEL.A1" ,
+    outpin "n155_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n.I->n40_SLICEL.A5" ,
+    outpin "n40_SLICEL" A5 ,
+    inpin "n" I ,
+    ;
+  net "j.I->n168_SLICEL.A1" ,
+    outpin "n168_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "n203_SLICEL.AMUX->n227_SLICEL.A4" ,
+    outpin "n227_SLICEL" A4 ,
+    inpin "n203_SLICEL" AMUX ,
+    ;
+  net "n29_SLICEL.AMUX->n26_SLICEL.A2" ,
+    outpin "n26_SLICEL" A2 ,
+    inpin "n29_SLICEL" AMUX ,
+    ;
+  net "i.I->n146_SLICEL.A2" ,
+    outpin "n146_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n69_SLICEL.AMUX->n68_SLICEL.A2" ,
+    outpin "n68_SLICEL" A2 ,
+    inpin "n69_SLICEL" AMUX ,
+    ;
+  net "e.I->n30_SLICEL.A2" ,
+    outpin "n30_SLICEL" A2 ,
+    inpin "e" I ,
+    ;
+  net "n196_SLICEL.AMUX->n175_SLICEL.A6" ,
+    outpin "n175_SLICEL" A6 ,
+    inpin "n196_SLICEL" AMUX ,
+    ;
+  net "n.I->n35_SLICEL.A5" ,
+    outpin "n35_SLICEL" A5 ,
+    inpin "n" I ,
+    ;
+  net "j.I->n28_SLICEL.A2" ,
+    outpin "n28_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n178_SLICEL.AMUX->n202_SLICEL.A3" ,
+    outpin "n202_SLICEL" A3 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "n178_SLICEL.AMUX->n233_SLICEL.A3" ,
+    outpin "n233_SLICEL" A3 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "d.I->n196_SLICEL.A1" ,
+    outpin "n196_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n213_SLICEL.AMUX->n212_SLICEL.A4" ,
+    outpin "n212_SLICEL" A4 ,
+    inpin "n213_SLICEL" AMUX ,
+    ;
+  net "n100_SLICEL.AMUX->n155_SLICEL.A3" ,
+    outpin "n155_SLICEL" A3 ,
+    inpin "n100_SLICEL" AMUX ,
+    ;
+  net "n.I->n189_SLICEL.A4" ,
+    outpin "n189_SLICEL" A4 ,
+    inpin "n" I ,
+    ;
+  net "n45_SLICEL.AMUX->n104_SLICEL.A4" ,
+    outpin "n104_SLICEL" A4 ,
+    inpin "n45_SLICEL" AMUX ,
+    ;
+  net "n179_SLICEL.AMUX->n178_SLICEL.A2" ,
+    outpin "n178_SLICEL" A2 ,
+    inpin "n179_SLICEL" AMUX ,
+    ;
+  net "l.I->n126_SLICEL.A4" ,
+    outpin "n126_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n192_SLICEL.AMUX->n176_SLICEL.A2" ,
+    outpin "n176_SLICEL" A2 ,
+    inpin "n192_SLICEL" AMUX ,
+    ;
+  net "n42_SLICEL.AMUX->n70_SLICEL.A3" ,
+    outpin "n70_SLICEL" A3 ,
+    inpin "n42_SLICEL" AMUX ,
+    ;
+  net "n121_SLICEL.AMUX->n119_SLICEL.A5" ,
+    outpin "n119_SLICEL" A5 ,
+    inpin "n121_SLICEL" AMUX ,
+    ;
+  net "c.I->n180_SLICEL.A1" ,
+    outpin "n180_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "n118_SLICEL.AMUX->n114_SLICEL.A5" ,
+    outpin "n114_SLICEL" A5 ,
+    inpin "n118_SLICEL" AMUX ,
+    ;
+  net "k.I->n111_SLICEL.A3" ,
+    outpin "n111_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n.I->n190_SLICEL.A3" ,
+    outpin "n190_SLICEL" A3 ,
+    inpin "n" I ,
+    ;
+  net "i.I->n46_SLICEL.A1" ,
+    outpin "n46_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n45_SLICEL.AMUX->n100_SLICEL.A4" ,
+    outpin "n100_SLICEL" A4 ,
+    inpin "n45_SLICEL" AMUX ,
+    ;
+  net "j.I->n84_SLICEL.A1" ,
+    outpin "n84_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "n111_SLICEL.AMUX->n153_SLICEL.A2" ,
+    outpin "n153_SLICEL" A2 ,
+    inpin "n111_SLICEL" AMUX ,
+    ;
+  net "i.I->n35_SLICEL.A1" ,
+    outpin "n35_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "a.I->n181_SLICEL.A1" ,
+    outpin "n181_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "j.I->n234_SLICEL.A2" ,
+    outpin "n234_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "j.I->n48_SLICEL.A2" ,
+    outpin "n48_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n75_SLICEL.AMUX->n72_SLICEL.A5" ,
+    outpin "n72_SLICEL" A5 ,
+    inpin "n75_SLICEL" AMUX ,
+    ;
+  net "l.I->n118_SLICEL.A5" ,
+    outpin "n118_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "n30_SLICEL.AMUX->n116_SLICEL.A2" ,
+    outpin "n116_SLICEL" A2 ,
+    inpin "n30_SLICEL" AMUX ,
+    ;
+  net "n141_SLICEL.AMUX->n140_SLICEL.A3" ,
+    outpin "n140_SLICEL" A3 ,
+    inpin "n141_SLICEL" AMUX ,
+    ;
+  net "h.I->n222_SLICEL.A2" ,
+    outpin "n222_SLICEL" A2 ,
+    inpin "h" I ,
+    ;
+  net "i.I->n28_SLICEL.A1" ,
+    outpin "n28_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "j.I->n36_SLICEL.A2" ,
+    outpin "n36_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n40_SLICEL.AMUX->n39_SLICEL.A2" ,
+    outpin "n39_SLICEL" A2 ,
+    inpin "n40_SLICEL" AMUX ,
+    ;
+  net "d.I->n200_SLICEL.A1" ,
+    outpin "n200_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n24_SLICEL.AMUX->o_SLICEL.A3" ,
+    outpin "o_SLICEL" A3 ,
+    inpin "n24_SLICEL" AMUX ,
+    ;
+  net "n53_SLICEL.AMUX->n157_SLICEL.A2" ,
+    outpin "n157_SLICEL" A2 ,
+    inpin "n53_SLICEL" AMUX ,
+    ;
+  net "n34_SLICEL.AMUX->n31_SLICEL.A5" ,
+    outpin "n31_SLICEL" A5 ,
+    inpin "n34_SLICEL" AMUX ,
+    ;
+  net "n178_SLICEL.AMUX->n177_SLICEL.A3" ,
+    outpin "n177_SLICEL" A3 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "k.I->n36_SLICEL.A3" ,
+    outpin "n36_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n127_SLICEL.AMUX->n123_SLICEL.A5" ,
+    outpin "n123_SLICEL" A5 ,
+    inpin "n127_SLICEL" AMUX ,
+    ;
+  net "k.I->n61_SLICEL.A2" ,
+    outpin "n61_SLICEL" A2 ,
+    inpin "k" I ,
+    ;
+  net "f.I->n238_SLICEL.A5" ,
+    outpin "n238_SLICEL" A5 ,
+    inpin "f" I ,
+    ;
+  net "n27_SLICEL.AMUX->n70_SLICEL.A2" ,
+    outpin "n70_SLICEL" A2 ,
+    inpin "n27_SLICEL" AMUX ,
+    ;
+  net "n26_SLICEL.AMUX->n63_SLICEL.A1" ,
+    outpin "n63_SLICEL" A1 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "j.I->n120_SLICEL.A2" ,
+    outpin "n120_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n50_SLICEL.AMUX->n202_SLICEL.A1" ,
+    outpin "n202_SLICEL" A1 ,
+    inpin "n50_SLICEL" AMUX ,
+    ;
+  net "a.I->n238_SLICEL.A1" ,
+    outpin "n238_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n135_SLICEL.AMUX->n134_SLICEL.A1" ,
+    outpin "n134_SLICEL" A1 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "n180_SLICEL.AMUX->n179_SLICEL.A2" ,
+    outpin "n179_SLICEL" A2 ,
+    inpin "n180_SLICEL" AMUX ,
+    ;
+  net "b.I->n201_SLICEL.A1" ,
+    outpin "n201_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "j.I->n50_SLICEL.A2" ,
+    outpin "n50_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n195_SLICEL.AMUX->n232_SLICEL.A4" ,
+    outpin "n232_SLICEL" A4 ,
+    inpin "n195_SLICEL" AMUX ,
+    ;
+  net "n98_SLICEL.AMUX->n195_SLICEL.A1" ,
+    outpin "n195_SLICEL" A1 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "n177_SLICEL.AMUX->n202_SLICEL.A4" ,
+    outpin "n202_SLICEL" A4 ,
+    inpin "n177_SLICEL" AMUX ,
+    ;
+  net "f.I->n129_SLICEL.A2" ,
+    outpin "n129_SLICEL" A2 ,
+    inpin "f" I ,
+    ;
+  net "n106_SLICEL.AMUX->n105_SLICEL.A3" ,
+    outpin "n105_SLICEL" A3 ,
+    inpin "n106_SLICEL" AMUX ,
+    ;
+  net "h.I->n182_SLICEL.A2" ,
+    outpin "n182_SLICEL" A2 ,
+    inpin "h" I ,
+    ;
+  net "n39_SLICEL.AMUX->n38_SLICEL.A1" ,
+    outpin "n38_SLICEL" A1 ,
+    inpin "n39_SLICEL" AMUX ,
+    ;
+  net "i.I->n61_SLICEL.A1" ,
+    outpin "n61_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n48_SLICEL.AMUX->n75_SLICEL.A2" ,
+    outpin "n75_SLICEL" A2 ,
+    inpin "n48_SLICEL" AMUX ,
+    ;
+  net "n44_SLICEL.AMUX->n100_SLICEL.A3" ,
+    outpin "n100_SLICEL" A3 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "h.I->n220_SLICEL.A1" ,
+    outpin "n220_SLICEL" A1 ,
+    inpin "h" I ,
+    ;
+  net "n114_SLICEL.AMUX->n113_SLICEL.A2" ,
+    outpin "n113_SLICEL" A2 ,
+    inpin "n114_SLICEL" AMUX ,
+    ;
+  net "n25_SLICEL.AMUX->n24_SLICEL.A2" ,
+    outpin "n24_SLICEL" A2 ,
+    inpin "n25_SLICEL" AMUX ,
+    ;
+  net "j.I->n115_SLICEL.A2" ,
+    outpin "n115_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n166_SLICEL.AMUX->n165_SLICEL.A5" ,
+    outpin "n165_SLICEL" A5 ,
+    inpin "n166_SLICEL" AMUX ,
+    ;
+  net "j.I->n29_SLICEL.A2" ,
+    outpin "n29_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n174_SLICEL.AMUX->n183_SLICEL.A2" ,
+    outpin "n183_SLICEL" A2 ,
+    inpin "n174_SLICEL" AMUX ,
+    ;
+  net "l.I->n51_SLICEL.A3" ,
+    outpin "n51_SLICEL" A3 ,
+    inpin "l" I ,
+    ;
+  net "l.I->n209_SLICEL.A4" ,
+    outpin "n209_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n119_SLICEL.AMUX->n113_SLICEL.A3" ,
+    outpin "n113_SLICEL" A3 ,
+    inpin "n119_SLICEL" AMUX ,
+    ;
+  net "n170_SLICEL.AMUX->n168_SLICEL.A4" ,
+    outpin "n168_SLICEL" A4 ,
+    inpin "n170_SLICEL" AMUX ,
+    ;
+  net "n117_SLICEL.AMUX->n121_SLICEL.A5" ,
+    outpin "n121_SLICEL" A5 ,
+    inpin "n117_SLICEL" AMUX ,
+    ;
+  net "a.I->n166_SLICEL.A1" ,
+    outpin "n166_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "k.I->n67_SLICEL.A3" ,
+    outpin "n67_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n169_SLICEL.AMUX->n168_SLICEL.A3" ,
+    outpin "n168_SLICEL" A3 ,
+    inpin "n169_SLICEL" AMUX ,
+    ;
+  net "n103_SLICEL.AMUX->n152_SLICEL.A3" ,
+    outpin "n152_SLICEL" A3 ,
+    inpin "n103_SLICEL" AMUX ,
+    ;
+  net "n87_SLICEL.AMUX->n94_SLICEL.A3" ,
+    outpin "n94_SLICEL" A3 ,
+    inpin "n87_SLICEL" AMUX ,
+    ;
+  net "k.I->n120_SLICEL.A3" ,
+    outpin "n120_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n181_SLICEL.AMUX->n183_SLICEL.A4" ,
+    outpin "n183_SLICEL" A4 ,
+    inpin "n181_SLICEL" AMUX ,
+    ;
+  net "n178_SLICEL.AMUX->n230_SLICEL.A3" ,
+    outpin "n230_SLICEL" A3 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "k.I->n187_SLICEL.A3" ,
+    outpin "n187_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n135_SLICEL.AMUX->n210_SLICEL.A5" ,
+    outpin "n210_SLICEL" A5 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "l.I->n175_SLICEL.A1" ,
+    outpin "n175_SLICEL" A1 ,
+    inpin "l" I ,
+    ;
+  net "k.I->n32_SLICEL.A1" ,
+    outpin "n32_SLICEL" A1 ,
+    inpin "k" I ,
+    ;
+  net "n167_SLICEL.AMUX->n230_SLICEL.A2" ,
+    outpin "n230_SLICEL" A2 ,
+    inpin "n167_SLICEL" AMUX ,
+    ;
+  net "n153_SLICEL.AMUX->n132_SLICEL.A5" ,
+    outpin "n132_SLICEL" A5 ,
+    inpin "n153_SLICEL" AMUX ,
+    ;
+  net "i.I->n67_SLICEL.A1" ,
+    outpin "n67_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "e.I->n49_SLICEL.A2" ,
+    outpin "n49_SLICEL" A2 ,
+    inpin "e" I ,
+    ;
+  net "n111_SLICEL.AMUX->n211_SLICEL.A1" ,
+    outpin "n211_SLICEL" A1 ,
+    inpin "n111_SLICEL" AMUX ,
+    ;
+  net "f.I->n90_SLICEL.A2" ,
+    outpin "n90_SLICEL" A2 ,
+    inpin "f" I ,
+    ;
+  net "j.I->n209_SLICEL.A2" ,
+    outpin "n209_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "i.I->n73_SLICEL.A1" ,
+    outpin "n73_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "l.I->n74_SLICEL.A5" ,
+    outpin "n74_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "j.I->n43_SLICEL.A2" ,
+    outpin "n43_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "h.I->n187_SLICEL.A1" ,
+    outpin "n187_SLICEL" A1 ,
+    inpin "h" I ,
+    ;
+  net "n77_SLICEL.AMUX->n75_SLICEL.A5" ,
+    outpin "n75_SLICEL" A5 ,
+    inpin "n77_SLICEL" AMUX ,
+    ;
+  net "l.I->n157_SLICEL.A1" ,
+    outpin "n157_SLICEL" A1 ,
+    inpin "l" I ,
+    ;
+  net "n105_SLICEL.AMUX->n101_SLICEL.A2" ,
+    outpin "n101_SLICEL" A2 ,
+    inpin "n105_SLICEL" AMUX ,
+    ;
+  net "e.I->n58_SLICEL.A1" ,
+    outpin "n58_SLICEL" A1 ,
+    inpin "e" I ,
+    ;
+  net "n226_SLICEL.AMUX->n225_SLICEL.A3" ,
+    outpin "n225_SLICEL" A3 ,
+    inpin "n226_SLICEL" AMUX ,
+    ;
+  net "n57_SLICEL.AMUX->n132_SLICEL.A2" ,
+    outpin "n132_SLICEL" A2 ,
+    inpin "n57_SLICEL" AMUX ,
+    ;
+  net "n26_SLICEL.AMUX->n75_SLICEL.A3" ,
+    outpin "n75_SLICEL" A3 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n115_SLICEL.AMUX->n160_SLICEL.A4" ,
+    outpin "n160_SLICEL" A4 ,
+    inpin "n115_SLICEL" AMUX ,
+    ;
+  net "b.I->n90_SLICEL.A1" ,
+    outpin "n90_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "l.I->n76_SLICEL.A2" ,
+    outpin "n76_SLICEL" A2 ,
+    inpin "l" I ,
+    ;
+  net "n82_SLICEL.AMUX->n167_SLICEL.A2" ,
+    outpin "n167_SLICEL" A2 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "l.I->n112_SLICEL.A4" ,
+    outpin "n112_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n85_SLICEL.AMUX->n145_SLICEL.A3" ,
+    outpin "n145_SLICEL" A3 ,
+    inpin "n85_SLICEL" AMUX ,
+    ;
+  net "n29_SLICEL.AMUX->n42_SLICEL.A1" ,
+    outpin "n42_SLICEL" A1 ,
+    inpin "n29_SLICEL" AMUX ,
+    ;
+  net "n135_SLICEL.AMUX->n169_SLICEL.A5" ,
+    outpin "n169_SLICEL" A5 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "i.I->n226_SLICEL.A2" ,
+    outpin "n226_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n209_SLICEL.AMUX->n208_SLICEL.A2" ,
+    outpin "n208_SLICEL" A2 ,
+    inpin "n209_SLICEL" AMUX ,
+    ;
+  net "u_SLICEL.AMUX->u.O" ,
+    outpin "u" O ,
+    inpin "u_SLICEL" AMUX ,
+    ;
+  net "n234_SLICEL.AMUX->n233_SLICEL.A2" ,
+    outpin "n233_SLICEL" A2 ,
+    inpin "n234_SLICEL" AMUX ,
+    ;
+  net "n185_SLICEL.AMUX->n178_SLICEL.A4" ,
+    outpin "n178_SLICEL" A4 ,
+    inpin "n185_SLICEL" AMUX ,
+    ;
+  net "n97_SLICEL.AMUX->n80_SLICEL.A3" ,
+    outpin "n80_SLICEL" A3 ,
+    inpin "n97_SLICEL" AMUX ,
+    ;
+  net "n148_SLICEL.AMUX->n133_SLICEL.A4" ,
+    outpin "n133_SLICEL" A4 ,
+    inpin "n148_SLICEL" AMUX ,
+    ;
+  net "b.I->n87_SLICEL.A1" ,
+    outpin "n87_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "f.I->n166_SLICEL.A4" ,
+    outpin "n166_SLICEL" A4 ,
+    inpin "f" I ,
+    ;
+  net "n44_SLICEL.AMUX->n91_SLICEL.A1" ,
+    outpin "n91_SLICEL" A1 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "t.I->n194_SLICEL.A2" ,
+    outpin "n194_SLICEL" A2 ,
+    inpin "t" I ,
+    ;
+  net "n30_SLICEL.AMUX->n26_SLICEL.A3" ,
+    outpin "n26_SLICEL" A3 ,
+    inpin "n30_SLICEL" AMUX ,
+    ;
+  net "n150_SLICEL.AMUX->n207_SLICEL.A4" ,
+    outpin "n207_SLICEL" A4 ,
+    inpin "n150_SLICEL" AMUX ,
+    ;
+  net "n41_SLICEL.AMUX->n100_SLICEL.A2" ,
+    outpin "n100_SLICEL" A2 ,
+    inpin "n41_SLICEL" AMUX ,
+    ;
+  net "i.I->n103_SLICEL.A1" ,
+    outpin "n103_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "j.I->n83_SLICEL.A1" ,
+    outpin "n83_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "c.I->n158_SLICEL.A3" ,
+    outpin "n158_SLICEL" A3 ,
+    inpin "c" I ,
+    ;
+  net "n55_SLICEL.AMUX->n66_SLICEL.A5" ,
+    outpin "n66_SLICEL" A5 ,
+    inpin "n55_SLICEL" AMUX ,
+    ;
+  net "k.I->n55_SLICEL.A3" ,
+    outpin "n55_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "c.I->n136_SLICEL.A1" ,
+    outpin "n136_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "n193_SLICEL.AMUX->n227_SLICEL.A3" ,
+    outpin "n227_SLICEL" A3 ,
+    inpin "n193_SLICEL" AMUX ,
+    ;
+  net "l.I->n54_SLICEL.A5" ,
+    outpin "n54_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "j.I->n145_SLICEL.A2" ,
+    outpin "n145_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n106_SLICEL.AMUX->n156_SLICEL.A1" ,
+    outpin "n156_SLICEL" A1 ,
+    inpin "n106_SLICEL" AMUX ,
+    ;
+  net "k.I->n129_SLICEL.A4" ,
+    outpin "n129_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "b.I->n96_SLICEL.A1" ,
+    outpin "n96_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "e.I->n181_SLICEL.A4" ,
+    outpin "n181_SLICEL" A4 ,
+    inpin "e" I ,
+    ;
+  net "n80_SLICEL.AMUX->n131_SLICEL.A4" ,
+    outpin "n131_SLICEL" A4 ,
+    inpin "n80_SLICEL" AMUX ,
+    ;
+  net "n33_SLICEL.AMUX->n31_SLICEL.A4" ,
+    outpin "n31_SLICEL" A4 ,
+    inpin "n33_SLICEL" AMUX ,
+    ;
+  net "l.I->n171_SLICEL.A6" ,
+    outpin "n171_SLICEL" A6 ,
+    inpin "l" I ,
+    ;
+  net "n.I->n131_SLICEL.A2" ,
+    outpin "n131_SLICEL" A2 ,
+    inpin "n" I ,
+    ;
+  net "k.I->n112_SLICEL.A3" ,
+    outpin "n112_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n90_SLICEL.AMUX->n82_SLICEL.A3" ,
+    outpin "n82_SLICEL" A3 ,
+    inpin "n90_SLICEL" AMUX ,
+    ;
+  net "n112_SLICEL.AMUX->n109_SLICEL.A5" ,
+    outpin "n109_SLICEL" A5 ,
+    inpin "n112_SLICEL" AMUX ,
+    ;
+  net "n189_SLICEL.AMUX->n188_SLICEL.A4" ,
+    outpin "n188_SLICEL" A4 ,
+    inpin "n189_SLICEL" AMUX ,
+    ;
+  net "n70_SLICEL.AMUX->n160_SLICEL.A2" ,
+    outpin "n160_SLICEL" A2 ,
+    inpin "n70_SLICEL" AMUX ,
+    ;
+  net "l.I->n88_SLICEL.A4" ,
+    outpin "n88_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "j.I->n182_SLICEL.A3" ,
+    outpin "n182_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "n197_SLICEL.AMUX->n196_SLICEL.A4" ,
+    outpin "n196_SLICEL" A4 ,
+    inpin "n197_SLICEL" AMUX ,
+    ;
+  net "n171_SLICEL.AMUX->n168_SLICEL.A5" ,
+    outpin "n168_SLICEL" A5 ,
+    inpin "n171_SLICEL" AMUX ,
+    ;
+  net "n98_SLICEL.AMUX->n97_SLICEL.A3" ,
+    outpin "n97_SLICEL" A3 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "l.I->n55_SLICEL.A4" ,
+    outpin "n55_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n142_SLICEL.AMUX->n141_SLICEL.A2" ,
+    outpin "n141_SLICEL" A2 ,
+    inpin "n142_SLICEL" AMUX ,
+    ;
+  net "i.I->n48_SLICEL.A1" ,
+    outpin "n48_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n143_SLICEL.AMUX->n140_SLICEL.A4" ,
+    outpin "n140_SLICEL" A4 ,
+    inpin "n143_SLICEL" AMUX ,
+    ;
+  net "n51_SLICEL.AMUX->n25_SLICEL.A6" ,
+    outpin "n25_SLICEL" A6 ,
+    inpin "n51_SLICEL" AMUX ,
+    ;
+  net "k.I->n77_SLICEL.A4" ,
+    outpin "n77_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "n83_SLICEL.AMUX->n95_SLICEL.A3" ,
+    outpin "n95_SLICEL" A3 ,
+    inpin "n83_SLICEL" AMUX ,
+    ;
+  net "n81_SLICEL.AMUX->n80_SLICEL.A2" ,
+    outpin "n80_SLICEL" A2 ,
+    inpin "n81_SLICEL" AMUX ,
+    ;
+  net "k.I->n191_SLICEL.A3" ,
+    outpin "n191_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "l.I->n86_SLICEL.A6" ,
+    outpin "n86_SLICEL" A6 ,
+    inpin "l" I ,
+    ;
+  net "i.I->n120_SLICEL.A1" ,
+    outpin "n120_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n39_SLICEL.AMUX->n104_SLICEL.A1" ,
+    outpin "n104_SLICEL" A1 ,
+    inpin "n39_SLICEL" AMUX ,
+    ;
+  net "i.I->n85_SLICEL.A1" ,
+    outpin "n85_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "h.I->n190_SLICEL.A2" ,
+    outpin "n190_SLICEL" A2 ,
+    inpin "h" I ,
+    ;
+  net "f.I->n121_SLICEL.A2" ,
+    outpin "n121_SLICEL" A2 ,
+    inpin "f" I ,
+    ;
+  net "n43_SLICEL.AMUX->n41_SLICEL.A5" ,
+    outpin "n41_SLICEL" A5 ,
+    inpin "n43_SLICEL" AMUX ,
+    ;
+  net "h.I->n214_SLICEL.A2" ,
+    outpin "n214_SLICEL" A2 ,
+    inpin "h" I ,
+    ;
+  net "n47_SLICEL.AMUX->n38_SLICEL.A5" ,
+    outpin "n38_SLICEL" A5 ,
+    inpin "n47_SLICEL" AMUX ,
+    ;
+  net "n69_SLICEL.AMUX->n81_SLICEL.A1" ,
+    outpin "n81_SLICEL" A1 ,
+    inpin "n69_SLICEL" AMUX ,
+    ;
+  net "i.I->n234_SLICEL.A1" ,
+    outpin "n234_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n.I->n28_SLICEL.A5" ,
+    outpin "n28_SLICEL" A5 ,
+    inpin "n" I ,
+    ;
+  net "i.I->n34_SLICEL.A1" ,
+    outpin "n34_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "j.I->n106_SLICEL.A2" ,
+    outpin "n106_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "g.I->n199_SLICEL.A2" ,
+    outpin "n199_SLICEL" A2 ,
+    inpin "g" I ,
+    ;
+  net "n40_SLICEL.AMUX->n141_SLICEL.A1" ,
+    outpin "n141_SLICEL" A1 ,
+    inpin "n40_SLICEL" AMUX ,
+    ;
+  net "n111_SLICEL.AMUX->n161_SLICEL.A2" ,
+    outpin "n161_SLICEL" A2 ,
+    inpin "n111_SLICEL" AMUX ,
+    ;
+  net "l.I->n62_SLICEL.A6" ,
+    outpin "n62_SLICEL" A6 ,
+    inpin "l" I ,
+    ;
+  net "l.I->n128_SLICEL.A5" ,
+    outpin "n128_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "n87_SLICEL.AMUX->n82_SLICEL.A2" ,
+    outpin "n82_SLICEL" A2 ,
+    inpin "n87_SLICEL" AMUX ,
+    ;
+  net "n26_SLICEL.AMUX->n213_SLICEL.A1" ,
+    outpin "n213_SLICEL" A1 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n201_SLICEL.AMUX->n226_SLICEL.A4" ,
+    outpin "n226_SLICEL" A4 ,
+    inpin "n201_SLICEL" AMUX ,
+    ;
+  net "n44_SLICEL.AMUX->n150_SLICEL.A1" ,
+    outpin "n150_SLICEL" A1 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "e.I->n166_SLICEL.A3" ,
+    outpin "n166_SLICEL" A3 ,
+    inpin "e" I ,
+    ;
+  net "d.I->n236_SLICEL.A1" ,
+    outpin "n236_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n58_SLICEL.AMUX->n56_SLICEL.A3" ,
+    outpin "n56_SLICEL" A3 ,
+    inpin "n58_SLICEL" AMUX ,
+    ;
+  net "n227_SLICEL.AMUX->n225_SLICEL.A4" ,
+    outpin "n225_SLICEL" A4 ,
+    inpin "n227_SLICEL" AMUX ,
+    ;
+  net "j.I->n111_SLICEL.A2" ,
+    outpin "n111_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "b.I->n125_SLICEL.A1" ,
+    outpin "n125_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n85_SLICEL.AMUX->n143_SLICEL.A3" ,
+    outpin "n143_SLICEL" A3 ,
+    inpin "n85_SLICEL" AMUX ,
+    ;
+  net "j.I->n127_SLICEL.A1" ,
+    outpin "n127_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "n214_SLICEL.AMUX->n212_SLICEL.A5" ,
+    outpin "n212_SLICEL" A5 ,
+    inpin "n214_SLICEL" AMUX ,
+    ;
+  net "n150_SLICEL.AMUX->n155_SLICEL.A5" ,
+    outpin "n155_SLICEL" A5 ,
+    inpin "n150_SLICEL" AMUX ,
+    ;
+  net "l.I->n215_SLICEL.A2" ,
+    outpin "n215_SLICEL" A2 ,
+    inpin "l" I ,
+    ;
+  net "l.I->n35_SLICEL.A4" ,
+    outpin "n35_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n222_SLICEL.AMUX->n219_SLICEL.A5" ,
+    outpin "n219_SLICEL" A5 ,
+    inpin "n222_SLICEL" AMUX ,
+    ;
+  net "n173_SLICEL.AMUX->u_SLICEL.A4" ,
+    outpin "u_SLICEL" A4 ,
+    inpin "n173_SLICEL" AMUX ,
+    ;
+  net "n110_SLICEL.AMUX->n109_SLICEL.A4" ,
+    outpin "n109_SLICEL" A4 ,
+    inpin "n110_SLICEL" AMUX ,
+    ;
+  net "i.I->n192_SLICEL.A2" ,
+    outpin "n192_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "c.I->n153_SLICEL.A1" ,
+    outpin "n153_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "d.I->n214_SLICEL.A1" ,
+    outpin "n214_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "t.I->n183_SLICEL.A3" ,
+    outpin "n183_SLICEL" A3 ,
+    inpin "t" I ,
+    ;
+  net "h.I->n188_SLICEL.A1" ,
+    outpin "n188_SLICEL" A1 ,
+    inpin "h" I ,
+    ;
+  net "t_SLICEL.AMUX->t.O" ,
+    outpin "t" O ,
+    inpin "t_SLICEL" AMUX ,
+    ;
+  net "i.I->n62_SLICEL.A3" ,
+    outpin "n62_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "j.I->n103_SLICEL.A2" ,
+    outpin "n103_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n91_SLICEL.AMUX->n152_SLICEL.A2" ,
+    outpin "n152_SLICEL" A2 ,
+    inpin "n91_SLICEL" AMUX ,
+    ;
+  net "i.I->n169_SLICEL.A2" ,
+    outpin "n169_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n210_SLICEL.AMUX->n209_SLICEL.A5" ,
+    outpin "n209_SLICEL" A5 ,
+    inpin "n210_SLICEL" AMUX ,
+    ;
+  net "n82_SLICEL.AMUX->n154_SLICEL.A3" ,
+    outpin "n154_SLICEL" A3 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "a.I->n30_SLICEL.A1" ,
+    outpin "n30_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n99_SLICEL.AMUX->n97_SLICEL.A4" ,
+    outpin "n97_SLICEL" A4 ,
+    inpin "n99_SLICEL" AMUX ,
+    ;
+  net "i.I->n117_SLICEL.A1" ,
+    outpin "n117_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n144_SLICEL.AMUX->n150_SLICEL.A3" ,
+    outpin "n150_SLICEL" A3 ,
+    inpin "n144_SLICEL" AMUX ,
+    ;
+  net "n117_SLICEL.AMUX->n214_SLICEL.A3" ,
+    outpin "n214_SLICEL" A3 ,
+    inpin "n117_SLICEL" AMUX ,
+    ;
+  net "l.I->n230_SLICEL.A1" ,
+    outpin "n230_SLICEL" A1 ,
+    inpin "l" I ,
+    ;
+  net "g.I->n136_SLICEL.A2" ,
+    outpin "n136_SLICEL" A2 ,
+    inpin "g" I ,
+    ;
+  net "n46_SLICEL.AMUX->n66_SLICEL.A2" ,
+    outpin "n66_SLICEL" A2 ,
+    inpin "n46_SLICEL" AMUX ,
+    ;
+  net "n35_SLICEL.AMUX->n139_SLICEL.A5" ,
+    outpin "n139_SLICEL" A5 ,
+    inpin "n35_SLICEL" AMUX ,
+    ;
+  net "n135_SLICEL.AMUX->n153_SLICEL.A3" ,
+    outpin "n153_SLICEL" A3 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "j.I->n206_SLICEL.A3" ,
+    outpin "n206_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "n57_SLICEL.AMUX->n80_SLICEL.A1" ,
+    outpin "n80_SLICEL" A1 ,
+    inpin "n57_SLICEL" AMUX ,
+    ;
+  net "l.I->n138_SLICEL.A4" ,
+    outpin "n138_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n90_SLICEL.AMUX->n95_SLICEL.A5" ,
+    outpin "n95_SLICEL" A5 ,
+    inpin "n90_SLICEL" AMUX ,
+    ;
+  net "k.I->n126_SLICEL.A3" ,
+    outpin "n126_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "i.I->n96_SLICEL.A2" ,
+    outpin "n96_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n98_SLICEL.AMUX->n207_SLICEL.A3" ,
+    outpin "n207_SLICEL" A3 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "n112_SLICEL.AMUX->n155_SLICEL.A4" ,
+    outpin "n155_SLICEL" A4 ,
+    inpin "n112_SLICEL" AMUX ,
+    ;
+  net "n175_SLICEL.AMUX->n173_SLICEL.A3" ,
+    outpin "n173_SLICEL" A3 ,
+    inpin "n175_SLICEL" AMUX ,
+    ;
+  net "j.I->n180_SLICEL.A2" ,
+    outpin "n180_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "j.I->n51_SLICEL.A2" ,
+    outpin "n51_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "d.I->n197_SLICEL.A1" ,
+    outpin "n197_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "j.I->n89_SLICEL.A2" ,
+    outpin "n89_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "j.I->n60_SLICEL.A2" ,
+    outpin "n60_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "e.I->n74_SLICEL.A2" ,
+    outpin "n74_SLICEL" A2 ,
+    inpin "e" I ,
+    ;
+  net "k.I->n75_SLICEL.A1" ,
+    outpin "n75_SLICEL" A1 ,
+    inpin "k" I ,
+    ;
+  net "i.I->n218_SLICEL.A3" ,
+    outpin "n218_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "n.I->n43_SLICEL.A4" ,
+    outpin "n43_SLICEL" A4 ,
+    inpin "n" I ,
+    ;
+  net "n100_SLICEL.AMUX->n149_SLICEL.A3" ,
+    outpin "n149_SLICEL" A3 ,
+    inpin "n100_SLICEL" AMUX ,
+    ;
+  net "n120_SLICEL.AMUX->n213_SLICEL.A3" ,
+    outpin "n213_SLICEL" A3 ,
+    inpin "n120_SLICEL" AMUX ,
+    ;
+  net "b.I->n210_SLICEL.A1" ,
+    outpin "n210_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "k.I->n73_SLICEL.A2" ,
+    outpin "n73_SLICEL" A2 ,
+    inpin "k" I ,
+    ;
+  net "n85_SLICEL.AMUX->n135_SLICEL.A1" ,
+    outpin "n135_SLICEL" A1 ,
+    inpin "n85_SLICEL" AMUX ,
+    ;
+  net "j.I->n54_SLICEL.A3" ,
+    outpin "n54_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "l.I->n73_SLICEL.A3" ,
+    outpin "n73_SLICEL" A3 ,
+    inpin "l" I ,
+    ;
+  net "n157_SLICEL.AMUX->n156_SLICEL.A2" ,
+    outpin "n156_SLICEL" A2 ,
+    inpin "n157_SLICEL" AMUX ,
+    ;
+  net "n.I->n216_SLICEL.A1" ,
+    outpin "n216_SLICEL" A1 ,
+    inpin "n" I ,
+    ;
+  net "l.I->n40_SLICEL.A4" ,
+    outpin "n40_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n.I->n179_SLICEL.A1" ,
+    outpin "n179_SLICEL" A1 ,
+    inpin "n" I ,
+    ;
+  net "l.I->n129_SLICEL.A5" ,
+    outpin "n129_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "n38_SLICEL.AMUX->n81_SLICEL.A3" ,
+    outpin "n81_SLICEL" A3 ,
+    inpin "n38_SLICEL" AMUX ,
+    ;
+  net "l.I->n115_SLICEL.A4" ,
+    outpin "n115_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "i.I->n58_SLICEL.A2" ,
+    outpin "n58_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n37_SLICEL.AMUX->n25_SLICEL.A4" ,
+    outpin "n25_SLICEL" A4 ,
+    inpin "n37_SLICEL" AMUX ,
+    ;
+  net "n139_SLICEL.AMUX->n144_SLICEL.A4" ,
+    outpin "n144_SLICEL" A4 ,
+    inpin "n139_SLICEL" AMUX ,
+    ;
+  net "k.I->n125_SLICEL.A4" ,
+    outpin "n125_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "n90_SLICEL.AMUX->n124_SLICEL.A4" ,
+    outpin "n124_SLICEL" A4 ,
+    inpin "n90_SLICEL" AMUX ,
+    ;
+  net "c.I->n201_SLICEL.A2" ,
+    outpin "n201_SLICEL" A2 ,
+    inpin "c" I ,
+    ;
+  net "i.I->n111_SLICEL.A1" ,
+    outpin "n111_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "k.I->n69_SLICEL.A2" ,
+    outpin "n69_SLICEL" A2 ,
+    inpin "k" I ,
+    ;
+  net "n44_SLICEL.AMUX->n104_SLICEL.A3" ,
+    outpin "n104_SLICEL" A3 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "q_SLICEL.AMUX->q.O" ,
+    outpin "q" O ,
+    inpin "q_SLICEL" AMUX ,
+    ;
+  net "n129_SLICEL.AMUX->n127_SLICEL.A4" ,
+    outpin "n127_SLICEL" A4 ,
+    inpin "n129_SLICEL" AMUX ,
+    ;
+  net "i.I->n221_SLICEL.A2" ,
+    outpin "n221_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "l.I->n164_SLICEL.A4" ,
+    outpin "n164_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n139_SLICEL.AMUX->n135_SLICEL.A3" ,
+    outpin "n135_SLICEL" A3 ,
+    inpin "n139_SLICEL" AMUX ,
+    ;
+  net "k.I->n25_SLICEL.A1" ,
+    outpin "n25_SLICEL" A1 ,
+    inpin "k" I ,
+    ;
+  net "n113_SLICEL.AMUX->n101_SLICEL.A4" ,
+    outpin "n101_SLICEL" A4 ,
+    inpin "n113_SLICEL" AMUX ,
+    ;
+  net "n235_SLICEL.AMUX->n233_SLICEL.A4" ,
+    outpin "n233_SLICEL" A4 ,
+    inpin "n235_SLICEL" AMUX ,
+    ;
+  net "i.I->n191_SLICEL.A1" ,
+    outpin "n191_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n194_SLICEL.AMUX->n202_SLICEL.A2" ,
+    outpin "n202_SLICEL" A2 ,
+    inpin "n194_SLICEL" AMUX ,
+    ;
+  net "n86_SLICEL.AMUX->n83_SLICEL.A5" ,
+    outpin "n83_SLICEL" A5 ,
+    inpin "n86_SLICEL" AMUX ,
+    ;
+  net "k.I->n88_SLICEL.A3" ,
+    outpin "n88_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "k.I->n58_SLICEL.A3" ,
+    outpin "n58_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "e.I->n77_SLICEL.A1" ,
+    outpin "n77_SLICEL" A1 ,
+    inpin "e" I ,
+    ;
+  net "i.I->n115_SLICEL.A1" ,
+    outpin "n115_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n88_SLICEL.AMUX->n87_SLICEL.A3" ,
+    outpin "n87_SLICEL" A3 ,
+    inpin "n88_SLICEL" AMUX ,
+    ;
+  net "m.I->n131_SLICEL.A1" ,
+    outpin "n131_SLICEL" A1 ,
+    inpin "m" I ,
+    ;
+  net "n70_SLICEL.AMUX->n110_SLICEL.A1" ,
+    outpin "n110_SLICEL" A1 ,
+    inpin "n70_SLICEL" AMUX ,
+    ;
+  net "n.I->q_SLICEL.A1" ,
+    outpin "q_SLICEL" A1 ,
+    inpin "n" I ,
+    ;
+  net "j.I->n67_SLICEL.A2" ,
+    outpin "n67_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n187_SLICEL.AMUX->n185_SLICEL.A4" ,
+    outpin "n185_SLICEL" A4 ,
+    inpin "n187_SLICEL" AMUX ,
+    ;
+  net "k.I->n122_SLICEL.A5" ,
+    outpin "n122_SLICEL" A5 ,
+    inpin "k" I ,
+    ;
+  net "n111_SLICEL.AMUX->n110_SLICEL.A3" ,
+    outpin "n110_SLICEL" A3 ,
+    inpin "n111_SLICEL" AMUX ,
+    ;
+  net "j.I->n217_SLICEL.A2" ,
+    outpin "n217_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "c.I->n199_SLICEL.A1" ,
+    outpin "n199_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "n212_SLICEL.AMUX->n208_SLICEL.A4" ,
+    outpin "n208_SLICEL" A4 ,
+    inpin "n212_SLICEL" AMUX ,
+    ;
+  net "f.I->n95_SLICEL.A1" ,
+    outpin "n95_SLICEL" A1 ,
+    inpin "f" I ,
+    ;
+  net "j.I->n49_SLICEL.A4" ,
+    outpin "n49_SLICEL" A4 ,
+    inpin "j" I ,
+    ;
+  net "n.I->n173_SLICEL.A1" ,
+    outpin "n173_SLICEL" A1 ,
+    inpin "n" I ,
+    ;
+  net "n135_SLICEL.AMUX->n167_SLICEL.A3" ,
+    outpin "n167_SLICEL" A3 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "n135_SLICEL.AMUX->n203_SLICEL.A5" ,
+    outpin "n203_SLICEL" A5 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "k.I->n174_SLICEL.A2" ,
+    outpin "n174_SLICEL" A2 ,
+    inpin "k" I ,
+    ;
+  net "b.I->n238_SLICEL.A2" ,
+    outpin "n238_SLICEL" A2 ,
+    inpin "b" I ,
+    ;
+  net "n183_SLICEL.AMUX->n178_SLICEL.A3" ,
+    outpin "n178_SLICEL" A3 ,
+    inpin "n183_SLICEL" AMUX ,
+    ;
+  net "n.I->n89_SLICEL.A5" ,
+    outpin "n89_SLICEL" A5 ,
+    inpin "n" I ,
+    ;
+  net "m.I->o_SLICEL.A1" ,
+    outpin "o_SLICEL" A1 ,
+    inpin "m" I ,
+    ;
+  net "n50_SLICEL.AMUX->n91_SLICEL.A2" ,
+    outpin "n91_SLICEL" A2 ,
+    inpin "n50_SLICEL" AMUX ,
+    ;
+  net "n50_SLICEL.AMUX->n38_SLICEL.A6" ,
+    outpin "n38_SLICEL" A6 ,
+    inpin "n50_SLICEL" AMUX ,
+    ;
+  net "f.I->n125_SLICEL.A2" ,
+    outpin "n125_SLICEL" A2 ,
+    inpin "f" I ,
+    ;
+  net "n48_SLICEL.AMUX->n47_SLICEL.A2" ,
+    outpin "n47_SLICEL" A2 ,
+    inpin "n48_SLICEL" AMUX ,
+    ;
+  net "n47_SLICEL.AMUX->n104_SLICEL.A5" ,
+    outpin "n104_SLICEL" A5 ,
+    inpin "n47_SLICEL" AMUX ,
+    ;
+  net "n26_SLICEL.AMUX->n81_SLICEL.A2" ,
+    outpin "n81_SLICEL" A2 ,
+    inpin "n26_SLICEL" AMUX ,
+    ;
+  net "n135_SLICEL.AMUX->n168_SLICEL.A2" ,
+    outpin "n168_SLICEL" A2 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "l.I->n111_SLICEL.A4" ,
+    outpin "n111_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n.I->p_SLICEL.A1" ,
+    outpin "p_SLICEL" A1 ,
+    inpin "n" I ,
+    ;
+  net "i.I->n222_SLICEL.A3" ,
+    outpin "n222_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "l.I->n57_SLICEL.A2" ,
+    outpin "n57_SLICEL" A2 ,
+    inpin "l" I ,
+    ;
+  net "j.I->n108_SLICEL.A2" ,
+    outpin "n108_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n76_SLICEL.AMUX->n83_SLICEL.A2" ,
+    outpin "n83_SLICEL" A2 ,
+    inpin "n76_SLICEL" AMUX ,
+    ;
+  net "j.I->n138_SLICEL.A2" ,
+    outpin "n138_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "k.I->n65_SLICEL.A4" ,
+    outpin "n65_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "n44_SLICEL.AMUX->n98_SLICEL.A1" ,
+    outpin "n98_SLICEL" A1 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "n83_SLICEL.AMUX->n124_SLICEL.A2" ,
+    outpin "n124_SLICEL" A2 ,
+    inpin "n83_SLICEL" AMUX ,
+    ;
+  net "a.I->n70_SLICEL.A1" ,
+    outpin "n70_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n82_SLICEL.AMUX->n114_SLICEL.A2" ,
+    outpin "n114_SLICEL" A2 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "n108_SLICEL.AMUX->n175_SLICEL.A2" ,
+    outpin "n175_SLICEL" A2 ,
+    inpin "n108_SLICEL" AMUX ,
+    ;
+  net "n122_SLICEL.AMUX->n121_SLICEL.A6" ,
+    outpin "n121_SLICEL" A6 ,
+    inpin "n122_SLICEL" AMUX ,
+    ;
+  net "j.I->n57_SLICEL.A1" ,
+    outpin "n57_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "k.I->n29_SLICEL.A3" ,
+    outpin "n29_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "b.I->n160_SLICEL.A1" ,
+    outpin "n160_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n108_SLICEL.AMUX->n232_SLICEL.A1" ,
+    outpin "n232_SLICEL" A1 ,
+    inpin "n108_SLICEL" AMUX ,
+    ;
+  net "l.I->n221_SLICEL.A5" ,
+    outpin "n221_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "n82_SLICEL.AMUX->n147_SLICEL.A3" ,
+    outpin "n147_SLICEL" A3 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "n36_SLICEL.AMUX->n25_SLICEL.A3" ,
+    outpin "n25_SLICEL" A3 ,
+    inpin "n36_SLICEL" AMUX ,
+    ;
+  net "j.I->n126_SLICEL.A2" ,
+    outpin "n126_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "a.I->n118_SLICEL.A1" ,
+    outpin "n118_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n168_SLICEL.AMUX->q_SLICEL.A5" ,
+    outpin "q_SLICEL" A5 ,
+    inpin "n168_SLICEL" AMUX ,
+    ;
+  net "n70_SLICEL.AMUX->n154_SLICEL.A2" ,
+    outpin "n154_SLICEL" A2 ,
+    inpin "n70_SLICEL" AMUX ,
+    ;
+  net "n117_SLICEL.AMUX->n196_SLICEL.A3" ,
+    outpin "n196_SLICEL" A3 ,
+    inpin "n117_SLICEL" AMUX ,
+    ;
+  net "k.I->n28_SLICEL.A3" ,
+    outpin "n28_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "j.I->n40_SLICEL.A2" ,
+    outpin "n40_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "i.I->n164_SLICEL.A1" ,
+    outpin "n164_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "i.I->n148_SLICEL.A2" ,
+    outpin "n148_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "l.I->n50_SLICEL.A4" ,
+    outpin "n50_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n100_SLICEL.AMUX->n201_SLICEL.A4" ,
+    outpin "n201_SLICEL" A4 ,
+    inpin "n100_SLICEL" AMUX ,
+    ;
+  net "n.I->n186_SLICEL.A4" ,
+    outpin "n186_SLICEL" A4 ,
+    inpin "n" I ,
+    ;
+  net "n197_SLICEL.AMUX->n236_SLICEL.A4" ,
+    outpin "n236_SLICEL" A4 ,
+    inpin "n197_SLICEL" AMUX ,
+    ;
+  net "n52_SLICEL.AMUX->n24_SLICEL.A3" ,
+    outpin "n24_SLICEL" A3 ,
+    inpin "n52_SLICEL" AMUX ,
+    ;
+  net "e.I->n88_SLICEL.A2" ,
+    outpin "n88_SLICEL" A2 ,
+    inpin "e" I ,
+    ;
+  net "n117_SLICEL.AMUX->n236_SLICEL.A3" ,
+    outpin "n236_SLICEL" A3 ,
+    inpin "n117_SLICEL" AMUX ,
+    ;
+  net "n177_SLICEL.AMUX->n193_SLICEL.A3" ,
+    outpin "n193_SLICEL" A3 ,
+    inpin "n177_SLICEL" AMUX ,
+    ;
+  net "i.I->n206_SLICEL.A2" ,
+    outpin "n206_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "a.I->n76_SLICEL.A1" ,
+    outpin "n76_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "c.I->n238_SLICEL.A3" ,
+    outpin "n238_SLICEL" A3 ,
+    inpin "c" I ,
+    ;
+  net "n192_SLICEL.AMUX->n193_SLICEL.A4" ,
+    outpin "n193_SLICEL" A4 ,
+    inpin "n192_SLICEL" AMUX ,
+    ;
+  net "n192_SLICEL.AMUX->n207_SLICEL.A6" ,
+    outpin "n207_SLICEL" A6 ,
+    inpin "n192_SLICEL" AMUX ,
+    ;
+  net "n61_SLICEL.AMUX->n60_SLICEL.A4" ,
+    outpin "n60_SLICEL" A4 ,
+    inpin "n61_SLICEL" AMUX ,
+    ;
+  net "n120_SLICEL.AMUX->n119_SLICEL.A4" ,
+    outpin "n119_SLICEL" A4 ,
+    inpin "n120_SLICEL" AMUX ,
+    ;
+  net "b.I->n235_SLICEL.A1" ,
+    outpin "n235_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "n199_SLICEL.AMUX->n196_SLICEL.A5" ,
+    outpin "n196_SLICEL" A5 ,
+    inpin "n199_SLICEL" AMUX ,
+    ;
+  net "n162_SLICEL.AMUX->n156_SLICEL.A5" ,
+    outpin "n156_SLICEL" A5 ,
+    inpin "n162_SLICEL" AMUX ,
+    ;
+  net "n72_SLICEL.AMUX->n68_SLICEL.A5" ,
+    outpin "n68_SLICEL" A5 ,
+    inpin "n72_SLICEL" AMUX ,
+    ;
+  net "k.I->n44_SLICEL.A1" ,
+    outpin "n44_SLICEL" A1 ,
+    inpin "k" I ,
+    ;
+  net "n147_SLICEL.AMUX->n133_SLICEL.A3" ,
+    outpin "n133_SLICEL" A3 ,
+    inpin "n147_SLICEL" AMUX ,
+    ;
+  net "n59_SLICEL.AMUX->n56_SLICEL.A4" ,
+    outpin "n56_SLICEL" A4 ,
+    inpin "n59_SLICEL" AMUX ,
+    ;
+  net "l.I->n125_SLICEL.A5" ,
+    outpin "n125_SLICEL" A5 ,
+    inpin "l" I ,
+    ;
+  net "n67_SLICEL.AMUX->n216_SLICEL.A2" ,
+    outpin "n216_SLICEL" A2 ,
+    inpin "n67_SLICEL" AMUX ,
+    ;
+  net "l.I->n204_SLICEL.A1" ,
+    outpin "n204_SLICEL" A1 ,
+    inpin "l" I ,
+    ;
+  net "n98_SLICEL.AMUX->n102_SLICEL.A1" ,
+    outpin "n102_SLICEL" A1 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "n135_SLICEL.AMUX->n160_SLICEL.A5" ,
+    outpin "n160_SLICEL" A5 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "n102_SLICEL.AMUX->n101_SLICEL.A1" ,
+    outpin "n101_SLICEL" A1 ,
+    inpin "n102_SLICEL" AMUX ,
+    ;
+  net "n103_SLICEL.AMUX->n102_SLICEL.A3" ,
+    outpin "n102_SLICEL" A3 ,
+    inpin "n103_SLICEL" AMUX ,
+    ;
+  net "n178_SLICEL.AMUX->n217_SLICEL.A4" ,
+    outpin "n217_SLICEL" A4 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "k.I->n218_SLICEL.A4" ,
+    outpin "n218_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "i.I->n112_SLICEL.A1" ,
+    outpin "n112_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n132_SLICEL.AMUX->r_SLICEL.A3" ,
+    outpin "r_SLICEL" A3 ,
+    inpin "n132_SLICEL" AMUX ,
+    ;
+  net "a.I->n86_SLICEL.A1" ,
+    outpin "n86_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n115_SLICEL.AMUX->n114_SLICEL.A3" ,
+    outpin "n114_SLICEL" A3 ,
+    inpin "n115_SLICEL" AMUX ,
+    ;
+  net "c.I->n170_SLICEL.A1" ,
+    outpin "n170_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "n32_SLICEL.AMUX->n66_SLICEL.A1" ,
+    outpin "n66_SLICEL" A1 ,
+    inpin "n32_SLICEL" AMUX ,
+    ;
+  net "n190_SLICEL.AMUX->n178_SLICEL.A6" ,
+    outpin "n178_SLICEL" A6 ,
+    inpin "n190_SLICEL" AMUX ,
+    ;
+  net "l.I->n34_SLICEL.A4" ,
+    outpin "n34_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n90_SLICEL.AMUX->n107_SLICEL.A4" ,
+    outpin "n107_SLICEL" A4 ,
+    inpin "n90_SLICEL" AMUX ,
+    ;
+  net "n31_SLICEL.AMUX->n41_SLICEL.A4" ,
+    outpin "n41_SLICEL" A4 ,
+    inpin "n31_SLICEL" AMUX ,
+    ;
+  net "l.I->n43_SLICEL.A3" ,
+    outpin "n43_SLICEL" A3 ,
+    inpin "l" I ,
+    ;
+  net "n133_SLICEL.AMUX->n132_SLICEL.A3" ,
+    outpin "n132_SLICEL" A3 ,
+    inpin "n133_SLICEL" AMUX ,
+    ;
+  net "k.I->n40_SLICEL.A3" ,
+    outpin "n40_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "j.I->n35_SLICEL.A2" ,
+    outpin "n35_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "d.I->n205_SLICEL.A1" ,
+    outpin "n205_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "j.I->n164_SLICEL.A2" ,
+    outpin "n164_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n70_SLICEL.AMUX->n235_SLICEL.A3" ,
+    outpin "n235_SLICEL" A3 ,
+    inpin "n70_SLICEL" AMUX ,
+    ;
+  net "c.I->n210_SLICEL.A2" ,
+    outpin "n210_SLICEL" A2 ,
+    inpin "c" I ,
+    ;
+  net "n31_SLICEL.AMUX->n45_SLICEL.A5" ,
+    outpin "n45_SLICEL" A5 ,
+    inpin "n31_SLICEL" AMUX ,
+    ;
+  net "n193_SLICEL.AMUX->n175_SLICEL.A4" ,
+    outpin "n175_SLICEL" A4 ,
+    inpin "n193_SLICEL" AMUX ,
+    ;
+  net "n44_SLICEL.AMUX->n53_SLICEL.A2" ,
+    outpin "n53_SLICEL" A2 ,
+    inpin "n44_SLICEL" AMUX ,
+    ;
+  net "n.I->n85_SLICEL.A2" ,
+    outpin "n85_SLICEL" A2 ,
+    inpin "n" I ,
+    ;
+  net "n83_SLICEL.AMUX->n107_SLICEL.A2" ,
+    outpin "n107_SLICEL" A2 ,
+    inpin "n83_SLICEL" AMUX ,
+    ;
+  net "b.I->n123_SLICEL.A1" ,
+    outpin "n123_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "j.I->n128_SLICEL.A3" ,
+    outpin "n128_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "n176_SLICEL.AMUX->n204_SLICEL.A2" ,
+    outpin "n204_SLICEL" A2 ,
+    inpin "n176_SLICEL" AMUX ,
+    ;
+  net "k.I->n148_SLICEL.A3" ,
+    outpin "n148_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n216_SLICEL.AMUX->r_SLICEL.A5" ,
+    outpin "r_SLICEL" A5 ,
+    inpin "n216_SLICEL" AMUX ,
+    ;
+  net "n87_SLICEL.AMUX->n95_SLICEL.A4" ,
+    outpin "n95_SLICEL" A4 ,
+    inpin "n87_SLICEL" AMUX ,
+    ;
+  net "n150_SLICEL.AMUX->n157_SLICEL.A4" ,
+    outpin "n157_SLICEL" A4 ,
+    inpin "n150_SLICEL" AMUX ,
+    ;
+  net "n70_SLICEL.AMUX->n68_SLICEL.A3" ,
+    outpin "n68_SLICEL" A3 ,
+    inpin "n70_SLICEL" AMUX ,
+    ;
+  net "n181_SLICEL.AMUX->n185_SLICEL.A2" ,
+    outpin "n185_SLICEL" A2 ,
+    inpin "n181_SLICEL" AMUX ,
+    ;
+  net "n83_SLICEL.AMUX->n82_SLICEL.A1" ,
+    outpin "n82_SLICEL" A1 ,
+    inpin "n83_SLICEL" AMUX ,
+    ;
+  net "k.I->n118_SLICEL.A4" ,
+    outpin "n118_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "a.I->n71_SLICEL.A1" ,
+    outpin "n71_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n221_SLICEL.AMUX->n219_SLICEL.A4" ,
+    outpin "n219_SLICEL" A4 ,
+    inpin "n221_SLICEL" AMUX ,
+    ;
+  net "n35_SLICEL.AMUX->n31_SLICEL.A6" ,
+    outpin "n31_SLICEL" A6 ,
+    inpin "n35_SLICEL" AMUX ,
+    ;
+  net "f.I->n92_SLICEL.A2" ,
+    outpin "n92_SLICEL" A2 ,
+    inpin "f" I ,
+    ;
+  net "g.I->n181_SLICEL.A6" ,
+    outpin "n181_SLICEL" A6 ,
+    inpin "g" I ,
+    ;
+  net "n89_SLICEL.AMUX->n139_SLICEL.A6" ,
+    outpin "n139_SLICEL" A6 ,
+    inpin "n89_SLICEL" AMUX ,
+    ;
+  net "n49_SLICEL.AMUX->n47_SLICEL.A5" ,
+    outpin "n47_SLICEL" A5 ,
+    inpin "n49_SLICEL" AMUX ,
+    ;
+  net "a.I->n41_SLICEL.A1" ,
+    outpin "n41_SLICEL" A1 ,
+    inpin "a" I ,
+    ;
+  net "n135_SLICEL.AMUX->n235_SLICEL.A5" ,
+    outpin "n235_SLICEL" A5 ,
+    inpin "n135_SLICEL" AMUX ,
+    ;
+  net "k.I->n220_SLICEL.A3" ,
+    outpin "n220_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n139_SLICEL.AMUX->n143_SLICEL.A5" ,
+    outpin "n143_SLICEL" A5 ,
+    inpin "n139_SLICEL" AMUX ,
+    ;
+  net "k.I->n86_SLICEL.A5" ,
+    outpin "n86_SLICEL" A5 ,
+    inpin "k" I ,
+    ;
+  net "i.I->n37_SLICEL.A2" ,
+    outpin "n37_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "l.I->n191_SLICEL.A4" ,
+    outpin "n191_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "i.I->n122_SLICEL.A3" ,
+    outpin "n122_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "n98_SLICEL.AMUX->n201_SLICEL.A3" ,
+    outpin "n201_SLICEL" A3 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "n232_SLICEL.AMUX->n230_SLICEL.A5" ,
+    outpin "n230_SLICEL" A5 ,
+    inpin "n232_SLICEL" AMUX ,
+    ;
+  net "i.I->n40_SLICEL.A1" ,
+    outpin "n40_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "n55_SLICEL.AMUX->n52_SLICEL.A4" ,
+    outpin "n52_SLICEL" A4 ,
+    inpin "n55_SLICEL" AMUX ,
+    ;
+  net "n107_SLICEL.AMUX->n105_SLICEL.A5" ,
+    outpin "n105_SLICEL" A5 ,
+    inpin "n107_SLICEL" AMUX ,
+    ;
+  net "e.I->n31_SLICEL.A2" ,
+    outpin "n31_SLICEL" A2 ,
+    inpin "e" I ,
+    ;
+  net "n195_SLICEL.AMUX->n175_SLICEL.A5" ,
+    outpin "n175_SLICEL" A5 ,
+    inpin "n195_SLICEL" AMUX ,
+    ;
+  net "k.I->n64_SLICEL.A3" ,
+    outpin "n64_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n32_SLICEL.AMUX->n136_SLICEL.A4" ,
+    outpin "n136_SLICEL" A4 ,
+    inpin "n32_SLICEL" AMUX ,
+    ;
+  net "k.I->n74_SLICEL.A4" ,
+    outpin "n74_SLICEL" A4 ,
+    inpin "k" I ,
+    ;
+  net "n93_SLICEL.AMUX->n98_SLICEL.A2" ,
+    outpin "n98_SLICEL" A2 ,
+    inpin "n93_SLICEL" AMUX ,
+    ;
+  net "n87_SLICEL.AMUX->n124_SLICEL.A3" ,
+    outpin "n124_SLICEL" A3 ,
+    inpin "n87_SLICEL" AMUX ,
+    ;
+  net "n24_SLICEL.AMUX->n79_SLICEL.A3" ,
+    outpin "n79_SLICEL" A3 ,
+    inpin "n24_SLICEL" AMUX ,
+    ;
+  net "j.I->n219_SLICEL.A1" ,
+    outpin "n219_SLICEL" A1 ,
+    inpin "j" I ,
+    ;
+  net "n150_SLICEL.AMUX->n195_SLICEL.A4" ,
+    outpin "n195_SLICEL" A4 ,
+    inpin "n150_SLICEL" AMUX ,
+    ;
+  net "n62_SLICEL.AMUX->n60_SLICEL.A6" ,
+    outpin "n60_SLICEL" A6 ,
+    inpin "n62_SLICEL" AMUX ,
+    ;
+  net "b.I->n113_SLICEL.A1" ,
+    outpin "n113_SLICEL" A1 ,
+    inpin "b" I ,
+    ;
+  net "i.I->n55_SLICEL.A1" ,
+    outpin "n55_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "l.I->n121_SLICEL.A3" ,
+    outpin "n121_SLICEL" A3 ,
+    inpin "l" I ,
+    ;
+  net "n123_SLICEL.AMUX->p_SLICEL.A4" ,
+    outpin "p_SLICEL" A4 ,
+    inpin "n123_SLICEL" AMUX ,
+    ;
+  net "l.I->n36_SLICEL.A4" ,
+    outpin "n36_SLICEL" A4 ,
+    inpin "l" I ,
+    ;
+  net "n145_SLICEL.AMUX->n140_SLICEL.A6" ,
+    outpin "n140_SLICEL" A6 ,
+    inpin "n145_SLICEL" AMUX ,
+    ;
+  net "t.I->n192_SLICEL.A5" ,
+    outpin "n192_SLICEL" A5 ,
+    inpin "t" I ,
+    ;
+  net "n.I->n67_SLICEL.A5" ,
+    outpin "n67_SLICEL" A5 ,
+    inpin "n" I ,
+    ;
+  net "n225_SLICEL.AMUX->u_SLICEL.A5" ,
+    outpin "u_SLICEL" A5 ,
+    inpin "n225_SLICEL" AMUX ,
+    ;
+  net "n150_SLICEL.AMUX->n152_SLICEL.A5" ,
+    outpin "n152_SLICEL" A5 ,
+    inpin "n150_SLICEL" AMUX ,
+    ;
+  net "n202_SLICEL.AMUX->n200_SLICEL.A5" ,
+    outpin "n200_SLICEL" A5 ,
+    inpin "n202_SLICEL" AMUX ,
+    ;
+  net "c.I->n171_SLICEL.A1" ,
+    outpin "n171_SLICEL" A1 ,
+    inpin "c" I ,
+    ;
+  net "n161_SLICEL.AMUX->n156_SLICEL.A4" ,
+    outpin "n156_SLICEL" A4 ,
+    inpin "n161_SLICEL" AMUX ,
+    ;
+  net "n199_SLICEL.AMUX->n214_SLICEL.A4" ,
+    outpin "n214_SLICEL" A4 ,
+    inpin "n199_SLICEL" AMUX ,
+    ;
+  net "k.I->n89_SLICEL.A3" ,
+    outpin "n89_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n136_SLICEL.AMUX->n144_SLICEL.A3" ,
+    outpin "n144_SLICEL" A3 ,
+    inpin "n136_SLICEL" AMUX ,
+    ;
+  net "j.I->n33_SLICEL.A2" ,
+    outpin "n33_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n178_SLICEL.AMUX->n212_SLICEL.A3" ,
+    outpin "n212_SLICEL" A3 ,
+    inpin "n178_SLICEL" AMUX ,
+    ;
+  net "n24_SLICEL.AMUX->n131_SLICEL.A3" ,
+    outpin "n131_SLICEL" A3 ,
+    inpin "n24_SLICEL" AMUX ,
+    ;
+  net "n215_SLICEL.AMUX->n214_SLICEL.A5" ,
+    outpin "n214_SLICEL" A5 ,
+    inpin "n215_SLICEL" AMUX ,
+    ;
+  net "i.I->n49_SLICEL.A3" ,
+    outpin "n49_SLICEL" A3 ,
+    inpin "i" I ,
+    ;
+  net "j.I->n65_SLICEL.A3" ,
+    outpin "n65_SLICEL" A3 ,
+    inpin "j" I ,
+    ;
+  net "n151_SLICEL.AMUX->n149_SLICEL.A5" ,
+    outpin "n149_SLICEL" A5 ,
+    inpin "n151_SLICEL" AMUX ,
+    ;
+  net "n165_SLICEL.AMUX->n162_SLICEL.A3" ,
+    outpin "n162_SLICEL" A3 ,
+    inpin "n165_SLICEL" AMUX ,
+    ;
+  net "n82_SLICEL.AMUX->n81_SLICEL.A4" ,
+    outpin "n81_SLICEL" A4 ,
+    inpin "n82_SLICEL" AMUX ,
+    ;
+  net "n98_SLICEL.AMUX->n152_SLICEL.A1" ,
+    outpin "n152_SLICEL" A1 ,
+    inpin "n98_SLICEL" AMUX ,
+    ;
+  net "g.I->n142_SLICEL.A2" ,
+    outpin "n142_SLICEL" A2 ,
+    inpin "g" I ,
+    ;
+  net "j.I->n34_SLICEL.A2" ,
+    outpin "n34_SLICEL" A2 ,
+    inpin "j" I ,
+    ;
+  net "n50_SLICEL.AMUX->n193_SLICEL.A1" ,
+    outpin "n193_SLICEL" A1 ,
+    inpin "n50_SLICEL" AMUX ,
+    ;
+  net "i.I->n227_SLICEL.A1" ,
+    outpin "n227_SLICEL" A1 ,
+    inpin "i" I ,
+    ;
+  net "g.I->n170_SLICEL.A2" ,
+    outpin "n170_SLICEL" A2 ,
+    inpin "g" I ,
+    ;
+  net "k.I->n108_SLICEL.A3" ,
+    outpin "n108_SLICEL" A3 ,
+    inpin "k" I ,
+    ;
+  net "n132_SLICEL.AMUX->u_SLICEL.A3" ,
+    outpin "u_SLICEL" A3 ,
+    inpin "n132_SLICEL" AMUX ,
+    ;
+  net "i.I->n77_SLICEL.A2" ,
+    outpin "n77_SLICEL" A2 ,
+    inpin "i" I ,
+    ;
+  net "n40_SLICEL.AMUX->n92_SLICEL.A3" ,
+    outpin "n92_SLICEL" A3 ,
+    inpin "n40_SLICEL" AMUX ,
+    ;
+  net "s.I->v_SLICEL.A1" ,
+    outpin "v_SLICEL" A1 ,
+    inpin "s" I ,
+    ;
+  net "d.I->n208_SLICEL.A1" ,
+    outpin "n208_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+  net "n84_SLICEL.AMUX->n225_SLICEL.A2" ,
+    outpin "n225_SLICEL" A2 ,
+    inpin "n84_SLICEL" AMUX ,
+    ;
+  net "d.I->n185_SLICEL.A1" ,
+    outpin "n185_SLICEL" A1 ,
+    inpin "d" I ,
+    ;
+
+# =======================================================
+# SUMMARY
+# Number of Module Defs: 0
+# Number of Module Insts: 0
+# Number of Primitive Insts: 238
+#     Number of SLICES: 216
+#     Number of DSP48s: 0
+#     Number of BRAMs: 0
+# Number of Nets: 938
+# =======================================================
+
+

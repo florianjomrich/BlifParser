@@ -1,0 +1,19 @@
+Release 14.7 - netgen P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: netgen -w -ofmt verilog
+ncdFileAfterPlaceAndRoute/helloWorldRouted.ncd
+simulationFilePlaceAndRouted/helloWorldPlaceAndRouted.v  
+
+Read and Annotate design 'ncdFileAfterPlaceAndRoute/helloWorldRouted.ncd' ...
+Loading device for application Rf_Device from file '6slx45.nph' in environment
+F:\Xilinix\14.7\ISE_DS\ISE\.
+   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed
+-3
+ERROR:Portability:3 - This Xilinx application has run out of memory or has
+   encountered a memory conflict.  Current memory usage is 170232 kb.  You can
+   try increasing your system's physical or virtual memory.  If you are using a
+   Win32 system, you can increase your application memory from 2GB to 3GB using
+   the /3G switch in your boot.ini file. For more information on this, please
+   refer to Xilinx Answer Record #14932. For technical support on this issue,
+   please visit http://www.xilinx.com/support. 

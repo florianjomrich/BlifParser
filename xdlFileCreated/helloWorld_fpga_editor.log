@@ -1,0 +1,59 @@
+#:C19    
+#Xilinx FPGA Editor Command Log File
+#Editor Version:
+#:V   NT M2.1 P.20131013
+#Current Working Directory:
+#:D   C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated
+#Date/Time:
+#:T   Sat Jul 26 13:07:58 2014
+#------------------------------
+	#Reading C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated\helloWorld.ncd...
+	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
+	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
+	#Design creation date: 2014.07.26.08.37.42
+	#Building chip graphics...
+	#Loading speed info...
+	#1
+select -k comp 'l'
+	#2
+unselect comp 'l'
+	#3
+select -k comp 't'
+	#4
+unselect -all
+	#5
+select comp 't'
+	#comp "t",  site "F3",  bonded type = IOB,  pad name = PAD332,  pin name = F3  (RPM grid X1Y344)
+	#6
+unselect -all
+	#7
+select comp 't'
+	#comp "t",  site "F3",  bonded type = IOB,  pad name = PAD332,  pin name = F3  (RPM grid X1Y344)
+	#8
+post block
+	#9
+unselect -all
+	#10
+select net "t.I->n192_SLICEL.A5"
+	#net "t.I->n192_SLICEL.A5"
+	#11
+unselect net 't.I->n192_SLICEL.A5'
+	#12
+select -k comp 'p'
+	#13
+unselect comp 'p'
+	#14
+select -k comp 'b'
+	#15
+unselect comp 'b'
+	#16
+select -k comp 'd'
+	#17
+unselect -all
+	#18
+select comp 'd'
+	#comp "d",  site "G16",  bonded type = IOB,  pad name = PAD95,  pin name = G16  (RPM grid X161Y278)
+	#19
+post block
+	#20
+post open

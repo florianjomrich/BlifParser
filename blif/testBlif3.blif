@@ -1,0 +1,35 @@
+# Benchmark "testset/apex2" written by ABC on Fri Jun 22 12:04:36 2012
+# DER PARSER HAT NOCH PROBELME MIT inputs, die nur als ZWISChENINPUT VORHANDEN SIND !!!
+.model testset/apex2
+.inputs x23 x28 n44 n95 n96 n100 n4 n1 n2 n919
+.outputs n1337 z33 hurz
+.clock myCLK
+.names n4 n1 n2 z0 z1 z33
+01111 1
+.names x23 x28 n44 n95 n96 C<111> z0
+01-111 1
+00--1- 1
+-0---1 1
+.names n1337 z1
+1 1
+.latch z0 n1337 re c 0
+
+.names n919 n91
+1 1
+.latch n91 C<111> 1
+.names n919 n92
+1 1
+.latch n92 C<112> fe 1
+
+#SO GEHT ES AUCH NICHT DERZEIT !!!
+# .latch kann nur Speicherelement einer vorgelagerten logischen Funktion sein !!!
+#.latch n919 C<111> 0
+
+#SO FUNKTIONIERT ES IM DERZEITIGEN MODELL NICHT !!!
+# Ein Ausgang einer logischen Funktion kann nicht von MEHREREN Latches verwendet werden!!
+#.latch z0 hurz ah c 1
+
+
+
+
+.end

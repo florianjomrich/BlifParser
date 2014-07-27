@@ -2,6 +2,7 @@ package models;
 
 
 
+
 import edu.byu.ece.rapidSmith.design.Attribute;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.device.PrimitiveType;
@@ -57,7 +58,6 @@ public class IOB_BLOCK_INSTANCE extends Instance{
 			 */
 			this.addAttribute(new Attribute("BYPASS_MUX", "", "I"));
 			this.addAttribute(new Attribute("IMUX", "", "I"));
-			this.addAttribute(new Attribute("OUTBUF",this.getName()+".OUTBUF",""));
 			this.addAttribute(new Attribute("PAD",this.getName(),""));
 			/*
 			 * Konfigurationsparameter von Xilinx
@@ -71,7 +71,7 @@ public class IOB_BLOCK_INSTANCE extends Instance{
 			this.addAttribute(new Attribute("PAD",this.getName(),""));
 			this.addAttribute(new Attribute("OUTBUF",this.getName()+"_OBUF",""));
 			this.addAttribute(new Attribute("OUSED","","0"));
-			
+//			
 			/*
 			 * Since the outputs can also be used as interconnect variables the output also has to be 
 			 * available as input 
@@ -84,6 +84,8 @@ public class IOB_BLOCK_INSTANCE extends Instance{
 			 * ggf. weglassen
 			 */
 			this.addAttribute(new Attribute("DRIVEATTRBOX","","12"));
+			this.addAttribute(new Attribute("SLEW","","SLOW"));
+			this.addAttribute(new Attribute("ISTANDARD","", "LVCMOS25"));
 			this.addAttribute(new Attribute("OSTANDARD","", "LVCMOS25"));
 		}
 		

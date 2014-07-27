@@ -5,25 +5,10 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="XDL" num="173" delta="old" >Can&apos;t set data for non existent bel of type &apos;<arg fmt="%s" index="1">OUTBUF</arg>&apos; in comp &apos;<arg fmt="%s" index="2">input</arg>&apos;.
+<msg type="error" file="XDL" num="165" delta="new" >Cannot find pin <arg fmt="%s" index="1">IO</arg> comp or module named <arg fmt="%s" index="2">my_clk_BUFG</arg> for net <arg fmt="%s" index="3">my_clk.I-&gt;my_clk_BUFG.IO</arg> around line <arg fmt="%d" index="4">135</arg> of file <arg fmt="%s" index="5">helloWorld.xdl</arg>.
 </msg>
 
-<msg type="error" file="PhysDesignRules" num="1709" delta="new" >Incomplete connectivity. The pin &lt;<arg fmt="%s" index="1">B</arg>&gt; of comp block &lt;<arg fmt="%s" index="2">meine_LUT</arg>&gt; is used and partially connected to network &lt;<arg fmt="%s" index="3">meine_LUT.B-&gt;berndOutput.O</arg>&gt;. All networks must have complete connectivity through out the comp hierarchy and the connectivity for this pin must be removed or completed.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="1368" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">meine_LUT.B5LUT</arg>&gt;:&lt;<arg fmt="%s" index="2">LUT5</arg>&gt;.  Dangling input pin. This configuration requires a signal on the input equation pins.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">meine_LUT.B-&gt;berndOutput.O</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">input.I-&gt;meine_LUT.B1</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="error" file="PhysDesignRules" num="764" delta="old" >Slew rate not set. Since it is used for output and its IO standard is <arg fmt="%s" index="1">LVCMOS25</arg>, IOB comp <arg fmt="%s" index="2">berndOutput_OBUF</arg> needs a slew rate to be set.
-</msg>
-
-<msg type="warning" file="XDL" num="184" delta="old" >Forced writing the NCD file even though <arg fmt="%d" index="1">2</arg> DRC error(s) are present.
+<msg type="info" file="XDL" num="186" delta="new" ><arg fmt="%d" index="1">1</arg> error(s) were found in XDL file. The NCD file cannot be created.
 </msg>
 
 </messages>

@@ -5,55 +5,65 @@
 #Current Working Directory:
 #:D   C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated
 #Date/Time:
-#:T   Sat Jul 26 13:07:58 2014
+#:T   Sun Jul 27 23:32:24 2014
 #------------------------------
 	#Reading C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated\helloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.07.26.08.37.42
+	#Design creation date: 2014.07.27.19.02.01
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'l'
+select -k comp 'n91_SLICEL'
 	#2
-unselect comp 'l'
+unselect -all
 	#3
-select -k comp 't'
+select comp 'n91_SLICEL'
+	#comp "n91_SLICEL",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
 	#4
 unselect -all
 	#5
-select comp 't'
-	#comp "t",  site "F3",  bonded type = IOB,  pad name = PAD332,  pin name = F3  (RPM grid X1Y344)
+select comp 'n91_SLICEL'
+	#comp "n91_SLICEL",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
 	#6
 unselect -all
 	#7
-select comp 't'
-	#comp "t",  site "F3",  bonded type = IOB,  pad name = PAD332,  pin name = F3  (RPM grid X1Y344)
+select comp 'n91_SLICEL'
+	#comp "n91_SLICEL",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
 	#8
 post block
 	#9
-unselect -all
+unselect comp 'n91_SLICEL'
 	#10
-select net "t.I->n192_SLICEL.A5"
-	#net "t.I->n192_SLICEL.A5"
+select -k comp 'z0_SLICEL'
 	#11
-unselect net 't.I->n192_SLICEL.A5'
-	#12
-select -k comp 'p'
-	#13
-unselect comp 'p'
-	#14
-select -k comp 'b'
-	#15
-unselect comp 'b'
-	#16
-select -k comp 'd'
-	#17
 unselect -all
-	#18
-select comp 'd'
-	#comp "d",  site "G16",  bonded type = IOB,  pad name = PAD95,  pin name = G16  (RPM grid X161Y278)
-	#19
+	#12
+select comp 'z0_SLICEL'
+	#comp "z0_SLICEL",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
+	#13
 post block
+	#14
+unselect comp 'z0_SLICEL'
+	#15
+select -k comp 'z1_SLICEL'
+	#16
+unselect -all
+	#17
+select comp 'z1_SLICEL'
+	#comp "z1_SLICEL",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+	#18
+post block
+	#19
+unselect comp 'z1_SLICEL'
 	#20
+select -k comp 'z33_SLICEL'
+	#21
+unselect -all
+	#22
+select comp 'z33_SLICEL'
+	#comp "z33_SLICEL",  site "SLICE_X10Y2",  type = SLICEL  (RPM grid X33Y8)
+	#23
+post block
+	#24
 post open

@@ -1,7 +1,10 @@
-a clk has to be introduced to the circuit and introduced to every latch.
+1) a clk has to be introduced to the circuit and introduced to every latch.
 
-The correct setup of the latch has to be implemented
+2) The correct setup of the latch has to be implemented
 
-Several cables have to be Placed !!!!
-From one input x cables to other slicels have to be possible
+3) Several cables have to be Placed !!!!
+From one input x cables to other slicels have to be possible DONE
+
+
+4) An output should be used as an input to a latch and as direct output as well
 

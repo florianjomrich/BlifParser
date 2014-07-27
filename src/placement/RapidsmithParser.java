@@ -60,22 +60,22 @@ public class RapidsmithParser{
 				design.saveXDLFile(fileName, true);
 				System.out.println("XDL File created.");
 				
-//HAS TO BE USED LATER ON AGAIN !!!!				
+			
 				
 				FileConverter.convertXDL2NCD(fileName);
 				System.out.println("NCD File created.");
 
+				//HAS TO BE USED LATER ON AGAIN !!!!				
+				String ncdFileName = "xdlFileCreated/"+design.getName() +".ncd";
+				String ncdRoutedFileName = "ncdFileAfterPlaceAndRoute/"+design.getName()+"Routed.ncd";
+				this.placeAndRoute(ncdFileName, ncdRoutedFileName);
+				System.out.println("NCD File Placed And Routed");
 				
-//				String ncdFileName = "xdlFileCreated/"+design.getName() +".ncd";
-//				String ncdRoutedFileName = "ncdFileAfterPlaceAndRoute/"+design.getName()+"Routed.ncd";
-//				this.placeAndRoute(ncdFileName, ncdRoutedFileName);
-//				System.out.println("NCD File Placed And Routed");
-//				
-//				String verilogFileNameUnrouted = "simulationFileUnrouted/"+design.getName()+"Unrouted.v";
-//				this.createSimulationModel(ncdFileName, verilogFileNameUnrouted, "Built unrouted Verilog-Simulationfile");
-//				
-//				String verilogFileNameRouted = "simulationFilePlaceAndRouted/"+design.getName()+"PlaceAndRouted.v";
-//				this.createSimulationModel(ncdRoutedFileName, verilogFileNameRouted, "Built placed and routed Verilog-Simulationfile");
+				String verilogFileNameUnrouted = "simulationFileUnrouted/"+design.getName()+"Unrouted.v";
+				this.createSimulationModel(ncdFileName, verilogFileNameUnrouted, "Built unrouted Verilog-Simulationfile");
+				
+				String verilogFileNameRouted = "simulationFilePlaceAndRouted/"+design.getName()+"PlaceAndRouted.v";
+				this.createSimulationModel(ncdRoutedFileName, verilogFileNameRouted, "Built placed and routed Verilog-Simulationfile");
 	}
 	
 	

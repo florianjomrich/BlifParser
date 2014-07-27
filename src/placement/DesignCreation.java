@@ -9,6 +9,7 @@ import commands.GenericLatch;
 import commands.LogicGate;
 import blif.Model;
 import models.IOB_BLOCK_INSTANCE;
+import models.IOB_BLOCK_INSTANCE.TypeOfInstance;
 import models.SLICEL_INSTANCE;
 import edu.byu.ece.rapidSmith.design.Attribute;
 import edu.byu.ece.rapidSmith.design.Design;
@@ -25,6 +26,16 @@ public class DesignCreation {
 	ArrayList<String> availablePrimaryInputVariables = new ArrayList<String>();
 	ArrayList<String> availableInterconnectVariables = new ArrayList<String>();
 	ArrayList<String> availableFinalOutputVariables = new ArrayList<String>();
+	
+	//stores the nets already placed
+	HashMap<String,Net> alreadyPlacedNets = new HashMap<String,Net>();
+	
+	//stores the latches already placed
+	HashMap<String,SLICEL_INSTANCE> alreadyPlacedLatches = new HashMap<String,SLICEL_INSTANCE>();
+	
+	//the global clk
+	IOB_BLOCK_INSTANCE clk;
+	Instance clk_buffer;
 
 	// for mapping the truth table on the available - CURRENTLY NOT USED
 	// char[] alphabetSelector = { 'A', 'B', 'C', 'D' };
@@ -74,12 +85,18 @@ public class DesignCreation {
 		// need each other as inputs
 		this.checkModelForCorrectness(model, logicGatesToIterateOver);
 
+		
+		
+		//setup the global clock first
+		setupGlobalClock(model,design,myNetCreator,myPlacer);
+		
+		
 		// Create the LogicGates based on SLICELs
 		// continue until everything is placed
-		HashMap<String,String> genericLatchesToBeSetupAsWell = new HashMap<String,String>();
+		HashMap<String,GenericLatch> genericLatchesToBeSetupAsWell = new HashMap<String,GenericLatch>();
 		for(GenericLatch currentLatch : model.genericLatches){
-			genericLatchesToBeSetupAsWell.put(currentLatch.input, currentLatch.output);
-		}
+			genericLatchesToBeSetupAsWell.put(currentLatch.input, currentLatch);
+			}
 		
 		while (!logicGatesToIterateOver.isEmpty()) {
 		
@@ -107,54 +124,67 @@ public class DesignCreation {
 					}
 
 				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
 
 				if (allInputVariablesAlreadyAvailable) {
-					
+								
+					//Check if it is needed to store the new output for the latch 
 					boolean hasALatch = false;
-					//change the output if the logic block output has to be stored in a latch
+					GenericLatch currentLatch = null;
+					//store the latch output if the logic block output has to be stored in a latch
 					if(genericLatchesToBeSetupAsWell.containsKey(currentLogicGate.output)){
-						System.out.println("OUT BEFORE: "+currentLogicGate.output );
-						currentLogicGate.output=genericLatchesToBeSetupAsWell.get(currentLogicGate.output);
-						
-						System.out.println("OUT AFTER: "+currentLogicGate.output );
+
+						currentLatch=genericLatchesToBeSetupAsWell.get(currentLogicGate.output);
 						hasALatch = true;
 					}
 					
 					
-					SLICEL_INSTANCE mySLICEL_LUT  = null;
-					//Function does not have to be stored in a LATCH
-					if(!hasALatch){
-						// create a new SLICEL
-						mySLICEL_LUT = new SLICEL_INSTANCE(
+					
+					
+					//Setup the new logic block
+					SLICEL_INSTANCE mySLICEL_LUT  = new SLICEL_INSTANCE(
 								currentLogicGate.output + _SLICEL);
-					}
-					//Function also has to be stored in a LATCH
-					else{
-						mySLICEL_LUT = new SLICEL_INSTANCE(
-								currentLogicGate.output + _SLICEL_WITH_LATCH);
-					}
+					
 			
 
 					// configure the logic in the LUT
 					mySLICEL_LUT.configure_LUT(currentLogicGate.inputs,
 							currentLogicGate.outputcover.inputTable,
-							currentLogicGate.outputcover.outputTable, "A",hasALatch);
+							currentLogicGate.outputcover.outputTable, "A",hasALatch,currentLatch);
+					
+					//store the SLICE also as new storage point of a latch if necessary
+					if(hasALatch){
+						alreadyPlacedLatches.put(currentLatch.output+_SLICEL_WITH_LATCH, mySLICEL_LUT);
+					}
 
-					// System.out.println("WAS HERE");
-
+					
+					
+					
+					
 					// connect the IOBs or other LUTs to the Input of the new
 					// LUT
 					int currentNumberOfInput = 1;
 					for (String currentToBeMappedInput : currentLogicGate.inputs) {
+						
 						System.out.print(currentToBeMappedInput);
+						
+						
 						// it is a primary input variable -> direct conection to
 						// input iob
 						if (availablePrimaryInputVariables
 								.contains(currentToBeMappedInput)) {
 							Net hubert = myNetCreator.generateNet("I",
 									design.getInstance(currentToBeMappedInput),
-									"A" + currentNumberOfInput, mySLICEL_LUT);
-							design.addNet(hubert);
+									"A" + currentNumberOfInput, mySLICEL_LUT, design, alreadyPlacedNets);
+							
 						}
 
 						// it is an interconnect Variable -> connection to
@@ -166,18 +196,19 @@ public class DesignCreation {
 									design.getInstance(currentToBeMappedInput
 											+ _SLICEL), "A"
 											+ currentNumberOfInput,
-									mySLICEL_LUT);
-							design.addNet(hubert);
+									mySLICEL_LUT, design, alreadyPlacedNets);
+							
 						}
+						
 						if (availableInterconnectVariables
 								.contains(currentToBeMappedInput + _SLICEL_WITH_LATCH)) {
 							Net hubert = myNetCreator.generateNet(
 									"AQ",
-									design.getInstance(currentToBeMappedInput
+									alreadyPlacedLatches.get(currentToBeMappedInput
 											+ _SLICEL_WITH_LATCH), "A"
 											+ currentNumberOfInput,
-									mySLICEL_LUT);
-							design.addNet(hubert);
+									mySLICEL_LUT, design, alreadyPlacedNets);
+							
 						}
 						// Error Handling does not seem to work!!
 						// else{
@@ -200,7 +231,7 @@ public class DesignCreation {
 					System.out.println("Remaining unplaced Logic Gates: "
 							+ logicGatesToIterateOver.size());
 					
-					//FOR DEBUGGING
+					//FOR DEBUGGING==============================
 					for(LogicGate current: logicGatesToIterateOver){
 						System.out.print(current.output+" ");
 					}
@@ -208,44 +239,60 @@ public class DesignCreation {
 					for(String input: availablePrimaryInputVariables){
 						System.out.print(input+" ");
 					}
-					//FOR DEBUGGING
+					//FOR DEBUGGING==============================
 					
-					//connect to outputs if necessary
+					
+					//Now finally connect the newly established output ports
+					
+					//connect to the DIRECT output if necessary
 					if (availableFinalOutputVariables
 							.contains(currentLogicGate.output)) {
 
 						// its a final output and has to be mapped onto the
 						// IOB
+						Net hans = myNetCreator.generateNet("AMUX",
+								mySLICEL_LUT, "O",
+								design.getInstance(currentLogicGate.output), design, alreadyPlacedNets);
 						
-						//connect to the LATCH output
-						if(hasALatch){
-							Net hans = myNetCreator.generateNet("AQ",
-									mySLICEL_LUT, "O",
-									design.getInstance(currentLogicGate.output));
-							design.addNet(hans);
-						}
-						//connect to the DIRECT output
-						else{
-							Net hans = myNetCreator.generateNet("AMUX",
-									mySLICEL_LUT, "O",
-									design.getInstance(currentLogicGate.output));
-							design.addNet(hans);
-						}
-					
-
-					} else {
+					}
+					else{
 						// it is a interconnect Variable and has to be added
 						// to
 						// the available input variables
-						if(hasALatch){
-							availableInterconnectVariables.add(currentLogicGate.output+_SLICEL_WITH_LATCH);
-						}
-						else{
-							availableInterconnectVariables
-							.add(currentLogicGate.output + _SLICEL);
+						availableInterconnectVariables
+						.add(currentLogicGate.output + _SLICEL);
+					}
+					
+					
+					
+					//connect the LATCH output as well if needed
+					if(hasALatch && availableFinalOutputVariables
+							.contains(currentLatch.output)){
+							myNetCreator.generateNet("AQ",
+									mySLICEL_LUT, "O",
+									design.getInstance(currentLatch.output), design, alreadyPlacedNets);
+							
+							//connect the global clk as well
+							myNetCreator.generateNet("O",
+									clk_buffer, "CLK",
+									mySLICEL_LUT, design, alreadyPlacedNets);
+							
 						}
 						
-					}
+					 else if(hasALatch){
+							// it is a interconnect Variable and has to be added
+							// to
+							// the available input variables
+							
+								availableInterconnectVariables.add(currentLatch.output+_SLICEL_WITH_LATCH);
+								
+								//connect the global clk as well
+								myNetCreator.generateNet("O",
+										clk_buffer, "CLK",
+										mySLICEL_LUT, design, alreadyPlacedNets);	
+						}
+
+				
 
 				}
 				// ELSE Continue with another One
@@ -254,6 +301,27 @@ public class DesignCreation {
 		}
 
 		return design;
+	}
+
+	/*
+	 * Setup the clk for the latches
+	 */
+	private void setupGlobalClock(Model model, Design design,
+			NetCreator myNetCreator, Placer myPlacer) {
+
+		clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT, "my_clk");
+		myPlacer.placeInstance(clk);
+		design.addInstance(clk);
+		
+		//Setup the Buffer for the clk as shown in the example projects
+		clk_buffer = new Instance("my_clk_BUFG", PrimitiveType.BUFG);
+		myPlacer.placeInstance(clk_buffer);
+		design.addInstance(clk_buffer);
+		
+		//connect the clk and the clk buffer
+		myNetCreator.generateNet("I", clk, "I0", clk_buffer, design, alreadyPlacedNets);
+		
+		
 	}
 
 	private void checkModelForCorrectness(Model model,

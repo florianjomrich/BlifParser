@@ -5,17 +5,11 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="Par" num="381" delta="new" >One or more of the following switches -p and -r is not supported for this architecture.  PAR will ignore the switch and processing will continue
-
+<msg type="error" file="Pds" num="77" delta="new" >Can not create file <arg fmt="%s" index="1">ncdFileAfterPlaceAndRoute/helloWorldRouted.ncd</arg>
 </msg>
 
-<msg type="info" file="Par" num="282" delta="new" >No user timing constraints were detected or you have set the option to ignore timing constraints (&quot;par -x&quot;). Place and Route will run in &quot;Performance Evaluation Mode&quot; to automatically improve the performance of all internal clocks in this design. Because there are not defined timing requirements, a timing score will not be reported in the PAR report in this mode. The PAR timing summary will list the performance achieved for each clock. Note: For the fastest runtime, set the effort level to &quot;std&quot;.  For best performance, set the effort level to &quot;high&quot;.
+<msg type="fatal" file="Par" num="0" delta="new" srcfile="../s/baspwpar.c" srcline="3938" srcrcs="1.467" >Par has discovered an exceptional condition while trying to load the design <arg fmt="%s" index="1">xdlFileCreated/helloWorld.ncd</arg> - from which it cannot recover
 </msg>
-
-<msg type="info" file="Par" num="459" delta="new" >The Clock Report is not displayed in the non timing-driven mode.
-</msg>
-
-<msg type="info" file="Timing" num="2761" delta="new" >N/A entries in the Constraints List may indicate that the constraint is not analyzed due to the following: No paths covered by this constraint; Other constraints intersect with this constraint; or This constraint was disabled by a Path Tracing Control. Please run the Timespec Interaction Report (TSI) via command line (trce tsi) or Timing Analyzer GUI.</msg>
 
 </messages>
 

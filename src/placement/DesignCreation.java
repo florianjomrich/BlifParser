@@ -158,8 +158,8 @@ public class DesignCreation {
 				//now connect the current with the other Latch
 				myNetCreator.generateNet(current_INPUT_PORT+"Q", otherLatchInstance, currentLATCH_OUTPUT_PORT+"X", currentLatchInstance, design, alreadyPlacedNets);
 			}
-			else if(alreadyPlacedInstances.get(currentLatch.input) instanceof LOGIC_BLOCK_INSTANCE){
-				LOGIC_BLOCK_INSTANCE otherLogic_BLOCK_INSTANCE = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentLatch.input);
+			else if(alreadyPlacedInstances.get(currentLatch.input+"_"+current_INPUT_PORT) instanceof LOGIC_BLOCK_INSTANCE){
+				LOGIC_BLOCK_INSTANCE otherLogic_BLOCK_INSTANCE = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentLatch.input+"_"+current_INPUT_PORT);
 				myNetCreator.generateNet(current_INPUT_PORT+"MUX", otherLogic_BLOCK_INSTANCE, currentLATCH_OUTPUT_PORT+"X", currentLatchInstance, design, alreadyPlacedNets);
 			}
 			else{
@@ -195,7 +195,7 @@ public class DesignCreation {
 					myNetCreator.generateNet(current_INPUT_PORT+"Q", otherLatchInstance, currentLOGIC_BLOCK_OUTPUT_PORT+currentNumberOfInput, currentLogicGateInstance, design, alreadyPlacedNets);
 				}
 				else if(alreadyPlacedInstances.get(currentToBeMappedInput+"_"+current_INPUT_PORT) instanceof LOGIC_BLOCK_INSTANCE){
-					LOGIC_BLOCK_INSTANCE otherLogic_BLOCK_INSTANCE = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentToBeMappedInput);
+					LOGIC_BLOCK_INSTANCE otherLogic_BLOCK_INSTANCE = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentToBeMappedInput+"_"+current_INPUT_PORT);
 					myNetCreator.generateNet(current_INPUT_PORT+"MUX", otherLogic_BLOCK_INSTANCE, currentLOGIC_BLOCK_OUTPUT_PORT+currentNumberOfInput, currentLogicGateInstance, design, alreadyPlacedNets);
 				}
 				else{

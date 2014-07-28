@@ -5,68 +5,71 @@
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Tue Jul 29 00:17:00 2014
+#:T   Tue Jul 29 00:29:25 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\helloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.07.28.19.46.42
+	#Design creation date: 2014.07.28.19.59.00
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'out1_out1_out3'
-	#2
-unselect -all
-	#3
-select comp 'out1_out1_out3'
-	#comp "out1_out1_out3",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#4
-unselect -all
-	#5
-select comp 'out1_out1_out3'
-	#comp "out1_out1_out3",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#6
-post block
-	#7
-unselect comp 'out1_out1_out3'
-	#8
-select -k comp 'out2_out2'
-	#9
-unselect comp 'out2_out2'
-	#10
 select -k comp 'out3_FINAL_OUTPUT'
-	#11
+	#2
 unselect comp 'out3_FINAL_OUTPUT'
+	#3
+select -k comp 'out2_FINAL_OUTPUT'
+	#4
+unselect comp 'out2_FINAL_OUTPUT'
+	#5
+select -k comp 'out1_out4_out5_out6'
+	#6
+unselect comp 'out1_out4_out5_out6'
+	#7
+select -k comp 'out2'
+	#8
+unselect comp 'out2'
+	#9
+select -k comp 'out3'
+	#10
+unselect comp 'out3'
+	#11
+select -k comp 'out2'
 	#12
-select -k comp 'out1_FINAL_OUTPUT'
+unselect -all
 	#13
-unselect -all
+select comp 'out2'
+	#comp "out2",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#14
-select comp 'out1_FINAL_OUTPUT'
-	#comp "out1_FINAL_OUTPUT",  site "H15",  bonded type = IOB,  pad name = PAD93,  pin name = H15  (RPM grid X161Y282)
+unselect -all
 	#15
-unselect -all
+select comp 'out2'
+	#comp "out2",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#16
-select comp 'out1_FINAL_OUTPUT'
-	#comp "out1_FINAL_OUTPUT",  site "H15",  bonded type = IOB,  pad name = PAD93,  pin name = H15  (RPM grid X161Y282)
+post block
 	#17
-post block
+unselect comp 'out2'
 	#18
-unselect comp 'out1_FINAL_OUTPUT'
+select -k comp 'out1_out4_out5_out6'
 	#19
-select -k comp 'out1_out1_out3'
+unselect -all
 	#20
-unselect -all
+select net 'out1_out4_out5_out6.BMUX->out4_FINAL_OUTPUT.O'
+	#net "out1_out4_out5_out6.BMUX->out4_FINAL_OUTPUT.O"
 	#21
-select comp 'out1_out1_out3'
-	#comp "out1_out1_out3",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#22
 post block
-	#23
+	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
+	#be performed unless the selection contains only a single site
+	#or single component.  Change the selection and try again.
+	#22
 unselect -all
+	#23
+select comp 'out1_out4_out5_out6'
+	#comp "out1_out4_out5_out6",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
 	#24
-select net "out1_out1_out3.BMUX->out3_FINAL_OUTPUT.O"
-	#net "out1_out1_out3.BMUX->out3_FINAL_OUTPUT.O"
-	#<AMUX>; net <out1_out1_out3.AMUX->out1_FINAL_OUTPUT.O>.
+unselect -all
 	#25
-post open
+select comp 'out1_out4_out5_out6'
+	#comp "out1_out4_out5_out6",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+	#26
+post block

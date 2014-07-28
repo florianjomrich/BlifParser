@@ -7,7 +7,7 @@
 // \   \   \/     Version: P.20131013
 //  \   \         Application: netgen
 //  /   /         Filename: helloWorldPlaceAndRouted.v
-// /___/   /\     Timestamp: Tue Jul 29 00:23:26 2014
+// /___/   /\     Timestamp: Tue Jul 29 00:44:52 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
@@ -72,6 +72,12 @@ module helloWorld (
   wire \out1_out3.A5LUT.O5 ;
   wire \in6.INBUF.OUT ;
   wire \out3_FINAL_OUTPUT.INBUF.OUT ;
+  wire \NlwBufferSignal_my_clk_BUFG.BUFG/IN ;
+  wire \NlwBufferSignal_out2.AFF/CLK ;
+  wire \NlwBufferSignal_out2.AFF/IN ;
+  wire \NlwBufferSignal_out1_FINAL_OUTPUT_OBUF/I ;
+  wire \NlwBufferSignal_out2_FINAL_OUTPUT_OBUF/I ;
+  wire \NlwBufferSignal_out3_FINAL_OUTPUT_OBUF/I ;
   wire VCC;
   wire GND;
   wire \NLW_out2_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
@@ -148,7 +154,7 @@ module helloWorld (
   X_CKBUF #(
     .LOC ( "BUFGMUX_X2Y10" ))
   \my_clk_BUFG.BUFG  (
-    .I(\my_clk.I->my_clk_BUFG.I0 ),
+    .I(\NlwBufferSignal_my_clk_BUFG.BUFG/IN ),
     .O(\my_clk_BUFG.O->out2.CLK )
   );
   X_IPAD #(
@@ -177,8 +183,8 @@ module helloWorld (
     .INIT ( 1'b1 ))
   \out2.AFF  (
     .GE(VCC),
-    .CLK(\out2/INV_out2.AFFCLK ),
-    .I(\out1_FINAL_OUTPUT.I->out2.AX ),
+    .CLK(\NlwBufferSignal_out2.AFF/CLK ),
+    .I(\NlwBufferSignal_out2.AFF/IN ),
     .O(\out2.AQ->out2_FINAL_OUTPUT.O ),
     .SET(GND),
     .RST(GND)
@@ -191,7 +197,7 @@ module helloWorld (
   X_OBUF #(
     .LOC ( "PAD93" ))
   out1_FINAL_OUTPUT_OBUF (
-    .I(\out1_out3.AMUX->out1_FINAL_OUTPUT.O ),
+    .I(\NlwBufferSignal_out1_FINAL_OUTPUT_OBUF/I ),
     .O(\out1_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -231,7 +237,7 @@ module helloWorld (
   X_OBUF #(
     .LOC ( "PAD94" ))
   out2_FINAL_OUTPUT_OBUF (
-    .I(\out2.AQ->out2_FINAL_OUTPUT.O ),
+    .I(\NlwBufferSignal_out2_FINAL_OUTPUT_OBUF/I ),
     .O(\out2_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -259,21 +265,21 @@ module helloWorld (
     .INIT ( 64'h0000000000000000 ))
   \out1_out3.B6LUT  (
     .ADR0(\in1.I->out1_out3.A1 ),
-    .ADR1(\in2.I->out1_out3.A2 ),
-    .ADR2(\in3.I->out1_out3.A3 ),
-    .ADR3(\in4.I->out1_out3.B4 ),
-    .ADR4(\in5.I->out1_out3.B5 ),
+    .ADR3(\in2.I->out1_out3.A2 ),
+    .ADR1(\in3.I->out1_out3.A3 ),
+    .ADR4(\in4.I->out1_out3.B4 ),
+    .ADR2(\in5.I->out1_out3.B5 ),
     .ADR5(\in6.I->out1_out3.B6 ),
     .O(\out1_out3.B6LUT.O6 )
   );
   X_LUT5 #(
     .LOC ( "SLICE_X10Y8" ),
-    .INIT ( 32'h40404040 ))
+    .INIT ( 32'h0C000C00 ))
   \out1_out3.A5LUT  (
-    .ADR0(\in1.I->out1_out3.A1 ),
-    .ADR1(\in2.I->out1_out3.A2 ),
-    .ADR2(\in3.I->out1_out3.A3 ),
-    .ADR3(1'b1),
+    .ADR2(\in1.I->out1_out3.A1 ),
+    .ADR3(\in2.I->out1_out3.A2 ),
+    .ADR1(\in3.I->out1_out3.A3 ),
+    .ADR0(1'b1),
     .ADR4(1'b1),
     .O(\out1_out3.A5LUT.O5 )
   );
@@ -302,7 +308,7 @@ module helloWorld (
   X_OBUF #(
     .LOC ( "PAD91" ))
   out3_FINAL_OUTPUT_OBUF (
-    .I(\out1_out3.BMUX->out3_FINAL_OUTPUT.O ),
+    .I(\NlwBufferSignal_out3_FINAL_OUTPUT_OBUF/I ),
     .O(\out3_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -316,6 +322,30 @@ module helloWorld (
   \out3_FINAL_OUTPUT.IMUX  (
     .I(\out3_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_out3_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BUF   \NlwBufferBlock_my_clk_BUFG.BUFG/IN  (
+    .I(\my_clk.I->my_clk_BUFG.I0 ),
+    .O(\NlwBufferSignal_my_clk_BUFG.BUFG/IN )
+  );
+  X_BUF   \NlwBufferBlock_out2.AFF/CLK  (
+    .I(\out2/INV_out2.AFFCLK ),
+    .O(\NlwBufferSignal_out2.AFF/CLK )
+  );
+  X_BUF   \NlwBufferBlock_out2.AFF/IN  (
+    .I(\out1_FINAL_OUTPUT.I->out2.AX ),
+    .O(\NlwBufferSignal_out2.AFF/IN )
+  );
+  X_BUF   \NlwBufferBlock_out1_FINAL_OUTPUT_OBUF/I  (
+    .I(\out1_out3.AMUX->out1_FINAL_OUTPUT.O ),
+    .O(\NlwBufferSignal_out1_FINAL_OUTPUT_OBUF/I )
+  );
+  X_BUF   \NlwBufferBlock_out2_FINAL_OUTPUT_OBUF/I  (
+    .I(\out2.AQ->out2_FINAL_OUTPUT.O ),
+    .O(\NlwBufferSignal_out2_FINAL_OUTPUT_OBUF/I )
+  );
+  X_BUF   \NlwBufferBlock_out3_FINAL_OUTPUT_OBUF/I  (
+    .I(\out1_out3.BMUX->out3_FINAL_OUTPUT.O ),
+    .O(\NlwBufferSignal_out3_FINAL_OUTPUT_OBUF/I )
   );
   X_ONE   NlwBlock_helloWorld_VCC (
     .O(VCC)

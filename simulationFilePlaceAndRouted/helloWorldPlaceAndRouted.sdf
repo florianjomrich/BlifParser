@@ -1,7 +1,7 @@
 (DELAYFILE
   (SDFVERSION "3.0")
   (DESIGN "helloWorld")
-  (DATE "Tue Jul 29 00:23:26 2014")
+  (DATE "Tue Jul 29 00:44:52 2014")
   (VENDOR "Xilinx")
   (PROGRAM "Xilinx SDF Writer")
   (VERSION "P.20131013")
@@ -230,17 +230,17 @@
     (INSTANCE out1_out3\.B6LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (PORT ADR2 ( 0 )( 0 ))
-          (PORT ADR3 ( 0 )( 0 ))
-          (PORT ADR4 ( 0 )( 0 ))
-          (PORT ADR5 ( 0 )( 0 ))
+          (PORT ADR0 ( 8543 )( 8543 ))
+          (PORT ADR3 ( 8048 )( 8048 ))
+          (PORT ADR1 ( 7510 )( 7510 ))
+          (PORT ADR4 ( 7109 )( 7109 ))
+          (PORT ADR2 ( 6688 )( 6688 ))
+          (PORT ADR5 ( 6538 )( 6538 ))
           (IOPATH ADR0 O ( 203 )( 203 ))
-          (IOPATH ADR1 O ( 203 )( 203 ))
-          (IOPATH ADR2 O ( 203 )( 203 ))
           (IOPATH ADR3 O ( 203 )( 203 ))
+          (IOPATH ADR1 O ( 203 )( 203 ))
           (IOPATH ADR4 O ( 203 )( 203 ))
+          (IOPATH ADR2 O ( 203 )( 203 ))
           (IOPATH ADR5 O ( 203 )( 203 ))
         )
       )
@@ -249,12 +249,12 @@
     (INSTANCE out1_out3\.A5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (PORT ADR2 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 187 )( 187 ))
-          (IOPATH ADR1 O ( 187 )( 187 ))
+          (PORT ADR2 ( 8383 )( 8383 ))
+          (PORT ADR3 ( 8054 )( 8054 ))
+          (PORT ADR1 ( 7487 )( 7487 ))
           (IOPATH ADR2 O ( 187 )( 187 ))
+          (IOPATH ADR3 O ( 187 )( 187 ))
+          (IOPATH ADR1 O ( 187 )( 187 ))
         )
       )
   )
@@ -300,6 +300,60 @@
         (PATHPULSE (202))
         (ABSOLUTE
           (IOPATH I O ( 115 )( 115 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_my_clk_BUFG\.BUFG\/IN)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 3590 )( 3590 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_out2\.AFF\/CLK)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 1265 )( 1265 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_out2\.AFF\/IN)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 7306 )( 7306 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_out1_FINAL_OUTPUT_OBUF\/I)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 7250 )( 7250 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_out2_FINAL_OUTPUT_OBUF\/I)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 7086 )( 7086 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_out3_FINAL_OUTPUT_OBUF\/I)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 7240 )( 7240 ))
         )
       )
   )

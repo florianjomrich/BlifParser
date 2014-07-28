@@ -99,22 +99,31 @@ public class DesignCreation {
 		
 		//to iterate over the different latches
 		int latchCounter=0;
+		int elementCounter1=0;
 		LATCH_INSTANCE myLatch=null;
 		for(GenericLatch currentLatch : model.genericLatches){
 			if(latchCounter==0)myLatch = new LATCH_INSTANCE(currentLatch.output);
+			
+			System.out.println("latchCounter "+latchCounter);
 			myLatch = this.setupTheLatch(currentLatch,myNetCreator,design,clk_buffer,alphabetSelector[latchCounter],myLatch);
 			
 			alreadyPlacedInstances.put(currentLatch.output+"_"+alphabetSelector[latchCounter],myLatch);
 			portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output,alphabetSelector[latchCounter]);
-			myPlacer.placeInstance(myLatch);
-			design.addInstance(myLatch);
+		
 			
-			latchCounter=(latchCounter+1)%4;//from 0 to 3 = A to D
+			if(latchCounter==3 || elementCounter1 == model.genericLatches.size()-1){
+				myPlacer.placeInstance(myLatch);
+				design.addInstance(myLatch);
+			}
+			
+			latchCounter++;//from 0 to 3 = A to D
+			elementCounter1++;
 		}
 		
 		// Dump-Place the LogicGates based on SLICELs
 		//Setup the new logic block
 		int logicBlockCounter=0;
+		int elementCounter2=0;
 		LOGIC_BLOCK_INSTANCE myLogicBlock=null;
 		for(LogicGate currentLogicGate : model.logicGates){
 			if(logicBlockCounter==0) myLogicBlock = new LOGIC_BLOCK_INSTANCE(currentLogicGate.output);
@@ -122,10 +131,16 @@ public class DesignCreation {
 			
 			alreadyPlacedInstances.put(currentLogicGate.output+"_"+alphabetSelector[logicBlockCounter],myLogicBlock);
 			portNubmerOfTheAlreadyPlacedInstances.put(currentLogicGate.output,alphabetSelector[logicBlockCounter]);
-			myPlacer.placeInstance(myLogicBlock);
-			design.addInstance(myLogicBlock);
+			
+			System.out.println("logicBLockCounter "+logicBlockCounter);
+			
+			if(logicBlockCounter==3 || elementCounter2 == model.logicGates.size()-1){
+				myPlacer.placeInstance(myLogicBlock);
+				design.addInstance(myLogicBlock);
+			}
 			
 			logicBlockCounter=(logicBlockCounter+1)%4;//from 0 to 3 = A to D
+			elementCounter2++;
 		}
 
 		
@@ -338,7 +353,7 @@ public class DesignCreation {
 			NetCreator myNetCreator, Design design, Instance clk_buffer2, String SELECTED_LETTER, LATCH_INSTANCE myLatch) {
 		
 		
-		myLatch.setName(myLatch+"_"+currentLatch.output);
+		myLatch.setName(myLatch.getName()+"_"+currentLatch.output);
 		
 		myLatch.configure_LATCH(currentLatch,SELECTED_LETTER);
 		
@@ -350,7 +365,7 @@ public class DesignCreation {
 
 	private LOGIC_BLOCK_INSTANCE setupTheLogicBlock(LogicGate currentLogicGate, NetCreator myNetCreator, Design design,String SELECTED_LETTER, LOGIC_BLOCK_INSTANCE myLogicBlock) {
 		
-		myLogicBlock.setName(myLogicBlock+"_"+currentLogicGate.output);
+		myLogicBlock.setName(myLogicBlock.getName()+"_"+currentLogicGate.output);
 
 	// configure the logic in the LUT
 	myLogicBlock.configure_LUT(currentLogicGate.inputs,

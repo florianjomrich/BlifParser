@@ -1,7 +1,7 @@
 
 # =======================================================
 # edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
-# time: Mo Jul 28 23:52:32 2014
+# time: Di Jul 29 00:16:40 2014
 
 # =======================================================
 
@@ -47,6 +47,9 @@ inst "in1" "IOB",placed RIOB_X37Y90 G14  ,
 inst "in4" "IOB",placed RIOB_X37Y69 G16  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in4: IMUX::I "
   ;
+inst "out1_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H15  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out1_FINAL_OUTPUT_OBUF: PAD:out1_FINAL_OUTPUT: IMUX::I "
+  ;
 inst "in3" "IOB",placed RIOB_X37Y69 G18  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in3: IMUX::I "
   ;
@@ -56,44 +59,23 @@ inst "my_clk_BUFG" "BUFG",placed CLKC_X18Y63 BUFGMUX_X2Y10  ,
 inst "my_clk" "IOB",placed RIOB_X37Y71 H14  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:my_clk: IMUX::I "
   ;
-inst "inst "out2" "SLICEL",unplaced
-  cfg " "
-  ;
-_out2" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
-  cfg " AFFSRINIT::SRINIT1 AFFMUX::AX SYNC_ATTR::SYNC CLKINV::CLK AFF::#LATCH "
-  ;
-inst "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" "SLICEL",placed CLEXM_X8Y7 SLICE_X10Y7  ,
+inst "out1_out1_out3" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8  ,
   cfg " AOUTMUX::O5 B6LUT::#LUT:O6=~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6)) BOUTMUX::O6 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-inst "out1_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H15  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out1_FINAL_OUTPUT_OBUF: PAD:out1_FINAL_OUTPUT: IMUX::I "
-  ;
-inst "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" "SLICEL",placed CLEXM_X8Y7 SLICE_X10Y7  ,
-  cfg " AOUTMUX::O5 B6LUT::#LUT:O6=~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6)) BOUTMUX::O6 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-inst "in5" "IOB",placed RIOB_X37Y62 H17  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in5: IMUX::I "
   ;
 inst "out2_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H16  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out2_FINAL_OUTPUT_OBUF: PAD:out2_FINAL_OUTPUT: IMUX::I "
   ;
-inst "in6" "IOB",placed RIOB_X37Y62 H18  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in6: IMUX::I "
+inst "in5" "IOB",placed RIOB_X37Y62 H17  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in5: IMUX::I "
+  ;
+inst "out2_out2" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
+  cfg " AFFSRINIT::SRINIT1 AFFMUX::AX SYNC_ATTR::SYNC CLKINV::CLK AFF::#LATCH "
   ;
 inst "out3_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H13  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out3_FINAL_OUTPUT_OBUF: PAD:out3_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "in6" "IOB",placed RIOB_X37Y62 H18  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in6: IMUX::I "
   ;
 
 #  ================================================
@@ -133,196 +115,64 @@ inst "out3_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H13  ,
 #  ================================================
   net "null" ,
     ;
-  net "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3.AMUX->out1_FINAL_OUTPUT.O" ,
-    inpin "out1_FINAL_OUTPUT" O ,
-    outpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" AMUX ,
-    ;
-  net "in1.I->inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3.A1" ,
-    inpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" A1 ,
-    outpin "in1" I ,
-    inpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" B1 ,
-    ;
-  net "in2.I->inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3.A2" ,
-    inpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" A2 ,
-    outpin "in2" I ,
-    inpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" B2 ,
-    ;
-  net "in6.I->inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3.B6" ,
-    inpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" B6 ,
-    outpin "in6" I ,
-    ;
-  net "out1_FINAL_OUTPUT.I->inst "out2" "SLICEL",unplaced
-  cfg " "
-  ;
-_out2.AX" ,
-    inpin "inst "out2" "SLICEL",unplaced
-  cfg " "
-  ;
-_out2" AX ,
-    outpin "out1_FINAL_OUTPUT" I ,
-    ;
-  net "my_clk_BUFG.O->inst "out2" "SLICEL",unplaced
-  cfg " "
-  ;
-_out2.CLK" ,
-    inpin "inst "out2" "SLICEL",unplaced
-  cfg " "
-  ;
-_out2" CLK ,
-    outpin "my_clk_BUFG" O ,
+  net "in5.I->out1_out1_out3.B5" ,
+    inpin "out1_out1_out3" B5 ,
+    outpin "in5" I ,
     ;
   net "my_clk.I->my_clk_BUFG.I0" ,
     inpin "my_clk_BUFG" I0 ,
     outpin "my_clk" I ,
     ;
-  net "in5.I->inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3.B5" ,
-    inpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" B5 ,
-    outpin "in5" I ,
+  net "in6.I->out1_out1_out3.B6" ,
+    inpin "out1_out1_out3" B6 ,
+    outpin "in6" I ,
     ;
-  net "inst "out2" "SLICEL",unplaced
-  cfg " "
-  ;
-_out2.AQ->out2_FINAL_OUTPUT.O" ,
-    inpin "out2_FINAL_OUTPUT" O ,
-    outpin "inst "out2" "SLICEL",unplaced
-  cfg " "
-  ;
-_out2" AQ ,
+  net "in1.I->out1_out1_out3.A1" ,
+    inpin "out1_out1_out3" A1 ,
+    outpin "in1" I ,
+    inpin "out1_out1_out3" B1 ,
     ;
-  net "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3.BMUX->out3_FINAL_OUTPUT.O" ,
-    inpin "out3_FINAL_OUTPUT" O ,
-    outpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" BMUX ,
+  net "out1_out1_out3.AMUX->out1_FINAL_OUTPUT.O" ,
+    inpin "out1_FINAL_OUTPUT" O ,
+    outpin "out1_out1_out3" AMUX ,
     ;
-  net "in4.I->inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3.B4" ,
-    inpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" B4 ,
+  net "my_clk_BUFG.O->out2_out2.CLK" ,
+    inpin "out2_out2" CLK ,
+    outpin "my_clk_BUFG" O ,
+    ;
+  net "in4.I->out1_out1_out3.B4" ,
+    inpin "out1_out1_out3" B4 ,
     outpin "in4" I ,
     ;
-  net "in3.I->inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3.A3" ,
-    inpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" A3 ,
+  net "out1_out1_out3.BMUX->out3_FINAL_OUTPUT.O" ,
+    inpin "out3_FINAL_OUTPUT" O ,
+    outpin "out1_out1_out3" BMUX ,
+    ;
+  net "out2_out2.AQ->out2_FINAL_OUTPUT.O" ,
+    inpin "out2_FINAL_OUTPUT" O ,
+    outpin "out2_out2" AQ ,
+    ;
+  net "in3.I->out1_out1_out3.A3" ,
+    inpin "out1_out1_out3" A3 ,
     outpin "in3" I ,
-    inpin "inst "inst "out1" "SLICEL",unplaced
-  cfg " "
-  ;
-_out1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) "
-  ;
-_out3" B3 ,
+    inpin "out1_out1_out3" B3 ,
+    ;
+  net "out1_FINAL_OUTPUT.I->out2_out2.AX" ,
+    inpin "out2_out2" AX ,
+    outpin "out1_FINAL_OUTPUT" I ,
+    ;
+  net "in2.I->out1_out1_out3.A2" ,
+    inpin "out1_out1_out3" A2 ,
+    outpin "in2" I ,
+    inpin "out1_out1_out3" B2 ,
     ;
 
 # =======================================================
 # SUMMARY
 # Number of Module Defs: 0
 # Number of Module Insts: 0
-# Number of Primitive Insts: 14
-#     Number of SLICES: 3
+# Number of Primitive Insts: 13
+#     Number of SLICES: 2
 #     Number of DSP48s: 0
 #     Number of BRAMs: 0
 # Number of Nets: 13

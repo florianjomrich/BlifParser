@@ -7,7 +7,7 @@
 // \   \   \/     Version: P.20131013
 //  \   \         Application: netgen
 //  /   /         Filename: helloWorldPlaceAndRouted.v
-// /___/   /\     Timestamp: Mon Jul 28 23:52:38 2014
+// /___/   /\     Timestamp: Tue Jul 29 00:16:53 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
@@ -34,53 +34,47 @@
 `timescale 1 ns/1 ps
 
 module helloWorld (
-  \in2.PAD.PAD , \in1.PAD.PAD , \in4.PAD.PAD , \in3.PAD.PAD , \my_clk.PAD.PAD , \out1_FINAL_OUTPUT.OUTBUF.OUT , \in5.PAD.PAD , 
-\out2_FINAL_OUTPUT.OUTBUF.OUT , \in6.PAD.PAD , \out3_FINAL_OUTPUT.OUTBUF.OUT 
+  \in2.PAD.PAD , \in1.PAD.PAD , \in4.PAD.PAD , \out1_FINAL_OUTPUT.OUTBUF.OUT , \in3.PAD.PAD , \my_clk.PAD.PAD , \out2_FINAL_OUTPUT.OUTBUF.OUT , 
+\in5.PAD.PAD , \out3_FINAL_OUTPUT.OUTBUF.OUT , \in6.PAD.PAD 
 );
   input \in2.PAD.PAD ;
   input \in1.PAD.PAD ;
   input \in4.PAD.PAD ;
+  inout \out1_FINAL_OUTPUT.OUTBUF.OUT ;
   input \in3.PAD.PAD ;
   input \my_clk.PAD.PAD ;
-  inout \out1_FINAL_OUTPUT.OUTBUF.OUT ;
-  input \in5.PAD.PAD ;
   inout \out2_FINAL_OUTPUT.OUTBUF.OUT ;
-  input \in6.PAD.PAD ;
+  input \in5.PAD.PAD ;
   inout \out3_FINAL_OUTPUT.OUTBUF.OUT ;
-  wire \in1.I->out1_SLICEL.A1 ;
-  wire \my_clk_BUFG.O->out2.CLK ;
-  wire \in4.I->out3_SLICEL.A4 ;
+  input \in6.PAD.PAD ;
+  wire \in5.I->out1_out1_out3.B5 ;
   wire \my_clk.I->my_clk_BUFG.I0 ;
-  wire \in5.I->out3_SLICEL.A5 ;
-  wire \in6.I->out3_SLICEL.A6 ;
-  wire \out1_SLICEL.AMUX->out2.AX ;
-  wire \out3_SLICEL.AMUX->out3_FINAL_OUTPUT.O ;
-  wire \in2.I->out1_SLICEL.A2 ;
-  wire \out2.AQ->out2_FINAL_OUTPUT.O ;
-  wire \in3.I->out1_SLICEL.A3 ;
+  wire \in6.I->out1_out1_out3.B6 ;
+  wire \in1.I->out1_out1_out3.A1 ;
+  wire \out1_out1_out3.AMUX->out1_FINAL_OUTPUT.O ;
+  wire \my_clk_BUFG.O->out2_out2.CLK ;
+  wire \in4.I->out1_out1_out3.B4 ;
+  wire \out1_out1_out3.BMUX->out3_FINAL_OUTPUT.O ;
+  wire \out2_out2.AQ->out2_FINAL_OUTPUT.O ;
+  wire \in3.I->out1_out1_out3.A3 ;
+  wire \out1_FINAL_OUTPUT.I->out2_out2.AX ;
+  wire \in2.I->out1_out1_out3.A2 ;
   wire \in2.INBUF.OUT ;
   wire \in1.INBUF.OUT ;
   wire \in4.INBUF.OUT ;
-  wire \in3.INBUF.OUT ;
-  wire \out1_SLICEL.A5LUT.O5 ;
-  wire \my_clk.INBUF.OUT ;
-  wire \out2/INV_out2.AFFCLK ;
-  wire \out3_SLICEL.A6LUT.O6 ;
   wire \out1_FINAL_OUTPUT.INBUF.OUT ;
-  wire \in5.INBUF.OUT ;
+  wire \in3.INBUF.OUT ;
+  wire \my_clk.INBUF.OUT ;
+  wire \out1_out1_out3.B6LUT.O6 ;
+  wire \out1_out1_out3.A5LUT.O5 ;
   wire \out2_FINAL_OUTPUT.INBUF.OUT ;
-  wire \in6.INBUF.OUT ;
+  wire \in5.INBUF.OUT ;
+  wire \out2_out2/INV_out2_out2.AFFCLK ;
   wire \out3_FINAL_OUTPUT.INBUF.OUT ;
-  wire \NlwBufferSignal_my_clk_BUFG.BUFG/IN ;
-  wire \NlwBufferSignal_out2.AFF/CLK ;
-  wire \NlwBufferSignal_out2.AFF/IN ;
-  wire \NlwBufferSignal_out1_FINAL_OUTPUT_OBUF/I ;
-  wire \NlwBufferSignal_out2_FINAL_OUTPUT_OBUF/I ;
-  wire \NlwBufferSignal_out3_FINAL_OUTPUT_OBUF/I ;
+  wire \in6.INBUF.OUT ;
+  wire \NLW_out2_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire VCC;
   wire GND;
-  wire \NLW_out1_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_out2_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_out3_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   initial $sdf_annotate("helloworldplaceandrouted.sdf");
   X_IPAD #(
@@ -98,7 +92,7 @@ module helloWorld (
     .LOC ( "PAD84" ))
   \in2.IMUX  (
     .I(\in2.INBUF.OUT ),
-    .O(\in2.I->out1_SLICEL.A2 )
+    .O(\in2.I->out1_out1_out3.A2 )
   );
   X_IPAD #(
     .LOC ( "PAD80" ))
@@ -115,7 +109,7 @@ module helloWorld (
     .LOC ( "PAD80" ))
   \in1.IMUX  (
     .I(\in1.INBUF.OUT ),
-    .O(\in1.I->out1_SLICEL.A1 )
+    .O(\in1.I->out1_out1_out3.A1 )
   );
   X_IPAD #(
     .LOC ( "PAD95" ))
@@ -132,7 +126,30 @@ module helloWorld (
     .LOC ( "PAD95" ))
   \in4.IMUX  (
     .I(\in4.INBUF.OUT ),
-    .O(\in4.I->out3_SLICEL.A4 )
+    .O(\in4.I->out1_out1_out3.B4 )
+  );
+  X_BPAD #(
+    .LOC ( "PAD93" ))
+  out1_FINAL_OUTPUT (
+    .PAD(\out1_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD93" ))
+  out1_FINAL_OUTPUT_OBUF (
+    .I(\out1_out1_out3.AMUX->out1_FINAL_OUTPUT.O ),
+    .O(\out1_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD93" ))
+  \out1_FINAL_OUTPUT.INBUF  (
+    .O(\out1_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out1_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD93" ))
+  \out1_FINAL_OUTPUT.IMUX  (
+    .I(\out1_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\out1_FINAL_OUTPUT.I->out2_out2.AX )
   );
   X_IPAD #(
     .LOC ( "PAD96" ))
@@ -149,28 +166,13 @@ module helloWorld (
     .LOC ( "PAD96" ))
   \in3.IMUX  (
     .I(\in3.INBUF.OUT ),
-    .O(\in3.I->out1_SLICEL.A3 )
-  );
-  X_BUF   \out1_SLICEL/out1_SLICEL_AMUX_Delay  (
-    .I(\out1_SLICEL.A5LUT.O5 ),
-    .O(\out1_SLICEL.AMUX->out2.AX )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y8" ),
-    .INIT ( 32'h0C000C00 ))
-  \out1_SLICEL.A5LUT  (
-    .ADR2(\in1.I->out1_SLICEL.A1 ),
-    .ADR3(\in2.I->out1_SLICEL.A2 ),
-    .ADR1(\in3.I->out1_SLICEL.A3 ),
-    .ADR0(1'b1),
-    .ADR4(1'b1),
-    .O(\out1_SLICEL.A5LUT.O5 )
+    .O(\in3.I->out1_out1_out3.A3 )
   );
   X_CKBUF #(
     .LOC ( "BUFGMUX_X2Y10" ))
   \my_clk_BUFG.BUFG  (
-    .I(\NlwBufferSignal_my_clk_BUFG.BUFG/IN ),
-    .O(\my_clk_BUFG.O->out2.CLK )
+    .I(\my_clk.I->my_clk_BUFG.I0 ),
+    .O(\my_clk_BUFG.O->out2_out2.CLK )
   );
   X_IPAD #(
     .LOC ( "PAD92" ))
@@ -189,59 +191,59 @@ module helloWorld (
     .I(\my_clk.INBUF.OUT ),
     .O(\my_clk.I->my_clk_BUFG.I0 )
   );
-  X_INV   \INV_out2.AFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
-    .O(\out2/INV_out2.AFFCLK )
+  X_BUF   \out1_out1_out3/out1_out1_out3_BMUX_Delay  (
+    .I(\out1_out1_out3.B6LUT.O6 ),
+    .O(\out1_out1_out3.BMUX->out3_FINAL_OUTPUT.O )
   );
-  X_LATCHE #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 1'b1 ))
-  \out2.AFF  (
-    .GE(VCC),
-    .CLK(\NlwBufferSignal_out2.AFF/CLK ),
-    .I(\NlwBufferSignal_out2.AFF/IN ),
-    .O(\out2.AQ->out2_FINAL_OUTPUT.O ),
-    .SET(GND),
-    .RST(GND)
-  );
-  X_BUF   \out3_SLICEL/out3_SLICEL_AMUX_Delay  (
-    .I(\out3_SLICEL.A6LUT.O6 ),
-    .O(\out3_SLICEL.AMUX->out3_FINAL_OUTPUT.O )
+  X_BUF   \out1_out1_out3/out1_out1_out3_AMUX_Delay  (
+    .I(\out1_out1_out3.A5LUT.O5 ),
+    .O(\out1_out1_out3.AMUX->out1_FINAL_OUTPUT.O )
   );
   X_LUT6 #(
-    .LOC ( "SLICE_X10Y7" ),
+    .LOC ( "SLICE_X10Y8" ),
     .INIT ( 64'h0000000000000000 ))
-  \out3_SLICEL.A6LUT  (
-    .ADR3(\in1.I->out1_SLICEL.A1 ),
-    .ADR2(\in2.I->out1_SLICEL.A2 ),
-    .ADR0(\in3.I->out1_SLICEL.A3 ),
-    .ADR4(\in4.I->out3_SLICEL.A4 ),
-    .ADR1(\in5.I->out3_SLICEL.A5 ),
-    .ADR5(\in6.I->out3_SLICEL.A6 ),
-    .O(\out3_SLICEL.A6LUT.O6 )
+  \out1_out1_out3.B6LUT  (
+    .ADR0(\in1.I->out1_out1_out3.A1 ),
+    .ADR1(\in2.I->out1_out1_out3.A2 ),
+    .ADR2(\in3.I->out1_out1_out3.A3 ),
+    .ADR3(\in4.I->out1_out1_out3.B4 ),
+    .ADR4(\in5.I->out1_out1_out3.B5 ),
+    .ADR5(\in6.I->out1_out1_out3.B6 ),
+    .O(\out1_out1_out3.B6LUT.O6 )
+  );
+  X_LUT5 #(
+    .LOC ( "SLICE_X10Y8" ),
+    .INIT ( 32'h40404040 ))
+  \out1_out1_out3.A5LUT  (
+    .ADR0(\in1.I->out1_out1_out3.A1 ),
+    .ADR1(\in2.I->out1_out1_out3.A2 ),
+    .ADR2(\in3.I->out1_out1_out3.A3 ),
+    .ADR3(1'b1),
+    .ADR4(1'b1),
+    .O(\out1_out1_out3.A5LUT.O5 )
   );
   X_BPAD #(
-    .LOC ( "PAD93" ))
-  out1_FINAL_OUTPUT (
-    .PAD(\out1_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD94" ))
+  out2_FINAL_OUTPUT (
+    .PAD(\out2_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD93" ))
-  out1_FINAL_OUTPUT_OBUF (
-    .I(\NlwBufferSignal_out1_FINAL_OUTPUT_OBUF/I ),
-    .O(\out1_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD94" ))
+  out2_FINAL_OUTPUT_OBUF (
+    .I(\out2_out2.AQ->out2_FINAL_OUTPUT.O ),
+    .O(\out2_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD93" ))
-  \out1_FINAL_OUTPUT.INBUF  (
-    .O(\out1_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\out1_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD94" ))
+  \out2_FINAL_OUTPUT.INBUF  (
+    .O(\out2_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out2_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD93" ))
-  \out1_FINAL_OUTPUT.IMUX  (
-    .I(\out1_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_out1_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD94" ))
+  \out2_FINAL_OUTPUT.IMUX  (
+    .I(\out2_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out2_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_IPAD #(
     .LOC ( "PAD105" ))
@@ -258,30 +260,45 @@ module helloWorld (
     .LOC ( "PAD105" ))
   \in5.IMUX  (
     .I(\in5.INBUF.OUT ),
-    .O(\in5.I->out3_SLICEL.A5 )
+    .O(\in5.I->out1_out1_out3.B5 )
+  );
+  X_INV   \INV_out2_out2.AFFCLK  (
+    .I(\my_clk_BUFG.O->out2_out2.CLK ),
+    .O(\out2_out2/INV_out2_out2.AFFCLK )
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y9" ),
+    .INIT ( 1'b1 ))
+  \out2_out2.AFF  (
+    .GE(VCC),
+    .CLK(\out2_out2/INV_out2_out2.AFFCLK ),
+    .I(\out1_FINAL_OUTPUT.I->out2_out2.AX ),
+    .O(\out2_out2.AQ->out2_FINAL_OUTPUT.O ),
+    .SET(GND),
+    .RST(GND)
   );
   X_BPAD #(
-    .LOC ( "PAD94" ))
-  out2_FINAL_OUTPUT (
-    .PAD(\out2_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD91" ))
+  out3_FINAL_OUTPUT (
+    .PAD(\out3_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD94" ))
-  out2_FINAL_OUTPUT_OBUF (
-    .I(\NlwBufferSignal_out2_FINAL_OUTPUT_OBUF/I ),
-    .O(\out2_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD91" ))
+  out3_FINAL_OUTPUT_OBUF (
+    .I(\out1_out1_out3.BMUX->out3_FINAL_OUTPUT.O ),
+    .O(\out3_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD94" ))
-  \out2_FINAL_OUTPUT.INBUF  (
-    .O(\out2_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\out2_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD91" ))
+  \out3_FINAL_OUTPUT.INBUF  (
+    .O(\out3_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out3_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD94" ))
-  \out2_FINAL_OUTPUT.IMUX  (
-    .I(\out2_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_out2_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD91" ))
+  \out3_FINAL_OUTPUT.IMUX  (
+    .I(\out3_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out3_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_IPAD #(
     .LOC ( "PAD106" ))
@@ -298,54 +315,7 @@ module helloWorld (
     .LOC ( "PAD106" ))
   \in6.IMUX  (
     .I(\in6.INBUF.OUT ),
-    .O(\in6.I->out3_SLICEL.A6 )
-  );
-  X_BPAD #(
-    .LOC ( "PAD91" ))
-  out3_FINAL_OUTPUT (
-    .PAD(\out3_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_OBUF #(
-    .LOC ( "PAD91" ))
-  out3_FINAL_OUTPUT_OBUF (
-    .I(\NlwBufferSignal_out3_FINAL_OUTPUT_OBUF/I ),
-    .O(\out3_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD91" ))
-  \out3_FINAL_OUTPUT.INBUF  (
-    .O(\out3_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\out3_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD91" ))
-  \out3_FINAL_OUTPUT.IMUX  (
-    .I(\out3_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_out3_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
-  );
-  X_BUF   \NlwBufferBlock_my_clk_BUFG.BUFG/IN  (
-    .I(\my_clk.I->my_clk_BUFG.I0 ),
-    .O(\NlwBufferSignal_my_clk_BUFG.BUFG/IN )
-  );
-  X_BUF   \NlwBufferBlock_out2.AFF/CLK  (
-    .I(\out2/INV_out2.AFFCLK ),
-    .O(\NlwBufferSignal_out2.AFF/CLK )
-  );
-  X_BUF   \NlwBufferBlock_out2.AFF/IN  (
-    .I(\out1_SLICEL.AMUX->out2.AX ),
-    .O(\NlwBufferSignal_out2.AFF/IN )
-  );
-  X_BUF   \NlwBufferBlock_out1_FINAL_OUTPUT_OBUF/I  (
-    .I(\out1_SLICEL.AMUX->out2.AX ),
-    .O(\NlwBufferSignal_out1_FINAL_OUTPUT_OBUF/I )
-  );
-  X_BUF   \NlwBufferBlock_out2_FINAL_OUTPUT_OBUF/I  (
-    .I(\out2.AQ->out2_FINAL_OUTPUT.O ),
-    .O(\NlwBufferSignal_out2_FINAL_OUTPUT_OBUF/I )
-  );
-  X_BUF   \NlwBufferBlock_out3_FINAL_OUTPUT_OBUF/I  (
-    .I(\out3_SLICEL.AMUX->out3_FINAL_OUTPUT.O ),
-    .O(\NlwBufferSignal_out3_FINAL_OUTPUT_OBUF/I )
+    .O(\in6.I->out1_out1_out3.B6 )
   );
   X_ONE   NlwBlock_helloWorld_VCC (
     .O(VCC)

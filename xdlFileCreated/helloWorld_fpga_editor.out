@@ -1,1 +1,115 @@
-#:C0     
+#:C39    
+#Xilinx FPGA Editor Command Log File
+#Editor Version:
+#:V   NT M2.1 P.20131013
+#Current Working Directory:
+#:D   C:\BlifParser3\xdlFileCreated
+#Date/Time:
+#:T   Tue Jul 29 00:46:15 2014
+#------------------------------
+	#Reading C:\BlifParser3\xdlFileCreated\helloWorld.ncd...
+	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
+	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
+	#Design creation date: 2014.07.28.20.15.40
+	#Building chip graphics...
+	#Loading speed info...
+	#1
+select -k comp 'my_clk_BUFG'
+	#2
+unselect comp 'my_clk_BUFG'
+	#3
+select -k comp 'n39_n40_n41_n42'
+	#4
+unselect -all
+	#5
+select comp 'n39_n40_n41_n42'
+	#comp "n39_n40_n41_n42",  site "SLICE_X10Y6",  type = SLICEL  (RPM grid X33Y24)
+	#6
+unselect -all
+	#7
+select comp 'n39_n40_n41_n42'
+	#comp "n39_n40_n41_n42",  site "SLICE_X10Y6",  type = SLICEL  (RPM grid X33Y24)
+	#8
+post block
+	#9
+unselect -all
+	#10
+select comp 'n39_n40_n41_n42'
+	#comp "n39_n40_n41_n42",  site "SLICE_X10Y6",  type = SLICEL  (RPM grid X33Y24)
+	#11
+post block
+	#<BMUX>; net <n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2>.
+	#12
+unselect -all
+	#13
+select net 'n27_n28_n29_n30.AMUX->o_n24_n25_n26.D1'
+	#net "n27_n28_n29_n30.AMUX->o_n24_n25_n26.D1"
+	#14
+post block
+	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
+	#be performed unless the selection contains only a single site
+	#or single component.  Change the selection and try again.
+	#15
+unselect -all
+	#16
+select comp 'n39_n40_n41_n42'
+	#comp "n39_n40_n41_n42",  site "SLICE_X10Y6",  type = SLICEL  (RPM grid X33Y24)
+	#17
+unselect -all
+	#18
+select comp 'n39_n40_n41_n42'
+	#comp "n39_n40_n41_n42",  site "SLICE_X10Y6",  type = SLICEL  (RPM grid X33Y24)
+	#19
+post block
+	#20
+unselect -all
+	#21
+select net "n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2"
+	#net "n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2"
+	#22
+unselect -all
+	#23
+select net "n39_n40_n41_n42.AMUX->n35_n36_n37_n38.D1"
+	#net "n39_n40_n41_n42.AMUX->n35_n36_n37_n38.D1"
+	#24
+unselect -all
+	#25
+select net "n39_n40_n41_n42.CMUX->n35_n36_n37_n38.D2"
+	#net "n39_n40_n41_n42.CMUX->n35_n36_n37_n38.D2"
+	#26
+unselect -all
+	#27
+select net "n39_n40_n41_n42.CMUX->n35_n36_n37_n38.D2"
+	#net "n39_n40_n41_n42.CMUX->n35_n36_n37_n38.D2"
+	#28
+unselect -all
+	#29
+select net "n39_n40_n41_n42.AMUX->n35_n36_n37_n38.D1"
+	#net "n39_n40_n41_n42.AMUX->n35_n36_n37_n38.D1"
+	#30
+unselect -all
+	#31
+select net "n39_n40_n41_n42.AMUX->n35_n36_n37_n38.D1"
+	#net "n39_n40_n41_n42.AMUX->n35_n36_n37_n38.D1"
+	#32
+unselect -all
+	#33
+select net "n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2"
+	#net "n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2"
+	#34
+unselect -all
+	#35
+select net "n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2"
+	#net "n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2"
+	#36
+unselect -all
+	#37
+select net "n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2"
+	#net "n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2"
+	#38
+unselect -all
+	#39
+select net "n39_n40_n41_n42.CMUX->n35_n36_n37_n38.D2"
+	#net "n39_n40_n41_n42.CMUX->n35_n36_n37_n38.D2"
+	#40
+unselect -all

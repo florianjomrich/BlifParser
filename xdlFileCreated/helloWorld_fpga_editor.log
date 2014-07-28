@@ -1,11 +1,11 @@
-#:C19    
+#:C0     
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Tue Jul 29 00:29:25 2014
+#:T   Tue Jul 29 00:37:17 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\helloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
@@ -14,62 +14,4 @@
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'out3_FINAL_OUTPUT'
-	#2
-unselect comp 'out3_FINAL_OUTPUT'
-	#3
-select -k comp 'out2_FINAL_OUTPUT'
-	#4
-unselect comp 'out2_FINAL_OUTPUT'
-	#5
-select -k comp 'out1_out4_out5_out6'
-	#6
-unselect comp 'out1_out4_out5_out6'
-	#7
-select -k comp 'out2'
-	#8
-unselect comp 'out2'
-	#9
-select -k comp 'out3'
-	#10
-unselect comp 'out3'
-	#11
-select -k comp 'out2'
-	#12
-unselect -all
-	#13
-select comp 'out2'
-	#comp "out2",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
-	#14
-unselect -all
-	#15
-select comp 'out2'
-	#comp "out2",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
-	#16
-post block
-	#17
-unselect comp 'out2'
-	#18
-select -k comp 'out1_out4_out5_out6'
-	#19
-unselect -all
-	#20
-select net 'out1_out4_out5_out6.BMUX->out4_FINAL_OUTPUT.O'
-	#net "out1_out4_out5_out6.BMUX->out4_FINAL_OUTPUT.O"
-	#21
-post block
-	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
-	#be performed unless the selection contains only a single site
-	#or single component.  Change the selection and try again.
-	#22
-unselect -all
-	#23
-select comp 'out1_out4_out5_out6'
-	#comp "out1_out4_out5_out6",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#24
-unselect -all
-	#25
-select comp 'out1_out4_out5_out6'
-	#comp "out1_out4_out5_out6",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#26
-post block
+post open

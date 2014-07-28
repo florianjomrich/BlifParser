@@ -116,7 +116,7 @@ public class DesignCreation {
 				design.addInstance(myLatch);
 			}
 			
-			latchCounter++;//from 0 to 3 = A to D
+			latchCounter=(latchCounter+1)%4;//from 0 to 3 = A to D
 			elementCounter1++;
 		}
 		

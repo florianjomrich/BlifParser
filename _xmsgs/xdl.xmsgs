@@ -5,40 +5,37 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="error" file="PhysDesignRules" num="1710" delta="new" >Incomplete connectivity. The pin &lt;<arg fmt="%s" index="1">AMUX</arg>&gt; of comp block &lt;<arg fmt="%s" index="2">n92_SLICEL</arg>&gt; is used and partially connected to network &lt;<arg fmt="%s" index="3">n92_SLICEL.A5LUT.O5</arg>&gt;. All networks must have complete connectivity to the comp hierarchy and the connectivity for this pin must be removed or completed.
+<msg type="warning" file="PhysDesignRules" num="1761" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">C&lt;112&gt;.AFF</arg>&gt;:&lt;<arg fmt="%s" index="2">REG_SR</arg>&gt;.  Dangling output. The flip-flop is configured but the Q output is not used.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="1761" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">n92_SLICEL.AFF</arg>&gt;:&lt;<arg fmt="%s" index="2">REG_SR</arg>&gt;.  Dangling output. The flip-flop is configured but the Q output is not used.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="972" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">hurz_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
-</msg>
-
-<msg type="error" file="PhysDesignRules" num="1710" delta="old" >Incomplete connectivity. The pin &lt;<arg fmt="%s" index="1">AMUX</arg>&gt; of comp block &lt;<arg fmt="%s" index="2">n91_SLICEL</arg>&gt; is used and partially connected to network &lt;<arg fmt="%s" index="3">n91_SLICEL.A5LUT.O5</arg>&gt;. All networks must have complete connectivity to the comp hierarchy and the connectivity for this pin must be removed or completed.
+<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">hurz_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n95.I-&gt;z0_SLICEL.A4</arg>&gt; is completely unrouted.
 </msg>
 
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">n91_SLICEL.AMUX-&gt;C&lt;111&gt;.AX</arg>&gt; is completely unrouted.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">z33_SLICEL.AMUX-&gt;z33_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+</msg>
+
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">my_clk.I-&gt;my_clk_BUFG.I0</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n91_SLICEL.AQ-&gt;z0_SLICEL.A6</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n2.I-&gt;z33_SLICEL.A3</arg>&gt; is completely unrouted.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n919.I-&gt;n91_SLICEL.A1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">z0_SLICEL.AQ-&gt;n1337.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n2.I-&gt;z33_SLICEL.A3</arg>&gt; is completely unrouted.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">n1337.AQ-&gt;n1337_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">x23.I-&gt;z0_SLICEL.A1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">z0_SLICEL.AMUX-&gt;z33_SLICEL.A4</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">my_clk_BUFG.O-&gt;n1337.CLK</arg>&gt; is completely unrouted.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n44.I-&gt;z0_SLICEL.A3</arg>&gt; is completely unrouted.
@@ -50,10 +47,13 @@
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n96.I-&gt;z0_SLICEL.A5</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">z33_SLICEL.AMUX-&gt;z33.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">n92_SLICEL.AMUX-&gt;C&lt;112&gt;.AX</arg>&gt; is completely unrouted.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n4.I-&gt;z33_SLICEL.A1</arg>&gt; is completely unrouted.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">z0_SLICEL.AMUX-&gt;n1337.AX</arg>&gt; is completely unrouted.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n1.I-&gt;z33_SLICEL.A2</arg>&gt; is completely unrouted.
@@ -62,16 +62,13 @@
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">z1_SLICEL.AMUX-&gt;z33_SLICEL.A5</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n1337.I-&gt;z1_SLICEL.A1</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">C&lt;111&gt;.AQ-&gt;z0_SLICEL.A6</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">my_clk_BUFG.O-&gt;n91_SLICEL.CLK</arg>&gt; is completely unrouted.
+<msg type="error" file="PhysDesignRules" num="792" delta="new" >Illegal configuration for block <arg fmt="%s" index="1">C&lt;112&gt;.AFF</arg>. <arg fmt="%s" index="2"></arg> <arg fmt="%s" index="3">The cell &lt;REG_SR&gt;, must have the following mode &lt;SRINIT&gt; defined as being used. </arg>
 </msg>
 
-<msg type="error" file="PhysDesignRules" num="792" delta="new" >Illegal configuration for block <arg fmt="%s" index="1">n92_SLICEL.AFF</arg>. <arg fmt="%s" index="2"></arg> <arg fmt="%s" index="3">The cell &lt;REG_SR&gt;, must have the following mode &lt;SRINIT&gt; defined as being used. </arg>
-</msg>
-
-<msg type="warning" file="XDL" num="184" delta="new" >Forced writing the NCD file even though <arg fmt="%d" index="1">3</arg> DRC error(s) are present.
+<msg type="warning" file="XDL" num="184" delta="new" >Forced writing the NCD file even though <arg fmt="%d" index="1">1</arg> DRC error(s) are present.
 </msg>
 
 </messages>

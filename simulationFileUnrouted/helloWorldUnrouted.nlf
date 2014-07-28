@@ -7,12 +7,9 @@ simulationFileUnrouted/helloWorldUnrouted.v
 Read and Annotate design 'xdlFileCreated/helloWorld.ncd' ...
 Loading device for application Rf_Device from file '6slx45.nph' in environment
 F:\Xilinix\14.7\ISE_DS\ISE\.
-ERROR:Portability:72 - ************************************************
-   Port_Compress::UnCompress() : (Z_MEM_ERROR) not enough memory.
-ERROR:Portability:3 - This Xilinx application has run out of memory or has
-   encountered a memory conflict.  Current memory usage is 137688 kb.  You can
-   try increasing your system's physical or virtual memory.  If you are using a
-   Win32 system, you can increase your application memory from 2GB to 3GB using
-   the /3G switch in your boot.ini file. For more information on this, please
-   refer to Xilinx Answer Record #14932. For technical support on this issue,
-   please visit http://www.xilinx.com/support. 
+   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed
+-3
+WARNING:Anno:67 - NCD is not completely routed, some delays may be inaccurate.
+The number of routable networks is 18
+ERROR:Anno:167 - Could not determine primitive type for bel block C<112>.AFF.
+   Netlist could not be generated.

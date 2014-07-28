@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-BIE::  Mon Jul 28 23:02:48 2014
+BIE::  Mon Jul 28 23:52:33 2014
 
 par -p -r -w xdlFileCreated/helloWorld.ncd
 ncdFileAfterPlaceAndRoute/helloWorldRouted.ncd 

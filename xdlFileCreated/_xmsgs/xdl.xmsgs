@@ -5,10 +5,1979 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="error" file="XDL" num="165" delta="new" >Cannot find pin <arg fmt="%s" index="1">IO</arg> comp or module named <arg fmt="%s" index="2">my_clk_BUFG</arg> for net <arg fmt="%s" index="3">my_clk.I-&gt;my_clk_BUFG.IO</arg> around line <arg fmt="%d" index="4">135</arg> of file <arg fmt="%s" index="5">helloWorld.xdl</arg>.
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">59</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot;</arg>&apos;
 </msg>
 
-<msg type="info" file="XDL" num="186" delta="new" ><arg fmt="%d" index="1">1</arg> error(s) were found in XDL file. The NCD file cannot be created.
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">65</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">inst</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">68</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y7 SLICE_X10Y7  ,
+  cfg &quot; AOUTMUX::O5 B6LUT::#LUT:O6=~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6)) BOUTMUX::O6 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+inst &quot;out1_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y70 H15  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out1_FINAL_OUTPUT_OBUF: PAD:out1_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+inst &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y7 SLICE_X10Y7  ,
+  cfg &quot; AOUTMUX::O5 B6LUT::#LUT:O6=~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6)) BOUTMUX::O6 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+inst &quot;in5&quot; &quot;IOB&quot;,placed RIOB_X37Y62 H17  ,
+  cfg &quot; ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in5: IMUX::I &quot;
+  ;
+inst &quot;out2_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y70 H16  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out2_FINAL_OUTPUT_OBUF: PAD:out2_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+inst &quot;in6&quot; &quot;IOB&quot;,placed RIOB_X37Y62 H18  ,
+  cfg &quot; ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in6: IMUX::I &quot;
+  ;
+inst &quot;out3_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y71 H13  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out3_FINAL_OUTPUT_OBUF: PAD:out3_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+
+#  ================================================
+#  The syntax for nets is:
+#     net &lt;name&gt; &lt;type&gt;,
+#       outpin &lt;inst_name&gt; &lt;inst_pin&gt;,
+#       .
+#       .
+#       inpin &lt;inst_name&gt; &lt;inst_pin&gt;,
+#       .
+#       .
+#       pip &lt;tile&gt; &lt;wire0&gt; &lt;dir&gt; &lt;wire1&gt; , # [&lt;rt&gt;]
+#       .
+#       .
+#       ;
+# 
+#  There are three available wire types: wire, power and ground.
+#  If no type is specified, wire is assumed.
+# 
+#  Wire indicates that this a normal wire.
+#  Power indicates that this net is tied to a DC power source.
+#  You can use &quot;power&quot;, &quot;vcc&quot; or &quot;vdd&quot; to specify a power net.
+# 
+#  Ground indicates that this net is tied to ground.
+#  You can use &quot;ground&quot;, or &quot;gnd&quot; to specify a ground net.
+# 
+#  The &lt;dir&gt; token will be one of the following:
+# 
+#     Symbol Description
+#     ====== ==========================================
+#       ==   Bidirectional, unbuffered.
+#       =&gt;   Bidirectional, buffered in one direction.
+#       =-   Bidirectional, buffered in both directions.
+#       -&gt;   Directional, buffered.
+# 
+#  No pips exist for unrouted nets.
+#  ================================================
+  net &quot;null&quot; ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.AMUX-&gt;out1_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out1_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; AMUX ,
+    ;
+  net &quot;in1.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A1&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A1 ,
+    outpin &quot;in1&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">71</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y7 SLICE_X10Y7  ,
+  cfg &quot; AOUTMUX::O5 B6LUT::#LUT:O6=~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6)) BOUTMUX::O6 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+inst &quot;out1_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y70 H15  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out1_FINAL_OUTPUT_OBUF: PAD:out1_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+inst &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y7 SLICE_X10Y7  ,
+  cfg &quot; AOUTMUX::O5 B6LUT::#LUT:O6=~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6)) BOUTMUX::O6 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+inst &quot;in5&quot; &quot;IOB&quot;,placed RIOB_X37Y62 H17  ,
+  cfg &quot; ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in5: IMUX::I &quot;
+  ;
+inst &quot;out2_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y70 H16  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out2_FINAL_OUTPUT_OBUF: PAD:out2_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+inst &quot;in6&quot; &quot;IOB&quot;,placed RIOB_X37Y62 H18  ,
+  cfg &quot; ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in6: IMUX::I &quot;
+  ;
+inst &quot;out3_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y71 H13  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out3_FINAL_OUTPUT_OBUF: PAD:out3_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+
+#  ================================================
+#  The syntax for nets is:
+#     net &lt;name&gt; &lt;type&gt;,
+#       outpin &lt;inst_name&gt; &lt;inst_pin&gt;,
+#       .
+#       .
+#       inpin &lt;inst_name&gt; &lt;inst_pin&gt;,
+#       .
+#       .
+#       pip &lt;tile&gt; &lt;wire0&gt; &lt;dir&gt; &lt;wire1&gt; , # [&lt;rt&gt;]
+#       .
+#       .
+#       ;
+# 
+#  There are three available wire types: wire, power and ground.
+#  If no type is specified, wire is assumed.
+# 
+#  Wire indicates that this a normal wire.
+#  Power indicates that this net is tied to a DC power source.
+#  You can use &quot;power&quot;, &quot;vcc&quot; or &quot;vdd&quot; to specify a power net.
+# 
+#  Ground indicates that this net is tied to ground.
+#  You can use &quot;ground&quot;, or &quot;gnd&quot; to specify a ground net.
+# 
+#  The &lt;dir&gt; token will be one of the following:
+# 
+#     Symbol Description
+#     ====== ==========================================
+#       ==   Bidirectional, unbuffered.
+#       =&gt;   Bidirectional, buffered in one direction.
+#       =-   Bidirectional, buffered in both directions.
+#       -&gt;   Directional, buffered.
+# 
+#  No pips exist for unrouted nets.
+#  ================================================
+  net &quot;null&quot; ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.AMUX-&gt;out1_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out1_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; AMUX ,
+    ;
+  net &quot;in1.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A1&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A1 ,
+    outpin &quot;in1&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">77</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">inst</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">80</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y7 SLICE_X10Y7  ,
+  cfg &quot; AOUTMUX::O5 B6LUT::#LUT:O6=~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6)) BOUTMUX::O6 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+inst &quot;in5&quot; &quot;IOB&quot;,placed RIOB_X37Y62 H17  ,
+  cfg &quot; ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in5: IMUX::I &quot;
+  ;
+inst &quot;out2_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y70 H16  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out2_FINAL_OUTPUT_OBUF: PAD:out2_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+inst &quot;in6&quot; &quot;IOB&quot;,placed RIOB_X37Y62 H18  ,
+  cfg &quot; ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in6: IMUX::I &quot;
+  ;
+inst &quot;out3_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y71 H13  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out3_FINAL_OUTPUT_OBUF: PAD:out3_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+
+#  ================================================
+#  The syntax for nets is:
+#     net &lt;name&gt; &lt;type&gt;,
+#       outpin &lt;inst_name&gt; &lt;inst_pin&gt;,
+#       .
+#       .
+#       inpin &lt;inst_name&gt; &lt;inst_pin&gt;,
+#       .
+#       .
+#       pip &lt;tile&gt; &lt;wire0&gt; &lt;dir&gt; &lt;wire1&gt; , # [&lt;rt&gt;]
+#       .
+#       .
+#       ;
+# 
+#  There are three available wire types: wire, power and ground.
+#  If no type is specified, wire is assumed.
+# 
+#  Wire indicates that this a normal wire.
+#  Power indicates that this net is tied to a DC power source.
+#  You can use &quot;power&quot;, &quot;vcc&quot; or &quot;vdd&quot; to specify a power net.
+# 
+#  Ground indicates that this net is tied to ground.
+#  You can use &quot;ground&quot;, or &quot;gnd&quot; to specify a ground net.
+# 
+#  The &lt;dir&gt; token will be one of the following:
+# 
+#     Symbol Description
+#     ====== ==========================================
+#       ==   Bidirectional, unbuffered.
+#       =&gt;   Bidirectional, buffered in one direction.
+#       =-   Bidirectional, buffered in both directions.
+#       -&gt;   Directional, buffered.
+# 
+#  No pips exist for unrouted nets.
+#  ================================================
+  net &quot;null&quot; ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.AMUX-&gt;out1_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out1_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; AMUX ,
+    ;
+  net &quot;in1.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A1&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A1 ,
+    outpin &quot;in1&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">83</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y7 SLICE_X10Y7  ,
+  cfg &quot; AOUTMUX::O5 B6LUT::#LUT:O6=~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6)) BOUTMUX::O6 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+inst &quot;in5&quot; &quot;IOB&quot;,placed RIOB_X37Y62 H17  ,
+  cfg &quot; ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in5: IMUX::I &quot;
+  ;
+inst &quot;out2_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y70 H16  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out2_FINAL_OUTPUT_OBUF: PAD:out2_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+inst &quot;in6&quot; &quot;IOB&quot;,placed RIOB_X37Y62 H18  ,
+  cfg &quot; ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in6: IMUX::I &quot;
+  ;
+inst &quot;out3_FINAL_OUTPUT&quot; &quot;IOB&quot;,placed RIOB_X37Y71 H13  ,
+  cfg &quot; OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out3_FINAL_OUTPUT_OBUF: PAD:out3_FINAL_OUTPUT: IMUX::I &quot;
+  ;
+
+#  ================================================
+#  The syntax for nets is:
+#     net &lt;name&gt; &lt;type&gt;,
+#       outpin &lt;inst_name&gt; &lt;inst_pin&gt;,
+#       .
+#       .
+#       inpin &lt;inst_name&gt; &lt;inst_pin&gt;,
+#       .
+#       .
+#       pip &lt;tile&gt; &lt;wire0&gt; &lt;dir&gt; &lt;wire1&gt; , # [&lt;rt&gt;]
+#       .
+#       .
+#       ;
+# 
+#  There are three available wire types: wire, power and ground.
+#  If no type is specified, wire is assumed.
+# 
+#  Wire indicates that this a normal wire.
+#  Power indicates that this net is tied to a DC power source.
+#  You can use &quot;power&quot;, &quot;vcc&quot; or &quot;vdd&quot; to specify a power net.
+# 
+#  Ground indicates that this net is tied to ground.
+#  You can use &quot;ground&quot;, or &quot;gnd&quot; to specify a ground net.
+# 
+#  The &lt;dir&gt; token will be one of the following:
+# 
+#     Symbol Description
+#     ====== ==========================================
+#       ==   Bidirectional, unbuffered.
+#       =&gt;   Bidirectional, buffered in one direction.
+#       =-   Bidirectional, buffered in both directions.
+#       -&gt;   Directional, buffered.
+# 
+#  No pips exist for unrouted nets.
+#  ================================================
+  net &quot;null&quot; ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.AMUX-&gt;out1_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out1_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; AMUX ,
+    ;
+  net &quot;in1.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A1&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A1 ,
+    outpin &quot;in1&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">136</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">inst</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">139</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.AMUX-&gt;out1_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out1_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; AMUX ,
+    ;
+  net &quot;in1.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A1&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A1 ,
+    outpin &quot;in1&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">142</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&gt;out1_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out1_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; AMUX ,
+    ;
+  net &quot;in1.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A1&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A1 ,
+    outpin &quot;in1&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">150</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; AMUX ,
+    ;
+  net &quot;in1.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A1&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A1 ,
+    outpin &quot;in1&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">158</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A1 ,
+    outpin &quot;in1&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">165</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; A1 ,
+    outpin &quot;in1&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">173</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; B1 ,
+    ;
+  net &quot;in2.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.A2&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">181</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">188</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; A2 ,
+    outpin &quot;in2&quot; I ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">196</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; B2 ,
+    ;
+  net &quot;in6.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B6&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">204</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">211</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; B6 ,
+    outpin &quot;in6&quot; I ,
+    ;
+  net &quot;out1_FINAL_OUTPUT.I-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AX&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">217</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">parse error</arg> at line <arg fmt="%d" index="2">221</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot; AX ,
+    outpin &quot;out1_FINAL_OUTPUT&quot; I ,
+    ;
+  net &quot;my_clk_BUFG.O-&gt;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.CLK&quot; ,
+    inpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; CLK ,
+    outpin &quot;my_clk_BUFG&quot; O ,
+    ;
+  net &quot;my_clk.I-&gt;my_clk_BUFG.I0&quot; ,
+    inpin &quot;my_clk_BUFG&quot; I0 ,
+    outpin &quot;my_clk&quot; I ,
+    ;
+  net &quot;in5.I-&gt;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3.B5&quot; ,
+    inpin &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3) &quot;
+  ;
+_out3&quot; B5 ,
+    outpin &quot;in5&quot; I ,
+    ;
+  net &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2.AQ-&gt;out2_FINAL_OUTPUT.O&quot; ,
+    inpin &quot;out2_FINAL_OUTPUT&quot; O ,
+    outpin &quot;inst &quot;out2&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out2&quot; AQ ,
+    ;
+  net &quot;inst &quot;inst &quot;out1&quot; &quot;SLICEL&quot;,unplaced
+  cfg &quot; &quot;
+  ;
+_out1&quot; &quot;SLICEL&quot;,placed CLEXM_X8Y8 SLICE_X10Y8
+  cfg &quot; AOUTMUX::O5 A5LUT::#L</arg>&apos;
+</msg>
+
+<msg type="error" file="XDL" num="124" delta="new" >maximum number of errors <arg fmt="%d" index="1">20</arg> exceeded, aborting the program.
 </msg>
 
 </messages>

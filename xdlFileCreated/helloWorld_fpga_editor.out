@@ -1,63 +1,37 @@
-#:C19    
+#:C9     
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Mon Jul 28 23:02:55 2014
+#:T   Mon Jul 28 23:38:06 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\helloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.07.28.18.32.45
+	#Design creation date: 2014.07.28.19.07.49
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'out3_FINAL_OUTPUT'
+select -k comp 'out1_A_SLICEL'
 	#2
-unselect comp 'out3_FINAL_OUTPUT'
+unselect -all
 	#3
-select -k comp 'out3_SLICEL'
+select comp 'out1_A_SLICEL'
+	#comp "out1_A_SLICEL",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
 	#4
-unselect comp 'out3_SLICEL'
+unselect -all
 	#5
-select -k comp 'out3_FINAL_OUTPUT'
+select comp 'out1_A_SLICEL'
+	#comp "out1_A_SLICEL",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
 	#6
-unselect -all
+post block
 	#7
-select comp 'out3_FINAL_OUTPUT'
-	#comp "out3_FINAL_OUTPUT",  site "H13",  bonded type = IOB,  pad name = PAD91,  pin name = H13  (RPM grid X161Y286)
+unselect comp 'out1_A_SLICEL'
 	#8
-unselect -all
+select -k comp 'out2_FINAL_OUTPUT'
 	#9
-select comp 'out3_FINAL_OUTPUT'
-	#comp "out3_FINAL_OUTPUT",  site "H13",  bonded type = IOB,  pad name = PAD91,  pin name = H13  (RPM grid X161Y286)
+unselect comp 'out2_FINAL_OUTPUT'
 	#10
-post block
-	#11
-unselect -all
-	#12
-select net "out3_SLICEL.AMUX->out3_FINAL_OUTPUT.O"
-	#net "out3_SLICEL.AMUX->out3_FINAL_OUTPUT.O"
-	#13
-unselect net 'out3_SLICEL.AMUX->out3_FINAL_OUTPUT.O'
-	#14
-select -k comp 'out3_SLICEL'
-	#15
-unselect -all
-	#16
-select net 'in4.I->out3_SLICEL.A4'
-	#net "in4.I->out3_SLICEL.A4"
-	#17
-post block
-	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
-	#be performed unless the selection contains only a single site
-	#or single component.  Change the selection and try again.
-	#18
-unselect -all
-	#19
-select net 'in4.I->out3_SLICEL.A4'
-	#net "in4.I->out3_SLICEL.A4"
-	#20
-unselect -all
+select -k comp 'out3_B_SLICEL'

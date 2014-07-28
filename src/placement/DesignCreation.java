@@ -29,15 +29,16 @@ public class DesignCreation {
 	//stores the nets already placed
 	HashMap<String,Net> alreadyPlacedNets = new HashMap<String,Net>();
 	
-	//stores the latches already placed
+	//stores the latches and logic gates already placed
+	HashMap<String,String> portNubmerOfTheAlreadyPlacedInstances = new HashMap<String,String>();
 	HashMap<String,Instance> alreadyPlacedInstances = new HashMap<String,Instance>();
+	
+	// for mapping the gates and latches
+		 String[] alphabetSelector = { "A", "B", "C", "D" };
 	
 	//the global clk
 	IOB_BLOCK_INSTANCE clk;
 	Instance clk_buffer;
-
-	// for mapping the truth table on the available - CURRENTLY NOT USED
-	// char[] alphabetSelector = { 'A', 'B', 'C', 'D' };
 
 	String _SLICEL = "_SLICEL";
 	String _LATCH = "_LATCH";
@@ -95,52 +96,67 @@ public class DesignCreation {
 		
 		
 		//Dump-Place the Latches based on SLICELs (no connection established in the beginning
+		
+		//to iterate over the different latches
+		int latchCounter=0;
+		LATCH_INSTANCE myLatch=null;
 		for(GenericLatch currentLatch : model.genericLatches){
-			LATCH_INSTANCE myLatch = this.setupTheLatch(currentLatch,myNetCreator,design,clk_buffer);
+			if(latchCounter==0)myLatch = new LATCH_INSTANCE(currentLatch.output);
+			myLatch = this.setupTheLatch(currentLatch,myNetCreator,design,clk_buffer,alphabetSelector[latchCounter],myLatch);
 			
-			alreadyPlacedInstances.put(currentLatch.output,myLatch);
-			
+			alreadyPlacedInstances.put(currentLatch.output+"_"+alphabetSelector[latchCounter],myLatch);
+			portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output,alphabetSelector[latchCounter]);
 			myPlacer.placeInstance(myLatch);
 			design.addInstance(myLatch);
+			
+			latchCounter=(latchCounter+1)%4;//from 0 to 3 = A to D
 		}
 		
 		// Dump-Place the LogicGates based on SLICELs
 		//Setup the new logic block
+		int logicBlockCounter=0;
+		LOGIC_BLOCK_INSTANCE myLogicBlock=null;
 		for(LogicGate currentLogicGate : model.logicGates){
-			LOGIC_BLOCK_INSTANCE myLogicBlock = this.setupTheLogicBlock(currentLogicGate,myNetCreator,design);
+			if(logicBlockCounter==0) myLogicBlock = new LOGIC_BLOCK_INSTANCE(currentLogicGate.output);
+			myLogicBlock = this.setupTheLogicBlock(currentLogicGate,myNetCreator,design,alphabetSelector[logicBlockCounter],myLogicBlock);
 			
-			alreadyPlacedInstances.put(currentLogicGate.output,myLogicBlock);
-
+			alreadyPlacedInstances.put(currentLogicGate.output+"_"+alphabetSelector[logicBlockCounter],myLogicBlock);
+			portNubmerOfTheAlreadyPlacedInstances.put(currentLogicGate.output,alphabetSelector[logicBlockCounter]);
 			myPlacer.placeInstance(myLogicBlock);
 			design.addInstance(myLogicBlock);
+			
+			logicBlockCounter=(logicBlockCounter+1)%4;//from 0 to 3 = A to D
 		}
 
 		
 		//Now connect all the Latches
-		
 		for(GenericLatch currentLatch : model.genericLatches){
-			LATCH_INSTANCE currentLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances.get(currentLatch.output);
+			String currentLATCH_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances.get(currentLatch.output);
+			LATCH_INSTANCE currentLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances.get(currentLatch.output+"_"+currentLATCH_OUTPUT_PORT);
 			
-			if(alreadyPlacedInstances.get(currentLatch.input) instanceof LATCH_INSTANCE){
-				LATCH_INSTANCE otherLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances.get(currentLatch.input);
+			
+			String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances.get(currentLatch.input);
+			
+			if(alreadyPlacedInstances.get(currentLatch.input+"_"+current_INPUT_PORT) instanceof LATCH_INSTANCE){
+				LATCH_INSTANCE otherLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances.get(currentLatch.input+"_"+current_INPUT_PORT);
 				
 				//now connect the current with the other Latch
-				myNetCreator.generateNet("AQ", otherLatchInstance, "AX", currentLatchInstance, design, alreadyPlacedNets);
+				myNetCreator.generateNet(current_INPUT_PORT+"Q", otherLatchInstance, currentLATCH_OUTPUT_PORT+"X", currentLatchInstance, design, alreadyPlacedNets);
 			}
 			else if(alreadyPlacedInstances.get(currentLatch.input) instanceof LOGIC_BLOCK_INSTANCE){
 				LOGIC_BLOCK_INSTANCE otherLogic_BLOCK_INSTANCE = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentLatch.input);
-				myNetCreator.generateNet("AMUX", otherLogic_BLOCK_INSTANCE, "AX", currentLatchInstance, design, alreadyPlacedNets);
+				myNetCreator.generateNet(current_INPUT_PORT+"MUX", otherLogic_BLOCK_INSTANCE, currentLATCH_OUTPUT_PORT+"X", currentLatchInstance, design, alreadyPlacedNets);
 			}
 			else{
 				IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentLatch.input);
-				myNetCreator.generateNet("I", otherIOB_BLOCK_INSTANCE, "AX", currentLatchInstance, design, alreadyPlacedNets);
+				myNetCreator.generateNet("I", otherIOB_BLOCK_INSTANCE, currentLATCH_OUTPUT_PORT+"X", currentLatchInstance, design, alreadyPlacedNets);
 			}
 			
 			
 			//check if output is final output
 			if(alreadyPlacedInstances.containsKey(currentLatch.output+_FINAL_OUTPUT)){
 					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentLatch.output+_FINAL_OUTPUT);
-					myNetCreator.generateNet("AQ", currentLatchInstance, "O", otherIOB_BLOCK_INSTANCE, design, alreadyPlacedNets);
+					myNetCreator.generateNet(currentLATCH_OUTPUT_PORT+"Q", currentLatchInstance, "O", otherIOB_BLOCK_INSTANCE, design, alreadyPlacedNets);
 				}
 			
 		}
@@ -148,23 +164,28 @@ public class DesignCreation {
 		//and the Logic-Blocks
 		for(LogicGate currentLogicGate : model.logicGates){
 			
-			LOGIC_BLOCK_INSTANCE currentLogicGateInstance = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentLogicGate.output);
+			String currentLOGIC_BLOCK_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances.get(currentLogicGate.output);
+			
+			LOGIC_BLOCK_INSTANCE currentLogicGateInstance = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentLogicGate.output+"_"+currentLOGIC_BLOCK_OUTPUT_PORT);
 			
 			int currentNumberOfInput = 1;
 			for (String currentToBeMappedInput : currentLogicGate.inputs) {
-				if(alreadyPlacedInstances.get(currentToBeMappedInput) instanceof LATCH_INSTANCE){
-					LATCH_INSTANCE otherLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances.get(currentToBeMappedInput);
+				
+				String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances.get(currentToBeMappedInput);
+				
+				if(alreadyPlacedInstances.get(currentToBeMappedInput+"_"+current_INPUT_PORT) instanceof LATCH_INSTANCE){
+					LATCH_INSTANCE otherLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances.get(currentToBeMappedInput+"_"+current_INPUT_PORT);
 					
 					//now connect the current with the other Latch
-					myNetCreator.generateNet("AQ", otherLatchInstance, "A"+currentNumberOfInput, currentLogicGateInstance, design, alreadyPlacedNets);
+					myNetCreator.generateNet(current_INPUT_PORT+"Q", otherLatchInstance, currentLOGIC_BLOCK_OUTPUT_PORT+currentNumberOfInput, currentLogicGateInstance, design, alreadyPlacedNets);
 				}
-				else if(alreadyPlacedInstances.get(currentToBeMappedInput) instanceof LOGIC_BLOCK_INSTANCE){
+				else if(alreadyPlacedInstances.get(currentToBeMappedInput+"_"+current_INPUT_PORT) instanceof LOGIC_BLOCK_INSTANCE){
 					LOGIC_BLOCK_INSTANCE otherLogic_BLOCK_INSTANCE = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentToBeMappedInput);
-					myNetCreator.generateNet("AMUX", otherLogic_BLOCK_INSTANCE, "A"+currentNumberOfInput, currentLogicGateInstance, design, alreadyPlacedNets);
+					myNetCreator.generateNet(current_INPUT_PORT+"MUX", otherLogic_BLOCK_INSTANCE, currentLOGIC_BLOCK_OUTPUT_PORT+currentNumberOfInput, currentLogicGateInstance, design, alreadyPlacedNets);
 				}
 				else{
 					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentToBeMappedInput);
-					myNetCreator.generateNet("I", otherIOB_BLOCK_INSTANCE, "A"+currentNumberOfInput, currentLogicGateInstance, design, alreadyPlacedNets);
+					myNetCreator.generateNet("I", otherIOB_BLOCK_INSTANCE, currentLOGIC_BLOCK_OUTPUT_PORT+currentNumberOfInput, currentLogicGateInstance, design, alreadyPlacedNets);
 				}
 				currentNumberOfInput++;
 			}
@@ -172,7 +193,7 @@ public class DesignCreation {
 			//check if output is final output
 			if(alreadyPlacedInstances.containsKey(currentLogicGate.output+_FINAL_OUTPUT)){
 				IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances.get(currentLogicGate.output+_FINAL_OUTPUT);
-				myNetCreator.generateNet("AMUX", currentLogicGateInstance, "O", otherIOB_BLOCK_INSTANCE, design, alreadyPlacedNets);
+				myNetCreator.generateNet(currentLOGIC_BLOCK_OUTPUT_PORT+"MUX", currentLogicGateInstance, "O", otherIOB_BLOCK_INSTANCE, design, alreadyPlacedNets);
 				}
 		}
 		
@@ -314,29 +335,27 @@ public class DesignCreation {
 	}
 
 	private LATCH_INSTANCE setupTheLatch(GenericLatch currentLatch,
-			NetCreator myNetCreator, Design design, Instance clk_buffer2) {
+			NetCreator myNetCreator, Design design, Instance clk_buffer2, String SELECTED_LETTER, LATCH_INSTANCE myLatch) {
 		
-		LATCH_INSTANCE myLatch = new LATCH_INSTANCE(
-				currentLatch.output);
 		
-		myLatch.configure_LATCH(currentLatch,"A");
+		myLatch.setName(myLatch+"_"+currentLatch.output);
+		
+		myLatch.configure_LATCH(currentLatch,SELECTED_LETTER);
 		
 		//connect the clk to the LATCH
-		myNetCreator.generateNet("O", clk_buffer2, "CLK", myLatch, design, alreadyPlacedNets);
+		if(SELECTED_LETTER=="A")myNetCreator.generateNet("O", clk_buffer2, "CLK", myLatch, design, alreadyPlacedNets);
 	
 		return myLatch;
 	}
 
-	private LOGIC_BLOCK_INSTANCE setupTheLogicBlock(LogicGate currentLogicGate, NetCreator myNetCreator, Design design) {
+	private LOGIC_BLOCK_INSTANCE setupTheLogicBlock(LogicGate currentLogicGate, NetCreator myNetCreator, Design design,String SELECTED_LETTER, LOGIC_BLOCK_INSTANCE myLogicBlock) {
 		
-		LOGIC_BLOCK_INSTANCE myLogicBlock  = new LOGIC_BLOCK_INSTANCE(
-				currentLogicGate.output + _SLICEL);
-	
+		myLogicBlock.setName(myLogicBlock+"_"+currentLogicGate.output);
 
 	// configure the logic in the LUT
 	myLogicBlock.configure_LUT(currentLogicGate.inputs,
 			currentLogicGate.outputcover.inputTable,
-			currentLogicGate.outputcover.outputTable, "A");
+			currentLogicGate.outputcover.outputTable, SELECTED_LETTER);
 	
 	
 	return myLogicBlock;

@@ -102,7 +102,7 @@ public class DesignCreation {
 		int elementCounter1=0;
 		LATCH_INSTANCE myLatch=null;
 		for(GenericLatch currentLatch : model.genericLatches){
-			if(latchCounter==0)myLatch = new LATCH_INSTANCE(currentLatch.output);
+			if(latchCounter==0)myLatch = new LATCH_INSTANCE("");//naming is done in .setupTheLatch
 			
 			System.out.println("latchCounter "+latchCounter);
 			myLatch = this.setupTheLatch(currentLatch,myNetCreator,design,clk_buffer,alphabetSelector[latchCounter],myLatch);
@@ -126,7 +126,7 @@ public class DesignCreation {
 		int elementCounter2=0;
 		LOGIC_BLOCK_INSTANCE myLogicBlock=null;
 		for(LogicGate currentLogicGate : model.logicGates){
-			if(logicBlockCounter==0) myLogicBlock = new LOGIC_BLOCK_INSTANCE(currentLogicGate.output);
+			if(logicBlockCounter==0) myLogicBlock = new LOGIC_BLOCK_INSTANCE("");//naming is done in the .setupTheLogicBlock
 			myLogicBlock = this.setupTheLogicBlock(currentLogicGate,myNetCreator,design,alphabetSelector[logicBlockCounter],myLogicBlock);
 			
 			alreadyPlacedInstances.put(currentLogicGate.output+"_"+alphabetSelector[logicBlockCounter],myLogicBlock);
@@ -352,8 +352,14 @@ public class DesignCreation {
 	private LATCH_INSTANCE setupTheLatch(GenericLatch currentLatch,
 			NetCreator myNetCreator, Design design, Instance clk_buffer2, String SELECTED_LETTER, LATCH_INSTANCE myLatch) {
 		
+		//to name it correct
+		if(myLatch.getName().equals("")){
+			myLatch.setName(currentLatch.output);
+		}
+		else{
+			myLatch.setName(myLatch.getName()+"_"+currentLatch.output);
+		}
 		
-		myLatch.setName(myLatch.getName()+"_"+currentLatch.output);
 		
 		myLatch.configure_LATCH(currentLatch,SELECTED_LETTER);
 		
@@ -365,8 +371,15 @@ public class DesignCreation {
 
 	private LOGIC_BLOCK_INSTANCE setupTheLogicBlock(LogicGate currentLogicGate, NetCreator myNetCreator, Design design,String SELECTED_LETTER, LOGIC_BLOCK_INSTANCE myLogicBlock) {
 		
-		myLogicBlock.setName(myLogicBlock.getName()+"_"+currentLogicGate.output);
+		//to name it correct
+		if(myLogicBlock.getName().equals("")){
+			myLogicBlock.setName(currentLogicGate.output);
+		}
+		else{
+			myLogicBlock.setName(myLogicBlock.getName()+"_"+currentLogicGate.output);
 
+		}
+	
 	// configure the logic in the LUT
 	myLogicBlock.configure_LUT(currentLogicGate.inputs,
 			currentLogicGate.outputcover.inputTable,

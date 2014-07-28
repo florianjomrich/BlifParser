@@ -1,61 +1,72 @@
-#:C9     
+#:C19    
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Mon Jul 28 23:38:06 2014
+#:T   Tue Jul 29 00:17:00 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\helloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.07.28.19.07.49
+	#Design creation date: 2014.07.28.19.46.42
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'out1_A_SLICEL'
+select -k comp 'out1_out1_out3'
 	#2
 unselect -all
 	#3
-select comp 'out1_A_SLICEL'
-	#comp "out1_A_SLICEL",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+select comp 'out1_out1_out3'
+	#comp "out1_out1_out3",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
 	#4
 unselect -all
 	#5
-select comp 'out1_A_SLICEL'
-	#comp "out1_A_SLICEL",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+select comp 'out1_out1_out3'
+	#comp "out1_out1_out3",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
 	#6
 post block
 	#7
-unselect comp 'out1_A_SLICEL'
+unselect comp 'out1_out1_out3'
 	#8
-select -k comp 'out2_FINAL_OUTPUT'
+select -k comp 'out2_out2'
 	#9
-unselect comp 'out2_FINAL_OUTPUT'
+unselect comp 'out2_out2'
 	#10
-select -k comp 'out3_B_SLICEL'
+select -k comp 'out3_FINAL_OUTPUT'
 	#11
-unselect -all
+unselect comp 'out3_FINAL_OUTPUT'
 	#12
-select net 'in4.I->out3_B_SLICEL.B4'
-	#net "in4.I->out3_B_SLICEL.B4"
+select -k comp 'out1_FINAL_OUTPUT'
 	#13
-post block
-	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
-	#be performed unless the selection contains only a single site
-	#or single component.  Change the selection and try again.
+unselect -all
 	#14
-unselect -all
+select comp 'out1_FINAL_OUTPUT'
+	#comp "out1_FINAL_OUTPUT",  site "H15",  bonded type = IOB,  pad name = PAD93,  pin name = H15  (RPM grid X161Y282)
 	#15
-select comp 'out3_B_SLICEL'
-	#comp "out3_B_SLICEL",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
-	#16
 unselect -all
+	#16
+select comp 'out1_FINAL_OUTPUT'
+	#comp "out1_FINAL_OUTPUT",  site "H15",  bonded type = IOB,  pad name = PAD93,  pin name = H15  (RPM grid X161Y282)
 	#17
-select comp 'out3_B_SLICEL'
-	#comp "out3_B_SLICEL",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
-	#18
 post block
+	#18
+unselect comp 'out1_FINAL_OUTPUT'
 	#19
+select -k comp 'out1_out1_out3'
+	#20
+unselect -all
+	#21
+select comp 'out1_out1_out3'
+	#comp "out1_out1_out3",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+	#22
+post block
+	#23
+unselect -all
+	#24
+select net "out1_out1_out3.BMUX->out3_FINAL_OUTPUT.O"
+	#net "out1_out1_out3.BMUX->out3_FINAL_OUTPUT.O"
+	#<AMUX>; net <out1_out1_out3.AMUX->out1_FINAL_OUTPUT.O>.
+	#25
 post open

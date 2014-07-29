@@ -18,9 +18,10 @@ public class Parser {
 		try {
 //			 String filename = "blif\\testBlif2.blif";
 //			 String filename = "blif\\testBlif3.blif";
+			 String filename = "blif\\testBlif4.blif";
 //			 String filename = "blif\\alu4_map_sp6.blif";
 //			 String filename = "blif\\apex2.blif";
-			String filename = "blif\\s38417.blif";
+//			String filename = "blif\\s38417.blif";
 //			String filename = "blif\\bigkey.blif";
 			Model model = parseFile(filename);
 			System.out.println("File: " + filename);

@@ -1,0 +1,28 @@
+# Benchmark "testset/apex2" written by ABC on Fri Jun 22 12:04:36 2012
+# DER PARSER HAT NOCH PROBELME MIT inputs, die nur als ZWISChENINPUT VORHANDEN SIND !!!
+.model testset/apex2
+.inputs in1 in2 in3 in4 in5 in6
+.outputs out1 out2 out3 out4 out5 out6
+.clock myCLK
+
+#OK
+.names in1 in2 in3 out1
+01- 1
+-10 0
+
+.names in1 in2 in3 out4
+011 1
+
+.names in1 in2 in3 out5
+011 1
+
+.names in1 in2 in3 out6
+011 1
+
+#OK
+.latch out1 out2 ah clk 1
+
+#OK
+.names in1 in2 in3 in4 in5 in6 out3
+------ 0
+.end

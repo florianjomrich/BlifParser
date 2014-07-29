@@ -1,7 +1,7 @@
 (DELAYFILE
   (SDFVERSION "3.0")
   (DESIGN "helloWorld")
-  (DATE "Tue Jul 29 11:56:55 2014")
+  (DATE "Tue Jul 29 12:00:05 2014")
   (VENDOR "Xilinx")
   (PROGRAM "Xilinx SDF Writer")
   (VERSION "P.20131013")

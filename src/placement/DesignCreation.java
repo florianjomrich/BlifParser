@@ -446,8 +446,17 @@ public class DesignCreation {
 	 */
 	private void setupGlobalClock(Model model, Design design,
 			NetCreator myNetCreator, Placer myPlacer) {
-
-		clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT, "my_clk");
+		
+		
+		//set the clock if specified
+		if(model.clocks.size()>=1){
+			clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT, model.clocks.get(0));
+		}
+		//set a own clock
+		else{
+			clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT, "my_clk");
+		}
+		
 		myPlacer.placeInstance(clk);
 		design.addInstance(clk);
 		

@@ -21,9 +21,14 @@ package placement;
  */
 
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
+import simulation.AutomaticTestBenchCreator;
 import blif.Model;
 import edu.byu.ece.rapidSmith.design.*;
 import edu.byu.ece.rapidSmith.device.*;
@@ -47,7 +52,7 @@ public class RapidsmithParser{
 	 */
 	public void startProcessing(Model model) throws Exception{
 		DesignCreation myDesignCreater = new DesignCreation();
-		
+		System.out.println(model.inputs.size());
 		String name = "helloWorld";
 		Design design = myDesignCreater.createDesign(model,name);
 				
@@ -65,7 +70,7 @@ public class RapidsmithParser{
 				FileConverter.convertXDL2NCD(fileName);
 				System.out.println("NCD File created.");
 
-				//HAS TO BE USED LATER ON AGAIN !!!!				
+				//now do the further processing steps to the final verilog File ready for Simulation			
 				String ncdFileName = "xdlFileCreated/"+design.getName() +".ncd";
 				String ncdRoutedFileName = "ncdFileAfterPlaceAndRoute/"+design.getName()+"Routed.ncd";
 				this.placeAndRoute(ncdFileName, ncdRoutedFileName);
@@ -76,8 +81,15 @@ public class RapidsmithParser{
 				
 				String verilogFileNameRouted = "simulationFilePlaceAndRouted/"+design.getName()+"PlaceAndRouted.v";
 				this.createSimulationModel(ncdRoutedFileName, verilogFileNameRouted, "Built placed and routed Verilog-Simulationfile");
+				
+				System.out.println("Create automatic Test-Bench for Routed Verilog-File");
+				AutomaticTestBenchCreator creator = new AutomaticTestBenchCreator();
+				creator.setupAutomaticTestBench(verilogFileNameRouted,design);
 	}
 	
+	
+
+
 	
 
 

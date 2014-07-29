@@ -19,27 +19,58 @@ public class Model {
 	public ArrayList<String> clocks;
 	
 	//commands
-	public ArrayList<ClockConstraint> clockConstraints;
-	public ArrayList<DelayConstraint> delayConstraints;
-	public ArrayList<FsmDescription> fsmDescriptions;
 	public CopyOnWriteArrayList<GenericLatch> genericLatches;
-	public ArrayList<LibraryGate> libraryGates;
 	public CopyOnWriteArrayList<LogicGate> logicGates;
-	public ArrayList<ModelReference> modelReferences;
-	public ArrayList<SubfileReference> subfileReference;
+	public ArrayList<ModelReference> modelReferences;	//textual description
+	public ArrayList<Model> realModelReferences;		//real dependencies of objects
 	
 	public Model() {
 		modelName = "";
 		inputs = new ArrayList<String>();
 		outputs = new ArrayList<String>();
 		clocks = new ArrayList<String>();
-		clockConstraints = new ArrayList<ClockConstraint>();
-		delayConstraints = new ArrayList<DelayConstraint>();
-		fsmDescriptions = new ArrayList<FsmDescription>();
 		genericLatches = new CopyOnWriteArrayList<GenericLatch>();
-		libraryGates = new ArrayList<LibraryGate>();
 		logicGates = new CopyOnWriteArrayList<LogicGate>();
 		modelReferences = new ArrayList<ModelReference>();
-		subfileReference = new ArrayList<SubfileReference>();
+		realModelReferences = new ArrayList<Model>();
+	}
+	
+	public Model(Model copyModel) {
+		modelName = new String(copyModel.modelName);
+		inputs = new ArrayList<String>(copyModel.inputs.size()); 
+		for(String newString : copyModel.inputs) {
+			inputs.add(new String(newString));
+		}
+
+		outputs = new ArrayList<String>(copyModel.outputs.size()); 
+		for(String newString : copyModel.outputs) {
+			outputs.add(new String(newString));
+		}
+		
+		clocks = new ArrayList<String>(copyModel.clocks.size()); 
+		for(String newString : copyModel.clocks) {
+			clocks.add(new String(newString));
+		}
+		
+		genericLatches = new CopyOnWriteArrayList<GenericLatch>(); 
+		for(GenericLatch newLatch : copyModel.genericLatches) {
+			genericLatches.add(new GenericLatch(newLatch));
+		}
+		
+		logicGates = new CopyOnWriteArrayList<LogicGate>(); 
+		for(LogicGate newGate : copyModel.logicGates) {
+			logicGates.add(new LogicGate(newGate));
+		}
+		
+		modelReferences = new ArrayList<ModelReference>(copyModel.modelReferences.size()); 
+		for(ModelReference newRef : copyModel.modelReferences) {
+			modelReferences.add(new ModelReference(newRef));
+		}
+		
+		realModelReferences = new ArrayList<Model>(copyModel.realModelReferences.size()); 
+		for(Model newModel : copyModel.realModelReferences) {
+			realModelReferences.add(new Model(newModel));
+		}
 	}
 }
+	

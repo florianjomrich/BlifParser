@@ -11,21 +11,23 @@ import placement.RapidsmithParser;
 import commands.Command;
 import commands.GenericLatch;
 import commands.LogicGate;
+import commands.ModelReference;
 
 public class Parser {
 
 	public static void main(String[] args) {
 		try {
-//			 String filename = "blif\\testBlif2.blif";
-//			 String filename = "blif\\testBlif3.blif";
-			 String filename = "blif\\testBlif4.blif";
-//			 String filename = "blif\\alu4_map_sp6.blif";
-//			 String filename = "blif\\apex2.blif";
+//			String filename = "blif\\adder.blif";
+//			String filename = "blif\\testBlif2.blif";
+//			String filename = "blif\\testBlif3.blif";
+//			String filename = "blif\\testBlif4.blif";
+//			String filename = "blif\\blifSim.blif";
+			String filename = "blif\\alu4_map_sp6.blif";
+//			String filename = "blif\\apex2.blif";
 //			String filename = "blif\\s38417.blif";
 //			String filename = "blif\\bigkey.blif";
 			Model model = parseFile(filename);
-			System.out.println("File: " + filename);
-
+			
 			RapidsmithParser myRapidParser = new RapidsmithParser();
 			myRapidParser.startProcessing(model);
 		} catch (Exception e) {
@@ -35,12 +37,10 @@ public class Parser {
 		return;
 	}
 
-	public static Model parseFile(String fileName) throws Exception {
+	public static Model parseModel(String modelDescription) throws Exception {
 		Command lastCommand = new Command();
 		Model model = new Model();
-		byte[] encoded = Files.readAllBytes(Paths.get(fileName));
-		String fileContent = new String(encoded, Charset.defaultCharset());
-		String[] lines = fileContent.split("\\r?\\n");
+		String[] lines = modelDescription.split("\\r?\\n");
 
 		boolean stillMoreInputs = false;// to check if there are still inputs to
 										// add - which are separated through \
@@ -49,7 +49,7 @@ public class Parser {
 		
 		for (String line : lines) {
 			CopyOnWriteArrayList<String> component = new CopyOnWriteArrayList<String>(
-					Arrays.asList(line.split(" ")));
+					Arrays.asList(line.split(" |\t")));		//split at spacebars or tabs
 			for (String tempElement : component) {
 				if (tempElement.equals("")) {
 					component.remove(tempElement);
@@ -69,6 +69,23 @@ public class Parser {
 
 
 			switch (component.get(0)) {
+			//
+			// Modelreference
+			//
+			case ".subckt":
+				ModelReference ref = new ModelReference();
+				ref.name = component.get(1);
+				for(int i = 2; i < component.size(); i++) {
+					String mapping[] = component.get(i).split("=");
+					if(mapping.length != 2)
+						throw new Exception("Error: Expected X=Y in '.subckt'. Too many spacebars?");
+					if(mapping[0].equals("") || mapping[1].equals(""))
+						throw new Exception("Error: Expected X=Y in '.subckt'. Too many spacebars?");
+					ref.formalActualList.put(mapping[0], mapping[1]);
+				}
+				model.modelReferences.add(ref);
+				break;
+				
 			//
 			// BLIF header
 			//
@@ -110,6 +127,8 @@ public class Parser {
 				System.out.println("My Outputs: "+model.outputs.toString());
 				break;
 			case ".clock":
+				model.clocks = new ArrayList<String>(component);
+				model.clocks.remove(0);//remove .clock
 				break;
 			case ".end":
 				break;
@@ -140,7 +159,7 @@ public class Parser {
 				GenericLatch latch = new GenericLatch();
 				latch.input = component.get(1);
 				latch.output = component.get(2);
-
+			
 				// nun die optionalen Parameter
 				switch (component.size()) {
 				case 6:// type, clock und initialValue sind vorhanden
@@ -194,9 +213,102 @@ public class Parser {
 		}
 		return model;
 	}
+	
+	public static Model parseFile(String fileName) throws Exception {
+		Model model = null;
+		CopyOnWriteArrayList<Model> modelList = new CopyOnWriteArrayList<Model>();
+		byte[] encoded = Files.readAllBytes(Paths.get(fileName));
+		String fileContent = new String(encoded, Charset.defaultCharset());
+		String[] modelDescriptions = fileContent.split("\\.model");
+		for(int i = 1; i < modelDescriptions.length; i++) {
+			if(!modelDescriptions[i].equals("")) {
+				modelDescriptions[i] = ".model".concat(modelDescriptions[i]);
+				Model newModel = parseModel(modelDescriptions[i]);
+				modelList.add(newModel);
+			}
+		}
+		if(modelDescriptions.length > 2) {
+			outerloop: for(int i = 0; i < modelList.size(); i++) {							//iterate over all models.
+				for(int j = 0; j < modelList.size(); j++) {									//check for every other model...
+					if(i != j) {
+						for(int k = 0; k < modelList.get(j).modelReferences.size(); k++) {	//...if it contains the current model as .subckt-reference
+							if(modelList.get(j).modelReferences.get(k).name.equals(modelList.get(i).modelName)) {
+								continue outerloop;
+							}
+						}
+					}
+				}
+				
+				model = modelList.get(i);
+				break;
+			}
+			
+			if(model == null) {
+				throw new Exception("Error: All models are referenced in .subckt-references.");
+			}
+			
+			modelList.remove(model);
+			for(int i = 0; i < model.modelReferences.size(); i++) {
+				addModelToModel(modelList, model, model.modelReferences.get(i));
+			}
+		}
+		else {
+			model = modelList.get(0);
+		}
+		return model;
+	}
+	
+	private static void addModelToModel(CopyOnWriteArrayList<Model> allModels, Model rootModel, ModelReference addModel) throws Exception {
+		Model modelTemplate = null;
+		for(int i = 0; i < allModels.size(); i++) {
+			if(allModels.get(i).modelName.equals(addModel.name)) {
+				modelTemplate = allModels.get(i);
+				break;
+			}
+		}
+		if(modelTemplate == null)
+			throw new Exception("Error: Can't find Model '" + addModel + "'");
+		
+		Model modelInstance = new Model(modelTemplate);
+		for(String oldName : addModel.formalActualList.keySet()) {
+			String newName = addModel.formalActualList.get(oldName);
+			replaceEqualString(modelInstance.inputs, oldName, newName);
+			replaceEqualString(modelInstance.outputs, oldName, newName);
+			replaceEqualString(modelInstance.clocks, oldName, newName);
+			for(LogicGate gate : modelInstance.logicGates) {
+				replaceEqualString(gate.inputs, oldName, newName);
+				gate.output = gate.output.equals(oldName) ? newName : gate.output;
+			}
+			for(GenericLatch latch : modelInstance.genericLatches) {
+				latch.output = latch.output.equals(oldName) ? newName : latch.output;
+				latch.input = latch.output.equals(oldName) ? newName : latch.input;
+				latch.control = latch.output.equals(oldName) ? newName : latch.control;
+			}
+			for(ModelReference ref : modelInstance.modelReferences) {
+				for(String key : ref.formalActualList.keySet()) {
+					if(ref.formalActualList.get(key).equals(oldName)) {
+						ref.formalActualList.put(key, newName);
+					}
+				}
+			}
+		}
 
-	private static Truthtable addLineToTruthtable(Truthtable table,
-			String inputs, String output) throws Exception {
+		for(ModelReference ref : modelInstance.modelReferences) {
+			addModelToModel(allModels, modelInstance, ref);
+		}
+		rootModel.realModelReferences.add(modelInstance);
+	}
+	
+
+	private static void replaceEqualString(ArrayList<String> list, String search, String replace) {
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).equals(search)) {
+				list.set(i, replace);
+			}
+		}
+	}
+
+	private static Truthtable addLineToTruthtable(Truthtable table, String inputs, String output) throws Exception {
 		Truthtable newTable;
 		if (table == null)
 			newTable = new Truthtable();
@@ -209,8 +321,7 @@ public class Parser {
 		return newTable;
 	}
 
-	private static ArrayList<Integer> readStringToArrayList(String text)
-			throws Exception {
+	private static ArrayList<Integer> readStringToArrayList(String text) throws Exception {
 		ArrayList<Integer> ret = new ArrayList<Integer>();
 
 		for (int i = 0; i < text.length(); i++) {

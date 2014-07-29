@@ -1,7 +1,7 @@
 
 # =======================================================
 # edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
-# time: Di Jul 29 11:59:38 2014
+# time: Mi Jul 30 02:18:35 2014
 
 # =======================================================
 
@@ -38,56 +38,239 @@ design "helloWorld" xc6slx45csg324-3 v3.2 ,
 #     instance IO1 IOB, unplaced bonded ;   # This will be bonded
 #     instance IO1 IOB, unplaced unbonded ; # This will be unbonded
 #  =======================================================
-inst "in2" "IOB",placed RIOB_X37Y87 G13  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in2: IMUX::I "
+inst "n171_r_n173_n174" "SLICEL",placed CLEXM_X5Y82 SLICE_X6Y82  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2*~A3*A4*A5*~A6)+~(~A1*A2*A3*~A4*~A5*A6)+~(A1*~A2*(~A3+A3)*~A4*(~A5+A5)*A6)+~(A1*A2*~A3*A4*A5*(~A6+A6))+~(A1*A2*(~A3+A3)*A4*(~A5+A5)*A6)+~(A1*(~A2+A2)*~A3*~A4*(~A5+A5)*A6)+~(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5*A6)+~((~A1+A1)*A2*~A3*A4*(~A5+A5)*A6) AOUTMUX::O6 C6LUT::#LUT:O6=~(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6))+~((~A1+A1)*~A2*~A3*(~A4+A4)*~A5*A6)+~((~A1+A1)*(~A2+A2)*~A3*A4*~A5*A6) DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*A2*~A3) B5LUT::#LUT:O5=(A1*~A2*(~A3+A3)*A4*(~A5+A5))+(A1*A2*A3*~A4*(~A5+A5))+(A1*(~A2+A2)*~A3*A4*(~A5+A5))+((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5) BOUTMUX::O5 COUTMUX::O6 "
   ;
-inst "out6_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E1  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out6_FINAL_OUTPUT_OBUF: PAD:out6_FINAL_OUTPUT: IMUX::I "
+inst "t_FINAL_OUTPUT" "IOB",placed LIOB_X0Y86 F3  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:t_FINAL_OUTPUT_OBUF: PAD:t_FINAL_OUTPUT: IMUX::I "
   ;
-inst "out1_out4_out5_out6" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8  ,
-  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*A2*A3) B5LUT::#LUT:O5=(~A1*A2*A3) C5LUT::#LUT:O5=(~A1*A2*A3) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*(~A3+A3))+~((~A1+A1)*A2*~A3) "
+inst "n183_t_n185_n186" "SLICEL",placed CLEXM_X5Y87 SLICE_X6Y87  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*(~A3+A3)*~A4)+((~A1+A1)*~A2*~A3*~A4) B5LUT::#LUT:O5=(A1*A2) C5LUT::#LUT:O5=(~A1*~A2*(~A3+A3)*A4)+(~A1*(~A2+A2)*A3*(~A4+A4)) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*(~A2+A2)*A3*A4)+((~A1+A1)*A2*A3*(~A4+A4)) "
   ;
-inst "in1" "IOB",placed RIOB_X37Y90 G14  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in1: IMUX::I "
+inst "n127_n128_n129_q" "SLICEL",placed CLEXL_X7Y9 SLICE_X8Y9  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(~A1*A2*(~A3+A3)*(~A4+A4)*A5)+~(A1*A2*~A3*~A4*(~A5+A5))+~(A1*A2*A3*A4*(~A5+A5)) B5LUT::#LUT:O5=~(A1*~A2*(~A3+A3)*~A4*(~A5+A5))+~((~A1+A1)*~A2*~A3*~A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*~A3*A4*A5) C5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*~A5)+~(A1*A2*~A3*A4*(~A5+A5))+~(A1*A2*(~A3+A3)*(~A4+A4)*A5)+~((~A1+A1)*A2*~A3*(~A4+A4)*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(A1*(~A2+A2)*(~A3+A3)*~A4)+~((~A1+A1)*~A2*~A3*(~A4+A4)) "
   ;
-inst "in4" "IOB",placed RIOB_X37Y69 G16  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in4: IMUX::I "
+inst "o_FINAL_OUTPUT" "IOB",placed TIOB_SINGLE_X20Y127 F9  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:o_FINAL_OUTPUT_OBUF: PAD:o_FINAL_OUTPUT: IMUX::I "
   ;
-inst "in3" "IOB",placed RIOB_X37Y69 G18  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in3: IMUX::I "
+inst "n111_n112_n113_n114" "SLICEL",placed CLEXM_X5Y78 SLICE_X6Y78  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*(~A3+A3)*~A4*A5)+(A1*A2*(~A3+A3)*~A4*A5)+((~A1+A1)*(~A2+A2)*A3*~A4*A5) B5LUT::#LUT:O5=(~A1*~A2*A3*~A4) C5LUT::#LUT:O5=(~A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*(~A3+A3)*A4)+(~A1*(~A2+A2)*A3*A4)+((~A1+A1)*~A2*A3*A4) "
+  ;
+inst "n63_n64_n65_n66" "SLICEL",placed CLEXM_X17Y7 SLICE_X26Y7  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2*A3*(~A4+A4)*(~A5+A5))+((~A1+A1)*(~A2+A2)*A3*~A4*A5) B5LUT::#LUT:O5=(A1*~A2*A3*~A4) C5LUT::#LUT:O5=(~A1*~A2*~A3*(~A4+A4)*A5)+(~A1*(~A2+A2)*(~A3+A3)*A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3*(~A4+A4))+(~A1*(~A2+A2)*(~A3+A3)*A4) "
+  ;
+inst "n99_n100_n101_n102" "SLICEL",placed CLEXM_X5Y73 SLICE_X6Y73  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*A3*A4)+(~A1*A2*A3*~A4)+(A1*~A2*A3*~A4)+(A1*A2*A3*A4) B5LUT::#LUT:O5=(A1*A2*(~A3+A3)*(~A4+A4)*(~A5+A5))+(A1*(~A2+A2)*A3*A4*(~A5+A5))+(A1*(~A2+A2)*A3*(~A4+A4)*~A5) C5LUT::#LUT:O5=(~A1*~A2*~A3*A4) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*~A3) "
+  ;
+inst "n235_n236_v_n238" "SLICEL",placed CLEXM_X5Y50 SLICE_X6Y50  ,
+  cfg " D6LUT::#LUT:O6=(~A1*(~A2+A2)*(~A3+A3)*A4*(~A5+A5)*(~A6+A6))+(A1*(~A2+A2)*(~A3+A3)*~A4*(~A5+A5)*(~A6+A6))+((~A1+A1)*~A2*(~A3+A3)*(~A4+A4)*A5*(~A6+A6))+((~A1+A1)*A2*(~A3+A3)*(~A4+A4)*~A5*(~A6+A6))+((~A1+A1)*(~A2+A2)*~A3*(~A4+A4)*(~A5+A5)*A6)+((~A1+A1)*(~A2+A2)*A3*(~A4+A4)*(~A5+A5)*~A6) AOUTMUX::O5 DOUTMUX::O6 B5LUT::#LUT:O5=(~A1*~A2*(~A3+A3)*~A4*(~A5+A5))+(~A1*(~A2+A2)*(~A3+A3)*~A4*A5)+((~A1+A1)*~A2*(~A3+A3)*~A4*A5)+((~A1+A1)*(~A2+A2)*~A3*~A4*(~A5+A5)) C5LUT::#LUT:O5=(A1*~A2) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A3*(~A4+A4)*(~A5+A5))+(~A1*~A2*(~A3+A3)*A4*(~A5+A5))+(~A1*(~A2+A2)*~A3*(~A4+A4)*A5)+(~A1*(~A2+A2)*(~A3+A3)*A4*A5)+((~A1+A1)*~A2*~A3*A4*(~A5+A5))+((~A1+A1)*~A2*(~A3+A3)*(~A4+A4)*A5)+((~A1+A1)*(~A2+A2)*~A3*A4*A5) "
+  ;
+inst "n35_n36_n37_n38" "SLICEL",placed CLEXM_X8Y2 SLICE_X10Y2  ,
+  cfg " D6LUT::#LUT:O6=~(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6))+~((~A1+A1)*~A2*~A3*(~A4+A4)*(~A5+A5)*A6)+~((~A1+A1)*~A2*(~A3+A3)*~A4*A5*A6) AOUTMUX::O5 DOUTMUX::O6 B5LUT::#LUT:O5=~(~A1*A2*A3*~A4)+~(A1*A2*~A3*A4) C5LUT::#LUT:O5=(A1*~A2*(~A3+A3)*A4)+(A1*(~A2+A2)*~A3*A4) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*~A3*(~A4+A4)*~A5)+(~A1*(~A2+A2)*~A3*~A4*~A5) "
+  ;
+inst "n163_n164_n165_n166" "SLICEL",placed CLEXM_X5Y80 SLICE_X6Y80  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(A1*A2*A3*(~A4+A4))+~(A1*(~A2+A2)*A3*A4)+~((~A1+A1)*A2*(~A3+A3)*A4) B5LUT::#LUT:O5=(~A1*A2*~A3*~A4) C5LUT::#LUT:O5=(~A1*~A2*A3*A4*~A5)+(~A1*A2*(~A3+A3)*A4*A5)+(A1*~A2*(~A3+A3)*A4*A5)+(A1*A2*(~A3+A3)*A4*~A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*(~A2+A2)*~A3*~A4*(~A5+A5))+((~A1+A1)*~A2*~A3*~A4*(~A5+A5))+((~A1+A1)*(~A2+A2)*(~A3+A3)*~A4*A5) "
+  ;
+inst "s_u_n225_n226" "SLICEL",placed CLEXM_X5Y53 SLICE_X6Y53  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*~A2*~A3*(~A4+A4))+(A1*~A2*(~A3+A3)*~A4)+((~A1+A1)*~A2*~A3*~A4) C5LUT::#LUT:O5=(~A1*A2*A3*(~A4+A4)*(~A5+A5))+(~A1*A2*(~A3+A3)*A4*(~A5+A5))+(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5) B6LUT::#LUT:O6=(A1*A2*A3*A4*(~A5+A5)*(~A6+A6))+(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5*(~A6+A6))+(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*~A6) BOUTMUX::O6 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2)+(A1*A2) "
   ;
 inst "my_clk_BUFG" "BUFG",placed CLKC_X18Y63 BUFGMUX_X2Y10  ,
   cfg " "
   ;
-inst "my_clk" "IOB",placed LIOB_X0Y90 E4  ,
+inst "n187_n188_n189_n190" "SLICEL",placed CLEXM_X5Y86 SLICE_X6Y86  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(A1*A2*A3*(~A4+A4)*~A5)+~(A1*(~A2+A2)*(~A3+A3)*A4*(~A5+A5))+~((~A1+A1)*A2*(~A3+A3)*A4*(~A5+A5)) B5LUT::#LUT:O5=(~A1*~A2*(~A3+A3)*(~A4+A4))+(~A1*(~A2+A2)*~A3*A4) C5LUT::#LUT:O5=(A1*~A2*A3*A4) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3*~A4*A5) "
+  ;
+inst "n135_n136_n137_n138" "SLICEL",placed CLEXL_X7Y5 SLICE_X8Y5  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*~A2*A3*A4) C5LUT::#LUT:O5=~(~A1*~A2*A3*(~A4+A4))+~(~A1*(~A2+A2)*A3*A4)+~((~A1+A1)*~A2*(~A3+A3)*A4) B6LUT::#LUT:O6=~(~A1*~A2*A3*(~A4+A4)*~A5*(~A6+A6))+~(~A1*A2*A3*A4*A5*(~A6+A6))+~(A1*~A2*A3*(~A4+A4)*A5*(~A6+A6))+~(A1*A2*(~A3+A3)*A4*~A5*(~A6+A6))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*A6) BOUTMUX::O6 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) "
+  ;
+inst "n143_n144_n145_n146" "SLICEL",placed CLEXL_X7Y7 SLICE_X8Y7  ,
+  cfg " AOUTMUX::O5 C6LUT::#LUT:O6=(A1*~A2*(~A3+A3)*(~A4+A4)*(~A5+A5)*A6)+((~A1+A1)*A2*A3*~A4*(~A5+A5)*A6)+((~A1+A1)*A2*(~A3+A3)*(~A4+A4)*~A5*A6) DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2) B5LUT::#LUT:O5=(A1*~A2*(~A3+A3)*A4)+(A1*(~A2+A2)*A3*A4) BOUTMUX::O5 COUTMUX::O6 A5LUT::#LUT:O5=(A1*A2*(~A3+A3)*(~A4+A4)*(~A5+A5))+((~A1+A1)*A2*A3*~A4*(~A5+A5))+((~A1+A1)*A2*(~A3+A3)*(~A4+A4)*~A5) "
+  ;
+inst "n27_n28_n29_n30" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2) B5LUT::#LUT:O5=~(~A1*A2*~A3*(~A4+A4)*A5)+~(~A1*A2*(~A3+A3)*A4*A5)+~(A1*~A2*A3*A4*~A5)+~(A1*A2*A3*~A4*(~A5+A5)) C5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*A5)+~(~A1*~A2*A3*~A4*(~A5+A5))+~(A1*A2*~A3*A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2) "
+  ;
+inst "n91_n92_n93_n94" "SLICEL",placed CLEXM_X5Y70 SLICE_X6Y70  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*A2*(~A3+A3)*~A4*(~A5+A5)*(~A6+A6))+~((~A1+A1)*A2*(~A3+A3)*~A4*~A5*~A6)+~((~A1+A1)*(~A2+A2)*A3*(~A4+A4)*(~A5+A5)*(~A6+A6)) AOUTMUX::O6 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*~A2*~A3*A4) B5LUT::#LUT:O5=(A1*A2*A3) C5LUT::#LUT:O5=~(~A1*(~A2+A2)*~A3*~A4*A5)+~((~A1+A1)*~A2*(~A3+A3)*(~A4+A4)*(~A5+A5)) BOUTMUX::O5 COUTMUX::O5 "
+  ;
+inst "s_FINAL_OUTPUT" "IOB",placed LIOB_X0Y86 F4  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:s_FINAL_OUTPUT_OBUF: PAD:s_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "n175_n176_n177_n178" "SLICEL",placed CLEXM_X5Y85 SLICE_X6Y85  ,
+  cfg " A6LUT::#LUT:O6=(A1*A2*~A3*~A4*~A5*(~A6+A6))+(A1*A2*~A3*A4*A5*(~A6+A6))+(A1*A2*A3*~A4*A5*(~A6+A6))+(A1*A2*A3*A4*~A5*(~A6+A6))+(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*~A6) D6LUT::#LUT:O6=(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5*A6)+((~A1+A1)*~A2*~A3*~A4*~A5*A6) AOUTMUX::O6 DOUTMUX::O6 B5LUT::#LUT:O5=(~A1*~A2) C5LUT::#LUT:O5=(A1*A2*(~A3+A3))+((~A1+A1)*A2*~A3) BOUTMUX::O5 COUTMUX::O5 "
+  ;
+inst "n167_n168_n169_n170" "SLICEL",placed CLEXM_X5Y83 SLICE_X6Y83  ,
+  cfg " D6LUT::#LUT:O6=~(A1*(~A2+A2)*A3*A4*A5*(~A6+A6))+~((~A1+A1)*A2*~A3*(~A4+A4)*~A5*(~A6+A6))+~((~A1+A1)*(~A2+A2)*~A3*~A4*~A5*(~A6+A6))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*~A4*A5*A6) AOUTMUX::O5 DOUTMUX::O6 B5LUT::#LUT:O5=~(~A1*(~A2+A2)*~A3*(~A4+A4)*(~A5+A5))+~((~A1+A1)*~A2*(~A3+A3)*~A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5) C5LUT::#LUT:O5=~(~A1*A2*A3*~A4*(~A5+A5))+~((~A1+A1)*~A2*A3*(~A4+A4)*A5)+~((~A1+A1)*A2*~A3*~A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3) "
+  ;
+inst "n231_n232_n233_n234" "SLICEL",placed CLEXM_X5Y51 SLICE_X6Y51  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*~A3)+((~A1+A1)*A2*~A3) B5LUT::#LUT:O5=(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5)+((~A1+A1)*A2*A3*(~A4+A4)*A5)+((~A1+A1)*A2*(~A3+A3)*A4*A5)+((~A1+A1)*(~A2+A2)*A3*A4*A5) C5LUT::#LUT:O5=(~A1*(~A2+A2)*A3*(~A4+A4)*A5)+(~A1*(~A2+A2)*(~A3+A3)*A4*A5)+((~A1+A1)*A2*(~A3+A3)*(~A4+A4)*A5)+((~A1+A1)*(~A2+A2)*A3*A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*A3*~A4)+~(A1*A2*~A3*(~A4+A4)) "
+  ;
+inst "u_FINAL_OUTPUT" "IOB",placed LIOB_X0Y71 F2  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:u_FINAL_OUTPUT_OBUF: PAD:u_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "n147_n148_n149_n150" "SLICEL",placed CLEXL_X7Y6 SLICE_X8Y6  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*(~A3+A3)*(~A4+A4))+((~A1+A1)*~A2*~A3*~A4) B5LUT::#LUT:O5=(A1*A2*~A3) C5LUT::#LUT:O5=(~A1*A2*(~A3+A3)*A4*A5)+(~A1*(~A2+A2)*~A3*A4*A5)+(A1*~A2*(~A3+A3)*~A4*A5)+(A1*(~A2+A2)*A3*~A4*A5)+((~A1+A1)*~A2*A3*~A4*A5)+((~A1+A1)*A2*~A3*A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*(~A4+A4))+~(~A1*~A2*(~A3+A3)*~A4)+~((~A1+A1)*(~A2+A2)*~A3*~A4) "
+  ;
+inst "n119_n120_n121_n122" "SLICEL",placed CLEXM_X5Y76 SLICE_X6Y76  ,
+  cfg " AOUTMUX::O5 C6LUT::#LUT:O6=~(~A1*~A2*A3*A4*A5*(~A6+A6))+~(~A1*A2*(~A3+A3)*~A4*A5*(~A6+A6))+~(A1*A2*(~A3+A3)*A4*A5*(~A6+A6))+~((~A1+A1)*(~A2+A2)*A3*(~A4+A4)*(~A5+A5)*A6) DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*A3*A4*A5) B5LUT::#LUT:O5=~(~A1*A2*(~A3+A3)*~A4)+~(A1*A2*~A3*A4) BOUTMUX::O5 COUTMUX::O6 A5LUT::#LUT:O5=~(~A1*(~A2+A2)*~A3*~A4*(~A5+A5))+~(A1*~A2*A3*(~A4+A4)*(~A5+A5))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5) "
+  ;
+inst "n139_n140_n141_n142" "SLICEL",placed CLEXL_X7Y4 SLICE_X8Y4  ,
+  cfg " A6LUT::#LUT:O6=(~A1*~A2*A3*(~A4+A4)*~A5*(~A6+A6))+(~A1*A2*(~A3+A3)*~A4*~A5*(~A6+A6))+(A1*~A2*A3*~A4*(~A5+A5)*(~A6+A6))+(A1*A2*(~A3+A3)*~A4*(~A5+A5)*A6) AOUTMUX::O6 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2) C5LUT::#LUT:O5=(A1*A2) B6LUT::#LUT:O6=~(~A1*A2*(~A3+A3)*~A4*(~A5+A5)*(~A6+A6))+~((~A1+A1)*A2*(~A3+A3)*~A4*~A5*~A6)+~((~A1+A1)*(~A2+A2)*A3*(~A4+A4)*(~A5+A5)*(~A6+A6)) BOUTMUX::O6 COUTMUX::O5 "
+  ;
+inst "p_FINAL_OUTPUT" "IOB",placed LIOB_X0Y92 F6  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:p_FINAL_OUTPUT_OBUF: PAD:p_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "n103_n104_n105_n106" "SLICEL",placed CLEXM_X5Y72 SLICE_X6Y72  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2*A3) B5LUT::#LUT:O5=(A1*A2*(~A3+A3)*(~A4+A4)*(~A5+A5))+(A1*(~A2+A2)*A3*A4*(~A5+A5))+(A1*(~A2+A2)*A3*(~A4+A4)*~A5) C5LUT::#LUT:O5=(~A1*~A2*A3*~A4*(~A5+A5))+(~A1*A2*A3*A4*(~A5+A5))+(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*~A3*A4) "
+  ;
+inst "q_FINAL_OUTPUT" "IOB",placed LIOB_X0Y71 F1  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:q_FINAL_OUTPUT_OBUF: PAD:q_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "n227_n228_n229_n230" "SLICEL",placed CLEXM_X5Y52 SLICE_X6Y52  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5)+~((~A1+A1)*A2*A3*~A4*(~A5+A5)) B5LUT::#LUT:O5=(A1*(~A2+A2)*~A3)+((~A1+A1)*~A2*(~A3+A3)) C5LUT::#LUT:O5=(A1*A2*A3*~A4*~A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3*(~A4+A4))+(A1*~A2*(~A3+A3)*~A4)+(A1*(~A2+A2)*~A3*~A4) "
+  ;
+inst "n43_n44_n45_n46" "SLICEL",placed CLEXM_X8Y5 SLICE_X10Y5  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2) B5LUT::#LUT:O5=(A1*~A2*A3) C5LUT::#LUT:O5=(A1*A2*A3*(~A4+A4)*(~A5+A5))+(A1*A2*(~A3+A3)*A4*(~A5+A5))+(A1*A2*(~A3+A3)*(~A4+A4)*~A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3*A4) "
+  ;
+inst "n59_n60_n61_n62" "SLICEL",placed CLEXM_X17Y8 SLICE_X26Y8  ,
+  cfg " D6LUT::#LUT:O6=~(~A1*A2*A3*~A4*~A5*(~A6+A6))+~(~A1*(~A2+A2)*A3*A4*A5*A6)+~(A1*~A2*A3*~A4*~A5*(~A6+A6)) AOUTMUX::O5 DOUTMUX::O6 C5LUT::#LUT:O5=(~A1*~A2) B6LUT::#LUT:O6=~(A1*~A2*(~A3+A3)*A4*A5*(~A6+A6))+~(A1*(~A2+A2)*~A3*A4*(~A5+A5)*(~A6+A6))+~((~A1+A1)*A2*~A3*A4*~A5*(~A6+A6))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*~A6) BOUTMUX::O6 COUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2) "
+  ;
+inst "n107_n108_n109_n110" "SLICEL",placed CLEXM_X5Y71 SLICE_X6Y71  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*A3)+(A1*A2*A3) B5LUT::#LUT:O5=(~A1*A2*~A3) C5LUT::#LUT:O5=(~A1*~A2*~A3*(~A4+A4)*A5)+(~A1*A2*A3*(~A4+A4)*A5)+(~A1*(~A2+A2)*(~A3+A3)*A4*(~A5+A5)) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4))+~((~A1+A1)*~A2*~A3*A4) "
+  ;
+inst "n199_n200_n201_n202" "SLICEL",placed CLEXM_X5Y59 SLICE_X6Y59  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*A3*(~A4+A4)*(~A5+A5))+(A1*(~A2+A2)*~A3*~A4*~A5)+((~A1+A1)*~A2*A3*A4*(~A5+A5))+((~A1+A1)*~A2*A3*(~A4+A4)*A5)+((~A1+A1)*A2*~A3*(~A4+A4)*(~A5+A5)) C5LUT::#LUT:O5=(~A1*~A2*A3*(~A4+A4)*(~A5+A5))+(~A1*~A2*(~A3+A3)*~A4*(~A5+A5))+(~A1*(~A2+A2)*A3*(~A4+A4)*A5)+(~A1*(~A2+A2)*(~A3+A3)*~A4*A5)+((~A1+A1)*~A2*A3*~A4*(~A5+A5))+((~A1+A1)*~A2*(~A3+A3)*(~A4+A4)*A5)+((~A1+A1)*(~A2+A2)*A3*~A4*A5) B6LUT::#LUT:O6=~(~A1*~A2*~A3*A4*(~A5+A5)*(~A6+A6))+~(~A1*~A2*A3*~A4*(~A5+A5)*(~A6+A6))+~((~A1+A1)*A2*(~A3+A3)*(~A4+A4)*~A5*A6)+~((~A1+A1)*A2*(~A3+A3)*(~A4+A4)*A5*~A6) BOUTMUX::O6 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*~A2*(~A3+A3))+(~A1*(~A2+A2)*A3)+((~A1+A1)*~A2*A3) "
+  ;
+inst "n155_n156_n157_n158" "SLICEL",placed CLEXL_X7Y2 SLICE_X8Y2  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(~A1*~A2*~A3*A4)+~(A1*(~A2+A2)*A3*A4)+~((~A1+A1)*A2*A3*A4) B5LUT::#LUT:O5=(~A1*(~A2+A2)*~A3*~A4*A5)+((~A1+A1)*A2*~A3*~A4*A5) C5LUT::#LUT:O5=(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5)+((~A1+A1)*~A2*(~A3+A3)*A4*A5)+((~A1+A1)*A2*A3*~A4*A5)+((~A1+A1)*(~A2+A2)*~A3*A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*(~A3+A3)*A4*~A5)+(~A1*(~A2+A2)*~A3*A4*~A5)+(A1*~A2*(~A3+A3)*A4*A5)+(A1*(~A2+A2)*A3*A4*A5)+((~A1+A1)*~A2*A3*A4*A5)+((~A1+A1)*A2*~A3*A4*~A5) "
+  ;
+inst "n67_n68_n69_n70" "SLICEL",placed CLEXM_X17Y6 SLICE_X26Y6  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4))+~((~A1+A1)*~A2*~A3*A4) B5LUT::#LUT:O5=(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5)+((~A1+A1)*~A2*(~A3+A3)*A4*A5)+((~A1+A1)*(~A2+A2)*~A3*A4*A5) C5LUT::#LUT:O5=(A1*A2) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*A3*A4*~A5)+~(A1*A2*~A3*~A4*A5) "
+  ;
+inst "n79_n80_n81_n82" "SLICEL",placed CLEXM_X17Y3 SLICE_X26Y3  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*A3) B5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*~A3) C5LUT::#LUT:O5=(A1*~A2*~A3*~A4*~A5)+(A1*~A2*~A3*A4*A5)+(A1*A2*(~A3+A3)*~A4*A5)+(A1*A2*(~A3+A3)*A4*~A5)+(A1*(~A2+A2)*A3*~A4*A5)+(A1*(~A2+A2)*A3*A4*~A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3*A4*(~A5+A5))+(~A1*A2*A3*(~A4+A4)*~A5)+(A1*~A2*(~A3+A3)*(~A4+A4)*(~A5+A5))+(A1*(~A2+A2)*(~A3+A3)*~A4*A5)+((~A1+A1)*~A2*~A3*(~A4+A4)*(~A5+A5))+((~A1+A1)*(~A2+A2)*~A3*~A4*A5) "
+  ;
+inst "n71_n72_n73_n74" "SLICEL",placed CLEXM_X17Y5 SLICE_X26Y5  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(~A1*A2*A3*~A4*A5)+~(A1*~A2*(~A3+A3)*(~A4+A4)*A5)+~((~A1+A1)*~A2*A3*A4*~A5) B5LUT::#LUT:O5=(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5)+((~A1+A1)*~A2*(~A3+A3)*A4*A5)+((~A1+A1)*(~A2+A2)*A3*A4*A5) C5LUT::#LUT:O5=~(~A1*A2*(~A3+A3))+~(A1*~A2*~A3) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*~A5)+~(A1*A2*~A3*A4*(~A5+A5))+~(A1*A2*(~A3+A3)*(~A4+A4)*A5)+~((~A1+A1)*A2*~A3*(~A4+A4)*A5) "
+  ;
+inst "n51_n52_n53_n54" "SLICEL",placed CLEXM_X8Y3 SLICE_X10Y3  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*~A3*A4*~A5) B5LUT::#LUT:O5=(~A1*A2*(~A3+A3)*A4)+(~A1*(~A2+A2)*A3*(~A4+A4)) C5LUT::#LUT:O5=(~A1*~A2*(~A3+A3)*(~A4+A4))+(~A1*(~A2+A2)*~A3*A4) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3) "
+  ;
+inst "n55_n56_n57_n58" "SLICEL",placed CLEXM_X17Y9 SLICE_X26Y9  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2*~A3) B5LUT::#LUT:O5=(~A1*(~A2+A2)*~A3*(~A4+A4)*A5)+((~A1+A1)*~A2*(~A3+A3)*(~A4+A4)*A5)+((~A1+A1)*(~A2+A2)*~A3*~A4*A5) C5LUT::#LUT:O5=(~A1*~A2) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*~A3*A4) "
+  ;
+inst "n215_n216_n217_n218" "SLICEL",placed CLEXM_X5Y55 SLICE_X6Y55  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*~A5)+~(A1*A2*~A3*A4*(~A5+A5))+~(A1*A2*(~A3+A3)*(~A4+A4)*A5) B5LUT::#LUT:O5=(A1*A2*(~A3+A3)*(~A4+A4))+((~A1+A1)*A2*~A3*A4) C5LUT::#LUT:O5=(A1*A2*A3*~A4*(~A5+A5))+((~A1+A1)*A2*(~A3+A3)*(~A4+A4)*~A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3*~A4) "
+  ;
+inst "n191_n192_n193_n194" "SLICEL",placed CLEXM_X5Y89 SLICE_X6Y89  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2) C5LUT::#LUT:O5=~(A1*(~A2+A2)*~A3*~A4)+~((~A1+A1)*A2*(~A3+A3)*(~A4+A4)) B6LUT::#LUT:O6=(A1*A2*A3*A4*(~A5+A5)*~A6)+((~A1+A1)*~A2*~A3*A4*(~A5+A5)*A6)+((~A1+A1)*A2*~A3*A4*A5*(~A6+A6)) BOUTMUX::O6 COUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*A4)+~(A1*A2*~A3*A4)+~((~A1+A1)*~A2*A3*~A4) "
+  ;
+inst "n131_n132_n133_n134" "SLICEL",placed CLEXL_X7Y8 SLICE_X8Y8  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) C5LUT::#LUT:O5=(~A1*(~A2+A2)*(~A3+A3)*~A4*~A5)+((~A1+A1)*~A2*A3*~A4*~A5)+((~A1+A1)*A2*~A3*~A4*~A5) B6LUT::#LUT:O6=~(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6))+~((~A1+A1)*~A2*(~A3+A3)*~A4*~A5*A6)+~((~A1+A1)*(~A2+A2)*A3*~A4*~A5*A6) BOUTMUX::O6 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2*A3*A4*(~A5+A5))+(~A1*A2*A3*(~A4+A4)*~A5) "
+  ;
+inst "n39_n40_n41_n42" "SLICEL",placed CLEXM_X8Y6 SLICE_X10Y6  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*A2) B5LUT::#LUT:O5=(~A1*A2*~A3*A4*A5) C5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*A2) "
+  ;
+inst "n31_n32_n33_n34" "SLICEL",placed CLEXM_X8Y7 SLICE_X10Y7  ,
+  cfg " A6LUT::#LUT:O6=(~A1*~A2*(~A3+A3)*(~A4+A4)*(~A5+A5)*~A6)+(A1*A2*(~A3+A3)*(~A4+A4)*~A5*(~A6+A6))+(A1*(~A2+A2)*(~A3+A3)*~A4*~A5*(~A6+A6))+((~A1+A1)*A2*~A3*(~A4+A4)*~A5*~A6)+((~A1+A1)*(~A2+A2)*(~A3+A3)*~A4*~A5*~A6) AOUTMUX::O6 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*~A2*~A3*~A4*~A5)+(A1*~A2*A3*(~A4+A4)*A5) B5LUT::#LUT:O5=(A1*~A2) C5LUT::#LUT:O5=(~A1*A2*A3) BOUTMUX::O5 COUTMUX::O5 "
+  ;
+inst "n83_n84_n85_n86" "SLICEL",placed CLEXM_X17Y2 SLICE_X26Y2  ,
+  cfg " D6LUT::#LUT:O6=~(~A1*~A2*A3*~A4*(~A5+A5)*(~A6+A6))+~(A1*~A2*(~A3+A3)*A4*A5*~A6)+~(A1*A2*(~A3+A3)*~A4*(~A5+A5)*(~A6+A6))+~((~A1+A1)*~A2*~A3*A4*A5*~A6)+~((~A1+A1)*A2*~A3*~A4*(~A5+A5)*(~A6+A6)) AOUTMUX::O5 DOUTMUX::O6 B5LUT::#LUT:O5=(~A1*A2) C5LUT::#LUT:O5=(~A1*A2) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*(~A2+A2)*(~A3+A3)*A4*~A5)+((~A1+A1)*A2*A3*A4*(~A5+A5)) "
+  ;
+inst "n123_n124_n125_n126" "SLICEL",placed CLEXM_X5Y75 SLICE_X6Y75  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(~A1*~A2*(~A3+A3)*A4*(~A5+A5))+~(A1*A2*A3*(~A4+A4)*~A5)+~((~A1+A1)*(~A2+A2)*A3*A4*(~A5+A5)) B5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5) C5LUT::#LUT:O5=~(~A1*A2*A3*~A4*A5)+~(A1*~A2*(~A3+A3)*(~A4+A4)*A5)+~((~A1+A1)*~A2*A3*A4*~A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(A1*(~A2+A2)*(~A3+A3)*~A4*(~A5+A5))+~((~A1+A1)*~A2*~A3*(~A4+A4)*(~A5+A5))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5) "
+  ;
+inst "n203_n204_n205_n206" "SLICEL",placed CLEXM_X5Y57 SLICE_X6Y57  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2*~A3*(~A4+A4)*~A5*(~A6+A6))+~(~A1*~A2*~A3*(~A4+A4)*(~A5+A5)*~A6)+~(~A1*~A2*(~A3+A3)*~A4*~A5*(~A6+A6))+~(~A1*~A2*(~A3+A3)*~A4*(~A5+A5)*~A6)+~((~A1+A1)*(~A2+A2)*~A3*~A4*~A5*(~A6+A6))+~((~A1+A1)*(~A2+A2)*~A3*~A4*(~A5+A5)*~A6)+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5*~A6) AOUTMUX::O6 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2*~A3*~A4) C5LUT::#LUT:O5=(A1*~A2*~A3) B6LUT::#LUT:O6=(~A1*~A2*~A3*A4*(~A5+A5)*(~A6+A6))+(~A1*A2*A3*A4*(~A5+A5)*(~A6+A6))+(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5*(~A6+A6))+(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*A6) BOUTMUX::O6 COUTMUX::O5 "
+  ;
+inst "n151_n152_n153_n154" "SLICEL",placed CLEXL_X7Y3 SLICE_X8Y3  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*(~A3+A3))+(~A1*(~A2+A2)*A3)+((~A1+A1)*~A2*A3) C5LUT::#LUT:O5=(~A1*A2*~A3*A4*(~A5+A5))+(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5) B6LUT::#LUT:O6=(~A1*~A2*A3*(~A4+A4)*~A5*~A6)+(~A1*~A2*A3*(~A4+A4)*A5*A6)+(~A1*(~A2+A2)*A3*A4*~A5*~A6)+(~A1*(~A2+A2)*A3*A4*A5*A6)+(A1*A2*A3*(~A4+A4)*~A5*A6)+(A1*A2*A3*(~A4+A4)*A5*~A6)+(A1*(~A2+A2)*A3*~A4*~A5*A6)+(A1*(~A2+A2)*A3*~A4*A5*~A6)+((~A1+A1)*~A2*A3*A4*~A5*~A6)+((~A1+A1)*~A2*A3*A4*A5*A6)+((~A1+A1)*A2*A3*~A4*~A5*A6)+((~A1+A1)*A2*A3*~A4*A5*~A6) BOUTMUX::O6 COUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2) "
+  ;
+inst "f" "IOB",placed RIOB_X37Y62 H18  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:f: IMUX::I "
+  ;
+inst "n179_n180_n181_n182" "SLICEL",placed CLEXM_X5Y84 SLICE_X6Y84  ,
+  cfg " AOUTMUX::O5 C6LUT::#LUT:O6=(~A1*~A2*~A3*A4*(~A5+A5)*(~A6+A6))+(~A1*~A2*(~A3+A3)*A4*(~A5+A5)*A6)+(~A1*(~A2+A2)*~A3*A4*A5*(~A6+A6))+(~A1*(~A2+A2)*(~A3+A3)*A4*A5*A6)+((~A1+A1)*~A2*~A3*(~A4+A4)*A5*(~A6+A6))+((~A1+A1)*~A2*(~A3+A3)*(~A4+A4)*A5*A6)+((~A1+A1)*(~A2+A2)*~A3*(~A4+A4)*(~A5+A5)*A6) DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*A3) B5LUT::#LUT:O5=(A1*~A2*A3*A4) BOUTMUX::O5 COUTMUX::O6 A5LUT::#LUT:O5=(A1*A2*(~A3+A3)*(~A4+A4))+(A1*(~A2+A2)*A3*A4) "
+  ;
+inst "v_FINAL_OUTPUT" "IOB",placed TIOB_SINGLE_X20Y127 G9  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:v_FINAL_OUTPUT_OBUF: PAD:v_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "g" "IOB",placed RIOB_X37Y70 H15  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:g: IMUX::I "
+  ;
+inst "n115_n116_n117_n118" "SLICEL",placed CLEXM_X5Y77 SLICE_X6Y77  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(A1*A2*A3*A4*A5)+~((~A1+A1)*~A2*(~A3+A3)*~A4*~A5)+~((~A1+A1)*(~A2+A2)*~A3*~A4*~A5) B5LUT::#LUT:O5=(~A1*~A2*A3) C5LUT::#LUT:O5=(A1*~A2*~A3) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(~A1*~A2*~A3*(~A4+A4))+~(~A1*(~A2+A2)*A3*A4)+~((~A1+A1)*~A2*A3*A4) "
+  ;
+inst "d" "IOB",placed RIOB_X37Y69 G16  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:d: IMUX::I "
+  ;
+inst "r_FINAL_OUTPUT" "IOB",placed LIOB_X0Y92 F5  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:r_FINAL_OUTPUT_OBUF: PAD:r_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "e" "IOB",placed RIOB_X37Y62 H17  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:e: IMUX::I "
+  ;
+inst "b" "IOB",placed RIOB_X37Y87 G13  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:b: IMUX::I "
+  ;
+inst "c" "IOB",placed RIOB_X37Y69 G18  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:c: IMUX::I "
+  ;
+inst "n207_n208_n209_n210" "SLICEL",placed CLEXM_X5Y58 SLICE_X6Y58  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5*~A6)+~(A1*(~A2+A2)*A3*A4*A5*(~A6+A6))+~(A1*(~A2+A2)*A3*A4*(~A5+A5)*A6)+~((~A1+A1)*~A2*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6))+~((~A1+A1)*(~A2+A2)*~A3*(~A4+A4)*~A5*~A6)+~((~A1+A1)*(~A2+A2)*(~A3+A3)*~A4*~A5*~A6) D6LUT::#LUT:O6=(~A1*~A2*~A3*(~A4+A4)*(~A5+A5)*A6)+(~A1*~A2*(~A3+A3)*A4*(~A5+A5)*A6)+(~A1*(~A2+A2)*~A3*(~A4+A4)*A5*A6)+(~A1*(~A2+A2)*(~A3+A3)*A4*A5*A6)+(A1*A2*A3*(~A4+A4)*(~A5+A5)*~A6)+(A1*A2*(~A3+A3)*~A4*(~A5+A5)*~A6)+(A1*(~A2+A2)*A3*(~A4+A4)*~A5*~A6)+(A1*(~A2+A2)*(~A3+A3)*~A4*~A5*~A6)+((~A1+A1)*~A2*~A3*A4*(~A5+A5)*A6)+((~A1+A1)*~A2*(~A3+A3)*(~A4+A4)*A5*A6)+((~A1+A1)*A2*A3*~A4*(~A5+A5)*~A6)+((~A1+A1)*A2*(~A3+A3)*(~A4+A4)*~A5*~A6)+((~A1+A1)*(~A2+A2)*~A3*A4*A5*A6)+((~A1+A1)*(~A2+A2)*A3*~A4*~A5*~A6) AOUTMUX::O6 DOUTMUX::O6 B5LUT::#LUT:O5=(~A1*(~A2+A2)*A3*A4)+(A1*A2*(~A3+A3)*A4) C5LUT::#LUT:O5=(A1*A2*(~A3+A3)*(~A4+A4)*(~A5+A5))+(A1*(~A2+A2)*~A3*A4*(~A5+A5))+((~A1+A1)*A2*~A3*A4*(~A5+A5))+((~A1+A1)*(~A2+A2)*A3*~A4*(~A5+A5))+((~A1+A1)*(~A2+A2)*(~A3+A3)*A4*~A5) BOUTMUX::O5 COUTMUX::O5 "
+  ;
+inst "my_clk" "IOB",placed LIOB_X0Y69 G3  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:my_clk: IMUX::I "
   ;
-inst "out3" "SLICEL",placed CLEXM_X8Y7 SLICE_X10Y7  ,
-  cfg " A6LUT::#LUT:O6=~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6)) AOUTMUX::O6 "
+inst "o_n24_n25_n26" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
+  cfg " AOUTMUX::O5 C6LUT::#LUT:O6=(A1*A2*(~A3+A3)*A4*(~A5+A5)*(~A6+A6))+(A1*A2*(~A3+A3)*(~A4+A4)*~A5*A6)+((~A1+A1)*A2*~A3*(~A4+A4)*(~A5+A5)*(~A6+A6)) DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*A2*(~A3+A3)*A4)+(~A1*(~A2+A2)*~A3*A4) B6LUT::#LUT:O6=~(~A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6))+~((~A1+A1)*~A2*~A3*A4*~A5*~A6) BOUTMUX::O6 COUTMUX::O6 A5LUT::#LUT:O5=~(~A1*A2*A3*A4*(~A5+A5))+~(A1*A2*~A3*A4*(~A5+A5))+~((~A1+A1)*~A2*(~A3+A3)*A4*A5) "
   ;
-inst "out2" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
-  cfg " AFFSRINIT::SRINIT1 AFFMUX::AX SYNC_ATTR::SYNC CLKINV::CLK AFF::#LATCH "
+inst "a" "IOB",placed RIOB_X37Y90 G14  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:a: IMUX::I "
   ;
-inst "out1_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H15  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out1_FINAL_OUTPUT_OBUF: PAD:out1_FINAL_OUTPUT: IMUX::I "
+inst "n" "IOB",placed LIOB_X0Y85 E3  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:n: IMUX::I "
   ;
-inst "out5_FINAL_OUTPUT" "IOB",placed RIOB_X37Y87 H12  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out5_FINAL_OUTPUT_OBUF: PAD:out5_FINAL_OUTPUT: IMUX::I "
+inst "n95_n96_n97_n98" "SLICEL",placed CLEXM_X5Y74 SLICE_X6Y74  ,
+  cfg " A6LUT::#LUT:O6=~(~A1*~A2*(~A3+A3)*(~A4+A4)*(~A5+A5)*(~A6+A6))+~((~A1+A1)*A2*~A3*~A4*A5*(~A6+A6))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*(~A5+A5)*~A6) AOUTMUX::O6 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*(~A3+A3)*(~A4+A4))+((~A1+A1)*~A2*~A3*~A4) B5LUT::#LUT:O5=(A1*A2) C5LUT::#LUT:O5=~(A1*~A2*~A3*(~A4+A4)*A5)+~(A1*~A2*A3*(~A4+A4)*~A5)+~((~A1+A1)*(~A2+A2)*(~A3+A3)*A4*(~A5+A5)) BOUTMUX::O5 COUTMUX::O5 "
   ;
-inst "in5" "IOB",placed RIOB_X37Y62 H17  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in5: IMUX::I "
+inst "l" "IOB",placed LIOB_X0Y85 E1  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:l: IMUX::I "
   ;
-inst "out2_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H16  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out2_FINAL_OUTPUT_OBUF: PAD:out2_FINAL_OUTPUT: IMUX::I "
+inst "m" "IOB",placed LIOB_X0Y90 E4  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:m: IMUX::I "
   ;
-inst "in6" "IOB",placed RIOB_X37Y62 H18  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in6: IMUX::I "
+inst "j" "IOB",placed RIOB_X37Y71 H14  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:j: IMUX::I "
   ;
-inst "out3_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H13  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out3_FINAL_OUTPUT_OBUF: PAD:out3_FINAL_OUTPUT: IMUX::I "
+inst "k" "IOB",placed RIOB_X37Y87 H12  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:k: IMUX::I "
   ;
-inst "out4_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H14  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out4_FINAL_OUTPUT_OBUF: PAD:out4_FINAL_OUTPUT: IMUX::I "
+inst "h" "IOB",placed RIOB_X37Y70 H16  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:h: IMUX::I "
+  ;
+inst "i" "IOB",placed RIOB_X37Y71 H13  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:i: IMUX::I "
+  ;
+inst "n87_n88_n89_n90" "SLICEL",placed CLEXM_X5Y79 SLICE_X6Y79  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*A3*(~A4+A4)*~A5)+(A1*A2*(~A3+A3)*~A4*(~A5+A5))+(A1*(~A2+A2)*A3*~A4*(~A5+A5))+((~A1+A1)*A2*(~A3+A3)*~A4*~A5) B5LUT::#LUT:O5=(~A1*A2*A3*~A4) C5LUT::#LUT:O5=~(~A1*~A2*~A3*A4*A5)+~(~A1*~A2*A3*~A4*(~A5+A5))+~(A1*A2*~A3*A4*A5)+~((~A1+A1)*~A2*A3*~A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*A3*A4*(~A5+A5))+(A1*A2*(~A3+A3)*(~A4+A4)*~A5) "
+  ;
+inst "n219_n220_n221_n222" "SLICEL",placed CLEXM_X5Y54 SLICE_X6Y54  ,
+  cfg " D6LUT::#LUT:O6=~(~A1*A2*A3*~A4*~A5*A6)+~(A1*~A2*(~A3+A3)*~A4*(~A5+A5)*A6)+~(A1*(~A2+A2)*~A3*~A4*(~A5+A5)*A6)+~(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5*A6)+~((~A1+A1)*A2*~A3*A4*(~A5+A5)*A6) AOUTMUX::O5 DOUTMUX::O6 B5LUT::#LUT:O5=~(~A1*A2*A3*~A4*(~A5+A5))+~((~A1+A1)*~A2*A3*(~A4+A4)*A5)+~((~A1+A1)*A2*~A3*~A4*A5) C5LUT::#LUT:O5=~(A1*~A2*(~A3+A3)*~A4*(~A5+A5))+~((~A1+A1)*~A2*~A3*~A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*~A3*A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(~A1*(~A2+A2)*~A3*(~A4+A4)*(~A5+A5))+~((~A1+A1)*~A2*(~A3+A3)*~A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*~A5) "
+  ;
+inst "n211_n212_n213_n214" "SLICEL",placed CLEXM_X5Y56 SLICE_X6Y56  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(A1*~A2*A3*A4*(~A5+A5))+~(A1*A2*A3*~A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5) B5LUT::#LUT:O5=(A1*(~A2+A2)*A3*(~A4+A4)*A5)+((~A1+A1)*~A2*A3*(~A4+A4)*A5)+((~A1+A1)*(~A2+A2)*~A3*A4*A5) C5LUT::#LUT:O5=(A1*A2*(~A3+A3)*A4*~A5)+((~A1+A1)*(~A2+A2)*A3*(~A4+A4)*~A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(A1*(~A2+A2)*(~A3+A3)*~A4)+~((~A1+A1)*A2*A3*(~A4+A4)) "
+  ;
+inst "n47_n48_n49_n50" "SLICEL",placed CLEXM_X8Y4 SLICE_X10Y4  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*~A2*A3*~A4*A5) B5LUT::#LUT:O5=(~A1*~A2) C5LUT::#LUT:O5=(A1*A2*A3*~A4) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(~A1*A2*~A3*A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5) "
+  ;
+inst "n195_n196_n197_n198" "SLICEL",placed CLEXM_X5Y88 SLICE_X6Y88  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*~A2*~A3) B5LUT::#LUT:O5=~(~A1*~A2*A3*(~A4+A4)*~A5)+~((~A1+A1)*(~A2+A2)*(~A3+A3)*A4*(~A5+A5)) C5LUT::#LUT:O5=(~A1*A2*A3) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*(~A3+A3)*A4*(~A5+A5))+(A1*A2*(~A3+A3)*(~A4+A4)*A5)+(A1*(~A2+A2)*~A3*A4*(~A5+A5))+(A1*(~A2+A2)*~A3*(~A4+A4)*A5)+((~A1+A1)*A2*~A3*A4*(~A5+A5))+((~A1+A1)*A2*~A3*(~A4+A4)*A5)+((~A1+A1)*(~A2+A2)*(~A3+A3)*A4*A5) "
+  ;
+inst "n159_n160_n161_n162" "SLICEL",placed CLEXM_X5Y81 SLICE_X6Y81  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*~A2*~A3*(~A4+A4))+((~A1+A1)*~A2*~A3*~A4) B5LUT::#LUT:O5=(A1*A2*(~A3+A3)*~A4*~A5)+(A1*(~A2+A2)*~A3*~A4*~A5)+((~A1+A1)*A2*~A3*~A4*~A5) C5LUT::#LUT:O5=(~A1*A2*(~A3+A3)*A4*~A5)+(A1*(~A2+A2)*~A3*A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2*~A3*~A4*(~A5+A5))+(A1*(~A2+A2)*(~A3+A3)*(~A4+A4)*A5) "
+  ;
+inst "n75_n76_n77_p" "SLICEL",placed CLEXM_X17Y4 SLICE_X26Y4  ,
+  cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=~(~A1*A2*(~A3+A3)*A4)+~(A1*A2*A3*(~A4+A4)) B5LUT::#LUT:O5=(A1*A2) C5LUT::#LUT:O5=~(A1*~A2*(~A3+A3)*~A4*(~A5+A5))+~((~A1+A1)*~A2*~A3*~A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*~A3*A4*A5) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=~(A1*(~A2+A2)*(~A3+A3)*A4*(~A5+A5))+~((~A1+A1)*A2*(~A3+A3)*A4*(~A5+A5))+~((~A1+A1)*(~A2+A2)*~A3*(~A4+A4)*~A5) "
   ;
 
 #  ================================================
@@ -127,85 +310,1648 @@ inst "out4_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H14  ,
 #  ================================================
   net "null" ,
     ;
-  net "out3.AMUX->out3_FINAL_OUTPUT.O" ,
-    inpin "out3_FINAL_OUTPUT" O ,
-    outpin "out3" AMUX ,
+  net "n63_n64_n65_n66.AMUX->o_n24_n25_n26.B5" ,
+    inpin "o_n24_n25_n26" B5 ,
+    outpin "n63_n64_n65_n66" AMUX ,
     ;
-  net "in5.I->out3.A5" ,
-    inpin "out3" A5 ,
-    outpin "in5" I ,
+  net "n231_n232_n233_n234.CMUX->n231_n232_n233_n234.B5" ,
+    inpin "n231_n232_n233_n234" B5 ,
+    outpin "n231_n232_n233_n234" CMUX ,
     ;
-  net "in1.I->out1_out4_out5_out6.A1" ,
-    inpin "out1_out4_out5_out6" A1 ,
-    outpin "in1" I ,
-    inpin "out1_out4_out5_out6" B1 ,
-    inpin "out1_out4_out5_out6" C1 ,
-    inpin "out1_out4_out5_out6" D1 ,
-    inpin "out3" A1 ,
+  net "n123_n124_n125_n126.DMUX->n123_n124_n125_n126.A4" ,
+    inpin "n123_n124_n125_n126" A4 ,
+    outpin "n123_n124_n125_n126" DMUX ,
+    ;
+  net "n171_r_n173_n174.BMUX->r_FINAL_OUTPUT.O" ,
+    inpin "r_FINAL_OUTPUT" O ,
+    outpin "n171_r_n173_n174" BMUX ,
+    ;
+  net "s_u_n225_n226.BMUX->u_FINAL_OUTPUT.O" ,
+    inpin "u_FINAL_OUTPUT" O ,
+    outpin "s_u_n225_n226" BMUX ,
+    ;
+  net "n159_n160_n161_n162.CMUX->n155_n156_n157_n158.B4" ,
+    inpin "n155_n156_n157_n158" B4 ,
+    outpin "n159_n160_n161_n162" CMUX ,
+    ;
+  net "n175_n176_n177_n178.AMUX->n171_r_n173_n174.C3" ,
+    inpin "n171_r_n173_n174" C3 ,
+    outpin "n175_n176_n177_n178" AMUX ,
+    ;
+  net "n83_n84_n85_n86.CMUX->n83_n84_n85_n86.A4" ,
+    inpin "n83_n84_n85_n86" A4 ,
+    outpin "n83_n84_n85_n86" CMUX ,
+    inpin "n87_n88_n89_n90" A4 ,
+    inpin "n135_n136_n137_n138" A1 ,
+    inpin "n143_n144_n145_n146" A3 ,
+    inpin "n143_n144_n145_n146" B2 ,
+    inpin "n143_n144_n145_n146" C3 ,
+    ;
+  net "n59_n60_n61_n62.DMUX->n59_n60_n61_n62.B6" ,
+    inpin "n59_n60_n61_n62" B6 ,
+    outpin "n59_n60_n61_n62" DMUX ,
+    ;
+  net "n39_n40_n41_n42.CMUX->n35_n36_n37_n38.D2" ,
+    inpin "n35_n36_n37_n38" D2 ,
+    outpin "n39_n40_n41_n42" CMUX ,
+    inpin "n51_n52_n53_n54" C1 ,
+    inpin "n99_n100_n101_n102" B2 ,
+    inpin "n103_n104_n105_n106" B2 ,
+    ;
+  net "n107_n108_n109_n110.DMUX->n107_n108_n109_n110.C4" ,
+    inpin "n107_n108_n109_n110" C4 ,
+    outpin "n107_n108_n109_n110" DMUX ,
+    ;
+  net "n203_n204_n205_n206.AMUX->n199_n200_n201_n202.B6" ,
+    inpin "n199_n200_n201_n202" B6 ,
+    outpin "n203_n204_n205_n206" AMUX ,
+    inpin "n227_n228_n229_n230" A4 ,
+    ;
+  net "n.I->o_n24_n25_n26.A2" ,
+    inpin "o_n24_n25_n26" A2 ,
+    outpin "n" I ,
+    inpin "o_n24_n25_n26" B1 ,
+    inpin "n27_n28_n29_n30" B5 ,
+    inpin "n27_n28_n29_n30" C5 ,
+    inpin "n31_n32_n33_n34" C3 ,
+    inpin "n31_n32_n33_n34" D5 ,
+    inpin "n35_n36_n37_n38" A5 ,
+    inpin "n39_n40_n41_n42" B5 ,
+    inpin "n43_n44_n45_n46" A4 ,
+    inpin "n43_n44_n45_n46" B3 ,
+    inpin "n47_n48_n49_n50" D5 ,
+    inpin "n67_n68_n69_n70" A5 ,
+    inpin "n75_n76_n77_p" D1 ,
+    inpin "n79_n80_n81_n82" A2 ,
+    inpin "n83_n84_n85_n86" C2 ,
+    inpin "n87_n88_n89_n90" C5 ,
+    inpin "n127_n128_n129_q" D1 ,
+    inpin "n131_n132_n133_n134" A2 ,
+    inpin "n131_n132_n133_n134" B1 ,
+    inpin "n171_r_n173_n174" B1 ,
+    inpin "n171_r_n173_n174" C1 ,
+    inpin "n179_n180_n181_n182" A1 ,
+    inpin "n183_t_n185_n186" D4 ,
+    inpin "n187_n188_n189_n190" A5 ,
+    inpin "n187_n188_n189_n190" C4 ,
+    inpin "n187_n188_n189_n190" D3 ,
+    inpin "n215_n216_n217_n218" B1 ,
+    inpin "s_u_n225_n226" B1 ,
+    ;
+  net "e.I->n27_n28_n29_n30.A1" ,
+    inpin "n27_n28_n29_n30" A1 ,
+    outpin "e" I ,
+    inpin "n27_n28_n29_n30" D2 ,
+    inpin "n31_n32_n33_n34" A2 ,
+    inpin "n47_n48_n49_n50" C2 ,
+    inpin "n55_n56_n57_n58" D1 ,
+    inpin "n59_n60_n61_n62" D2 ,
+    inpin "n71_n72_n73_n74" A2 ,
+    inpin "n71_n72_n73_n74" D2 ,
+    inpin "n75_n76_n77_p" C1 ,
+    inpin "n83_n84_n85_n86" D3 ,
+    inpin "n87_n88_n89_n90" B2 ,
+    inpin "n135_n136_n137_n138" C3 ,
+    inpin "n163_n164_n165_n166" D3 ,
+    inpin "n179_n180_n181_n182" C4 ,
+    inpin "n235_n236_v_n238" D4 ,
+    ;
+  net "n103_n104_n105_n106.DMUX->n103_n104_n105_n106.C3" ,
+    inpin "n103_n104_n105_n106" C3 ,
+    outpin "n103_n104_n105_n106" DMUX ,
+    inpin "n155_n156_n157_n158" B1 ,
+    inpin "n195_n196_n197_n198" C2 ,
+    inpin "n207_n208_n209_n210" A2 ,
+    inpin "n215_n216_n217_n218" A3 ,
+    ;
+  net "b.I->n83_n84_n85_n86.D2" ,
+    inpin "n83_n84_n85_n86" D2 ,
+    outpin "b" I ,
+    inpin "n87_n88_n89_n90" A1 ,
+    inpin "n87_n88_n89_n90" D1 ,
+    inpin "n91_n92_n93_n94" B1 ,
+    inpin "n91_n92_n93_n94" C1 ,
+    inpin "n95_n96_n97_n98" B1 ,
+    inpin "n95_n96_n97_n98" C1 ,
+    inpin "n107_n108_n109_n110" C1 ,
+    inpin "n111_n112_n113_n114" C1 ,
+    inpin "n119_n120_n121_n122" C1 ,
+    inpin "n119_n120_n121_n122" D2 ,
+    inpin "n123_n124_n125_n126" A1 ,
+    inpin "n123_n124_n125_n126" C1 ,
+    inpin "n127_n128_n129_q" C1 ,
+    inpin "n135_n136_n137_n138" C2 ,
+    inpin "n135_n136_n137_n138" D1 ,
+    inpin "n147_n148_n149_n150" C1 ,
+    inpin "n151_n152_n153_n154" D1 ,
+    inpin "n155_n156_n157_n158" A1 ,
+    inpin "n155_n156_n157_n158" D2 ,
+    inpin "n159_n160_n161_n162" B1 ,
+    inpin "n163_n164_n165_n166" D2 ,
+    inpin "n179_n180_n181_n182" C2 ,
+    inpin "n195_n196_n197_n198" D2 ,
+    inpin "n199_n200_n201_n202" C1 ,
+    inpin "n207_n208_n209_n210" D1 ,
+    inpin "n235_n236_v_n238" A1 ,
+    inpin "n235_n236_v_n238" D2 ,
+    ;
+  net "n191_n192_n193_n194.AMUX->n187_n188_n189_n190.D5" ,
+    inpin "n187_n188_n189_n190" D5 ,
+    outpin "n191_n192_n193_n194" AMUX ,
+    ;
+  net "n139_n140_n141_n142.CMUX->n139_n140_n141_n142.B3" ,
+    inpin "n139_n140_n141_n142" B3 ,
+    outpin "n139_n140_n141_n142" CMUX ,
     ;
   net "my_clk.I->my_clk_BUFG.I0" ,
     inpin "my_clk_BUFG" I0 ,
     outpin "my_clk" I ,
     ;
-  net "out1_out4_out5_out6.AMUX->out2.AX" ,
-    inpin "out2" AX ,
-    outpin "out1_out4_out5_out6" AMUX ,
-    inpin "out1_FINAL_OUTPUT" O ,
+  net "n43_n44_n45_n46.DMUX->n43_n44_n45_n46.C2" ,
+    inpin "n43_n44_n45_n46" C2 ,
+    outpin "n43_n44_n45_n46" DMUX ,
+    inpin "n63_n64_n65_n66" D2 ,
+    inpin "n159_n160_n161_n162" A4 ,
+    inpin "n227_n228_n229_n230" B2 ,
     ;
-  net "out1_out4_out5_out6.CMUX->out5_FINAL_OUTPUT.O" ,
-    inpin "out5_FINAL_OUTPUT" O ,
-    outpin "out1_out4_out5_out6" CMUX ,
+  net "n47_n48_n49_n50.AMUX->n35_n36_n37_n38.D5" ,
+    inpin "n35_n36_n37_n38" D5 ,
+    outpin "n47_n48_n49_n50" AMUX ,
+    inpin "n51_n52_n53_n54" C4 ,
+    inpin "n99_n100_n101_n102" B5 ,
+    inpin "n103_n104_n105_n106" B5 ,
     ;
-  net "in6.I->out3.A6" ,
-    inpin "out3" A6 ,
-    outpin "in6" I ,
+  net "n179_n180_n181_n182.DMUX->n179_n180_n181_n182.A4" ,
+    inpin "n179_n180_n181_n182" A4 ,
+    outpin "n179_n180_n181_n182" DMUX ,
     ;
-  net "out2.AQ->out2_FINAL_OUTPUT.O" ,
-    inpin "out2_FINAL_OUTPUT" O ,
-    outpin "out2" AQ ,
+  net "n227_n228_n229_n230.AMUX->s_u_n225_n226.C4" ,
+    inpin "s_u_n225_n226" C4 ,
+    outpin "n227_n228_n229_n230" AMUX ,
     ;
-  net "my_clk_BUFG.O->out2.CLK" ,
-    inpin "out2" CLK ,
-    outpin "my_clk_BUFG" O ,
+  net "n43_n44_n45_n46.BMUX->n35_n36_n37_n38.D3" ,
+    inpin "n35_n36_n37_n38" D3 ,
+    outpin "n43_n44_n45_n46" BMUX ,
+    inpin "n51_n52_n53_n54" C2 ,
+    inpin "n91_n92_n93_n94" A1 ,
+    inpin "n95_n96_n97_n98" D1 ,
+    inpin "n99_n100_n101_n102" B3 ,
+    inpin "n103_n104_n105_n106" B3 ,
+    inpin "n139_n140_n141_n142" B1 ,
+    inpin "n147_n148_n149_n150" D1 ,
+    inpin "n183_t_n185_n186" A1 ,
+    inpin "n191_n192_n193_n194" B4 ,
     ;
-  net "in3.I->out1_out4_out5_out6.A3" ,
-    inpin "out1_out4_out5_out6" A3 ,
-    outpin "in3" I ,
-    inpin "out1_out4_out5_out6" B3 ,
-    inpin "out1_out4_out5_out6" C3 ,
-    inpin "out1_out4_out5_out6" D3 ,
-    inpin "out3" A3 ,
+  net "n187_n188_n189_n190.AMUX->n183_t_n185_n186.C4" ,
+    inpin "n183_t_n185_n186" C4 ,
+    outpin "n187_n188_n189_n190" AMUX ,
     ;
-  net "in2.I->out1_out4_out5_out6.A2" ,
-    inpin "out1_out4_out5_out6" A2 ,
-    outpin "in2" I ,
-    inpin "out1_out4_out5_out6" B2 ,
-    inpin "out1_out4_out5_out6" C2 ,
-    inpin "out1_out4_out5_out6" D2 ,
-    inpin "out3" A2 ,
+  net "n51_n52_n53_n54.CMUX->n51_n52_n53_n54.B1" ,
+    inpin "n51_n52_n53_n54" B1 ,
+    outpin "n51_n52_n53_n54" CMUX ,
+    inpin "n55_n56_n57_n58" B1 ,
+    inpin "n63_n64_n65_n66" D3 ,
+    inpin "n103_n104_n105_n106" C2 ,
+    inpin "n155_n156_n157_n158" C2 ,
+    inpin "n207_n208_n209_n210" A1 ,
+    inpin "n227_n228_n229_n230" C1 ,
     ;
-  net "out1_out4_out5_out6.BMUX->out4_FINAL_OUTPUT.O" ,
-    inpin "out4_FINAL_OUTPUT" O ,
-    outpin "out1_out4_out5_out6" BMUX ,
+  net "n99_n100_n101_n102.DMUX->n99_n100_n101_n102.C1" ,
+    inpin "n99_n100_n101_n102" C1 ,
+    outpin "n99_n100_n101_n102" DMUX ,
     ;
-  net "in4.I->out3.A4" ,
-    inpin "out3" A4 ,
-    outpin "in4" I ,
+  net "n195_n196_n197_n198.CMUX->n195_n196_n197_n198.B4" ,
+    inpin "n195_n196_n197_n198" B4 ,
+    outpin "n195_n196_n197_n198" CMUX ,
+    inpin "n235_n236_v_n238" B4 ,
     ;
-  net "out1_out4_out5_out6.DMUX->out6_FINAL_OUTPUT.O" ,
-    inpin "out6_FINAL_OUTPUT" O ,
-    outpin "out1_out4_out5_out6" DMUX ,
+  net "n219_n220_n221_n222.CMUX->n219_n220_n221_n222.A4" ,
+    inpin "n219_n220_n221_n222" A4 ,
+    outpin "n219_n220_n221_n222" CMUX ,
+    ;
+  net "n167_n168_n169_n170.DMUX->n167_n168_n169_n170.B4" ,
+    inpin "n167_n168_n169_n170" B4 ,
+    outpin "n167_n168_n169_n170" DMUX ,
+    ;
+  net "n95_n96_n97_n98.AMUX->n91_n92_n93_n94.A6" ,
+    inpin "n91_n92_n93_n94" A6 ,
+    outpin "n95_n96_n97_n98" AMUX ,
+    inpin "n95_n96_n97_n98" D4 ,
+    ;
+  net "g.I->n135_n136_n137_n138.B2" ,
+    inpin "n135_n136_n137_n138" B2 ,
+    outpin "g" I ,
+    inpin "n139_n140_n141_n142" A2 ,
+    inpin "n139_n140_n141_n142" D2 ,
+    inpin "n143_n144_n145_n146" C1 ,
+    inpin "n147_n148_n149_n150" B1 ,
+    inpin "n163_n164_n165_n166" C2 ,
+    inpin "n167_n168_n169_n170" C1 ,
+    inpin "n167_n168_n169_n170" D2 ,
+    inpin "n171_r_n173_n174" A2 ,
+    inpin "n179_n180_n181_n182" C6 ,
+    inpin "n199_n200_n201_n202" A2 ,
+    inpin "n235_n236_v_n238" D6 ,
+    ;
+  net "n107_n108_n109_n110.BMUX->n107_n108_n109_n110.A1" ,
+    inpin "n107_n108_n109_n110" A1 ,
+    outpin "n107_n108_n109_n110" BMUX ,
+    inpin "n175_n176_n177_n178" A2 ,
+    inpin "n231_n232_n233_n234" B1 ,
+    ;
+  net "o_n24_n25_n26.DMUX->o_n24_n25_n26.C2" ,
+    inpin "o_n24_n25_n26" C2 ,
+    outpin "o_n24_n25_n26" DMUX ,
+    inpin "n59_n60_n61_n62" B5 ,
+    inpin "n63_n64_n65_n66" A1 ,
+    inpin "n71_n72_n73_n74" B2 ,
+    inpin "n75_n76_n77_p" A3 ,
+    inpin "n79_n80_n81_n82" C2 ,
+    inpin "n119_n120_n121_n122" A1 ,
+    inpin "n147_n148_n149_n150" A1 ,
+    inpin "n163_n164_n165_n166" A1 ,
+    inpin "n167_n168_n169_n170" A1 ,
+    inpin "n203_n204_n205_n206" A1 ,
+    inpin "n211_n212_n213_n214" C1 ,
+    ;
+  net "n147_n148_n149_n150.CMUX->n131_n132_n133_n134.C5" ,
+    inpin "n131_n132_n133_n134" C5 ,
+    outpin "n147_n148_n149_n150" CMUX ,
+    ;
+  net "n159_n160_n161_n162.DMUX->n155_n156_n157_n158.B5" ,
+    inpin "n155_n156_n157_n158" B5 ,
+    outpin "n159_n160_n161_n162" DMUX ,
+    ;
+  net "n235_n236_v_n238.CMUX->v_FINAL_OUTPUT.O" ,
+    inpin "v_FINAL_OUTPUT" O ,
+    outpin "n235_n236_v_n238" CMUX ,
+    ;
+  net "n31_n32_n33_n34.BMUX->n31_n32_n33_n34.A3" ,
+    inpin "n31_n32_n33_n34" A3 ,
+    outpin "n31_n32_n33_n34" BMUX ,
+    inpin "n63_n64_n65_n66" D1 ,
+    inpin "n135_n136_n137_n138" B4 ,
+    ;
+  net "n71_n72_n73_n74.DMUX->n71_n72_n73_n74.B4" ,
+    inpin "n71_n72_n73_n74" B4 ,
+    outpin "n71_n72_n73_n74" DMUX ,
+    ;
+  net "n215_n216_n217_n218.BMUX->n171_r_n173_n174.B5" ,
+    inpin "n171_r_n173_n174" B5 ,
+    outpin "n215_n216_n217_n218" BMUX ,
+    ;
+  net "i.I->n27_n28_n29_n30.B1" ,
+    inpin "n27_n28_n29_n30" B1 ,
+    outpin "i" I ,
+    inpin "n27_n28_n29_n30" C1 ,
+    inpin "n31_n32_n33_n34" C1 ,
+    inpin "n31_n32_n33_n34" D1 ,
+    inpin "n35_n36_n37_n38" A1 ,
+    inpin "n35_n36_n37_n38" B1 ,
+    inpin "n35_n36_n37_n38" C2 ,
+    inpin "n39_n40_n41_n42" B1 ,
+    inpin "n43_n44_n45_n46" A1 ,
+    inpin "n43_n44_n45_n46" D1 ,
+    inpin "n47_n48_n49_n50" B1 ,
+    inpin "n47_n48_n49_n50" C3 ,
+    inpin "n47_n48_n49_n50" D1 ,
+    inpin "n51_n52_n53_n54" A1 ,
+    inpin "n51_n52_n53_n54" D2 ,
+    inpin "n55_n56_n57_n58" A1 ,
+    inpin "n55_n56_n57_n58" D2 ,
+    inpin "n59_n60_n61_n62" A2 ,
+    inpin "n59_n60_n61_n62" C1 ,
+    inpin "n59_n60_n61_n62" D3 ,
+    inpin "n63_n64_n65_n66" B1 ,
+    inpin "n63_n64_n65_n66" C2 ,
+    inpin "n67_n68_n69_n70" A1 ,
+    inpin "n67_n68_n69_n70" C1 ,
+    inpin "n71_n72_n73_n74" A3 ,
+    inpin "n71_n72_n73_n74" C1 ,
+    inpin "n71_n72_n73_n74" D3 ,
+    inpin "n75_n76_n77_p" C2 ,
+    inpin "n83_n84_n85_n86" C1 ,
+    inpin "n87_n88_n89_n90" C1 ,
+    inpin "n95_n96_n97_n98" B2 ,
+    inpin "n95_n96_n97_n98" C2 ,
+    inpin "n99_n100_n101_n102" A2 ,
+    inpin "n103_n104_n105_n106" A1 ,
+    inpin "n103_n104_n105_n106" D1 ,
+    inpin "n107_n108_n109_n110" B1 ,
+    inpin "n111_n112_n113_n114" A1 ,
+    inpin "n111_n112_n113_n114" B1 ,
+    inpin "n115_n116_n117_n118" A1 ,
+    inpin "n115_n116_n117_n118" C1 ,
+    inpin "n115_n116_n117_n118" D2 ,
+    inpin "n119_n120_n121_n122" B1 ,
+    inpin "n119_n120_n121_n122" D3 ,
+    inpin "n123_n124_n125_n126" C3 ,
+    inpin "n123_n124_n125_n126" D1 ,
+    inpin "n127_n128_n129_q" B2 ,
+    inpin "n127_n128_n129_q" C3 ,
+    inpin "n143_n144_n145_n146" D2 ,
+    inpin "n147_n148_n149_n150" B2 ,
+    inpin "n151_n152_n153_n154" A2 ,
+    inpin "n163_n164_n165_n166" B1 ,
+    inpin "n167_n168_n169_n170" C2 ,
+    inpin "n167_n168_n169_n170" D3 ,
+    inpin "n171_r_n173_n174" A3 ,
+    inpin "n175_n176_n177_n178" D1 ,
+    inpin "n187_n188_n189_n190" C2 ,
+    inpin "n191_n192_n193_n194" A1 ,
+    inpin "n191_n192_n193_n194" B2 ,
+    inpin "n199_n200_n201_n202" B2 ,
+    inpin "n203_n204_n205_n206" C2 ,
+    inpin "n203_n204_n205_n206" D2 ,
+    inpin "n207_n208_n209_n210" C1 ,
+    inpin "n215_n216_n217_n218" D3 ,
+    inpin "n219_n220_n221_n222" B2 ,
+    inpin "n219_n220_n221_n222" C2 ,
+    inpin "n219_n220_n221_n222" D3 ,
+    inpin "s_u_n225_n226" D2 ,
+    inpin "n227_n228_n229_n230" A1 ,
+    inpin "n231_n232_n233_n234" A1 ,
+    inpin "n231_n232_n233_n234" D1 ,
+    ;
+  net "n47_n48_n49_n50.CMUX->n47_n48_n49_n50.A5" ,
+    inpin "n47_n48_n49_n50" A5 ,
+    outpin "n47_n48_n49_n50" CMUX ,
+    ;
+  net "n63_n64_n65_n66.BMUX->n63_n64_n65_n66.A3" ,
+    inpin "n63_n64_n65_n66" A3 ,
+    outpin "n63_n64_n65_n66" BMUX ,
+    ;
+  net "n55_n56_n57_n58.BMUX->o_n24_n25_n26.B4" ,
+    inpin "o_n24_n25_n26" B4 ,
+    outpin "n55_n56_n57_n58" BMUX ,
+    ;
+  net "n167_n168_n169_n170.CMUX->n167_n168_n169_n170.B3" ,
+    inpin "n167_n168_n169_n170" B3 ,
+    outpin "n167_n168_n169_n170" CMUX ,
+    ;
+  net "n183_t_n185_n186.CMUX->n175_n176_n177_n178.D4" ,
+    inpin "n175_n176_n177_n178" D4 ,
+    outpin "n183_t_n185_n186" CMUX ,
+    ;
+  net "d.I->n175_n176_n177_n178.C1" ,
+    inpin "n175_n176_n177_n178" C1 ,
+    outpin "d" I ,
+    inpin "n179_n180_n181_n182" D1 ,
+    inpin "n183_t_n185_n186" B1 ,
+    inpin "n183_t_n185_n186" C1 ,
+    inpin "n187_n188_n189_n190" C1 ,
+    inpin "n187_n188_n189_n190" D1 ,
+    inpin "n191_n192_n193_n194" B1 ,
+    inpin "n195_n196_n197_n198" B1 ,
+    inpin "n195_n196_n197_n198" C1 ,
+    inpin "n199_n200_n201_n202" B1 ,
+    inpin "n203_n204_n205_n206" C1 ,
+    inpin "n207_n208_n209_n210" B1 ,
+    inpin "n211_n212_n213_n214" D1 ,
+    inpin "n215_n216_n217_n218" A1 ,
+    inpin "n215_n216_n217_n218" C1 ,
+    inpin "n215_n216_n217_n218" D1 ,
+    inpin "n219_n220_n221_n222" D1 ,
+    inpin "s_u_n225_n226" A1 ,
+    inpin "s_u_n225_n226" D1 ,
+    inpin "n231_n232_n233_n234" C1 ,
+    inpin "n235_n236_v_n238" B1 ,
+    ;
+  net "n147_n148_n149_n150.BMUX->n131_n132_n133_n134.C4" ,
+    inpin "n131_n132_n133_n134" C4 ,
+    outpin "n147_n148_n149_n150" BMUX ,
+    ;
+  net "n43_n44_n45_n46.AMUX->n39_n40_n41_n42.C5" ,
+    inpin "n39_n40_n41_n42" C5 ,
+    outpin "n43_n44_n45_n46" AMUX ,
+    inpin "n91_n92_n93_n94" C2 ,
+    inpin "n143_n144_n145_n146" A2 ,
+    inpin "n175_n176_n177_n178" C2 ,
+    ;
+  net "n151_n152_n153_n154.DMUX->n151_n152_n153_n154.C4" ,
+    inpin "n151_n152_n153_n154" C4 ,
+    outpin "n151_n152_n153_n154" DMUX ,
+    inpin "n159_n160_n161_n162" C5 ,
+    ;
+  net "n175_n176_n177_n178.BMUX->n175_n176_n177_n178.A3" ,
+    inpin "n175_n176_n177_n178" A3 ,
+    outpin "n175_n176_n177_n178" BMUX ,
+    inpin "n199_n200_n201_n202" B3 ,
+    inpin "n203_n204_n205_n206" B2 ,
+    inpin "s_u_n225_n226" D3 ,
+    inpin "n231_n232_n233_n234" B2 ,
+    ;
+  net "n79_n80_n81_n82.BMUX->n79_n80_n81_n82.A4" ,
+    inpin "n79_n80_n81_n82" A4 ,
+    outpin "n79_n80_n81_n82" BMUX ,
+    inpin "n131_n132_n133_n134" A4 ,
+    ;
+  net "n39_n40_n41_n42.BMUX->n39_n40_n41_n42.A2" ,
+    inpin "n39_n40_n41_n42" A2 ,
+    outpin "n39_n40_n41_n42" BMUX ,
+    inpin "n91_n92_n93_n94" B3 ,
+    inpin "n139_n140_n141_n142" C1 ,
+    inpin "n191_n192_n193_n194" D1 ,
+    ;
+  net "n195_n196_n197_n198.DMUX->n195_n196_n197_n198.C3" ,
+    inpin "n195_n196_n197_n198" C3 ,
+    outpin "n195_n196_n197_n198" DMUX ,
+    inpin "n215_n216_n217_n218" A4 ,
+    ;
+  net "n27_n28_n29_n30.CMUX->o_n24_n25_n26.D2" ,
+    inpin "o_n24_n25_n26" D2 ,
+    outpin "n27_n28_n29_n30" CMUX ,
+    inpin "n39_n40_n41_n42" D1 ,
+    ;
+  net "n59_n60_n61_n62.BMUX->n55_n56_n57_n58.B5" ,
+    inpin "n55_n56_n57_n58" B5 ,
+    outpin "n59_n60_n61_n62" BMUX ,
+    ;
+  net "n67_n68_n69_n70.AMUX->o_n24_n25_n26.A4" ,
+    inpin "o_n24_n25_n26" A4 ,
+    outpin "n67_n68_n69_n70" AMUX ,
+    inpin "n75_n76_n77_p" D2 ,
+    inpin "n127_n128_n129_q" D2 ,
+    inpin "n215_n216_n217_n218" B2 ,
+    ;
+  net "n143_n144_n145_n146.AMUX->n139_n140_n141_n142.B4" ,
+    inpin "n139_n140_n141_n142" B4 ,
+    outpin "n143_n144_n145_n146" AMUX ,
+    inpin "n147_n148_n149_n150" D2 ,
+    ;
+  net "o_n24_n25_n26.CMUX->o_n24_n25_n26.B2" ,
+    inpin "o_n24_n25_n26" B2 ,
+    outpin "o_n24_n25_n26" CMUX ,
+    ;
+  net "n195_n196_n197_n198.AMUX->n175_n176_n177_n178.A5" ,
+    inpin "n175_n176_n177_n178" A5 ,
+    outpin "n195_n196_n197_n198" AMUX ,
+    inpin "n231_n232_n233_n234" B4 ,
+    ;
+  net "s_u_n225_n226.DMUX->s_u_n225_n226.C3" ,
+    inpin "s_u_n225_n226" C3 ,
+    outpin "s_u_n225_n226" DMUX ,
+    ;
+  net "n63_n64_n65_n66.CMUX->n63_n64_n65_n66.A4" ,
+    inpin "n63_n64_n65_n66" A4 ,
+    outpin "n63_n64_n65_n66" CMUX ,
+    ;
+  net "n163_n164_n165_n166.AMUX->n159_n160_n161_n162.D2" ,
+    inpin "n159_n160_n161_n162" D2 ,
+    outpin "n163_n164_n165_n166" AMUX ,
+    ;
+  net "n207_n208_n209_n210.BMUX->n171_r_n173_n174.C6" ,
+    inpin "n171_r_n173_n174" C6 ,
+    outpin "n207_n208_n209_n210" BMUX ,
+    ;
+  net "n231_n232_n233_n234.DMUX->n231_n232_n233_n234.C2" ,
+    inpin "n231_n232_n233_n234" C2 ,
+    outpin "n231_n232_n233_n234" DMUX ,
+    ;
+  net "n83_n84_n85_n86.DMUX->n83_n84_n85_n86.A5" ,
+    inpin "n83_n84_n85_n86" A5 ,
+    outpin "n83_n84_n85_n86" DMUX ,
+    ;
+  net "n59_n60_n61_n62.AMUX->n55_n56_n57_n58.B4" ,
+    inpin "n55_n56_n57_n58" B4 ,
+    outpin "n59_n60_n61_n62" AMUX ,
+    ;
+  net "o_n24_n25_n26.AMUX->o_FINAL_OUTPUT.O" ,
+    inpin "o_FINAL_OUTPUT" O ,
+    outpin "o_n24_n25_n26" AMUX ,
+    ;
+  net "n59_n60_n61_n62.CMUX->n59_n60_n61_n62.B4" ,
+    inpin "n59_n60_n61_n62" B4 ,
+    outpin "n59_n60_n61_n62" CMUX ,
+    ;
+  net "n131_n132_n133_n134.DMUX->n131_n132_n133_n134.C2" ,
+    inpin "n131_n132_n133_n134" C2 ,
+    outpin "n131_n132_n133_n134" DMUX ,
+    ;
+  net "n179_n180_n181_n182.CMUX->n179_n180_n181_n182.A3" ,
+    inpin "n179_n180_n181_n182" A3 ,
+    outpin "n179_n180_n181_n182" CMUX ,
+    inpin "n183_t_n185_n186" A4 ,
+    inpin "n183_t_n185_n186" C2 ,
+    inpin "n187_n188_n189_n190" B3 ,
+    ;
+  net "n195_n196_n197_n198.BMUX->n175_n176_n177_n178.A6" ,
+    inpin "n175_n176_n177_n178" A6 ,
+    outpin "n195_n196_n197_n198" BMUX ,
+    ;
+  net "n47_n48_n49_n50.BMUX->n47_n48_n49_n50.A2" ,
+    inpin "n47_n48_n49_n50" A2 ,
+    outpin "n47_n48_n49_n50" BMUX ,
+    inpin "n75_n76_n77_p" A2 ,
+    inpin "n91_n92_n93_n94" D1 ,
+    inpin "n143_n144_n145_n146" B1 ,
+    ;
+  net "s_u_n225_n226.AMUX->s_FINAL_OUTPUT.O" ,
+    inpin "s_FINAL_OUTPUT" O ,
+    outpin "s_u_n225_n226" AMUX ,
+    inpin "n235_n236_v_n238" C1 ,
+    ;
+  net "n219_n220_n221_n222.DMUX->n219_n220_n221_n222.A5" ,
+    inpin "n219_n220_n221_n222" A5 ,
+    outpin "n219_n220_n221_n222" DMUX ,
+    ;
+  net "n91_n92_n93_n94.BMUX->n91_n92_n93_n94.A3" ,
+    inpin "n91_n92_n93_n94" A3 ,
+    outpin "n91_n92_n93_n94" BMUX ,
+    ;
+  net "n95_n96_n97_n98.DMUX->n95_n96_n97_n98.C3" ,
+    inpin "n95_n96_n97_n98" C3 ,
+    outpin "n95_n96_n97_n98" DMUX ,
+    inpin "n99_n100_n101_n102" D1 ,
+    inpin "n103_n104_n105_n106" C4 ,
+    inpin "n107_n108_n109_n110" C2 ,
+    inpin "n147_n148_n149_n150" C2 ,
+    inpin "n151_n152_n153_n154" B1 ,
+    inpin "n155_n156_n157_n158" A2 ,
+    inpin "n155_n156_n157_n158" C3 ,
+    inpin "n195_n196_n197_n198" A1 ,
+    inpin "n199_n200_n201_n202" C3 ,
+    inpin "n207_n208_n209_n210" A3 ,
+    inpin "n227_n228_n229_n230" C2 ,
+    ;
+  net "n139_n140_n141_n142.AMUX->n135_n136_n137_n138.A3" ,
+    inpin "n135_n136_n137_n138" A3 ,
+    outpin "n139_n140_n141_n142" AMUX ,
+    inpin "n143_n144_n145_n146" A5 ,
+    inpin "n143_n144_n145_n146" B4 ,
+    inpin "n143_n144_n145_n146" C5 ,
+    ;
+  net "n187_n188_n189_n190.BMUX->n175_n176_n177_n178.D5" ,
+    inpin "n175_n176_n177_n178" D5 ,
+    outpin "n187_n188_n189_n190" BMUX ,
+    ;
+  net "n187_n188_n189_n190.DMUX->n175_n176_n177_n178.D6" ,
+    inpin "n175_n176_n177_n178" D6 ,
+    outpin "n187_n188_n189_n190" DMUX ,
+    ;
+  net "n211_n212_n213_n214.AMUX->n207_n208_n209_n210.B3" ,
+    inpin "n207_n208_n209_n210" B3 ,
+    outpin "n211_n212_n213_n214" AMUX ,
+    ;
+  net "n107_n108_n109_n110.AMUX->n103_n104_n105_n106.C5" ,
+    inpin "n103_n104_n105_n106" C5 ,
+    outpin "n107_n108_n109_n110" AMUX ,
+    ;
+  net "n135_n136_n137_n138.BMUX->n135_n136_n137_n138.A2" ,
+    inpin "n135_n136_n137_n138" A2 ,
+    outpin "n135_n136_n137_n138" BMUX ,
+    inpin "n143_n144_n145_n146" A4 ,
+    inpin "n143_n144_n145_n146" B3 ,
+    inpin "n143_n144_n145_n146" C4 ,
+    ;
+  net "n159_n160_n161_n162.BMUX->n159_n160_n161_n162.A5" ,
+    inpin "n159_n160_n161_n162" A5 ,
+    outpin "n159_n160_n161_n162" BMUX ,
+    ;
+  net "n127_n128_n129_q.CMUX->n127_n128_n129_q.A4" ,
+    inpin "n127_n128_n129_q" A4 ,
+    outpin "n127_n128_n129_q" CMUX ,
+    ;
+  net "n91_n92_n93_n94.AMUX->n79_n80_n81_n82.C5" ,
+    inpin "n79_n80_n81_n82" C5 ,
+    outpin "n91_n92_n93_n94" AMUX ,
+    inpin "n99_n100_n101_n102" D2 ,
+    inpin "n147_n148_n149_n150" A4 ,
+    inpin "n151_n152_n153_n154" B2 ,
+    inpin "n195_n196_n197_n198" A2 ,
+    inpin "n203_n204_n205_n206" A4 ,
+    ;
+  net "n31_n32_n33_n34.DMUX->n31_n32_n33_n34.A5" ,
+    inpin "n31_n32_n33_n34" A5 ,
+    outpin "n31_n32_n33_n34" DMUX ,
+    inpin "n87_n88_n89_n90" D4 ,
+    inpin "n139_n140_n141_n142" A4 ,
+    inpin "n187_n188_n189_n190" D4 ,
+    ;
+  net "n123_n124_n125_n126.BMUX->n123_n124_n125_n126.A3" ,
+    inpin "n123_n124_n125_n126" A3 ,
+    outpin "n123_n124_n125_n126" BMUX ,
+    ;
+  net "n83_n84_n85_n86.AMUX->n79_n80_n81_n82.D1" ,
+    inpin "n79_n80_n81_n82" D1 ,
+    outpin "n83_n84_n85_n86" AMUX ,
+    inpin "n91_n92_n93_n94" C3 ,
+    inpin "n91_n92_n93_n94" D2 ,
+    inpin "n95_n96_n97_n98" A3 ,
+    inpin "n107_n108_n109_n110" A2 ,
+    inpin "n123_n124_n125_n126" B2 ,
+    ;
+  net "n179_n180_n181_n182.BMUX->n179_n180_n181_n182.A2" ,
+    inpin "n179_n180_n181_n182" A2 ,
+    outpin "n179_n180_n181_n182" BMUX ,
+    ;
+  net "n191_n192_n193_n194.CMUX->n175_n176_n177_n178.A4" ,
+    inpin "n175_n176_n177_n178" A4 ,
+    outpin "n191_n192_n193_n194" CMUX ,
+    inpin "n227_n228_n229_n230" A3 ,
+    inpin "n231_n232_n233_n234" B3 ,
+    ;
+  net "n87_n88_n89_n90.AMUX->n79_n80_n81_n82.D2" ,
+    inpin "n79_n80_n81_n82" D2 ,
+    outpin "n87_n88_n89_n90" AMUX ,
+    inpin "n91_n92_n93_n94" C4 ,
+    inpin "n91_n92_n93_n94" D3 ,
+    inpin "n95_n96_n97_n98" A4 ,
+    inpin "n107_n108_n109_n110" A3 ,
+    inpin "n123_n124_n125_n126" B3 ,
+    ;
+  net "n71_n72_n73_n74.AMUX->n67_n68_n69_n70.B4" ,
+    inpin "n67_n68_n69_n70" B4 ,
+    outpin "n71_n72_n73_n74" AMUX ,
+    ;
+  net "o_n24_n25_n26.BMUX->o_n24_n25_n26.A3" ,
+    inpin "o_n24_n25_n26" A3 ,
+    outpin "o_n24_n25_n26" BMUX ,
+    inpin "n79_n80_n81_n82" A3 ,
+    inpin "n131_n132_n133_n134" A3 ,
+    ;
+  net "n75_n76_n77_p.AMUX->n71_n72_n73_n74.B5" ,
+    inpin "n71_n72_n73_n74" B5 ,
+    outpin "n75_n76_n77_p" AMUX ,
+    ;
+  net "n67_n68_n69_n70.DMUX->n67_n68_n69_n70.B3" ,
+    inpin "n67_n68_n69_n70" B3 ,
+    outpin "n67_n68_n69_n70" DMUX ,
+    inpin "n107_n108_n109_n110" D1 ,
+    inpin "n111_n112_n113_n114" D1 ,
+    inpin "n151_n152_n153_n154" D2 ,
+    inpin "n159_n160_n161_n162" B2 ,
+    inpin "n207_n208_n209_n210" D3 ,
+    inpin "n235_n236_v_n238" A3 ,
+    ;
+  net "n51_n52_n53_n54.BMUX->o_n24_n25_n26.B3" ,
+    inpin "o_n24_n25_n26" B3 ,
+    outpin "n51_n52_n53_n54" BMUX ,
+    ;
+  net "n115_n116_n117_n118.CMUX->n115_n116_n117_n118.B3" ,
+    inpin "n115_n116_n117_n118" B3 ,
+    outpin "n115_n116_n117_n118" CMUX ,
+    inpin "n119_n120_n121_n122" C5 ,
+    inpin "n163_n164_n165_n166" C4 ,
+    inpin "n195_n196_n197_n198" B3 ,
+    inpin "n211_n212_n213_n214" D3 ,
+    inpin "n235_n236_v_n238" B3 ,
+    ;
+  net "n127_n128_n129_q.BMUX->n127_n128_n129_q.A3" ,
+    inpin "n127_n128_n129_q" A3 ,
+    outpin "n127_n128_n129_q" BMUX ,
+    ;
+  net "n211_n212_n213_n214.DMUX->n211_n212_n213_n214.B5" ,
+    inpin "n211_n212_n213_n214" B5 ,
+    outpin "n211_n212_n213_n214" DMUX ,
+    ;
+  net "n95_n96_n97_n98.CMUX->n79_n80_n81_n82.B3" ,
+    inpin "n79_n80_n81_n82" B3 ,
+    outpin "n95_n96_n97_n98" CMUX ,
+    ;
+  net "n107_n108_n109_n110.CMUX->n99_n100_n101_n102.C3" ,
+    inpin "n99_n100_n101_n102" C3 ,
+    outpin "n107_n108_n109_n110" CMUX ,
+    ;
+  net "n211_n212_n213_n214.BMUX->n207_n208_n209_n210.B4" ,
+    inpin "n207_n208_n209_n210" B4 ,
+    outpin "n211_n212_n213_n214" BMUX ,
+    ;
+  net "n207_n208_n209_n210.CMUX->n207_n208_n209_n210.B2" ,
+    inpin "n207_n208_n209_n210" B2 ,
+    outpin "n207_n208_n209_n210" CMUX ,
+    ;
+  net "n203_n204_n205_n206.DMUX->n203_n204_n205_n206.B5" ,
+    inpin "n203_n204_n205_n206" B5 ,
+    outpin "n203_n204_n205_n206" DMUX ,
+    inpin "n211_n212_n213_n214" A3 ,
+    ;
+  net "n35_n36_n37_n38.CMUX->o_n24_n25_n26.C4" ,
+    inpin "o_n24_n25_n26" C4 ,
+    outpin "n35_n36_n37_n38" CMUX ,
+    ;
+  net "n191_n192_n193_n194.DMUX->n191_n192_n193_n194.C2" ,
+    inpin "n191_n192_n193_n194" C2 ,
+    outpin "n191_n192_n193_n194" DMUX ,
+    inpin "n199_n200_n201_n202" D2 ,
+    ;
+  net "c.I->n135_n136_n137_n138.B1" ,
+    inpin "n135_n136_n137_n138" B1 ,
+    outpin "c" I ,
+    inpin "n139_n140_n141_n142" A1 ,
+    inpin "n139_n140_n141_n142" D1 ,
+    inpin "n143_n144_n145_n146" A1 ,
+    inpin "n143_n144_n145_n146" D1 ,
+    inpin "n151_n152_n153_n154" A1 ,
+    inpin "n151_n152_n153_n154" C1 ,
+    inpin "n155_n156_n157_n158" D3 ,
+    inpin "n159_n160_n161_n162" A1 ,
+    inpin "n159_n160_n161_n162" C1 ,
+    inpin "n163_n164_n165_n166" C1 ,
+    inpin "n167_n168_n169_n170" D1 ,
+    inpin "n171_r_n173_n174" A1 ,
+    inpin "n179_n180_n181_n182" B1 ,
+    inpin "n179_n180_n181_n182" C3 ,
+    inpin "n195_n196_n197_n198" D3 ,
+    inpin "n199_n200_n201_n202" A1 ,
+    inpin "n199_n200_n201_n202" C2 ,
+    inpin "n207_n208_n209_n210" D2 ,
+    inpin "n235_n236_v_n238" A2 ,
+    inpin "n235_n236_v_n238" D3 ,
+    ;
+  net "n183_t_n185_n186.DMUX->n183_t_n185_n186.C3" ,
+    inpin "n183_t_n185_n186" C3 ,
+    outpin "n183_t_n185_n186" DMUX ,
+    ;
+  net "n199_n200_n201_n202.DMUX->n199_n200_n201_n202.B5" ,
+    inpin "n199_n200_n201_n202" B5 ,
+    outpin "n199_n200_n201_n202" DMUX ,
+    ;
+  net "n115_n116_n117_n118.DMUX->n111_n112_n113_n114.D5" ,
+    inpin "n111_n112_n113_n114" D5 ,
+    outpin "n115_n116_n117_n118" DMUX ,
+    ;
+  net "n123_n124_n125_n126.CMUX->n123_n124_n125_n126.B5" ,
+    inpin "n123_n124_n125_n126" B5 ,
+    outpin "n123_n124_n125_n126" CMUX ,
+    ;
+  net "n151_n152_n153_n154.AMUX->n147_n148_n149_n150.C5" ,
+    inpin "n147_n148_n149_n150" C5 ,
+    outpin "n151_n152_n153_n154" AMUX ,
+    ;
+  net "n103_n104_n105_n106.BMUX->n99_n100_n101_n102.D4" ,
+    inpin "n99_n100_n101_n102" D4 ,
+    outpin "n103_n104_n105_n106" BMUX ,
+    inpin "n151_n152_n153_n154" B4 ,
+    inpin "n195_n196_n197_n198" A3 ,
+    ;
+  net "f.I->n83_n84_n85_n86.D4" ,
+    inpin "n83_n84_n85_n86" D4 ,
+    outpin "f" I ,
+    inpin "n87_n88_n89_n90" A2 ,
+    inpin "n87_n88_n89_n90" D2 ,
+    inpin "n91_n92_n93_n94" B2 ,
+    inpin "n95_n96_n97_n98" A1 ,
+    inpin "n99_n100_n101_n102" A1 ,
+    inpin "n115_n116_n117_n118" B1 ,
+    inpin "n119_n120_n121_n122" C2 ,
+    inpin "n123_n124_n125_n126" C2 ,
+    inpin "n127_n128_n129_q" B1 ,
+    inpin "n127_n128_n129_q" C2 ,
+    inpin "n135_n136_n137_n138" C4 ,
+    inpin "n163_n164_n165_n166" D4 ,
+    inpin "n179_n180_n181_n182" C5 ,
+    inpin "n235_n236_v_n238" D5 ,
+    ;
+  net "n159_n160_n161_n162.AMUX->n155_n156_n157_n158.B3" ,
+    inpin "n155_n156_n157_n158" B3 ,
+    outpin "n159_n160_n161_n162" AMUX ,
+    ;
+  net "n235_n236_v_n238.DMUX->n235_n236_v_n238.C2" ,
+    inpin "n235_n236_v_n238" C2 ,
+    outpin "n235_n236_v_n238" DMUX ,
+    ;
+  net "n95_n96_n97_n98.BMUX->n95_n96_n97_n98.A6" ,
+    inpin "n95_n96_n97_n98" A6 ,
+    outpin "n95_n96_n97_n98" BMUX ,
+    ;
+  net "n35_n36_n37_n38.DMUX->o_n24_n25_n26.C5" ,
+    inpin "o_n24_n25_n26" C5 ,
+    outpin "n35_n36_n37_n38" DMUX ,
+    inpin "n51_n52_n53_n54" B2 ,
+    inpin "n63_n64_n65_n66" A2 ,
+    inpin "n63_n64_n65_n66" D4 ,
+    inpin "n79_n80_n81_n82" C3 ,
+    inpin "n147_n148_n149_n150" A2 ,
+    inpin "n203_n204_n205_n206" A2 ,
+    ;
+  net "n215_n216_n217_n218.AMUX->n211_n212_n213_n214.D5" ,
+    inpin "n211_n212_n213_n214" D5 ,
+    outpin "n215_n216_n217_n218" AMUX ,
+    ;
+  net "n55_n56_n57_n58.CMUX->n55_n56_n57_n58.B2" ,
+    inpin "n55_n56_n57_n58" B2 ,
+    outpin "n55_n56_n57_n58" CMUX ,
+    inpin "n79_n80_n81_n82" B1 ,
+    inpin "n131_n132_n133_n134" B2 ,
+    ;
+  net "n135_n136_n137_n138.AMUX->n131_n132_n133_n134.D1" ,
+    inpin "n131_n132_n133_n134" D1 ,
+    outpin "n135_n136_n137_n138" AMUX ,
+    inpin "n151_n152_n153_n154" C3 ,
+    inpin "n159_n160_n161_n162" B5 ,
+    inpin "n159_n160_n161_n162" C4 ,
+    inpin "n163_n164_n165_n166" A4 ,
+    inpin "n167_n168_n169_n170" A3 ,
+    inpin "n167_n168_n169_n170" B2 ,
+    inpin "n167_n168_n169_n170" C5 ,
+    inpin "n203_n204_n205_n206" A5 ,
+    inpin "n207_n208_n209_n210" D5 ,
+    inpin "n211_n212_n213_n214" C4 ,
+    inpin "n235_n236_v_n238" A5 ,
+    ;
+  net "k.I->o_n24_n25_n26.C1" ,
+    inpin "o_n24_n25_n26" C1 ,
+    outpin "k" I ,
+    inpin "n27_n28_n29_n30" B3 ,
+    inpin "n27_n28_n29_n30" C3 ,
+    inpin "n31_n32_n33_n34" B1 ,
+    inpin "n31_n32_n33_n34" D3 ,
+    inpin "n35_n36_n37_n38" A3 ,
+    inpin "n35_n36_n37_n38" B3 ,
+    inpin "n39_n40_n41_n42" B3 ,
+    inpin "n43_n44_n45_n46" B1 ,
+    inpin "n47_n48_n49_n50" D3 ,
+    inpin "n51_n52_n53_n54" D4 ,
+    inpin "n55_n56_n57_n58" A3 ,
+    inpin "n55_n56_n57_n58" D3 ,
+    inpin "n59_n60_n61_n62" C2 ,
+    inpin "n59_n60_n61_n62" D5 ,
+    inpin "n63_n64_n65_n66" B3 ,
+    inpin "n63_n64_n65_n66" C4 ,
+    inpin "n67_n68_n69_n70" A3 ,
+    inpin "n67_n68_n69_n70" C2 ,
+    inpin "n71_n72_n73_n74" A4 ,
+    inpin "n71_n72_n73_n74" C2 ,
+    inpin "n71_n72_n73_n74" D4 ,
+    inpin "n75_n76_n77_p" A1 ,
+    inpin "n75_n76_n77_p" C4 ,
+    inpin "n83_n84_n85_n86" B2 ,
+    inpin "n83_n84_n85_n86" D5 ,
+    inpin "n87_n88_n89_n90" B3 ,
+    inpin "n87_n88_n89_n90" C3 ,
+    inpin "n99_n100_n101_n102" A3 ,
+    inpin "n103_n104_n105_n106" A3 ,
+    inpin "n103_n104_n105_n106" D3 ,
+    inpin "n107_n108_n109_n110" B3 ,
+    inpin "n111_n112_n113_n114" A3 ,
+    inpin "n111_n112_n113_n114" B3 ,
+    inpin "n115_n116_n117_n118" A3 ,
+    inpin "n115_n116_n117_n118" C3 ,
+    inpin "n115_n116_n117_n118" D4 ,
+    inpin "n119_n120_n121_n122" B3 ,
+    inpin "n119_n120_n121_n122" D5 ,
+    inpin "n123_n124_n125_n126" C4 ,
+    inpin "n123_n124_n125_n126" D3 ,
+    inpin "n127_n128_n129_q" B4 ,
+    inpin "n127_n128_n129_q" C4 ,
+    inpin "n135_n136_n137_n138" D3 ,
+    inpin "n147_n148_n149_n150" B3 ,
+    inpin "n159_n160_n161_n162" A2 ,
+    inpin "n163_n164_n165_n166" B3 ,
+    inpin "n167_n168_n169_n170" C3 ,
+    inpin "n167_n168_n169_n170" D5 ,
+    inpin "n171_r_n173_n174" A5 ,
+    inpin "n171_r_n173_n174" D2 ,
+    inpin "n179_n180_n181_n182" B3 ,
+    inpin "n183_t_n185_n186" D2 ,
+    inpin "n187_n188_n189_n190" A3 ,
+    inpin "n191_n192_n193_n194" A3 ,
+    inpin "n203_n204_n205_n206" D4 ,
+    inpin "n207_n208_n209_n210" C3 ,
+    inpin "n215_n216_n217_n218" D4 ,
+    inpin "n219_n220_n221_n222" B3 ,
+    inpin "n219_n220_n221_n222" C4 ,
+    inpin "n219_n220_n221_n222" D5 ,
+    inpin "n227_n228_n229_n230" B1 ,
+    inpin "n231_n232_n233_n234" A3 ,
+    inpin "n231_n232_n233_n234" D3 ,
+    ;
+  net "n155_n156_n157_n158.BMUX->n131_n132_n133_n134.B6" ,
+    inpin "n131_n132_n133_n134" B6 ,
+    outpin "n155_n156_n157_n158" BMUX ,
+    ;
+  net "n191_n192_n193_n194.BMUX->n175_n176_n177_n178.B2" ,
+    inpin "n175_n176_n177_n178" B2 ,
+    outpin "n191_n192_n193_n194" BMUX ,
+    inpin "n191_n192_n193_n194" C4 ,
+    inpin "n199_n200_n201_n202" D5 ,
+    inpin "n207_n208_n209_n210" A6 ,
+    inpin "n227_n228_n229_n230" C5 ,
+    ;
+  net "n111_n112_n113_n114.DMUX->n111_n112_n113_n114.C2" ,
+    inpin "n111_n112_n113_n114" C2 ,
+    outpin "n111_n112_n113_n114" DMUX ,
+    ;
+  net "n139_n140_n141_n142.BMUX->n131_n132_n133_n134.D2" ,
+    inpin "n131_n132_n133_n134" D2 ,
+    outpin "n139_n140_n141_n142" BMUX ,
+    inpin "n151_n152_n153_n154" B6 ,
+    inpin "n195_n196_n197_n198" A5 ,
+    inpin "n203_n204_n205_n206" A6 ,
+    ;
+  net "n219_n220_n221_n222.AMUX->n215_n216_n217_n218.B4" ,
+    inpin "n215_n216_n217_n218" B4 ,
+    outpin "n219_n220_n221_n222" AMUX ,
+    ;
+  net "n211_n212_n213_n214.CMUX->n211_n212_n213_n214.B4" ,
+    inpin "n211_n212_n213_n214" B4 ,
+    outpin "n211_n212_n213_n214" CMUX ,
+    ;
+  net "n51_n52_n53_n54.AMUX->o_n24_n25_n26.C6" ,
+    inpin "o_n24_n25_n26" C6 ,
+    outpin "n51_n52_n53_n54" AMUX ,
+    ;
+  net "n27_n28_n29_n30.AMUX->o_n24_n25_n26.D1" ,
+    inpin "o_n24_n25_n26" D1 ,
+    outpin "n27_n28_n29_n30" AMUX ,
+    inpin "n39_n40_n41_n42" C2 ,
+    inpin "n43_n44_n45_n46" C3 ,
+    inpin "n47_n48_n49_n50" A1 ,
+    inpin "n67_n68_n69_n70" D2 ,
+    ;
+  net "n171_r_n173_n174.AMUX->n167_n168_n169_n170.B5" ,
+    inpin "n167_n168_n169_n170" B5 ,
+    outpin "n171_r_n173_n174" AMUX ,
+    ;
+  net "m.I->o_n24_n25_n26.A1" ,
+    inpin "o_n24_n25_n26" A1 ,
+    outpin "m" I ,
+    inpin "n79_n80_n81_n82" A1 ,
+    inpin "n131_n132_n133_n134" A1 ,
+    ;
+  net "n207_n208_n209_n210.DMUX->n207_n208_n209_n210.C5" ,
+    inpin "n207_n208_n209_n210" C5 ,
+    outpin "n207_n208_n209_n210" DMUX ,
+    inpin "n211_n212_n213_n214" A4 ,
+    ;
+  net "n79_n80_n81_n82.DMUX->n79_n80_n81_n82.C4" ,
+    inpin "n79_n80_n81_n82" C4 ,
+    outpin "n79_n80_n81_n82" DMUX ,
+    inpin "n107_n108_n109_n110" D2 ,
+    inpin "n111_n112_n113_n114" D2 ,
+    inpin "n119_n120_n121_n122" A3 ,
+    inpin "n123_n124_n125_n126" D5 ,
+    inpin "n127_n128_n129_q" A2 ,
+    inpin "n147_n148_n149_n150" A3 ,
+    inpin "n151_n152_n153_n154" D3 ,
+    inpin "n159_n160_n161_n162" B3 ,
+    inpin "n163_n164_n165_n166" A2 ,
+    inpin "n167_n168_n169_n170" A2 ,
+    inpin "n203_n204_n205_n206" A3 ,
+    inpin "n207_n208_n209_n210" D4 ,
+    inpin "n211_n212_n213_n214" C2 ,
+    inpin "n235_n236_v_n238" A4 ,
+    ;
+  net "n119_n120_n121_n122.BMUX->n119_n120_n121_n122.A4" ,
+    inpin "n119_n120_n121_n122" A4 ,
+    outpin "n119_n120_n121_n122" BMUX ,
+    inpin "n163_n164_n165_n166" A3 ,
+    inpin "n211_n212_n213_n214" C3 ,
+    ;
+  net "n147_n148_n149_n150.DMUX->n147_n148_n149_n150.C4" ,
+    inpin "n147_n148_n149_n150" C4 ,
+    outpin "n147_n148_n149_n150" DMUX ,
+    inpin "n151_n152_n153_n154" B5 ,
+    inpin "n155_n156_n157_n158" A5 ,
+    inpin "n155_n156_n157_n158" C4 ,
+    inpin "n195_n196_n197_n198" A4 ,
+    inpin "n199_n200_n201_n202" C5 ,
+    inpin "n207_n208_n209_n210" A4 ,
+    inpin "n227_n228_n229_n230" C3 ,
+    ;
+  net "n119_n120_n121_n122.DMUX->n119_n120_n121_n122.C6" ,
+    inpin "n119_n120_n121_n122" C6 ,
+    outpin "n119_n120_n121_n122" DMUX ,
+    ;
+  net "a.I->n27_n28_n29_n30.D1" ,
+    inpin "n27_n28_n29_n30" D1 ,
+    outpin "a" I ,
+    inpin "n31_n32_n33_n34" A1 ,
+    inpin "n35_n36_n37_n38" C1 ,
+    inpin "n39_n40_n41_n42" C1 ,
+    inpin "n43_n44_n45_n46" C1 ,
+    inpin "n47_n48_n49_n50" C1 ,
+    inpin "n51_n52_n53_n54" D1 ,
+    inpin "n59_n60_n61_n62" A1 ,
+    inpin "n59_n60_n61_n62" B1 ,
+    inpin "n59_n60_n61_n62" D1 ,
+    inpin "n63_n64_n65_n66" C1 ,
+    inpin "n67_n68_n69_n70" D1 ,
+    inpin "n71_n72_n73_n74" A1 ,
+    inpin "n71_n72_n73_n74" D1 ,
+    inpin "n75_n76_n77_p" B1 ,
+    inpin "n83_n84_n85_n86" D1 ,
+    inpin "n87_n88_n89_n90" B1 ,
+    inpin "n99_n100_n101_n102" B1 ,
+    inpin "n115_n116_n117_n118" D1 ,
+    inpin "n119_n120_n121_n122" D1 ,
+    inpin "n135_n136_n137_n138" C1 ,
+    inpin "n155_n156_n157_n158" D1 ,
+    inpin "n163_n164_n165_n166" D1 ,
+    inpin "n179_n180_n181_n182" C1 ,
+    inpin "n195_n196_n197_n198" D1 ,
+    inpin "n235_n236_v_n238" D1 ,
+    ;
+  net "n67_n68_n69_n70.CMUX->n67_n68_n69_n70.B2" ,
+    inpin "n67_n68_n69_n70" B2 ,
+    outpin "n67_n68_n69_n70" CMUX ,
+    inpin "n79_n80_n81_n82" C1 ,
+    inpin "n131_n132_n133_n134" C1 ,
+    inpin "n215_n216_n217_n218" C3 ,
+    ;
+  net "n111_n112_n113_n114.CMUX->n99_n100_n101_n102.C4" ,
+    inpin "n99_n100_n101_n102" C4 ,
+    outpin "n111_n112_n113_n114" CMUX ,
+    ;
+  net "n231_n232_n233_n234.BMUX->n227_n228_n229_n230.D5" ,
+    inpin "n227_n228_n229_n230" D5 ,
+    outpin "n231_n232_n233_n234" BMUX ,
+    ;
+  net "n135_n136_n137_n138.CMUX->n135_n136_n137_n138.B5" ,
+    inpin "n135_n136_n137_n138" B5 ,
+    outpin "n135_n136_n137_n138" CMUX ,
+    ;
+  net "n39_n40_n41_n42.DMUX->n39_n40_n41_n42.C3" ,
+    inpin "n39_n40_n41_n42" C3 ,
+    outpin "n39_n40_n41_n42" DMUX ,
+    inpin "n43_n44_n45_n46" C4 ,
+    inpin "n47_n48_n49_n50" A3 ,
+    inpin "n67_n68_n69_n70" D3 ,
+    ;
+  net "n227_n228_n229_n230.CMUX->n227_n228_n229_n230.B3" ,
+    inpin "n227_n228_n229_n230" B3 ,
+    outpin "n227_n228_n229_n230" CMUX ,
+    ;
+  net "n55_n56_n57_n58.DMUX->n55_n56_n57_n58.B3" ,
+    inpin "n55_n56_n57_n58" B3 ,
+    outpin "n55_n56_n57_n58" DMUX ,
+    ;
+  net "n99_n100_n101_n102.CMUX->n79_n80_n81_n82.A5" ,
+    inpin "n79_n80_n81_n82" A5 ,
+    outpin "n99_n100_n101_n102" CMUX ,
+    inpin "n131_n132_n133_n134" A5 ,
+    ;
+  net "n91_n92_n93_n94.DMUX->n91_n92_n93_n94.A5" ,
+    inpin "n91_n92_n93_n94" A5 ,
+    outpin "n91_n92_n93_n94" DMUX ,
+    inpin "n95_n96_n97_n98" D3 ,
+    ;
+  net "n147_n148_n149_n150.AMUX->n131_n132_n133_n134.C3" ,
+    inpin "n131_n132_n133_n134" C3 ,
+    outpin "n147_n148_n149_n150" AMUX ,
+    ;
+  net "n235_n236_v_n238.AMUX->n231_n232_n233_n234.C4" ,
+    inpin "n231_n232_n233_n234" C4 ,
+    outpin "n235_n236_v_n238" AMUX ,
+    ;
+  net "s_u_n225_n226.CMUX->s_u_n225_n226.B5" ,
+    inpin "s_u_n225_n226" B5 ,
+    outpin "s_u_n225_n226" CMUX ,
+    ;
+  net "n163_n164_n165_n166.BMUX->n163_n164_n165_n166.A5" ,
+    inpin "n163_n164_n165_n166" A5 ,
+    outpin "n163_n164_n165_n166" BMUX ,
+    inpin "n211_n212_n213_n214" C5 ,
+    ;
+  net "n155_n156_n157_n158.AMUX->n151_n152_n153_n154.C5" ,
+    inpin "n151_n152_n153_n154" C5 ,
+    outpin "n155_n156_n157_n158" AMUX ,
+    ;
+  net "n67_n68_n69_n70.BMUX->o_n24_n25_n26.A5" ,
+    inpin "o_n24_n25_n26" A5 ,
+    outpin "n67_n68_n69_n70" BMUX ,
+    ;
+  net "n71_n72_n73_n74.BMUX->n67_n68_n69_n70.B5" ,
+    inpin "n67_n68_n69_n70" B5 ,
+    outpin "n71_n72_n73_n74" BMUX ,
+    ;
+  net "n199_n200_n201_n202.AMUX->n195_n196_n197_n198.B5" ,
+    inpin "n195_n196_n197_n198" B5 ,
+    outpin "n199_n200_n201_n202" AMUX ,
+    inpin "n211_n212_n213_n214" A2 ,
+    inpin "n211_n212_n213_n214" D4 ,
+    inpin "n235_n236_v_n238" B5 ,
+    ;
+  net "n127_n128_n129_q.AMUX->n123_n124_n125_n126.A5" ,
+    inpin "n123_n124_n125_n126" A5 ,
+    outpin "n127_n128_n129_q" AMUX ,
+    ;
+  net "n91_n92_n93_n94.CMUX->n91_n92_n93_n94.A4" ,
+    inpin "n91_n92_n93_n94" A4 ,
+    outpin "n91_n92_n93_n94" CMUX ,
+    inpin "n95_n96_n97_n98" D2 ,
+    ;
+  net "n111_n112_n113_n114.AMUX->n107_n108_n109_n110.D3" ,
+    inpin "n107_n108_n109_n110" D3 ,
+    outpin "n111_n112_n113_n114" AMUX ,
+    inpin "n151_n152_n153_n154" C2 ,
+    inpin "n159_n160_n161_n162" C2 ,
+    inpin "n211_n212_n213_n214" A1 ,
+    ;
+  net "n75_n76_n77_p.BMUX->n75_n76_n77_p.A4" ,
+    inpin "n75_n76_n77_p" A4 ,
+    outpin "n75_n76_n77_p" BMUX ,
+    inpin "n83_n84_n85_n86" A2 ,
+    ;
+  net "n155_n156_n157_n158.DMUX->n155_n156_n157_n158.C5" ,
+    inpin "n155_n156_n157_n158" C5 ,
+    outpin "n155_n156_n157_n158" DMUX ,
+    ;
+  net "n63_n64_n65_n66.DMUX->o_n24_n25_n26.B6" ,
+    inpin "o_n24_n25_n26" B6 ,
+    outpin "n63_n64_n65_n66" DMUX ,
+    ;
+  net "n123_n124_n125_n126.AMUX->n75_n76_n77_p.D4" ,
+    inpin "n75_n76_n77_p" D4 ,
+    outpin "n123_n124_n125_n126" AMUX ,
+    ;
+  net "n115_n116_n117_n118.BMUX->n111_n112_n113_n114.D4" ,
+    inpin "n111_n112_n113_n114" D4 ,
+    outpin "n115_n116_n117_n118" BMUX ,
+    ;
+  net "n131_n132_n133_n134.AMUX->n127_n128_n129_q.D3" ,
+    inpin "n127_n128_n129_q" D3 ,
+    outpin "n131_n132_n133_n134" AMUX ,
+    inpin "n171_r_n173_n174" B2 ,
+    inpin "s_u_n225_n226" B2 ,
+    ;
+  net "n79_n80_n81_n82.CMUX->n79_n80_n81_n82.B2" ,
+    inpin "n79_n80_n81_n82" B2 ,
+    outpin "n79_n80_n81_n82" CMUX ,
+    ;
+  net "n151_n152_n153_n154.CMUX->n131_n132_n133_n134.B5" ,
+    inpin "n131_n132_n133_n134" B5 ,
+    outpin "n151_n152_n153_n154" CMUX ,
+    ;
+  net "n151_n152_n153_n154.BMUX->n131_n132_n133_n134.B4" ,
+    inpin "n131_n132_n133_n134" B4 ,
+    outpin "n151_n152_n153_n154" BMUX ,
+    ;
+  net "n183_t_n185_n186.BMUX->n183_t_n185_n186.A3" ,
+    inpin "n183_t_n185_n186" A3 ,
+    outpin "n183_t_n185_n186" BMUX ,
+    inpin "t_FINAL_OUTPUT" O ,
+    inpin "n191_n192_n193_n194" B5 ,
+    inpin "n191_n192_n193_n194" D2 ,
+    ;
+  net "n227_n228_n229_n230.DMUX->s_u_n225_n226.B6" ,
+    inpin "s_u_n225_n226" B6 ,
+    outpin "n227_n228_n229_n230" DMUX ,
+    ;
+  net "n215_n216_n217_n218.DMUX->n215_n216_n217_n218.C5" ,
+    inpin "n215_n216_n217_n218" C5 ,
+    outpin "n215_n216_n217_n218" DMUX ,
+    ;
+  net "n187_n188_n189_n190.CMUX->n187_n188_n189_n190.B4" ,
+    inpin "n187_n188_n189_n190" B4 ,
+    outpin "n187_n188_n189_n190" CMUX ,
+    ;
+  net "n163_n164_n165_n166.DMUX->n163_n164_n165_n166.C5" ,
+    inpin "n163_n164_n165_n166" C5 ,
+    outpin "n163_n164_n165_n166" DMUX ,
+    inpin "n199_n200_n201_n202" A3 ,
+    ;
+  net "n27_n28_n29_n30.BMUX->n27_n28_n29_n30.A2" ,
+    inpin "n27_n28_n29_n30" A2 ,
+    outpin "n27_n28_n29_n30" BMUX ,
+    inpin "n87_n88_n89_n90" D3 ,
+    inpin "n139_n140_n141_n142" A3 ,
+    inpin "n187_n188_n189_n190" B2 ,
+    ;
+  net "n199_n200_n201_n202.BMUX->n171_r_n173_n174.C4" ,
+    inpin "n171_r_n173_n174" C4 ,
+    outpin "n199_n200_n201_n202" BMUX ,
+    ;
+  net "n175_n176_n177_n178.CMUX->n175_n176_n177_n178.B1" ,
+    inpin "n175_n176_n177_n178" B1 ,
+    outpin "n175_n176_n177_n178" CMUX ,
+    inpin "n191_n192_n193_n194" C3 ,
+    inpin "n199_n200_n201_n202" D4 ,
+    inpin "n207_n208_n209_n210" A5 ,
+    inpin "n227_n228_n229_n230" C4 ,
+    ;
+  net "n83_n84_n85_n86.BMUX->n83_n84_n85_n86.A3" ,
+    inpin "n83_n84_n85_n86" A3 ,
+    outpin "n83_n84_n85_n86" BMUX ,
+    inpin "s_u_n225_n226" C2 ,
+    ;
+  net "n27_n28_n29_n30.DMUX->o_n24_n25_n26.D3" ,
+    inpin "o_n24_n25_n26" D3 ,
+    outpin "n27_n28_n29_n30" DMUX ,
+    inpin "n39_n40_n41_n42" A1 ,
+    inpin "n39_n40_n41_n42" D2 ,
+    inpin "n115_n116_n117_n118" B2 ,
+    inpin "n119_n120_n121_n122" C4 ,
+    ;
+  net "n31_n32_n33_n34.CMUX->n31_n32_n33_n34.A4" ,
+    inpin "n31_n32_n33_n34" A4 ,
+    outpin "n31_n32_n33_n34" CMUX ,
+    ;
+  net "n119_n120_n121_n122.AMUX->n111_n112_n113_n114.C3" ,
+    inpin "n111_n112_n113_n114" C3 ,
+    outpin "n119_n120_n121_n122" AMUX ,
+    ;
+  net "n207_n208_n209_n210.AMUX->n203_n204_n205_n206.B6" ,
+    inpin "n203_n204_n205_n206" B6 ,
+    outpin "n207_n208_n209_n210" AMUX ,
+    ;
+  net "n119_n120_n121_n122.CMUX->n119_n120_n121_n122.A5" ,
+    inpin "n119_n120_n121_n122" A5 ,
+    outpin "n119_n120_n121_n122" CMUX ,
+    ;
+  net "n131_n132_n133_n134.BMUX->n127_n128_n129_q.D4" ,
+    inpin "n127_n128_n129_q" D4 ,
+    outpin "n131_n132_n133_n134" BMUX ,
+    inpin "n171_r_n173_n174" B3 ,
+    inpin "s_u_n225_n226" B3 ,
+    ;
+  net "n39_n40_n41_n42.AMUX->n35_n36_n37_n38.D1" ,
+    inpin "n35_n36_n37_n38" D1 ,
+    outpin "n39_n40_n41_n42" AMUX ,
+    inpin "n103_n104_n105_n106" B1 ,
+    ;
+  net "n139_n140_n141_n142.DMUX->n139_n140_n141_n142.C2" ,
+    inpin "n139_n140_n141_n142" C2 ,
+    outpin "n139_n140_n141_n142" DMUX ,
+    ;
+  net "n87_n88_n89_n90.BMUX->n87_n88_n89_n90.A3" ,
+    inpin "n87_n88_n89_n90" A3 ,
+    outpin "n87_n88_n89_n90" BMUX ,
+    ;
+  net "n231_n232_n233_n234.AMUX->n227_n228_n229_n230.D4" ,
+    inpin "n227_n228_n229_n230" D4 ,
+    outpin "n231_n232_n233_n234" AMUX ,
+    ;
+  net "n115_n116_n117_n118.AMUX->n111_n112_n113_n114.D3" ,
+    inpin "n111_n112_n113_n114" D3 ,
+    outpin "n115_n116_n117_n118" AMUX ,
+    inpin "n159_n160_n161_n162" B4 ,
+    inpin "n159_n160_n161_n162" C3 ,
+    ;
+  net "n79_n80_n81_n82.AMUX->n75_n76_n77_p.D3" ,
+    inpin "n75_n76_n77_p" D3 ,
+    outpin "n79_n80_n81_n82" AMUX ,
+    ;
+  net "n71_n72_n73_n74.CMUX->n71_n72_n73_n74.B3" ,
+    inpin "n71_n72_n73_n74" B3 ,
+    outpin "n71_n72_n73_n74" CMUX ,
+    inpin "n123_n124_n125_n126" B1 ,
+    ;
+  net "n203_n204_n205_n206.BMUX->n171_r_n173_n174.C5" ,
+    inpin "n171_r_n173_n174" C5 ,
+    outpin "n203_n204_n205_n206" BMUX ,
+    ;
+  net "n111_n112_n113_n114.BMUX->n107_n108_n109_n110.C5" ,
+    inpin "n107_n108_n109_n110" C5 ,
+    outpin "n111_n112_n113_n114" BMUX ,
+    inpin "n155_n156_n157_n158" A4 ,
+    ;
+  net "n215_n216_n217_n218.CMUX->n215_n216_n217_n218.B3" ,
+    inpin "n215_n216_n217_n218" B3 ,
+    outpin "n215_n216_n217_n218" CMUX ,
+    ;
+  net "n99_n100_n101_n102.BMUX->n95_n96_n97_n98.C5" ,
+    inpin "n95_n96_n97_n98" C5 ,
+    outpin "n99_n100_n101_n102" BMUX ,
+    inpin "n107_n108_n109_n110" C3 ,
+    inpin "n147_n148_n149_n150" C3 ,
+    inpin "n155_n156_n157_n158" A3 ,
+    inpin "n199_n200_n201_n202" C4 ,
+    ;
+  net "n227_n228_n229_n230.BMUX->s_u_n225_n226.C5" ,
+    inpin "s_u_n225_n226" C5 ,
+    outpin "n227_n228_n229_n230" BMUX ,
+    ;
+  net "n199_n200_n201_n202.CMUX->n199_n200_n201_n202.B4" ,
+    inpin "n199_n200_n201_n202" B4 ,
+    outpin "n199_n200_n201_n202" CMUX ,
+    inpin "n203_n204_n205_n206" B3 ,
+    inpin "s_u_n225_n226" D4 ,
+    ;
+  net "n47_n48_n49_n50.DMUX->n35_n36_n37_n38.D6" ,
+    inpin "n35_n36_n37_n38" D6 ,
+    outpin "n47_n48_n49_n50" DMUX ,
+    inpin "n91_n92_n93_n94" A2 ,
+    inpin "n139_n140_n141_n142" B2 ,
+    inpin "n191_n192_n193_n194" C1 ,
+    inpin "n199_n200_n201_n202" D1 ,
+    ;
+  net "n179_n180_n181_n182.AMUX->n175_n176_n177_n178.D2" ,
+    inpin "n175_n176_n177_n178" D2 ,
+    outpin "n179_n180_n181_n182" AMUX ,
+    ;
+  net "n75_n76_n77_p.DMUX->p_FINAL_OUTPUT.O" ,
+    inpin "p_FINAL_OUTPUT" O ,
+    outpin "n75_n76_n77_p" DMUX ,
+    ;
+  net "n103_n104_n105_n106.CMUX->n99_n100_n101_n102.C2" ,
+    inpin "n99_n100_n101_n102" C2 ,
+    outpin "n103_n104_n105_n106" CMUX ,
+    ;
+  net "n75_n76_n77_p.CMUX->n75_n76_n77_p.A5" ,
+    inpin "n75_n76_n77_p" A5 ,
+    outpin "n75_n76_n77_p" CMUX ,
+    ;
+  net "n143_n144_n145_n146.DMUX->n143_n144_n145_n146.C6" ,
+    inpin "n143_n144_n145_n146" C6 ,
+    outpin "n143_n144_n145_n146" DMUX ,
+    ;
+  net "n171_r_n173_n174.CMUX->n171_r_n173_n174.B4" ,
+    inpin "n171_r_n173_n174" B4 ,
+    outpin "n171_r_n173_n174" CMUX ,
+    inpin "s_u_n225_n226" B4 ,
+    ;
+  net "l.I->n27_n28_n29_n30.B4" ,
+    inpin "n27_n28_n29_n30" B4 ,
+    outpin "l" I ,
+    inpin "n27_n28_n29_n30" C4 ,
+    inpin "n31_n32_n33_n34" B2 ,
+    inpin "n31_n32_n33_n34" D4 ,
+    inpin "n35_n36_n37_n38" A4 ,
+    inpin "n35_n36_n37_n38" B4 ,
+    inpin "n35_n36_n37_n38" C4 ,
+    inpin "n39_n40_n41_n42" B4 ,
+    inpin "n43_n44_n45_n46" A3 ,
+    inpin "n43_n44_n45_n46" B2 ,
+    inpin "n47_n48_n49_n50" D4 ,
+    inpin "n51_n52_n53_n54" A3 ,
+    inpin "n51_n52_n53_n54" D5 ,
+    inpin "n55_n56_n57_n58" A4 ,
+    inpin "n55_n56_n57_n58" C2 ,
+    inpin "n59_n60_n61_n62" B3 ,
+    inpin "n59_n60_n61_n62" D6 ,
+    inpin "n63_n64_n65_n66" B4 ,
+    inpin "n63_n64_n65_n66" C5 ,
+    inpin "n67_n68_n69_n70" A4 ,
+    inpin "n71_n72_n73_n74" A5 ,
+    inpin "n71_n72_n73_n74" C3 ,
+    inpin "n71_n72_n73_n74" D5 ,
+    inpin "n75_n76_n77_p" B2 ,
+    inpin "n75_n76_n77_p" C5 ,
+    inpin "n83_n84_n85_n86" D6 ,
+    inpin "n87_n88_n89_n90" B4 ,
+    inpin "n87_n88_n89_n90" C4 ,
+    inpin "n103_n104_n105_n106" A4 ,
+    inpin "n103_n104_n105_n106" C1 ,
+    inpin "n111_n112_n113_n114" A4 ,
+    inpin "n111_n112_n113_n114" B4 ,
+    inpin "n115_n116_n117_n118" A4 ,
+    inpin "n115_n116_n117_n118" D5 ,
+    inpin "n119_n120_n121_n122" B4 ,
+    inpin "n119_n120_n121_n122" C3 ,
+    inpin "n123_n124_n125_n126" C5 ,
+    inpin "n123_n124_n125_n126" D4 ,
+    inpin "n127_n128_n129_q" B5 ,
+    inpin "n127_n128_n129_q" C5 ,
+    inpin "n135_n136_n137_n138" D4 ,
+    inpin "n155_n156_n157_n158" C1 ,
+    inpin "n155_n156_n157_n158" D4 ,
+    inpin "n159_n160_n161_n162" A3 ,
+    inpin "n163_n164_n165_n166" B4 ,
+    inpin "n163_n164_n165_n166" C3 ,
+    inpin "n167_n168_n169_n170" C4 ,
+    inpin "n167_n168_n169_n170" D6 ,
+    inpin "n171_r_n173_n174" A6 ,
+    inpin "n171_r_n173_n174" D3 ,
+    inpin "n175_n176_n177_n178" A1 ,
+    inpin "n179_n180_n181_n182" B4 ,
+    inpin "n183_t_n185_n186" D3 ,
+    inpin "n187_n188_n189_n190" A4 ,
+    inpin "n191_n192_n193_n194" A4 ,
+    inpin "n203_n204_n205_n206" B1 ,
+    inpin "n207_n208_n209_n210" C4 ,
+    inpin "n215_n216_n217_n218" A2 ,
+    inpin "n215_n216_n217_n218" D5 ,
+    inpin "n219_n220_n221_n222" B4 ,
+    inpin "n219_n220_n221_n222" C5 ,
+    inpin "n219_n220_n221_n222" D6 ,
+    inpin "s_u_n225_n226" C1 ,
+    inpin "n227_n228_n229_n230" D1 ,
+    inpin "n231_n232_n233_n234" A4 ,
+    ;
+  net "n99_n100_n101_n102.AMUX->n95_n96_n97_n98.C4" ,
+    inpin "n95_n96_n97_n98" C4 ,
+    outpin "n99_n100_n101_n102" AMUX ,
+    ;
+  net "j.I->n27_n28_n29_n30.B2" ,
+    inpin "n27_n28_n29_n30" B2 ,
+    outpin "j" I ,
+    inpin "n27_n28_n29_n30" C2 ,
+    inpin "n31_n32_n33_n34" C2 ,
+    inpin "n31_n32_n33_n34" D2 ,
+    inpin "n35_n36_n37_n38" A2 ,
+    inpin "n35_n36_n37_n38" B2 ,
+    inpin "n35_n36_n37_n38" C3 ,
+    inpin "n39_n40_n41_n42" B2 ,
+    inpin "n43_n44_n45_n46" A2 ,
+    inpin "n43_n44_n45_n46" D2 ,
+    inpin "n47_n48_n49_n50" B2 ,
+    inpin "n47_n48_n49_n50" C4 ,
+    inpin "n47_n48_n49_n50" D2 ,
+    inpin "n51_n52_n53_n54" A2 ,
+    inpin "n51_n52_n53_n54" D3 ,
+    inpin "n55_n56_n57_n58" A2 ,
+    inpin "n55_n56_n57_n58" C1 ,
+    inpin "n59_n60_n61_n62" B2 ,
+    inpin "n59_n60_n61_n62" D4 ,
+    inpin "n63_n64_n65_n66" B2 ,
+    inpin "n63_n64_n65_n66" C3 ,
+    inpin "n67_n68_n69_n70" A2 ,
+    inpin "n67_n68_n69_n70" B1 ,
+    inpin "n71_n72_n73_n74" B1 ,
+    inpin "n75_n76_n77_p" C3 ,
+    inpin "n83_n84_n85_n86" A1 ,
+    inpin "n83_n84_n85_n86" B1 ,
+    inpin "n87_n88_n89_n90" C2 ,
+    inpin "n95_n96_n97_n98" A2 ,
+    inpin "n103_n104_n105_n106" A2 ,
+    inpin "n103_n104_n105_n106" D2 ,
+    inpin "n107_n108_n109_n110" B2 ,
+    inpin "n111_n112_n113_n114" A2 ,
+    inpin "n111_n112_n113_n114" B2 ,
+    inpin "n115_n116_n117_n118" A2 ,
+    inpin "n115_n116_n117_n118" C2 ,
+    inpin "n115_n116_n117_n118" D3 ,
+    inpin "n119_n120_n121_n122" B2 ,
+    inpin "n119_n120_n121_n122" D4 ,
+    inpin "n123_n124_n125_n126" A2 ,
+    inpin "n123_n124_n125_n126" D2 ,
+    inpin "n127_n128_n129_q" A1 ,
+    inpin "n127_n128_n129_q" B3 ,
+    inpin "n135_n136_n137_n138" B3 ,
+    inpin "n135_n136_n137_n138" D2 ,
+    inpin "n143_n144_n145_n146" C2 ,
+    inpin "n163_n164_n165_n166" B2 ,
+    inpin "n167_n168_n169_n170" B1 ,
+    inpin "n167_n168_n169_n170" D4 ,
+    inpin "n171_r_n173_n174" A4 ,
+    inpin "n171_r_n173_n174" D1 ,
+    inpin "n179_n180_n181_n182" B2 ,
+    inpin "n179_n180_n181_n182" D3 ,
+    inpin "n183_t_n185_n186" D1 ,
+    inpin "n187_n188_n189_n190" A2 ,
+    inpin "n187_n188_n189_n190" C3 ,
+    inpin "n191_n192_n193_n194" A2 ,
+    inpin "n191_n192_n193_n194" B3 ,
+    inpin "n203_n204_n205_n206" C3 ,
+    inpin "n203_n204_n205_n206" D3 ,
+    inpin "n207_n208_n209_n210" C2 ,
+    inpin "n215_n216_n217_n218" C2 ,
+    inpin "n219_n220_n221_n222" A1 ,
+    inpin "n219_n220_n221_n222" C3 ,
+    inpin "n219_n220_n221_n222" D4 ,
+    inpin "n231_n232_n233_n234" A2 ,
+    inpin "n231_n232_n233_n234" D2 ,
+    ;
+  net "n235_n236_v_n238.BMUX->n231_n232_n233_n234.C5" ,
+    inpin "n231_n232_n233_n234" C5 ,
+    outpin "n235_n236_v_n238" BMUX ,
+    ;
+  net "n55_n56_n57_n58.AMUX->n51_n52_n53_n54.B4" ,
+    inpin "n51_n52_n53_n54" B4 ,
+    outpin "n55_n56_n57_n58" AMUX ,
+    inpin "n63_n64_n65_n66" D5 ,
+    ;
+  net "n135_n136_n137_n138.DMUX->n135_n136_n137_n138.B6" ,
+    inpin "n135_n136_n137_n138" B6 ,
+    outpin "n135_n136_n137_n138" DMUX ,
+    ;
+  net "h.I->n179_n180_n181_n182.D2" ,
+    inpin "n179_n180_n181_n182" D2 ,
+    outpin "h" I ,
+    inpin "n183_t_n185_n186" B2 ,
+    inpin "n187_n188_n189_n190" A1 ,
+    inpin "n187_n188_n189_n190" B1 ,
+    inpin "n187_n188_n189_n190" D2 ,
+    inpin "n195_n196_n197_n198" B2 ,
+    inpin "n203_n204_n205_n206" D1 ,
+    inpin "n211_n212_n213_n214" D2 ,
+    inpin "n215_n216_n217_n218" D2 ,
+    inpin "n219_n220_n221_n222" B1 ,
+    inpin "n219_n220_n221_n222" C1 ,
+    inpin "n219_n220_n221_n222" D2 ,
+    inpin "s_u_n225_n226" A2 ,
+    inpin "n235_n236_v_n238" B2 ,
+    ;
+  net "n131_n132_n133_n134.CMUX->n131_n132_n133_n134.B3" ,
+    inpin "n131_n132_n133_n134" B3 ,
+    outpin "n131_n132_n133_n134" CMUX ,
+    ;
+  net "n203_n204_n205_n206.CMUX->n203_n204_n205_n206.B4" ,
+    inpin "n203_n204_n205_n206" B4 ,
+    outpin "n203_n204_n205_n206" CMUX ,
+    ;
+  net "n155_n156_n157_n158.CMUX->n155_n156_n157_n158.B2" ,
+    inpin "n155_n156_n157_n158" B2 ,
+    outpin "n155_n156_n157_n158" CMUX ,
+    ;
+  net "n87_n88_n89_n90.DMUX->n79_n80_n81_n82.D3" ,
+    inpin "n79_n80_n81_n82" D3 ,
+    outpin "n87_n88_n89_n90" DMUX ,
+    inpin "n91_n92_n93_n94" C5 ,
+    inpin "n91_n92_n93_n94" D4 ,
+    inpin "n95_n96_n97_n98" A5 ,
+    inpin "n107_n108_n109_n110" A4 ,
+    inpin "n123_n124_n125_n126" B4 ,
+    ;
+  net "n51_n52_n53_n54.DMUX->n51_n52_n53_n54.B3" ,
+    inpin "n51_n52_n53_n54" B3 ,
+    outpin "n51_n52_n53_n54" DMUX ,
+    ;
+  net "n143_n144_n145_n146.CMUX->n139_n140_n141_n142.B6" ,
+    inpin "n139_n140_n141_n142" B6 ,
+    outpin "n143_n144_n145_n146" CMUX ,
+    inpin "n147_n148_n149_n150" D4 ,
+    ;
+  net "n143_n144_n145_n146.BMUX->n139_n140_n141_n142.B5" ,
+    inpin "n139_n140_n141_n142" B5 ,
+    outpin "n143_n144_n145_n146" BMUX ,
+    inpin "n147_n148_n149_n150" D3 ,
+    ;
+  net "n35_n36_n37_n38.AMUX->n31_n32_n33_n34.A6" ,
+    inpin "n31_n32_n33_n34" A6 ,
+    outpin "n35_n36_n37_n38" AMUX ,
+    inpin "n87_n88_n89_n90" D5 ,
+    inpin "n139_n140_n141_n142" A5 ,
+    ;
+  net "n183_t_n185_n186.AMUX->n175_n176_n177_n178.D3" ,
+    inpin "n175_n176_n177_n178" D3 ,
+    outpin "n183_t_n185_n186" AMUX ,
+    ;
+  net "n167_n168_n169_n170.BMUX->n127_n128_n129_q.D5" ,
+    inpin "n127_n128_n129_q" D5 ,
+    outpin "n167_n168_n169_n170" BMUX ,
+    ;
+  net "n167_n168_n169_n170.AMUX->n159_n160_n161_n162.D4" ,
+    inpin "n159_n160_n161_n162" D4 ,
+    outpin "n167_n168_n169_n170" AMUX ,
+    inpin "n211_n212_n213_n214" B2 ,
+    inpin "n227_n228_n229_n230" D2 ,
+    ;
+  net "n35_n36_n37_n38.BMUX->o_n24_n25_n26.C3" ,
+    inpin "o_n24_n25_n26" C3 ,
+    outpin "n35_n36_n37_n38" BMUX ,
+    inpin "n119_n120_n121_n122" A2 ,
+    inpin "n159_n160_n161_n162" D1 ,
+    inpin "n211_n212_n213_n214" B1 ,
+    ;
+  net "n127_n128_n129_q.DMUX->q_FINAL_OUTPUT.O" ,
+    inpin "q_FINAL_OUTPUT" O ,
+    outpin "n127_n128_n129_q" DMUX ,
+    ;
+  net "n103_n104_n105_n106.AMUX->n99_n100_n101_n102.D3" ,
+    inpin "n99_n100_n101_n102" D3 ,
+    outpin "n103_n104_n105_n106" AMUX ,
+    inpin "n151_n152_n153_n154" B3 ,
+    ;
+  net "n171_r_n173_n174.DMUX->n171_r_n173_n174.C2" ,
+    inpin "n171_r_n173_n174" C2 ,
+    outpin "n171_r_n173_n174" DMUX ,
+    inpin "n183_t_n185_n186" A2 ,
+    ;
+  net "n31_n32_n33_n34.AMUX->o_n24_n25_n26.D4" ,
+    inpin "o_n24_n25_n26" D4 ,
+    outpin "n31_n32_n33_n34" AMUX ,
+    inpin "n39_n40_n41_n42" C4 ,
+    inpin "n43_n44_n45_n46" C5 ,
+    inpin "n47_n48_n49_n50" A4 ,
+    inpin "n67_n68_n69_n70" D4 ,
+    ;
+  net "n43_n44_n45_n46.CMUX->n35_n36_n37_n38.D4" ,
+    inpin "n35_n36_n37_n38" D4 ,
+    outpin "n43_n44_n45_n46" CMUX ,
+    inpin "n51_n52_n53_n54" C3 ,
+    inpin "n99_n100_n101_n102" B4 ,
+    inpin "n103_n104_n105_n106" B4 ,
+    ;
+  net "n87_n88_n89_n90.CMUX->n87_n88_n89_n90.A5" ,
+    inpin "n87_n88_n89_n90" A5 ,
+    outpin "n87_n88_n89_n90" CMUX ,
+    inpin "n139_n140_n141_n142" A6 ,
+    ;
+  net "n163_n164_n165_n166.CMUX->n159_n160_n161_n162.D3" ,
+    inpin "n159_n160_n161_n162" D3 ,
+    outpin "n163_n164_n165_n166" CMUX ,
+    ;
+  net "n175_n176_n177_n178.DMUX->n175_n176_n177_n178.C3" ,
+    inpin "n175_n176_n177_n178" C3 ,
+    outpin "n175_n176_n177_n178" DMUX ,
+    inpin "n191_n192_n193_n194" B6 ,
+    inpin "n199_n200_n201_n202" D3 ,
+    inpin "n207_n208_n209_n210" D6 ,
+    inpin "n211_n212_n213_n214" B3 ,
+    inpin "n215_n216_n217_n218" C4 ,
+    inpin "n219_n220_n221_n222" A2 ,
+    inpin "n219_n220_n221_n222" B5 ,
+    inpin "n227_n228_n229_n230" A2 ,
+    inpin "n227_n228_n229_n230" D3 ,
+    inpin "n231_n232_n233_n234" C3 ,
+    ;
+  net "n219_n220_n221_n222.BMUX->n219_n220_n221_n222.A3" ,
+    inpin "n219_n220_n221_n222" A3 ,
+    outpin "n219_n220_n221_n222" BMUX ,
     ;
 
 # =======================================================
 # SUMMARY
 # Number of Module Defs: 0
 # Number of Module Insts: 0
-# Number of Primitive Insts: 17
-#     Number of SLICES: 3
+# Number of Primitive Insts: 78
+#     Number of SLICES: 54
 #     Number of DSP48s: 0
 #     Number of BRAMs: 0
-# Number of Nets: 15
+# Number of Nets: 232
 # =======================================================
 
 

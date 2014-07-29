@@ -3,151 +3,25 @@
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
-#:D   C:\BlifParser3\xdlFileCreated
+#:D   C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated
 #Date/Time:
-#:T   Tue Jul 29 01:34:34 2014
+#:T   Tue Jul 29 13:44:25 2014
 #------------------------------
-	#Reading C:\BlifParser3\xdlFileCreated\helloWorld.ncd...
+	#Reading C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated\helloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.07.28.21.04.18
-	#ERROR:Place - IOB component "key<173>" is placed to DIFFS site "PAD280". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<183>" is placed to DIFFM site "PAD281". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<174>" is placed to DIFFM site "PAD279". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<184>" is placed to DIFFS site "PAD282". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "KSi<6>_FINAL_OUTPUT" is placed to DIFFS site "PAD194". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<185>" is placed to DIFFS site "PAD264". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<199>" is placed to DIFFS site "PAD266". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<171>" is placed to DIFFM site "PAD285". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<172>" is placed to DIFFS site "PAD286". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<186>" is placed to DIFFS site "PAD274". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<187>" is placed to DIFFM site "PAD275". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<177>" is placed to DIFFM site "PAD273". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<197>" is placed to DIFFS site "PAD200". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<188>" is placed to DIFFS site "PAD276". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<178>" is placed to DIFFS site "PAD268". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<198>" is placed to DIFFM site "PAD265". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<211>" is placed to DIFFM site "PAD233". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<189>" is placed to DIFFM site "PAD277". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<175>" is placed to DIFFS site "PAD278". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "KSi<5>_FINAL_OUTPUT" is placed to DIFFM site "PAD199". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<195>" is placed to DIFFM site "PAD249". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<210>" is placed to DIFFS site "PAD218". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<176>" is placed to DIFFS site "PAD290". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<196>" is placed to DIFFS site "PAD250". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "KSi<1>_FINAL_OUTPUT" is placed to DIFFS site "PAD132". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<213>" is placed to DIFFM site "PAD235". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<227>" is placed to DIFFM site "PAD153". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<226>" is placed to DIFFM site "PAD135". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<212>" is placed to DIFFS site "PAD234". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<139>" is placed to DIFFS site "PAD350". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<215>" is placed to DIFFM site "PAD237". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<225>" is placed to DIFFS site "PAD136". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<129>" is placed to DIFFM site "PAD345". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<179>" is placed to DIFFM site "PAD267". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "KSi<0>_FINAL_OUTPUT" is placed to DIFFS site "PAD130". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<214>" is placed to DIFFS site "PAD236". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "count<0>" is placed to DIFFM site "PAD193". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "KSi<2>_FINAL_OUTPUT" is placed to DIFFM site "PAD131". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<217>" is placed to DIFFS site "PAD152". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<237>" is placed to DIFFM site "PAD141". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<216>" is placed to DIFFS site "PAD238". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<236>" is placed to DIFFS site "PAD140". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<229>" is placed to DIFFM site "PAD155". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<219>" is placed to DIFFS site "PAD146". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<239>" is placed to DIFFS site "PAD138". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<249>" is placed to DIFFS site "PAD192". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "my_clk" is placed to DIFFM site "PAD129". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<228>" is placed to DIFFS site "PAD154". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<218>" is placed to DIFFM site "PAD147". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "KSi<3>_FINAL_OUTPUT" is placed to DIFFS site "PAD180". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<238>" is placed to DIFFM site "PAD139". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<248>" is placed to DIFFS site "PAD144". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<208>" is placed to DIFFS site "PAD248". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<244>" is placed to DIFFS site "PAD176". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<230>" is placed to DIFFS site "PAD156". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<146>" is placed to DIFFS site "PAD366". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<245>" is placed to DIFFM site "PAD177". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<209>" is placed to DIFFM site "PAD217". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<159>" is placed to DIFFS site "PAD358". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<231>" is placed to DIFFS site "PAD150". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<145>" is placed to DIFFS site "PAD368". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<246>" is placed to DIFFS site "PAD178". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<144>" is placed to DIFFS site "PAD344". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<247>" is placed to DIFFM site "PAD169". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<143>" is placed to DIFFM site "PAD347". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<156>" is placed to DIFFM site "PAD355". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<254>" is placed to DIFFM site "PAD171". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<240>" is placed to DIFFM site "PAD137". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<220>" is placed to DIFFM site "PAD149". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<234>" is placed to DIFFS site "PAD142". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<155>" is placed to DIFFS site "PAD364". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<169>" is placed to DIFFM site "PAD287". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<255>" is placed to DIFFS site "PAD172". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<241>" is placed to DIFFM site "PAD173". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<221>" is placed to DIFFS site "PAD148". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<235>" is placed to DIFFM site "PAD143". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<149>" is placed to DIFFM site "PAD343". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<252>" is placed to DIFFM site "PAD165". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<168>" is placed to DIFFM site "PAD363". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<158>" is placed to DIFFM site "PAD357". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<242>" is placed to DIFFS site "PAD174". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<138>" is placed to DIFFM site "PAD351". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<232>" is placed to DIFFM site "PAD151". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<148>" is placed to DIFFM site "PAD341". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<253>" is placed to DIFFS site "PAD170". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<157>" is placed to DIFFS site "PAD356". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<167>" is placed to DIFFS site "PAD360". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<243>" is placed to DIFFM site "PAD175". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<137>" is placed to DIFFS site "PAD352". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<233>" is placed to DIFFM site "PAD145". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<147>" is placed to DIFFM site "PAD367". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "KSi<4>_FINAL_OUTPUT" is placed to DIFFM site "PAD179". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<194>" is placed to DIFFS site "PAD246". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<166>" is placed to DIFFM site "PAD361". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<250>" is placed to DIFFM site "PAD191". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<200>" is placed to DIFFM site "PAD263". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<152>" is placed to DIFFM site "PAD353". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<193>" is placed to DIFFM site "PAD245". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<201>" is placed to DIFFM site "PAD239". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<251>" is placed to DIFFS site "PAD166". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<151>" is placed to DIFFS site "PAD354". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<202>" is placed to DIFFS site "PAD240". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<192>" is placed to DIFFS site "PAD272". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<154>" is placed to DIFFM site "PAD365". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<203>" is placed to DIFFS site "PAD242". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<191>" is placed to DIFFM site "PAD271". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<153>" is placed to DIFFS site "PAD362". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<170>" is placed to DIFFS site "PAD288". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<142>" is placed to DIFFS site "PAD346". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<180>" is placed to DIFFM site "PAD269". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<190>" is placed to DIFFS site "PAD270". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<204>" is placed to DIFFM site "PAD241". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<141>" is placed to DIFFM site "PAD349". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<161>" is placed to DIFFM site "PAD289". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<205>" is placed to DIFFS site "PAD244". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<160>" is placed to DIFFM site "PAD359". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<140>" is placed to DIFFS site "PAD348". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<182>" is placed to DIFFS site "PAD284". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<150>" is placed to DIFFS site "PAD342". A component of type IOB can not be placed to a site of type DIFFS
-	#ERROR:Place - IOB component "key<206>" is placed to DIFFM site "PAD243". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<181>" is placed to DIFFM site "PAD283". A component of type IOB can not be placed to a site of type DIFFM
-	#ERROR:Place - IOB component "key<207>" is placed to DIFFM site "PAD247". A component of type IOB can not be placed to a site of type DIFFM
+	#Design creation date: 2014.07.29.09.14.15
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'C<39>_C<38>_C<37>_C<36>'
+select -k comp 'out1'
 	#2
-unselect -all
+unselect comp 'out1'
 	#3
-unselect -all
+select -k comp 'in3'
 	#4
-select comp 'C<31>_C<30>_C<29>_C<28>'
-	#comp "C<31>_C<30>_C<29>_C<28>",  site "SLICE_X6Y72",  type = SLICEL  (RPM grid X21Y288)
+unselect comp 'in3'
 	#5
-unselect -all
+select -k comp 'out1'
 	#6
-select comp 'C<31>_C<30>_C<29>_C<28>'
-	#comp "C<31>_C<30>_C<29>_C<28>",  site "SLICE_X6Y72",  type = SLICEL  (RPM grid X21Y288)
-	#7
-post block
+post open

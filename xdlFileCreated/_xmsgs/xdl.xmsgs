@@ -5,52 +5,19 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out3.AMUX-&gt;out3_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="812" delta="new" >Dangling pin &lt;<arg fmt="%s" index="1">O</arg>&gt; on block:&lt;<arg fmt="%s" index="2">my_clk_BUFG.BUFG</arg>&gt;:&lt;<arg fmt="%s" index="3">BUFG_BUFG</arg>&gt;.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">in5.I-&gt;out3.A5</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="1368" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">out1.A5LUT</arg>&gt;:&lt;<arg fmt="%s" index="2">LUT5</arg>&gt;.  Dangling input pin. This configuration requires a signal on the input equation pins.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">in1.I-&gt;out1_out4_out5_out6.A1</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out1.AMUX-&gt;out1_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">my_clk.I-&gt;my_clk_BUFG.I0</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out1_out4_out5_out6.AMUX-&gt;out2.AX</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out1_out4_out5_out6.CMUX-&gt;out5_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">in6.I-&gt;out3.A6</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out2.AQ-&gt;out2_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">my_clk_BUFG.O-&gt;out2.CLK</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">in3.I-&gt;out1_out4_out5_out6.A3</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">in2.I-&gt;out1_out4_out5_out6.A2</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out1_out4_out5_out6.BMUX-&gt;out4_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">in4.I-&gt;out3.A4</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out1_out4_out5_out6.DMUX-&gt;out6_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="error" file="PhysDesignRules" num="792" delta="new" >Illegal configuration for block <arg fmt="%s" index="1">out2.AFF</arg>. <arg fmt="%s" index="2">The cell &lt;REG_SR&gt; has the following precondition programming &lt;LATCH_OR_FF&gt;:&lt;LATCH&gt;. </arg> <arg fmt="%s" index="3">The cell &lt;REG_SR&gt;, must have the following programming &lt;SYNC_ATTR&gt;:&lt;ASYNC&gt;. </arg>
-</msg>
-
-<msg type="info" file="XDL" num="186" delta="new" ><arg fmt="%d" index="1">1</arg> error(s) were found in XDL file. The NCD file cannot be created.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">in1.I-&gt;out1.A1</arg>&gt; is completely unrouted.
 </msg>
 
 </messages>

@@ -1,6 +1,7 @@
 Probleme die aufgetreten sind:
 
-Rekursiver Ansatz war nicht von Erfolg gekrönt (connection der teile schlug fehl) -> iterativer Ansatz hat das Problem gelöst
+Rekursiver Ansatz war nicht von Erfolg gekrönt (connection der teile schlug fehl) -> iterativer Ansatz
 
-Verschwenderischer Ansatz der SLICELS scheint nicht erfolgreich. -> Platz sparender umgehen. wurde umgesetzt, nun bis zu 4 in einer SLICLE
-																	also Vollbesetzung
+Verschwenderischer Ansatz der SLICELS scheint nicht erfolgreich. -> Plat sparender umgehen.
+
+Java unterstüzt kein MemCopy - Dies resultierte in extrem viele CopyConstruktoren

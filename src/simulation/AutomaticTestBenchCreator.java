@@ -26,13 +26,9 @@ public class AutomaticTestBenchCreator {
 
 		// wait for the external routing and placing process to be finished
 		File placedAndRoutedVerilogFile = new File(verilogFileNameRouted);
-		while (!placedAndRoutedVerilogFile.exists()) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		if(!placedAndRoutedVerilogFile.exists()) {
+			 System.err.print("File not found: "+verilogFileNameRouted);
+			 return;
 		}
 
 		// now copy the File
@@ -42,10 +38,17 @@ public class AutomaticTestBenchCreator {
 
 		try {
 			Files.delete(destination);// delete old files !!
-			Files.copy(source, destination);
-		} catch (IOException e) {
+			} catch (IOException e) {
 			// Overwrite the file anyway if it already exists
-			e.printStackTrace();
+			//e.printStackTrace();
+		}
+		
+		//has to be done seperatley if completly new folder
+		try {
+			Files.copy(source, destination);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 		// copy all Xilinx Primtives that are needed for Simulation into the
@@ -80,7 +83,7 @@ public class AutomaticTestBenchCreator {
 			e.printStackTrace();
 		}
 		String fileContent = new String(encoded, Charset.defaultCharset());
-		String[] fileContentSplitted = fileContent.split("\n");
+		String[] fileContentSplitted = fileContent.split("\\r?\\n");
 
 		// stores the testBenchFile
 		StringBuffer bufferForTestBenchContent = new StringBuffer();
@@ -97,7 +100,7 @@ public class AutomaticTestBenchCreator {
 		for (String currentLine : fileContentSplitted) {
 			if (currentLine.contains("input")) {
 				String[] currentLineSplited = currentLine.split(" ");
-				// System.out.println(currentLineSplited[3]);
+				System.out.println(currentLineSplited[3]);
 				readInInputs.add(currentLineSplited[3]);
 				readInConnections.add(currentLineSplited[3]);
 				bufferForTestBenchContent.append("reg " + currentLineSplited[3]

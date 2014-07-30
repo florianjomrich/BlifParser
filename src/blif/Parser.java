@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import placement.RapidsmithParser;
@@ -17,12 +18,14 @@ public class Parser {
 
 	public static void main(String[] args) {
 		try {
+//			String filename = "blif\\nandGate.blif";
 //			String filename = "blif\\adder.blif";
-//			String filename = "blif\\testBlif2.blif";
+			String filename = "blif\\adder vermurkst.blif";
+//	String filename = "blif\\testBlif2.blif";
 //			String filename = "blif\\testBlif3.blif";
 //			String filename = "blif\\testBlif4.blif";
 //			String filename = "blif\\blifSim.blif";
-			String filename = "blif\\alu4_map_sp6.blif";
+//			String filename = "blif\\alu4_map_sp6.blif";
 //			String filename = "blif\\apex2.blif";
 //			String filename = "blif\\s38417.blif";
 //			String filename = "blif\\bigkey.blif";
@@ -248,8 +251,9 @@ public class Parser {
 			}
 			
 			modelList.remove(model);
+			HashMap<String, Integer> modelCount = new HashMap<String, Integer>();
 			for(int i = 0; i < model.modelReferences.size(); i++) {
-				addModelToModel(modelList, model, model.modelReferences.get(i));
+				addModelToModel(modelList, modelCount, model, model.modelReferences.get(i));
 			}
 		}
 		else {
@@ -258,7 +262,7 @@ public class Parser {
 		return model;
 	}
 	
-	private static void addModelToModel(CopyOnWriteArrayList<Model> allModels, Model rootModel, ModelReference addModel) throws Exception {
+	private static void addModelToModel(CopyOnWriteArrayList<Model> allModels, HashMap<String, Integer> modelCount, Model rootModel, ModelReference addModel) throws Exception {
 		Model modelTemplate = null;
 		for(int i = 0; i < allModels.size(); i++) {
 			if(allModels.get(i).modelName.equals(addModel.name)) {
@@ -267,8 +271,9 @@ public class Parser {
 			}
 		}
 		if(modelTemplate == null)
-			throw new Exception("Error: Can't find Model '" + addModel + "'");
+			throw new Exception("Error: Can't find Model '" + addModel.name + "'");
 		
+		//rename external wires
 		Model modelInstance = new Model(modelTemplate);
 		for(String oldName : addModel.formalActualList.keySet()) {
 			String newName = addModel.formalActualList.get(oldName);
@@ -293,12 +298,68 @@ public class Parser {
 			}
 		}
 
-		for(ModelReference ref : modelInstance.modelReferences) {
-			addModelToModel(allModels, modelInstance, ref);
+		//rename internal wires
+		int count = 0;
+		Integer oldVal = modelCount.get(addModel.name);
+		if(oldVal != null) {
+			count = oldVal.intValue();
 		}
+		count++;
+		modelCount.put(addModel.name, count);
+		String internalNamePrefix = "#" + modelInstance.modelName + "#" + count + "#";
+		replaceInternalNames(modelInstance.clocks, internalNamePrefix, modelInstance.inputs, modelInstance.outputs);
+		for(LogicGate gate : modelInstance.logicGates) {
+			replaceInternalNames(gate.inputs, internalNamePrefix, modelInstance.inputs, modelInstance.outputs);
+			gate.output = replaceInternalNames(gate.output, internalNamePrefix, modelInstance.inputs, modelInstance.outputs);
+		}
+		for(GenericLatch latch : modelInstance.genericLatches) {
+			latch.output = replaceInternalNames(latch.output, internalNamePrefix, modelInstance.inputs, modelInstance.outputs);
+			latch.input = replaceInternalNames(latch.input, internalNamePrefix, modelInstance.inputs, modelInstance.outputs);
+			latch.control = replaceInternalNames(latch.control, internalNamePrefix, modelInstance.inputs, modelInstance.outputs);
+		}
+		for(ModelReference ref : modelInstance.modelReferences) {
+			for(String key : ref.formalActualList.keySet()) {
+				ref.formalActualList.put(key, replaceInternalNames(ref.formalActualList.get(key), internalNamePrefix, modelInstance.inputs, modelInstance.outputs));
+			}
+		}
+		
+		//propagate to all submodels
+		for(ModelReference ref : modelInstance.modelReferences) {
+			addModelToModel(allModels, modelCount, modelInstance, ref);
+		}
+		
+		//finished
 		rootModel.realModelReferences.add(modelInstance);
 	}
+	private static void replaceInternalNames(ArrayList<String> names, String internalNamePrefix, ArrayList<String> inputs, ArrayList<String> outputs) {
+		outerloop: for(int i = 0; i < names.size(); i++) {
+			for(String input : inputs) {
+				if(input.equals(names.get(i))) {
+					continue outerloop;
+				}
+			}
+			for(String output : outputs) {
+				if(output.equals(names.get(i))) {
+					continue outerloop;
+				}
+			}
+			names.set(i, internalNamePrefix + names.get(i));
+		}
+	}
 	
+	private static String replaceInternalNames(String name, String internalNamePrefix, ArrayList<String> inputs, ArrayList<String> outputs) {
+		for(String input : inputs) {
+			if(input.equals(name)) {
+				return name;
+			}
+		}
+		for(String output : outputs) {
+			if(output.equals(name)) {
+				return name;
+			}
+		}
+		return internalNamePrefix + name;
+	}
 
 	private static void replaceEqualString(ArrayList<String> list, String search, String replace) {
 		for(int i = 0; i < list.size(); i++) {

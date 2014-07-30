@@ -1,0 +1,22 @@
+.model MUX2
+.inputs a b select selectNegated
+.outputs out
+.subckt andgate in1=a in2=select out=out1
+.subckt andgate in1=b in2=selectNegated out=out2
+.subckt orgate a=out1 b=out2 c=out
+.end
+
+.model andgate
+.inputs in1 in2 
+.outputs out
+.names in1 in2 out
+11 1
+.end
+
+.model orgate
+.inputs a b
+.outputs c
+.names a b c
+01 1
+10 1
+.end

@@ -118,7 +118,8 @@ public class RapidsmithParser{
 		Process p = null;
 		try {
 			p = Runtime.getRuntime().exec(command);
-		} catch (IOException e) {
+			p.waitFor();//waits until the process is finished
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

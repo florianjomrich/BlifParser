@@ -2,6 +2,13 @@ Probleme die aufgetreten sind:
 
 Rekursiver Ansatz war nicht von Erfolg gekrönt (connection der teile schlug fehl) -> iterativer Ansatz
 
-Verschwenderischer Ansatz der SLICELS scheint nicht erfolgreich. -> Plat sparender umgehen.
+Verschwenderischer Ansatz der SLICELS scheint nicht erfolgreich. -> Platz sparender umgehen.
 
 Java unterstüzt kein MemCopy - Dies resultierte in extrem viele CopyConstruktoren
+
+Unterschiedliche LineSeperatoren für Linux und Windows -> MacOS9 not supported -> solve through "\\r?\\n" as line seperator Regex
+
+Warum wir keinen vollautomatischen Testbench geschrieben haben: 
+Wir müssten für jede BLIF File alle möglichen Inputs die 2^n möglichen Eingangskombinationen durchprobieren (NP complete)
+Wir müssten zu jedem Input den resultierenden Output kennen, dazu müssten wir den Xlinix Simmulator nachbilden.
+Dieses Simulations-Tool müste aber als korrekt bewiesen werden. Dies kann aber nicht sicher gesetellt werden. (NP complete)

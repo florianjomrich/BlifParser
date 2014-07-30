@@ -112,9 +112,10 @@ public class LATCH_INSTANCE extends Instance {
 				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LATCH
 						+ "FFSRINIT", "", "SRINIT0"));
 				break;
-			//undefined	-> nothing is set!
+			//undefined	-> we also assume 0 
 			case 3:
-
+				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LATCH
+						+ "FFSRINIT", "", "SRINIT0"));
 				break;
 
 			default:

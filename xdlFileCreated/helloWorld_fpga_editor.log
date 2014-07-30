@@ -5,23 +5,31 @@
 #Current Working Directory:
 #:D   C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated
 #Date/Time:
-#:T   Tue Jul 29 13:44:25 2014
+#:T   Wed Jul 30 14:26:41 2014
 #------------------------------
 	#Reading C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated\helloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.07.29.09.14.15
+	#Design creation date: 2014.07.30.09.56.17
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'out1'
+select -k comp 'my_clk_BUFG'
 	#2
-unselect comp 'out1'
+unselect comp 'my_clk_BUFG'
 	#3
-select -k comp 'in3'
+select -k comp 'k'
 	#4
-unselect comp 'in3'
+unselect -all
 	#5
-select -k comp 'out1'
+select comp 'k'
+	#comp "k",  site "SLICE_X26Y9",  type = SLICEL  (RPM grid X69Y36)
 	#6
+unselect -all
+	#7
+select comp 'k'
+	#comp "k",  site "SLICE_X26Y9",  type = SLICEL  (RPM grid X69Y36)
+	#8
+post block
+	#9
 post open

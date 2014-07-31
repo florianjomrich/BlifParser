@@ -1,0 +1,22 @@
+# Benchmark "testset/apex2" written by ABC on Fri Jun 22 12:04:36 2012
+.model testset/apex2
+.inputs a b 
+.outputs out 
+.subckt nand in1=a in2=b out2=inter1
+.subckt nand in1=a in2=inter1 out2=inter2	
+.subckt nand in1=b in2=inter1 out2=inter3
+.subckt nand in1=inter2 in2=inter3 out2=out
+
+
+.end
+
+.model nand 
+.inputs in1 in2 
+.outputs out2
+.names in1 in2 out2
+00 1
+01 1
+10 1
+11 0
+
+.end

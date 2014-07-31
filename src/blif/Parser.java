@@ -18,18 +18,20 @@ public class Parser {
 
 	public static void main(String[] args) {
 		try {
-//			String filename = "blif\\nandGate.blif";
-//			String filename = "blif\\adder.blif";
-			String filename = "blif\\adder vermurkst.blif";
-//	String filename = "blif\\testBlif2.blif";
-//			String filename = "blif\\testBlif3.blif";
-//			String filename = "blif\\testBlif4.blif";
-//			String filename = "blif\\blifSim.blif";
-//			String filename = "blif\\alu4_map_sp6.blif";
-//			String filename = "blif\\apex2.blif";
-//			String filename = "blif\\s38417.blif";
-//			String filename = "blif\\bigkey.blif";
-			Model model = parseFile(filename);
+			Model model = null;
+			model = parseFile("blif\\nandGate.blif");
+			model = parseFile("blif\\adder.blif");
+			model = parseFile("blif\\adder vermurkst.blif");
+			model = parseFile("blif\\xor_outOfNands.blif");
+			model = parseFile("blif\\testBlif2.blif");
+			model = parseFile("blif\\testBlif3.blif");
+			model = parseFile("blif\\testBlif4.blif");
+			model = parseFile("blif\\blifSim.blif");
+			model = parseFile("blif\\alu4_map_sp6.blif");
+			model = parseFile("blif\\s38417.blif");
+			model = parseFile("blif\\bigkey.blif");
+			model = parseFile("blif\\registerTest.blif");
+			model = parseFile("blif\\registerMinimal.blif");
 			
 			RapidsmithParser myRapidParser = new RapidsmithParser();
 			myRapidParser.startProcessing(model);
@@ -41,9 +43,12 @@ public class Parser {
 	}
 
 	public static Model parseModel(String modelDescription) throws Exception {
+		System.out.println("");
+		System.out.println("Parsing Model...");
 		Command lastCommand = new Command();
 		Model model = new Model();
 		String[] lines = modelDescription.split("\\r?\\n");
+		boolean hasEnd = false, hasInputs = false, hasOutputs = false, hasName = false, hasClock = false;
 
 		boolean stillMoreInputs = false;// to check if there are still inputs to
 										// add - which are separated through \
@@ -94,46 +99,65 @@ public class Parser {
 			//
 			case ".model":
 				model.modelName = component.get(1);
+				System.out.println("Name: " + model.modelName);
+				if(hasName)
+					throw new Exception("Error: More than one .model found!");
+				hasName = true;
 				break;
-			case ".inputs"://CONTINUE WORK HERE !!!
+			case ".inputs":
 				if (stillMoreInputs) {
 					for (String input : model.inputs) {
-						component.add(component.size()-1,input);//add it at the end
+						component.add(component.size()-1,input);	//add it at the end
 					}
 				}
 				model.inputs = new ArrayList<String>(component);
-				model.inputs.remove(0);//remove .inputs
+				model.inputs.remove(0);								//remove .inputs
 				
 				if (model.inputs.get(model.inputs.size() - 1).equals("\\")) {
 					model.inputs.remove(model.inputs.size() - 1);
 					stillMoreInputs = true;
 				} else {
 					stillMoreInputs = false;
+					System.out.println("Inputs: " + model.inputs);
+					if(hasInputs)
+						throw new Exception("Error: More than one .inputs found!");
+					hasInputs = true;
 				}
-				System.out.println("My Inputs: "+model.inputs.toString());
 				break;
 			case ".outputs":
 				if (stillMoreOutputs) {
 					for (String input : model.outputs) {
-						component.add(component.size()-1,input);//add it at the end
+						component.add(component.size()-1,input);	//add it at the end
 					}
 				}
 				model.outputs = new ArrayList<String>(component);
-				model.outputs.remove(0);//remove .inputs
+				model.outputs.remove(0);							//remove .inputs
 				
 				if (model.outputs.get(model.outputs.size() - 1).equals("\\")) {
 					model.outputs.remove(model.outputs.size() - 1);
 					stillMoreOutputs = true;
 				} else {
 					stillMoreOutputs = false;
+					System.out.println("Outputs: " + model.outputs);
+					if(hasOutputs)
+						throw new Exception("Error: More than one .outputs found!");
+					hasOutputs = true;
 				}
-				System.out.println("My Outputs: "+model.outputs.toString());
 				break;
 			case ".clock":
 				model.clocks = new ArrayList<String>(component);
-				model.clocks.remove(0);//remove .clock
+				model.clocks.remove(0);								//remove .clock
+				if(model.clocks.size() > 1)
+					throw new Exception("Error: More than one clock found!");
+				if(hasClock)
+					throw new Exception("Error: More than one .clock found!");
+				hasClock = true;
+				System.out.println("Clock: " + model.clocks);
 				break;
 			case ".end":
+				if(hasEnd)
+					throw new Exception("Error: More than one .end found!");
+				hasEnd = true;
 				break;
 
 			//
@@ -143,11 +167,8 @@ public class Parser {
 				LogicGate gate = new LogicGate();
 				gate.inputs = new ArrayList<String>(component);
 				gate.output = gate.inputs.get(gate.inputs.size() - 1);
-				gate.inputs.remove(gate.inputs.size() - 1);// entfernt den
-															// output aus den
-															// inputs
-				gate.inputs.remove(0);// entfernt .names aus den inputs gehört
-										// hier ja nicht mehr rein
+				gate.inputs.remove(gate.inputs.size() - 1);		// remove output from inputs
+				gate.inputs.remove(0);							// remove .names from inputs
 
 				model.logicGates.add(gate);
 				lastCommand = gate;
@@ -190,7 +211,23 @@ public class Parser {
 					// wurden
 					break;
 				}
-				model.genericLatches.add(latch);// erzeugtes Latch hinzufügen
+				if(latch.type.equals("as")) {	//asynchronous latches are really dumb logicgates
+					LogicGate notReallyAGate = new LogicGate();
+					notReallyAGate.inputs = new ArrayList<String>();
+					notReallyAGate.inputs.add(latch.input);
+					notReallyAGate.output = latch.output;
+					ArrayList<Integer> ttInputs = new ArrayList<Integer>();
+					ttInputs.add(1);
+					ArrayList<Integer> ttOutputs = new ArrayList<Integer>();
+					ttOutputs.add(1);
+					notReallyAGate.outputcover.inputTable.add(ttInputs);
+					notReallyAGate.outputcover.outputTable.put(ttInputs, ttOutputs); //	resulting truthtable: [1] = [1]
+					
+					model.logicGates.add(notReallyAGate);
+				}
+				else {
+					model.genericLatches.add(latch);// erzeugtes Latch hinzufügen
+				}
 				lastCommand = latch;
 				break;
 
@@ -207,18 +244,27 @@ public class Parser {
 								lastGate.outputcover, component.get(0),
 								component.get(1));
 					} else {
-						throw new Exception(
-								"Error: Suspected Truthtable for logicgate");
+						throw new Exception("Error: Suspected truthtable for logicgate");
 					}
 				}
 				break;
 			}
 		}
+		if(!hasEnd)
+			throw new Exception("Error: No .end found!");
+		if(!hasInputs)
+			throw new Exception("Error: No .inputs found!");
+		if(!hasOutputs)
+			throw new Exception("Error: No .outputs found!");
+		if(!hasName)
+			throw new Exception("Error: No .model found!");
+		System.out.println("Parsed model successfully!");
 		return model;
 	}
 	
 	public static Model parseFile(String fileName) throws Exception {
 		Model model = null;
+		System.out.println("Parsing file '" + fileName + "'...");
 		CopyOnWriteArrayList<Model> modelList = new CopyOnWriteArrayList<Model>();
 		byte[] encoded = Files.readAllBytes(Paths.get(fileName));
 		String fileContent = new String(encoded, Charset.defaultCharset());
@@ -247,7 +293,7 @@ public class Parser {
 			}
 			
 			if(model == null) {
-				throw new Exception("Error: All models are referenced in .subckt-references.");
+				throw new Exception("Error: All models are referenced in .subckt-references. No root-model found!");
 			}
 			
 			modelList.remove(model);
@@ -259,6 +305,8 @@ public class Parser {
 		else {
 			model = modelList.get(0);
 		}
+		System.out.println("");
+		System.out.println("Parsed file successfully!");
 		return model;
 	}
 	

@@ -3,74 +3,38 @@
 module TEST; 
  
 // Inputs 
-reg \A2.PAD.PAD ;
-reg \A1.PAD.PAD ;
-reg \A3.PAD.PAD ;
-reg \A0.PAD.PAD ;
-reg \B3.PAD.PAD ;
-reg \B2.PAD.PAD ;
-reg \my_clk.PAD.PAD ;
-reg \CIN.PAD.PAD ;
-reg \B0.PAD.PAD ;
-reg \B1.PAD.PAD ;
+reg \in1.PAD.PAD ;
+reg \newCLK.PAD.PAD ;
+reg \global_reset.PAD.PAD ;
 
 // Outputs 
-wire \S2_FINAL_OUTPUT.OUTBUF.OUT ;
-wire \S0_FINAL_OUTPUT.OUTBUF.OUT ;
-wire \S1_FINAL_OUTPUT.OUTBUF.OUT ;
-wire \S3_FINAL_OUTPUT.OUTBUF.OUT ;
-wire \COUT_FINAL_OUTPUT.OUTBUF.OUT ;
-wire [4:0] sum;
+wire \out1_FINAL_OUTPUT.OUTBUF.OUT ;
  
 // Instantiate the Unit Under Test (UUT) 
  
 helloWorld uut (
-.\A2.PAD.PAD (\A2.PAD.PAD ),
-.\A1.PAD.PAD (\A1.PAD.PAD ),
-.\A3.PAD.PAD (\A3.PAD.PAD ),
-.\A0.PAD.PAD (\A0.PAD.PAD ),
-.\B3.PAD.PAD (\B3.PAD.PAD ),
-.\B2.PAD.PAD (\B2.PAD.PAD ),
-.\my_clk.PAD.PAD (\my_clk.PAD.PAD ),
-.\CIN.PAD.PAD (\CIN.PAD.PAD ),
-.\B0.PAD.PAD (\B0.PAD.PAD ),
-.\B1.PAD.PAD (\B1.PAD.PAD ),
-.\S2_FINAL_OUTPUT.OUTBUF.OUT (\S2_FINAL_OUTPUT.OUTBUF.OUT ),
-.\S0_FINAL_OUTPUT.OUTBUF.OUT (\S0_FINAL_OUTPUT.OUTBUF.OUT ),
-.\S1_FINAL_OUTPUT.OUTBUF.OUT (\S1_FINAL_OUTPUT.OUTBUF.OUT ),
-.\S3_FINAL_OUTPUT.OUTBUF.OUT (\S3_FINAL_OUTPUT.OUTBUF.OUT ),
-.\COUT_FINAL_OUTPUT.OUTBUF.OUT (\COUT_FINAL_OUTPUT.OUTBUF.OUT )
+.\in1.PAD.PAD (\in1.PAD.PAD ),
+.\newCLK.PAD.PAD (\newCLK.PAD.PAD ),
+.\global_reset.PAD.PAD (\global_reset.PAD.PAD ),
+.\out1_FINAL_OUTPUT.OUTBUF.OUT (\out1_FINAL_OUTPUT.OUTBUF.OUT )
 );
 
 initial begin
 // Initialize Inputs
-\A2.PAD.PAD  = 0;
-\A1.PAD.PAD  = 0;
-\A3.PAD.PAD  = 0;
-\A0.PAD.PAD  = 0;
-\B3.PAD.PAD  = 0;
-\B2.PAD.PAD  = 0;
-\my_clk.PAD.PAD  = 0;
-\CIN.PAD.PAD  = 0;
-\B0.PAD.PAD  = 0;
-\B1.PAD.PAD  = 0;
+\in1.PAD.PAD  = 0;
+\newCLK.PAD.PAD  = 0;
+\global_reset.PAD.PAD  = 0;
 
 
 // Wait 100 ns for global reset to finish
-	#100;
-
+	#125; \in1.PAD.PAD  = 1;
 	// Add stimulus here
-	\A0.PAD.PAD =1;
-	#100;
-	\B0.PAD.PAD  = 1;
-	\B1.PAD.PAD  = 1;
-	#100;
-	\A3.PAD.PAD =1;
-	\B2.PAD.PAD =1;
-
+	
 end
 
-assign sum = {\COUT_FINAL_OUTPUT.OUTBUF.OUT ,\S3_FINAL_OUTPUT.OUTBUF.OUT ,\S2_FINAL_OUTPUT.OUTBUF.OUT , \S1_FINAL_OUTPUT.OUTBUF.OUT ,\S0_FINAL_OUTPUT.OUTBUF.OUT };
-
+always begin
+#50;
+\newCLK.PAD.PAD   = ~ \newCLK.PAD.PAD  ;
+end
 
 endmodule

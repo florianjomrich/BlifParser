@@ -54,8 +54,8 @@
  KSi<41> KSi<40> KSi<39> KSi<38> KSi<37> KSi<36> KSi<35> KSi<34> KSi<33> \
  KSi<32> KSi<31> KSi<30> KSi<29> KSi<28> KSi<27> KSi<26> KSi<25> KSi<24> \
  KSi<23> KSi<22> KSi<21> KSi<20> KSi<19> KSi<18> KSi<17> KSi<16> KSi<15> \
- KSi<14> KSi<13> KSi<12> KSi<11> KSi<10> KSi<9> KSi<8> KSi<7>
-.outputs KSi<6> KSi<5> KSi<4> KSi<3> KSi<2> KSi<1> KSi<0>
+ KSi<14> KSi<13> KSi<12> KSi<11> KSi<10> KSi<9> KSi<8> KSi<7> \
+KSi<6> KSi<5> KSi<4> KSi<3> KSi<2> KSi<1> KSi<0>
 
 .latch       n919     C<111>  0
 .latch       n924     C<110>  0

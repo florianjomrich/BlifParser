@@ -2,6 +2,45 @@
 //
 // $Header: /devl/xcs/repo/env/Databases/CAEInterfaces/verplex_libs/data/simprims/X_FF.v,v 1.4.162.3 2004/09/28 20:47:45 wloo Exp $
 //
+`celldefine
+primitive ffsrce (q, clk, d, ce, set, rst, notifier);
+
+  output q; reg q;
+  input clk, d, ce, set, rst, notifier;
+
+  table
+
+    //   clk    d     ce   set   rst   notifier    q     q+;
+
+         (01)   0      1    0     0       ?    :   ?  :  0;
+         (01)   1      1    0     0       ?    :   ?  :  1;
+         (01)   x      1    0     0       ?    :   ?  :  x;
+         (01)   0      x    0     0       ?    :   0  :  0;
+         (01)   1      x    0     0       ?    :   1  :  1;
+
+         (??)   ?      0    0     0       ?    :   ?  :  -;
+         (1?)   ?      ?    0     0       ?    :   ?  :  -;
+         (?0)   ?      ?    0     0       ?    :   ?  :  -;
+
+          ?     ?      ?    1     0       ?    :   ?  :  1;
+          ?     ?      ?    ?     1       ?    :   ?  :  0;
+          ?     ?      ?    0     x       ?    :   0  :  0;
+         (01)   0      1    0     x       ?    :   ?  :  0;
+          ?     ?      ?    x     0       ?    :   1  :  1;
+         (01)   1      1    x     0       ?    :   ?  :  1;
+
+          ?    (??)    ?    0     0       ?    :   ?  :  -;
+          ?     ?    (??)   0     0       ?    :   ?  :  -;
+          ?     ?      ?   (?0)   ?       ?    :   ?  :  -;
+          ?     ?      ?    ?    (?0)     ?    :   ?  :  -;
+
+          ?     ?      ?    ?     ?       *    :   ?  :  x;
+
+  endtable
+
+endprimitive
+
+
 
 `celldefine
 `timescale 1 ps/1 ps

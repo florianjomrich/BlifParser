@@ -1,275 +1,40 @@
-#:C109   
+#:C9     
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated
 #Date/Time:
-#:T   Wed Jul 30 14:28:01 2014
+#:T   Thu Jul 31 16:39:45 2014
 #------------------------------
 	#Reading C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated\helloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.07.30.09.57.30
+	#Design creation date: 2014.07.31.11.47.46
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'A3'
+select -k comp 'out1_FINAL_OUTPUT'
 	#2
-unselect comp 'A3'
+unselect comp 'out1_FINAL_OUTPUT'
 	#3
-select -k comp '#fulladder#2#k'
+select -k comp 'out1'
 	#4
 unselect -all
 	#5
-select comp '#fulladder#2#k'
-	#comp "#fulladder#2#k",  site "SLICE_X10Y6",  type = SLICEL  (RPM grid X33Y24)
+select net 'my_clk_BUFG.O->out1.CLK'
+	#net "my_clk_BUFG.O->out1.CLK"
 	#6
 unselect -all
 	#7
-select comp '#fulladder#2#k'
-	#comp "#fulladder#2#k",  site "SLICE_X10Y6",  type = SLICEL  (RPM grid X33Y24)
+select net 'my_clk_BUFG.O->out1.CLK'
+	#net "my_clk_BUFG.O->out1.CLK"
 	#8
 post block
+	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
+	#be performed unless the selection contains only a single site
+	#or single component.  Change the selection and try again.
 	#9
 unselect -all
 	#10
-select net "B3.I->S3_COUT.B2"
-	#net "B3.I->S3_COUT.B2"
-	#11
-unselect -all
-	#12
-select net "A3.I->S3_COUT.B1"
-	#net "A3.I->S3_COUT.B1"
-	#13
-unselect -all
-	#14
-select net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#15
-unselect net '#fulladder#2#k.AMUX->S3_COUT.A1'
-	#16
-select -k comp 'B1'
-	#17
-unselect comp 'B1'
-	#18
-select -k comp 'S3_COUT'
-	#19
-unselect -all
-	#20
-select comp 'S3_COUT'
-	#comp "S3_COUT",  site "SLICE_X10Y2",  type = SLICEL  (RPM grid X33Y8)
-	#21
-post block
-	#22
-unselect -all
-	#23
-select net "A3.I->S3_COUT.B1"
-	#net "A3.I->S3_COUT.B1"
-	#24
-unselect -all
-	#25
-select net "A3.I->S3_COUT.B1"
-	#net "A3.I->S3_COUT.B1"
-	#26
-unselect -all
-	#27
-select net "B3.I->S3_COUT.B2"
-	#net "B3.I->S3_COUT.B2"
-	#28
-unselect -all
-	#29
-select net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#30
-unselect -all
-	#31
-select net "A3.I->S3_COUT.B1"
-	#net "A3.I->S3_COUT.B1"
-	#32
-unselect -all
-	#33
-select net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#34
-unselect -all
-	#35
-select net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#36
-unselect -all
-	#37
-select net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#38
-unselect -all
-	#39
-select net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#40
-unselect -all
-	#41
-select net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#42
-unselect -all
-	#43
-select net "S3_COUT.AMUX->S3_FINAL_OUTPUT.O"
-	#net "S3_COUT.AMUX->S3_FINAL_OUTPUT.O"
-	#44
-unselect -all
-	#45
-select net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#46
-unselect -all
-	#47
-select net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#48
-unselect -all
-	#49
-select net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#50
-unselect -all
-	#51
-select net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#52
-unselect -all
-	#53
-select net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#54
-unselect -all
-	#55
-select net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#net "#fulladder#2#k.AMUX->S3_COUT.A1"
-	#56
-unselect -all
-	#57
-select net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#net "S2_CARRY3.BMUX->S3_COUT.A2"
-	#58
-unselect net 'S2_CARRY3.BMUX->S3_COUT.A2'
-	#59
-select -k comp 'S0_CARRY1'
-	#60
-unselect comp 'S0_CARRY1'
-	#61
-select -k comp 'A0'
-	#62
-unselect -all
-	#63
-select comp 'A0'
-	#comp "A0",  site "G16",  bonded type = IOB,  pad name = PAD95,  pin name = G16  (RPM grid X161Y278)
-	#64
-post block
-	#65
-unselect -all
-	#66
-select net "A0.I->S0_CARRY1.B1"
-	#net "A0.I->S0_CARRY1.B1"
-	#67
-unselect -all
-	#68
-select net "A0.I->S0_CARRY1.B1"
-	#net "A0.I->S0_CARRY1.B1"
-	#69
-unselect net 'A0.I->S0_CARRY1.B1'
-	#70
-select -k comp 'S0_CARRY1'
-	#71
-unselect -all
-	#72
-select comp 'S0_CARRY1'
-	#comp "S0_CARRY1",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#73
-post block
-	#74
-unselect -all
-	#75
-select net "A0.I->S0_CARRY1.B1"
-	#net "A0.I->S0_CARRY1.B1"
-	#76
-unselect -all
-	#77
-select net "B0.I->S0_CARRY1.B2"
-	#net "B0.I->S0_CARRY1.B2"
-	#78
-unselect -all
-	#79
-select net "CIN.I->S0_CARRY1.A2"
-	#net "CIN.I->S0_CARRY1.A2"
-	#80
-unselect net 'CIN.I->S0_CARRY1.A2'
-	#81
-select -k comp 'A0'
-	#82
-unselect -all
-	#83
-select comp 'A0'
-	#comp "A0",  site "G16",  bonded type = IOB,  pad name = PAD95,  pin name = G16  (RPM grid X161Y278)
-	#84
-post block
-	#85
-unselect comp 'A0'
-	#86
-select -k comp 'S0_CARRY1'
-	#87
-unselect comp 'S0_CARRY1'
-	#88
-select -k comp '#fulladder#1#k'
-	#89
-unselect -all
-	#90
-select comp '#fulladder#1#k'
-	#comp "#fulladder#1#k",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
-	#91
-post block
-	#92
-unselect -all
-	#93
-select net "A0.I->S0_CARRY1.B1"
-	#net "A0.I->S0_CARRY1.B1"
-	#94
-unselect -all
-	#95
-select net "B0.I->S0_CARRY1.B2"
-	#net "B0.I->S0_CARRY1.B2"
-	#96
-unselect -all
-	#97
-select net "B0.I->S0_CARRY1.B2"
-	#net "B0.I->S0_CARRY1.B2"
-	#98
-unselect -all
-	#99
-select net "A0.I->S0_CARRY1.B1"
-	#net "A0.I->S0_CARRY1.B1"
-	#100
-unselect -all
-	#101
-select net "B0.I->S0_CARRY1.B2"
-	#net "B0.I->S0_CARRY1.B2"
-	#102
-unselect -all
-	#103
-select net "A0.I->S0_CARRY1.B1"
-	#net "A0.I->S0_CARRY1.B1"
-	#104
-unselect -all
-	#105
-select net "B0.I->S0_CARRY1.B2"
-	#net "B0.I->S0_CARRY1.B2"
-	#106
-unselect net 'B0.I->S0_CARRY1.B2'
-	#107
-select -k comp 'CIN'
-	#108
-unselect comp 'CIN'
-	#109
-select -k comp 'S0_CARRY1'
-	#110
-unselect -all
+select comp 'out1'

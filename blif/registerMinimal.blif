@@ -1,0 +1,13 @@
+# Benchmark "testset/apex2" written by ABC on Fri Jun 22 12:04:36 2012
+.model berta
+.inputs in1 
+.outputs out1 
+.clock newCLK 
+
+
+.latch in1 out1 re gloabelCLK 0
+
+
+#.latch in1 latchOutput
+
+.end

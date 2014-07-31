@@ -12,3 +12,9 @@ Warum wir keinen vollautomatischen Testbench geschrieben haben:
 Wir müssten für jede BLIF File alle möglichen Inputs die 2^n möglichen Eingangskombinationen durchprobieren (NP complete)
 Wir müssten zu jedem Input den resultierenden Output kennen, dazu müssten wir den Xlinix Simmulator nachbilden.
 Dieses Simulations-Tool müste aber als korrekt bewiesen werden. Dies kann aber nicht sicher gesetellt werden. (NP complete)
+
+
+Latch ist bei XILINX per default active low
+
+Latches with ah and re have to be put into one slice 
+and Latches with al and fe have to be put into another slice since the clk can only be configured globally for all 4 flipflops/flatches

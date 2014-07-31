@@ -1,7 +1,7 @@
 
 # =======================================================
 # edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
-# time: Mi Jul 30 16:19:08 2014
+# time: Do Jul 31 16:59:38 2014
 
 # =======================================================
 
@@ -38,92 +38,23 @@ design "helloWorld" xc6slx45csg324-3 v3.2 ,
 #     instance IO1 IOB, unplaced bonded ;   # This will be bonded
 #     instance IO1 IOB, unplaced unbonded ; # This will be unbonded
 #  =======================================================
-inst "A2" "IOB",placed RIOB_X37Y87 G13  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:A2: IMUX::I "
+inst "in1" "IOB",placed RIOB_X37Y90 G14  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in1: IMUX::I "
   ;
-inst "#fulladder#3#k" "SLICEL",placed CLEXM_X17Y9 SLICE_X26Y9  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
-  ;
-inst "A1" "IOB",placed RIOB_X37Y69 G18  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:A1: IMUX::I "
-  ;
-inst "A3" "IOB",placed RIOB_X37Y90 G14  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:A3: IMUX::I "
-  ;
-inst "CARRY1" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) "
-  ;
-inst "CARRY2" "SLICEL",placed CLEXM_X8Y3 SLICE_X10Y3  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) "
-  ;
-inst "S2" "SLICEL",placed CLEXM_X17Y5 SLICE_X26Y5  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
-  ;
-inst "CARRY3" "SLICEL",placed CLEXM_X17Y7 SLICE_X26Y7  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) "
-  ;
-inst "S2_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E1  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:S2_FINAL_OUTPUT_OBUF: PAD:S2_FINAL_OUTPUT: IMUX::I "
-  ;
-inst "S0" "SLICEL",placed CLEXM_X8Y2 SLICE_X10Y2  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
-  ;
-inst "#fulladder#2#k" "SLICEL",placed CLEXM_X8Y5 SLICE_X10Y5  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
-  ;
-inst "S1_JJ" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
-  cfg " AOUTMUX::O5 B5LUT::#LUT:O5=(A1) BOUTMUX::O5 A5LUT::#LUT:O5=(A1) "
-  ;
-inst "S0_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E3  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:S0_FINAL_OUTPUT_OBUF: PAD:S0_FINAL_OUTPUT: IMUX::I "
-  ;
-inst "A0" "IOB",placed RIOB_X37Y69 G16  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:A0: IMUX::I "
-  ;
-inst "S1_FINAL_OUTPUT" "IOB",placed LIOB_X0Y90 E4  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:S1_FINAL_OUTPUT_OBUF: PAD:S1_FINAL_OUTPUT: IMUX::I "
-  ;
-inst "B3" "IOB",placed RIOB_X37Y62 H17  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:B3: IMUX::I "
-  ;
-inst "#fulladder#4#k" "SLICEL",placed CLEXM_X17Y6 SLICE_X26Y6  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
-  ;
-inst "B2" "IOB",placed RIOB_X37Y62 H18  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:B2: IMUX::I "
+inst "out1_FINAL_OUTPUT" "IOB",placed RIOB_X37Y87 G13  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out1_FINAL_OUTPUT_OBUF: PAD:out1_FINAL_OUTPUT: IMUX::I "
   ;
 inst "my_clk_BUFG" "BUFG",placed CLKC_X18Y63 BUFGMUX_X2Y10  ,
   cfg " "
   ;
-inst "XX" "SLICEL",placed CLEXM_X17Y8 SLICE_X26Y8  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
+inst "newCLK" "IOB",placed RIOB_X37Y69 G18  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:newCLK: IMUX::I "
   ;
-inst "my_clk" "IOB",placed TIOB_SINGLE_X20Y127 F9  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:my_clk: IMUX::I "
+inst "global_reset" "IOB",placed RIOB_X37Y69 G16  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:global_reset: IMUX::I "
   ;
-inst "S3" "SLICEL",placed CLEXM_X8Y4 SLICE_X10Y4  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
-  ;
-inst "S3_FINAL_OUTPUT" "IOB",placed RIOB_X37Y87 H12  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:S3_FINAL_OUTPUT_OBUF: PAD:S3_FINAL_OUTPUT: IMUX::I "
-  ;
-inst "COUT_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H14  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:COUT_FINAL_OUTPUT_OBUF: PAD:COUT_FINAL_OUTPUT: IMUX::I "
-  ;
-inst "CIN" "IOB",placed RIOB_X37Y71 H13  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:CIN: IMUX::I "
-  ;
-inst "B0" "IOB",placed RIOB_X37Y70 H16  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:B0: IMUX::I "
-  ;
-inst "COUT" "SLICEL",placed CLEXM_X8Y6 SLICE_X10Y6  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) "
-  ;
-inst "B1" "IOB",placed RIOB_X37Y70 H15  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:B1: IMUX::I "
-  ;
-inst "#fulladder#1#k" "SLICEL",placed CLEXM_X8Y7 SLICE_X10Y7  ,
-  cfg " AOUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
+inst "out1" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
+  cfg " AFFSRINIT::SRINIT0 AFFMUX::AX SYNC_ATTR::ASYNC CLKINV::CLK AFF::#FF "
   ;
 
 #  ================================================
@@ -161,126 +92,36 @@ inst "#fulladder#1#k" "SLICEL",placed CLEXM_X8Y7 SLICE_X10Y7  ,
 # 
 #  No pips exist for unrouted nets.
 #  ================================================
-  net "null" ,
+  net "out1.AQ->out1_FINAL_OUTPUT.O" ,
+    inpin "out1_FINAL_OUTPUT" O ,
+    outpin "out1" AQ ,
     ;
-  net "COUT.AMUX->COUT_FINAL_OUTPUT.O" ,
-    inpin "COUT_FINAL_OUTPUT" O ,
-    outpin "COUT" AMUX ,
+  net "in1.I->out1.AX" ,
+    inpin "out1" AX ,
+    outpin "in1" I ,
     ;
-  net "B2.I->CARRY3.A2" ,
-    inpin "CARRY3" A2 ,
-    outpin "B2" I ,
-    inpin "#fulladder#4#k" A2 ,
+  net "my_clk_BUFG.O->out1.CLK" ,
+    inpin "out1" CLK ,
+    outpin "my_clk_BUFG" O ,
     ;
-  net "S1_JJ.BMUX->CARRY3.A1" ,
-    inpin "CARRY3" A1 ,
-    outpin "S1_JJ" BMUX ,
-    inpin "#fulladder#4#k" A1 ,
+  net "global_reset.I->out1.SR" ,
+    inpin "out1" SR ,
+    outpin "global_reset" I ,
     ;
-  net "A1.I->CARRY2.A1" ,
-    inpin "CARRY2" A1 ,
-    outpin "A1" I ,
-    inpin "#fulladder#3#k" A1 ,
-    ;
-  net "B0.I->CARRY1.A2" ,
-    inpin "CARRY1" A2 ,
-    outpin "B0" I ,
-    inpin "#fulladder#1#k" A2 ,
-    ;
-  net "A0.I->CARRY1.A1" ,
-    inpin "CARRY1" A1 ,
-    outpin "A0" I ,
-    inpin "#fulladder#1#k" A1 ,
-    ;
-  net "A2.I->S1_JJ.B1" ,
-    inpin "S1_JJ" B1 ,
-    outpin "A2" I ,
-    ;
-  net "#fulladder#2#k.AMUX->S3.A1" ,
-    inpin "S3" A1 ,
-    outpin "#fulladder#2#k" AMUX ,
-    ;
-  net "CARRY2.AMUX->CARRY3.A3" ,
-    inpin "CARRY3" A3 ,
-    outpin "CARRY2" AMUX ,
-    inpin "S2" A2 ,
-    ;
-  net "#fulladder#4#k.AMUX->S2.A1" ,
-    inpin "S2" A1 ,
-    outpin "#fulladder#4#k" AMUX ,
-    ;
-  net "S1_JJ.AMUX->S1_FINAL_OUTPUT.O" ,
-    inpin "S1_FINAL_OUTPUT" O ,
-    outpin "S1_JJ" AMUX ,
-    ;
-  net "A3.I->COUT.A1" ,
-    inpin "COUT" A1 ,
-    outpin "A3" I ,
-    inpin "#fulladder#2#k" A1 ,
-    ;
-  net "#fulladder#1#k.AMUX->S0.A1" ,
-    inpin "S0" A1 ,
-    outpin "#fulladder#1#k" AMUX ,
-    ;
-  net "CARRY1.AMUX->CARRY2.A3" ,
-    inpin "CARRY2" A3 ,
-    outpin "CARRY1" AMUX ,
-    inpin "XX" A2 ,
-    ;
-  net "my_clk.I->my_clk_BUFG.I0" ,
+  net "newCLK.I->my_clk_BUFG.I0" ,
     inpin "my_clk_BUFG" I0 ,
-    outpin "my_clk" I ,
-    ;
-  net "S2.AMUX->S2_FINAL_OUTPUT.O" ,
-    inpin "S2_FINAL_OUTPUT" O ,
-    outpin "S2" AMUX ,
-    ;
-  net "#fulladder#3#k.AMUX->XX.A1" ,
-    inpin "XX" A1 ,
-    outpin "#fulladder#3#k" AMUX ,
-    ;
-  net "B3.I->COUT.A2" ,
-    inpin "COUT" A2 ,
-    outpin "B3" I ,
-    inpin "#fulladder#2#k" A2 ,
-    ;
-  net "S3.AMUX->S3_FINAL_OUTPUT.O" ,
-    inpin "S3_FINAL_OUTPUT" O ,
-    outpin "S3" AMUX ,
-    ;
-  net "B1.I->CARRY2.A2" ,
-    inpin "CARRY2" A2 ,
-    outpin "B1" I ,
-    inpin "#fulladder#3#k" A2 ,
-    ;
-  net "CIN.I->CARRY1.A3" ,
-    inpin "CARRY1" A3 ,
-    outpin "CIN" I ,
-    inpin "S0" A2 ,
-    ;
-  net "XX.AMUX->S1_JJ.A1" ,
-    inpin "S1_JJ" A1 ,
-    outpin "XX" AMUX ,
-    ;
-  net "CARRY3.AMUX->COUT.A3" ,
-    inpin "COUT" A3 ,
-    outpin "CARRY3" AMUX ,
-    inpin "S3" A2 ,
-    ;
-  net "S0.AMUX->S0_FINAL_OUTPUT.O" ,
-    inpin "S0_FINAL_OUTPUT" O ,
-    outpin "S0" AMUX ,
+    outpin "newCLK" I ,
     ;
 
 # =======================================================
 # SUMMARY
 # Number of Module Defs: 0
 # Number of Module Insts: 0
-# Number of Primitive Insts: 29
-#     Number of SLICES: 13
+# Number of Primitive Insts: 6
+#     Number of SLICES: 1
 #     Number of DSP48s: 0
 #     Number of BRAMs: 0
-# Number of Nets: 25
+# Number of Nets: 5
 # =======================================================
 
 

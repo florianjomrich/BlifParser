@@ -17,9 +17,10 @@ From one input x cables to other slicels have to be possible DONE
 
 7) Testfiles -> was ausdenken um komplexe Probleme abzudecken
 
-8)Sinnvolle Konsolen ausgaben im Programm einbauen und unnötige Angaben 
+8)Sinnvolle Konsolen ausgaben im Programm einbauen und unnötige Angaben entfernen
 
-9) Clk nur wenn latches vorhanden sind einbauen
+9) Clk nur wenn latches vorhanden sind einbauen - DONE
 
-10) Clk und Latch testen über ein Counter Beispiel
+10) Clk und Latch testen über ein Counter Beispiel - PARTLY DONE see 11) therefore
 
+11) Im Zuge der Tests -> Latches und FF testen und korrekt konfigurieren !! -> Derzeit noch falsch

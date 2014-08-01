@@ -1,7 +1,7 @@
 # Benchmark "testset/apex2" written by ABC on Fri Jun 22 12:04:36 2012
-.model testset/apex2
+.model registerTest22
 .inputs in1 
-.outputs out1 out2 out3 out4 out5 out6 out7 out8 out9 out10 out11
+.outputs out1 out2 out3 out4 out5 out6 out7 out8 out9 out10 out11 out12 out13 out14 out15
 .clock newCLK 
 
 
@@ -16,6 +16,10 @@
 .latch in1 out9 fe gloabelCLK 0
 .latch in1 out10 fe gloabelCLK 0
 .latch in1 out11 al gloabelCLK 0
+.latch in1 out12 al gloabelCLK 0
+.latch in1 out13 al gloabelCLK 1
+.latch in1 out14 al gloabelCLK 2
+.latch in1 out15 al gloabelCLK 3
 
 #.latch in1 latchOutput
 

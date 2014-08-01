@@ -1,4 +1,4 @@
-.model fulladder
+.model fulladderVermurkst
 .inputs a b cin
 .outputs s cout
 .subckt orgate a=a b=b c=k

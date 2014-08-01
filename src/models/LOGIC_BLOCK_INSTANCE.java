@@ -27,7 +27,8 @@ public class LOGIC_BLOCK_INSTANCE extends Instance {
 		String selectedOutput = "";
 		StringBuffer theBooleanFunction = new StringBuffer();
 		if (inputs.size() >= 7) {
-			System.out.print("TO MANY INPUTS FOR THE CONFIGURATION OF THE LUT");
+			System.err
+			.print("TOO MANY INPUTS FOR THE CONFIGURATION OF THE LUT");
 		} else if (inputs.size() == 6) {
 			selectedLUT = LETTER_OF_THE_SELECTED_LUT + "6LUT";
 			selectedOutput = "O6";

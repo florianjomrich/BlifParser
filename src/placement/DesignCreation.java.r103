@@ -1,6 +1,8 @@
 package placement;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import commands.GenericLatch;
@@ -10,9 +12,12 @@ import models.IOB_BLOCK_INSTANCE;
 import models.IOB_BLOCK_INSTANCE.TypeOfInstance;
 import models.LATCH_INSTANCE;
 import models.LOGIC_BLOCK_INSTANCE;
+import edu.byu.ece.rapidSmith.design.Attribute;
 import edu.byu.ece.rapidSmith.design.Design;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.design.Net;
+import edu.byu.ece.rapidSmith.design.NetType;
+import edu.byu.ece.rapidSmith.design.Pin;
 import edu.byu.ece.rapidSmith.device.PrimitiveSite;
 import edu.byu.ece.rapidSmith.device.PrimitiveType;
 
@@ -49,9 +54,6 @@ public class DesignCreation {
 	LOGIC_BLOCK_INSTANCE myLogicBlock = null;
 	LATCH_INSTANCE myLatchActiveHighFallingEdgeLatch = null;
 	LATCH_INSTANCE myLatchActiveLowRisingEdgeLatch = null;
-	
-	//to use an own Placer and deactivate the Random-Placer 
-	boolean useOwnPlacer = false;	
 
 	/**
 	 * 
@@ -77,10 +79,8 @@ public class DesignCreation {
 				.getPrimitiveSites();
 
 		// My own Helper-classes for faster processing of routine steps
+		Placer myPlacer = new Placer(design, primitiveSites);
 		NetCreator myNetCreator = new NetCreator();
-		Placer myPlacer = new Placer(design, primitiveSites,useOwnPlacer);
-		
-
 
 		
 
@@ -93,72 +93,76 @@ public class DesignCreation {
 		this.checkModelForCorrectness(model);
 		
 		// place the input and output IOBs
-		this.createInputAndOutputIOBs(model, design);
+		this.createInputAndOutputIOBs(model, myPlacer, design);
 
 		// setup the global clock first as well
 		// and setup a reset pin to reset all the latches/flipFlops
 		//but only do so if there is at least one latch available and therefore a clock is needed
 		if(model.genericLatches.size()>0){
-		setupGlobalClock(model, design, myNetCreator);
-		setupGlobalReset(model, design, myNetCreator);
+		setupGlobalClock(model, design, myNetCreator, myPlacer);
+		setupGlobalReset(model, design, myNetCreator, myPlacer);
 		}
 
 		// Dump-Place the Latches based on SLICELs (no connection established in
 		// the beginning
-		this.dumpPlaceLatches(model, myNetCreator, design);
+		this.dumpPlaceLatches(model, myNetCreator, design, myPlacer);
 
 		// Dump-Place the LogicGates based on SLICELs
-		this.dumpPlaceLogicGates(model, myNetCreator, design);
+		this.dumpPlaceLogicGates(model, myNetCreator, design, myPlacer);
 
 		// Dump-Place the inner models
-		this.dumpPlaceReferencesModels(model, myNetCreator, design);
+		this.dumpPlaceReferencesModels(model, myNetCreator, design, myPlacer);
 		
 		//Now place if necessary the last latch and logic block
 		if(logicBlockCounter!=0){
+			myPlacer.placeInstance(myLogicBlock);
 			design.addInstance(myLogicBlock);
 		}
 		if(latchCounterActiveHigh_FallingEdge!=0){
+			myPlacer.placeInstance(myLatchActiveHighFallingEdgeLatch);
 			design.addInstance(myLatchActiveHighFallingEdgeLatch);
 		}
 		if(latchCounterActiveLow_RisingEdge!=0){
+			myPlacer.placeInstance(myLatchActiveLowRisingEdgeLatch);
 			design.addInstance(myLatchActiveLowRisingEdgeLatch);
 		}
 		
 
 		// Now connect all the Latches
-		this.connectLatches(model, myNetCreator, design);
+		this.connectLatches(model, myNetCreator, design, myPlacer);
 
 		// and the Logic-Blocks
-		this.connectLogicBlocks(model, myNetCreator, design);
+		this.connectLogicBlocks(model, myNetCreator, design, myPlacer);
 		
 		//Now connect all the refrenced Latches and LogicBlocks
-		this.connectReferenceModels(model, myNetCreator, design);
+		this.connectReferenceModels(model, myNetCreator, design, myPlacer);
 
 		return design;
 	}
 
 	private void setupGlobalReset(Model model, Design design,
-			NetCreator myNetCreator) {
+			NetCreator myNetCreator, Placer myPlacer) {
 
 		global_reset = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
 				"global_reset");
+		myPlacer.placeInstance(global_reset);
 		design.addInstance(global_reset);
 		
 	}
 
 	private void connectReferenceModels(Model model, NetCreator myNetCreator,
-			Design design) {
+			Design design, Placer myPlacer) {
 		for(Model currentReferenceModel:model.realModelReferences){
-			this.connectLatches(currentReferenceModel, myNetCreator, design);
-			this.connectLogicBlocks(currentReferenceModel, myNetCreator, design);
+			this.connectLatches(currentReferenceModel, myNetCreator, design, myPlacer);
+			this.connectLogicBlocks(currentReferenceModel, myNetCreator, design, myPlacer);
 			//recursive call
-			this.connectReferenceModels(currentReferenceModel, myNetCreator, design);
+			this.connectReferenceModels(currentReferenceModel, myNetCreator, design, myPlacer);
 		}
 		
 	}
 
 	private void connectLogicBlocks(Model model, NetCreator myNetCreator,
-			Design design) {
+			Design design, Placer myPlacer) {
 		for (LogicGate currentLogicGate : model.logicGates) {
 
 			String currentLOGIC_BLOCK_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
@@ -226,7 +230,7 @@ public class DesignCreation {
 		}
 	}
 
-	private void connectLatches(Model model, NetCreator myNetCreator, Design design) {
+	private void connectLatches(Model model, NetCreator myNetCreator, Design design, Placer myPlacer) {
 		for (GenericLatch currentLatch : model.genericLatches) {
 			String currentLATCH_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
 					.get(currentLatch.output);
@@ -276,22 +280,23 @@ public class DesignCreation {
 	}
 
 	private void dumpPlaceReferencesModels(Model model,
-			NetCreator myNetCreator, Design design) {
+			NetCreator myNetCreator, Design design, Placer myPlacer) {
 
 		for (Model currentModel : model.realModelReferences) {
 			// Dump-Place all the latches of the Model
-			this.dumpPlaceLatches(currentModel, myNetCreator, design);
-			this.dumpPlaceLogicGates(currentModel, myNetCreator, design);
+			this.dumpPlaceLatches(currentModel, myNetCreator, design, myPlacer);
+			this.dumpPlaceLogicGates(currentModel, myNetCreator, design,
+					myPlacer);
 			// recursive call
 				dumpPlaceReferencesModels(currentModel,
-						myNetCreator, design);
+						myNetCreator, design, myPlacer);
 
 		}
 
 	}
 
 	private void dumpPlaceLogicGates(Model model, NetCreator myNetCreator,
-			Design design) {
+			Design design, Placer myPlacer) {
 		// Setup the new logic block
 	
 		
@@ -314,6 +319,7 @@ public class DesignCreation {
 
 			if (logicBlockCounter == 3
 					) {
+				myPlacer.placeInstance(myLogicBlock);
 				design.addInstance(myLogicBlock);
 			}
 
@@ -324,14 +330,14 @@ public class DesignCreation {
 	}
 
 	private void dumpPlaceLatches(Model model, NetCreator myNetCreator,
-			Design design) {
+			Design design, Placer myPlacer) {
 
 		for (GenericLatch currentLatch : model.genericLatches) {
 			if(currentLatch.type.equals("ah") || currentLatch.type.equals("fe")){
-				this.placeActiveHighRisingEdgeLatch(currentLatch,design,myNetCreator,model);
+				this.placeActiveHighRisingEdgeLatch(currentLatch,design,myNetCreator,model,myPlacer);
 			}
 			else if(currentLatch.type.equals("al") || currentLatch.type.equals("re")){
-				this.placeActiveLowFallingEdgeLatch(currentLatch,design,myNetCreator,model);
+				this.placeActiveLowFallingEdgeLatch(currentLatch,design,myNetCreator,model,myPlacer);
 			}
 			else{
 				System.out.println("LATCH TYPE: "+currentLatch.type);
@@ -343,7 +349,7 @@ public class DesignCreation {
 		}
 	}
 
-	private void placeActiveLowFallingEdgeLatch(GenericLatch currentLatch, Design design, NetCreator myNetCreator, Model model) {
+	private void placeActiveLowFallingEdgeLatch(GenericLatch currentLatch, Design design, NetCreator myNetCreator, Model model, Placer myPlacer) {
 		// TODO Auto-generated method stub
 		if (latchCounterActiveLow_RisingEdge == 0)
 			myLatchActiveLowRisingEdgeLatch = new LATCH_INSTANCE("");// naming is done in
@@ -359,6 +365,7 @@ public class DesignCreation {
 				alphabetSelector[latchCounterActiveLow_RisingEdge]);
 
 		if (latchCounterActiveLow_RisingEdge == 3) {
+			myPlacer.placeInstance(myLatchActiveLowRisingEdgeLatch);
 			design.addInstance(myLatchActiveLowRisingEdgeLatch);
 		}
 
@@ -367,7 +374,7 @@ public class DesignCreation {
 		
 	}
 
-	private void placeActiveHighRisingEdgeLatch(GenericLatch currentLatch, Design design, NetCreator myNetCreator, Model model) {
+	private void placeActiveHighRisingEdgeLatch(GenericLatch currentLatch, Design design, NetCreator myNetCreator, Model model, Placer myPlacer) {
 		if (latchCounterActiveHigh_FallingEdge == 0)
 			myLatchActiveHighFallingEdgeLatch = new LATCH_INSTANCE("");// naming is done in
 												// .setupTheLatch
@@ -382,6 +389,7 @@ public class DesignCreation {
 				alphabetSelector[latchCounterActiveHigh_FallingEdge]);
 
 		if (latchCounterActiveHigh_FallingEdge == 3) {
+			myPlacer.placeInstance(myLatchActiveHighFallingEdgeLatch);
 			design.addInstance(myLatchActiveHighFallingEdgeLatch);
 		}
 
@@ -440,7 +448,7 @@ public class DesignCreation {
 	 * Setup the clk for the latches
 	 */
 	private void setupGlobalClock(Model model, Design design,
-			NetCreator myNetCreator) {
+			NetCreator myNetCreator, Placer myPlacer) {
 
 		// set the clock if specified
 		if (model.clocks.size() >= 1) {
@@ -452,10 +460,12 @@ public class DesignCreation {
 			clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT, "my_clk");
 		}
 
+		myPlacer.placeInstance(clk);
 		design.addInstance(clk);
 
 		// Setup the Buffer for the clk as shown in the example projects
 		clk_buffer = new Instance("my_clk_BUFG", PrimitiveType.BUFG);
+		myPlacer.placeInstance(clk_buffer);
 		design.addInstance(clk_buffer);
 
 		// connect the clk and the clk buffer
@@ -515,11 +525,13 @@ public class DesignCreation {
 		return false;
 	}
 
-	private void createInputAndOutputIOBs(Model model, Design design) {
+	private void createInputAndOutputIOBs(Model model, Placer myPlacer,
+			Design design) {
 		// Create Input IOBs:
 		for (String currentInput : model.inputs) {
 			Instance myIOB_Input = new IOB_BLOCK_INSTANCE(
 					IOB_BLOCK_INSTANCE.TypeOfInstance.IOB_INPUT, currentInput);
+			myPlacer.placeInstance(myIOB_Input);
 			design.addInstance(myIOB_Input);
 			alreadyPlacedInstances.put(currentInput, myIOB_Input);
 			// allows access to the input instance
@@ -531,6 +543,7 @@ public class DesignCreation {
 			Instance myIOB2_Output = new IOB_BLOCK_INSTANCE(
 					IOB_BLOCK_INSTANCE.TypeOfInstance.IOB_OUTPUT, currentOutput
 							+ _FINAL_OUTPUT);
+			myPlacer.placeInstance(myIOB2_Output);
 			design.addInstance(myIOB2_Output);
 			// availableFinalOutputVariables.add(currentOutput);
 

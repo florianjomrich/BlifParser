@@ -41,7 +41,8 @@ import edu.byu.ece.rapidSmith.util.StreamGobbler;
  */
 
 public class RapidsmithParser{
-
+	
+	//has to be set to your own system path
 	String xilinxPath = "F:\\Xilinix\\14.7\\ISE_DS\\ISE\\bin\\nt\\";
 	
 	/**
@@ -52,8 +53,12 @@ public class RapidsmithParser{
 	 */
 	public void startProcessing(Model model) throws Exception{
 		DesignCreation myDesignCreater = new DesignCreation();
-		System.out.println(model.inputs.size());
-		String name = "helloWorld";
+		
+		//remove / seperators for easier handling of files
+		String name = "HelloWorld";
+//		String name = model.modelName.replace("/", "");
+		
+		//create the rapidsmith model
 		Design design = myDesignCreater.createDesign(model,name);
 				
 				
@@ -82,9 +87,11 @@ public class RapidsmithParser{
 				String verilogFileNameRouted = "simulationFilePlaceAndRouted/"+design.getName()+"PlaceAndRouted.v";
 				this.createSimulationModel(ncdRoutedFileName, verilogFileNameRouted, "Built placed and routed Verilog-Simulationfile");
 				
+				
 				System.out.println("Create automatic Test-Bench for Routed Verilog-File");
 				AutomaticTestBenchCreator creator = new AutomaticTestBenchCreator();
 				creator.setupAutomaticTestBench(verilogFileNameRouted,design);
+				
 	}
 	
 	
@@ -94,13 +101,16 @@ public class RapidsmithParser{
 
 
 	private void placeAndRoute(String ncdFileName,String ncdRoutedFileName){
-		String command = xilinxPath+"par -p -r -w " + ncdFileName + " " + ncdRoutedFileName;
+		//-w to overwrite already existing files
+		String command = xilinxPath+"par -w " + ncdFileName + " " + ncdRoutedFileName;
 
 		
 			Process p = null;
 			try {
 				p = Runtime.getRuntime().exec(command);
-			} catch (IOException e) {
+				Thread.sleep(5000);//since "par" does not finish correctly after the process
+//				p.waitFor();//waits until the process is finished
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

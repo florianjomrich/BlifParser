@@ -5,17 +5,25 @@
 #Current Working Directory:
 #:D   C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\ncdFileAfterPlaceAndRoute
 #Date/Time:
-#:T   Sun Jul 27 20:50:50 2014
+#:T   Fri Aug 01 23:58:42 2014
 #------------------------------
-	#Reading C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\ncdFileAfterPlaceAndRoute\helloWorldRouted.ncd...
+	#Reading C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\ncdFileAfterPlaceAndRoute\HelloWorldRouted.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
-	#   "helloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.07.24.15.29.25
+	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
+	#Design creation date: 2014.08.01.19.27.37
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'z33_SLICEL'
+select -k comp 'CARRY3_#fulladder#4#k'
 	#2
 unselect -all
 	#3
+unselect -all
+	#4
+unselect -all
+	#5
+select -k comp 'CARRY3_#fulladder#4#k'
+	#6
+unselect -all
+	#7
 post open

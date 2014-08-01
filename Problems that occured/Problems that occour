@@ -18,3 +18,31 @@ Latch ist bei XILINX per default active low
 
 Latches with ah and re have to be put into one slice 
 and Latches with al and fe have to be put into another slice since the clk can only be configured globally for all 4 flipflops/flatches
+
+
+FlipFlops die synchron (SYNC) angesteuert werden sollen, benötigen wie es scheint ein CE = Clock Enabled Signal anliegen. 
+Asyncrone (ASYNC) FlipFlops (wie sie auch bei der Verilog Synthese selbst entstehen - durch Beispiel verifiziert) benötigen das dagegen nicht. 
+Daher haben wir uns für die Konfiguration aller Latches und FlipFlops über ASYNC festgelegt.
+
+
+Primitive müssen vor .V Dateien initalisert werden. So eifnach nicht mit Testbench möglich.
+
+s38417.blif File wird erzeugt und geplaced, kann aber aufgrund der großen Anzahl von Verdrahtung nicht gerouted werden von 
+Xilinx selbst. -> Lösung ggf. weniger als 4 Latches/Logicblocks in ein Slice einbauen
+
+
+Place and Route Prozess von Xilinx terminiert nicht richtig !!
+-> Daher erstellen wir derzeit mit dem unplacedUnrouted .v File unsere Tests
+
+
+
+Bezogen auf das par command:
+siehe: http://www.xilinx.com/support/documentation/sw_manuals/xilinx11/pp_p_process_place_and_route.htm
+Note For Spartan®-6, Virtex®-5, and Virtex-6 devices, the design is automatically
+placed as part of the Map process, and the Place and Route process only routes the design.
+For all other devices, you can enable the Perform Timing-Driven Packing and Placement Map 
+property if you want to place the design as part of the Map process.
+
+
+-> d.h. um par für Spartan 6 aufrufen zu können müssen wir gemapped haben. D.h. der bessere Mapper muss dann später
+dann genau an dieser Stelle einsetzen !!! Eine entsprechende Selektions-Variable habe ich für uns eingefügt

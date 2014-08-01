@@ -5,25 +5,58 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="error" file="PhysDesignRules" num="1709" delta="old" >Incomplete connectivity. The pin &lt;<arg fmt="%s" index="1">SR</arg>&gt; of comp block &lt;<arg fmt="%s" index="2">out1</arg>&gt; is used and partially connected to network &lt;<arg fmt="%s" index="3">global_reset.I-&gt;out1.SR</arg>&gt;. All networks must have complete connectivity through out the comp hierarchy and the connectivity for this pin must be removed or completed.
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">A2</arg> is not placed.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out1.AQ-&gt;out1_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S1_FINAL_OUTPUT</arg> is not placed.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">in1.I-&gt;out1.AX</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">A1</arg> is not placed.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">my_clk_BUFG.O-&gt;out1.CLK</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">B3</arg> is not placed.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">global_reset.I-&gt;out1.SR</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">A3</arg> is not placed.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">newCLK.I-&gt;my_clk_BUFG.I0</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">B2</arg> is not placed.
 </msg>
 
-<msg type="warning" file="XDL" num="184" delta="old" >Forced writing the NCD file even though <arg fmt="%d" index="1">1</arg> DRC error(s) are present.
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">XX_CARRY2_#fulladder#3#k_S2</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S1_JJ_S0_CARRY1</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S2_FINAL_OUTPUT</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">CARRY3_#fulladder#4#k</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S3_FINAL_OUTPUT</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S0_FINAL_OUTPUT</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">COUT_FINAL_OUTPUT</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">CIN</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">B0</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">B1</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">#fulladder#1#k_S3_COUT_#fulladder#2#k</arg> is not placed.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">A0</arg> is not placed.
 </msg>
 
 </messages>

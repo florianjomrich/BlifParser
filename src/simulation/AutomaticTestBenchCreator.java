@@ -100,7 +100,7 @@ public class AutomaticTestBenchCreator {
 		for (String currentLine : fileContentSplitted) {
 			if (currentLine.contains("input")) {
 				String[] currentLineSplited = currentLine.split(" ");
-				System.out.println(currentLineSplited[3]);
+//				System.out.println(currentLineSplited[3]);
 				readInInputs.add(currentLineSplited[3]);
 				readInConnections.add(currentLineSplited[3]);
 				bufferForTestBenchContent.append("reg " + currentLineSplited[3]
@@ -152,7 +152,7 @@ public class AutomaticTestBenchCreator {
 		bufferForTestBenchContent
 				.append("	#100;\n\n	// Add stimulus here\n\nend\n\nendmodule");
 
-		System.out.println("\n \n" + bufferForTestBenchContent.toString());
+//		System.out.println("\n \n" + bufferForTestBenchContent.toString());
 
 		this.writeTheFile(bufferForTestBenchContent.toString(),
 				testBenchFolder, design);

@@ -1,6 +1,8 @@
 package placement;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import commands.GenericLatch;
@@ -10,9 +12,12 @@ import models.IOB_BLOCK_INSTANCE;
 import models.IOB_BLOCK_INSTANCE.TypeOfInstance;
 import models.LATCH_INSTANCE;
 import models.LOGIC_BLOCK_INSTANCE;
+import edu.byu.ece.rapidSmith.design.Attribute;
 import edu.byu.ece.rapidSmith.design.Design;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.design.Net;
+import edu.byu.ece.rapidSmith.design.NetType;
+import edu.byu.ece.rapidSmith.design.Pin;
 import edu.byu.ece.rapidSmith.device.PrimitiveSite;
 import edu.byu.ece.rapidSmith.device.PrimitiveType;
 
@@ -49,9 +54,6 @@ public class DesignCreation {
 	LOGIC_BLOCK_INSTANCE myLogicBlock = null;
 	LATCH_INSTANCE myLatchActiveHighFallingEdgeLatch = null;
 	LATCH_INSTANCE myLatchActiveLowRisingEdgeLatch = null;
-	
-	//to use an own Placer and deactivate the Random-Placer 
-	boolean useOwnPlacer = false;	
 
 	/**
 	 * 
@@ -78,9 +80,9 @@ public class DesignCreation {
 
 		// My own Helper-classes for faster processing of routine steps
 		NetCreator myNetCreator = new NetCreator();
-		Placer myPlacer = new Placer(design, primitiveSites,useOwnPlacer);
+		//No placer is used - since there will be a better placer existing
+		//Placer myPlacer = new Placer(design, primitiveSites);
 		
-
 
 		
 

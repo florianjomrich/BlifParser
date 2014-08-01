@@ -19,19 +19,20 @@ public class Parser {
 	public static void main(String[] args) {
 		try {
 			Model model = null;
-			model = parseFile("blif\\nandGate.blif");
-			model = parseFile("blif\\adder.blif");
-			model = parseFile("blif\\adder vermurkst.blif");
-			model = parseFile("blif\\xor_outOfNands.blif");
-			model = parseFile("blif\\testBlif2.blif");
-			model = parseFile("blif\\testBlif3.blif");
-			model = parseFile("blif\\testBlif4.blif");
-			model = parseFile("blif\\blifSim.blif");
-			model = parseFile("blif\\alu4_map_sp6.blif");
-			model = parseFile("blif\\s38417.blif");
-			model = parseFile("blif\\bigkey.blif");
-			model = parseFile("blif\\registerTest.blif");
-			model = parseFile("blif\\registerMinimal.blif");
+//			model = parseFile("blif\\nandGate.blif");//OK
+			model = parseFile("blif\\adder.blif");//OK
+//			model = parseFile("blif\\adder vermurkst.blif");//OK
+//			model = parseFile("blif\\xor_outOfNands.blif");//OK
+//			model = parseFile("blif\\testBlif2.blif");//OK
+//			model = parseFile("blif\\testBlif3.blif");//OK
+//			model = parseFile("blif\\testBlif4.blif");//OK
+//			model = parseFile("blif\\blifSim.blif");//OK
+//			model = parseFile("blif\\alu4_map_sp6.blif");//OK
+//			model = parseFile("blif\\s38417.blif"); //????
+//			model = parseFile("blif\\S3388BENCHMARK.blif"); //????
+//			model = parseFile("blif\\bigkey.blif");//OK
+//			model = parseFile("blif\\registerTest.blif");//OK
+//			model = parseFile("blif\\registerMinimal.blif");//OK
 			
 			RapidsmithParser myRapidParser = new RapidsmithParser();
 			myRapidParser.startProcessing(model);
@@ -202,8 +203,8 @@ public class Parser {
 				case 4:// nur clock ist als optionaler Parameter vorhanden
 					latch.initVal = Integer.valueOf(component.get(3));
 
-					latch.type = "UNKOWN";
-					latch.control = "UNKOWN";
+					latch.type = "al";//assume the default case for Xilinx - an active low latch
+					latch.control = "NIL";
 
 					break;
 				default:

@@ -25,8 +25,13 @@ public class LATCH_INSTANCE extends Instance {
 		this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LATCH + "FFMUX",
 				"", LETTER_OF_THE_SELECTED_LATCH + "X"));
 
-		// set the synchronous reset
+		// set the Latch/FlipFlop to act asyncronous
+		//otherwise a Clock Enable Signal (CE) would have to be added to the FF/Latch input as well
 		this.addAttribute(new Attribute("SYNC_ATTR", "", "ASYNC"));
+		
+		//connect the reset cable to the Latch/FlipFlop for a synchronous reset
+		this.addAttribute(new Attribute("SRUSED", "", "0"));
+		
 
 		// configuration Parameter for the latch or FlipFlop
 

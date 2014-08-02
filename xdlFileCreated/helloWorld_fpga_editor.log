@@ -1,59 +1,49 @@
-#:C19    
+#:C9     
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sat Aug 02 20:16:10 2014
+#:T   Sat Aug 02 20:37:15 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.02.15.45.51
+	#Design creation date: 2014.08.02.16.07.00
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'my_clk_BUFG'
+select -k comp 'z0_FINAL_OUTPUT'
 	#2
-unselect comp 'my_clk_BUFG'
+unselect comp 'z0_FINAL_OUTPUT'
 	#3
-select -k comp 'out1_out2_out5_out6'
+select -k comp 'n44'
 	#4
-unselect comp 'out1_out2_out5_out6'
+unselect -all
 	#5
-select -k comp 'out2_FINAL_OUTPUT'
+select comp 'n44'
+	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#6
-unselect comp 'out2_FINAL_OUTPUT'
+unselect -all
 	#7
-select -k comp 'out3_out4_out9_out10'
+select comp 'n44'
+	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#8
-unselect comp 'out3_out4_out9_out10'
-	#9
-select -k comp 'out5_FINAL_OUTPUT'
-	#10
-unselect comp 'out5_FINAL_OUTPUT'
-	#11
-select -k comp 'out7_FINAL_OUTPUT'
-	#12
-unselect comp 'out7_FINAL_OUTPUT'
-	#13
-select -k comp 'out8_FINAL_OUTPUT'
-	#14
-unselect comp 'out8_FINAL_OUTPUT'
-	#15
-select -k comp 'out7_out8_out11_out12'
-	#16
-unselect -all
-	#17
-select comp 'out7_out8_out11_out12'
-	#comp "out7_out8_out11_out12",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
-	#18
-unselect -all
-	#19
-select comp 'out7_out8_out11_out12'
-	#comp "out7_out8_out11_out12",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
-	#20
 post block
-	#21
+	#9
+unselect -all
+	#10
+select comp 'n44'
+	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+	#11
+unselect -all
+	#12
+select comp 'n44'
+	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+	#13
+post block
+	#<BOUTMUX>.
+	#<BFFMUX>.
+	#14
 post open

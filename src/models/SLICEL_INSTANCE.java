@@ -23,9 +23,27 @@ public class SLICEL_INSTANCE extends Instance {
 	public void configure_PRIMARY_LATCH(GenericLatch currentLatch,LogicGate currentLogicBlock,
 			String LETTER_OF_THE_SELECTED_LATCH) {
 
+		String selectedLUT_Output = "";
+		if (currentLogicBlock.inputs.size()>6){
+			System.err.print("Too many Outputs specified");
+			Exception e = new Exception();
+			try {
+				throw e;
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		if(currentLogicBlock.inputs.size()==6){
+			selectedLUT_Output="O6";
+		}
+		else{
+			selectedLUT_Output="O5";
+		}
+		
 		//connect the latch with the output gate of the LUT
 		this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LATCH + "FFMUX",
-				"", LETTER_OF_THE_SELECTED_LATCH + "X"));
+				"", selectedLUT_Output));
 
 		this.configure_TheRestOfTheLatch(currentLatch,LETTER_OF_THE_SELECTED_LATCH);
 

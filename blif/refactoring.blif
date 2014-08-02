@@ -1,0 +1,10 @@
+# Benchmark "testset/apex2" written by ABC on Fri Jun 22 12:04:36 2012
+.model testset/apex2
+.inputs x23 
+.outputs z0 
+.names x23 n44
+0 1
+1 0 
+.latch n44 z0 re c 0
+
+.end

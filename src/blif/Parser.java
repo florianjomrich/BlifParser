@@ -31,7 +31,8 @@ public class Parser {
 //			model = parseFile("blif\\s38417.blif"); //????
 //			model = parseFile("blif\\S3388BENCHMARK.blif"); //????
 //			model = parseFile("blif\\bigkey.blif");//OK
-			model = parseFile("blif\\registerTest.blif");//OK
+//			model = parseFile("blif\\registerTest.blif");//OK
+			model = parseFile("blif\\refactoring.blif");//OK
 //			model = parseFile("blif\\registerMinimal.blif");//OK
 			
 			RapidsmithParser myRapidParser = new RapidsmithParser();

@@ -190,10 +190,10 @@ public class DesignCreation {
 				
 				String currentTypeOfOtherInstance = typeOfTheAlreadyPlaceInstances.get(currentToBeMappedInput);
 				
-				
+				System.out.println(currentToBeMappedInput+" OUtput");
 				
 				if (currentTypeOfOtherInstance.equals(_LATCH)) {
-				
+					System.out.println("Hallo");
 					String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
 							.get(currentToBeMappedInput);
 					
@@ -336,6 +336,7 @@ public class DesignCreation {
 			for (GenericLatch currentLatchToCheck : model.genericLatches) {
 				if (currentLogicGate.output.equals(currentLatchToCheck.input)) {
 					primaryLatch = currentLatchToCheck;
+					System.out.println("FOUND");
 					break;
 				}
 			}
@@ -388,7 +389,7 @@ public class DesignCreation {
 						alphabetSelector[negBlockCounter], negativeSlice);
 				
 				//setup the PrimaryLatch as well
-				negativeSlice = (PositiveSLICE)  this.setupThePrimaryLatch(primaryLatch, alphabetSelector[posBlockCounter], currentLogicGate, negativeSlice);
+				negativeSlice = (NegativeSLICE)  this.setupThePrimaryLatch(primaryLatch, alphabetSelector[posBlockCounter], currentLogicGate, negativeSlice);
 				
 				
 				//remove the primary latch since does not have to be added once more
@@ -461,6 +462,7 @@ public class DesignCreation {
 		alreadyPlacedInstances.put(currentLatch.output + "_"
 				+ alphabetSelector[negBlockCounter]+_LATCH,
 				negativeSlice);
+		typeOfTheAlreadyPlaceInstances.put(currentLatch.output, _LATCH);
 		portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output,
 				alphabetSelector[negBlockCounter]);
 
@@ -499,6 +501,7 @@ public class DesignCreation {
 		alreadyPlacedInstances.put(currentLatch.output + "_"
 				+ alphabetSelector[posBlockCounter]+_LATCH,
 				positiveSlice);
+		typeOfTheAlreadyPlaceInstances.put(currentLatch.output, _LATCH);
 		portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output,
 				alphabetSelector[posBlockCounter]);
 

@@ -5,45 +5,34 @@
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sat Aug 02 20:37:15 2014
+#:T   Sat Aug 02 20:41:53 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.02.16.07.00
+	#Design creation date: 2014.08.02.16.11.41
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'z0_FINAL_OUTPUT'
-	#2
-unselect comp 'z0_FINAL_OUTPUT'
-	#3
 select -k comp 'n44'
+	#2
+unselect -all
+	#3
+select comp 'n44'
+	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#4
 unselect -all
 	#5
 select comp 'n44'
 	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#6
-unselect -all
+post block
 	#7
-select comp 'n44'
-	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+unselect -all
 	#8
-post block
+select comp 'n44'
+	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#9
-unselect -all
-	#10
-select comp 'n44'
-	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
-	#11
-unselect -all
-	#12
-select comp 'n44'
-	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
-	#13
 post block
-	#<BOUTMUX>.
-	#<BFFMUX>.
-	#14
+	#10
 post open

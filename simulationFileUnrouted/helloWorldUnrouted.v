@@ -7,7 +7,7 @@
 // \   \   \/     Version: P.20131013
 //  \   \         Application: netgen
 //  /   /         Filename: HelloWorldUnrouted.v
-// /___/   /\     Timestamp: Sat Aug 02 20:41:56 2014
+// /___/   /\     Timestamp: Sat Aug 02 21:01:21 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
@@ -40,6 +40,7 @@ module HelloWorld (
   input \my_clk.PAD.PAD ;
   input \global_reset.PAD.PAD ;
   input \x23.PAD.PAD ;
+  wire \n44.AQ->z0_FINAL_OUTPUT.O ;
   wire \my_clk.I->my_clk_BUFG.I0 ;
   wire \x23.I->n44.A1 ;
   wire \z0_FINAL_OUTPUT.INBUF.OUT ;
@@ -47,11 +48,9 @@ module HelloWorld (
   wire \my_clk.INBUF.OUT ;
   wire \global_reset.INBUF.OUT ;
   wire \x23.INBUF.OUT ;
-  wire NLW_z0_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
   wire \NLW_z0_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire VCC;
   wire \NLW_n44.AFF_CLK_UNCONNECTED ;
-  wire \NLW_n44.AFF_O_UNCONNECTED ;
   wire GND;
   wire \NLW_my_clk_BUFG.BUFG_O_UNCONNECTED ;
   wire \NLW_global_reset.IMUX_O_UNCONNECTED ;
@@ -64,7 +63,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD84" ))
   z0_FINAL_OUTPUT_OBUF (
-    .I(NLW_z0_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .I(\n44.AQ->z0_FINAL_OUTPUT.O ),
     .O(\z0_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -86,7 +85,7 @@ module HelloWorld (
     .CE(VCC),
     .CLK(\NLW_n44.AFF_CLK_UNCONNECTED ),
     .I(\n44/n44.A5LUT.O5 ),
-    .O(\NLW_n44.AFF_O_UNCONNECTED ),
+    .O(\n44.AQ->z0_FINAL_OUTPUT.O ),
     .RST(GND),
     .SET(GND)
   );

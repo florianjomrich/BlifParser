@@ -375,6 +375,16 @@ public class DesignCreation {
 				
 				//remove the primary latch since does not have to be added once more
 				model.genericLatches.remove(primaryLatch);
+				
+				// check if output is final output
+				if (alreadyPlacedInstances.containsKey(primaryLatch.output
+						+ _FINAL_OUTPUT)) {
+					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+							.get(primaryLatch.output + _FINAL_OUTPUT);
+					myNetCreator.generateNet(alphabetSelector[posBlockCounter] + "Q",
+							positiveSlice, "O", otherIOB_BLOCK_INSTANCE,
+							design, alreadyPlacedNets);
+				}
 			
 				
 				//add the latch and the logicBlock to the placed Instances
@@ -394,6 +404,17 @@ public class DesignCreation {
 				
 				//remove the primary latch since does not have to be added once more
 				model.genericLatches.remove(primaryLatch);
+				
+				// check if output is final output
+				if (alreadyPlacedInstances.containsKey(primaryLatch.output
+						+ _FINAL_OUTPUT)) {
+					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+							.get(primaryLatch.output + _FINAL_OUTPUT);
+					myNetCreator.generateNet(alphabetSelector[negBlockCounter] + "Q",
+							negativeSlice, "O", otherIOB_BLOCK_INSTANCE,
+							design, alreadyPlacedNets);
+				}
+			
 				
 				
 				this.addTheLatchToAlreadyPlacedInstances(primaryLatch, negBlockCounter, negativeSlice);

@@ -1,7 +1,7 @@
 (DELAYFILE
   (SDFVERSION "3.0")
   (DESIGN "HelloWorld")
-  (DATE "Sat Aug 02 20:42:03 2014")
+  (DATE "Sat Aug 02 21:01:25 2014")
   (VENDOR "Xilinx")
   (PROGRAM "Xilinx SDF Writer")
   (VERSION "P.20131013")
@@ -13,7 +13,8 @@
     (INSTANCE z0_FINAL_OUTPUT_OBUF)
       (DELAY
         (ABSOLUTE
-          (IOPATH I O ( 0 )( 0 ))
+          (PORT I ( 0 )( 0 ))
+          (IOPATH I O ( 2001 )( 2001 ))
         )
       )
   )
@@ -55,8 +56,8 @@
     (INSTANCE n44\.A5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR3 ( 1448 )( 1448 ))
-          (IOPATH ADR3 O ( 184 )( 184 ))
+          (PORT ADR1 ( 1735 )( 1735 ))
+          (IOPATH ADR1 O ( 184 )( 184 ))
         )
       )
   )
@@ -121,6 +122,15 @@
         (PATHPULSE (202))
         (ABSOLUTE
           (IOPATH I O ( 115 )( 115 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_z0_FINAL_OUTPUT_OBUF\/I)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 1828 )( 1828 ))
         )
       )
   )

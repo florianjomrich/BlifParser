@@ -5,19 +5,16 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="PhysDesignRules" num="972" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">z0_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
-</msg>
-
-<msg type="error" file="PhysDesignRules" num="1710" delta="new" >Incomplete connectivity. The pin &lt;<arg fmt="%s" index="1">AMUX</arg>&gt; of comp block &lt;<arg fmt="%s" index="2">n44</arg>&gt; is used and partially connected to network &lt;<arg fmt="%s" index="3">n44.A5LUT.O5</arg>&gt;. All networks must have complete connectivity to the comp hierarchy and the connectivity for this pin must be removed or completed.
+<msg type="error" file="PhysDesignRules" num="1710" delta="old" >Incomplete connectivity. The pin &lt;<arg fmt="%s" index="1">AMUX</arg>&gt; of comp block &lt;<arg fmt="%s" index="2">n44</arg>&gt; is used and partially connected to network &lt;<arg fmt="%s" index="3">n44.A5LUT.O5</arg>&gt;. All networks must have complete connectivity to the comp hierarchy and the connectivity for this pin must be removed or completed.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="822" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">n44.AFF</arg>&gt;:&lt;<arg fmt="%s" index="2">REG_SR</arg>&gt;.  Must have a signal on the CLOCK pin.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="1761" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">n44.AFF</arg>&gt;:&lt;<arg fmt="%s" index="2">REG_SR</arg>&gt;.  Dangling output. The flip-flop is configured but the Q output is not used.
+<msg type="warning" file="PhysDesignRules" num="812" delta="old" >Dangling pin &lt;<arg fmt="%s" index="1">O</arg>&gt; on block:&lt;<arg fmt="%s" index="2">my_clk_BUFG.BUFG</arg>&gt;:&lt;<arg fmt="%s" index="3">BUFG_BUFG</arg>&gt;.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="812" delta="old" >Dangling pin &lt;<arg fmt="%s" index="1">O</arg>&gt; on block:&lt;<arg fmt="%s" index="2">my_clk_BUFG.BUFG</arg>&gt;:&lt;<arg fmt="%s" index="3">BUFG_BUFG</arg>&gt;.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">n44.AQ-&gt;z0_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">my_clk.I-&gt;my_clk_BUFG.I0</arg>&gt; is completely unrouted.

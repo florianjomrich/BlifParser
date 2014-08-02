@@ -1,7 +1,7 @@
 
 # =======================================================
 # edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
-# time: Sa Aug 02 20:41:39 2014
+# time: Sa Aug 02 21:00:59 2014
 
 # =======================================================
 
@@ -92,6 +92,10 @@ inst "x23" "IOB",placed RIOB_X37Y90 G14  ,
 # 
 #  No pips exist for unrouted nets.
 #  ================================================
+  net "n44.AQ->z0_FINAL_OUTPUT.O" ,
+    inpin "z0_FINAL_OUTPUT" O ,
+    outpin "n44" AQ ,
+    ;
   net "my_clk.I->my_clk_BUFG.I0" ,
     inpin "my_clk_BUFG" I0 ,
     outpin "my_clk" I ,
@@ -109,7 +113,7 @@ inst "x23" "IOB",placed RIOB_X37Y90 G14  ,
 #     Number of SLICES: 1
 #     Number of DSP48s: 0
 #     Number of BRAMs: 0
-# Number of Nets: 2
+# Number of Nets: 3
 # =======================================================
 
 

@@ -1,7 +1,7 @@
 (DELAYFILE
   (SDFVERSION "3.0")
   (DESIGN "HelloWorld")
-  (DATE "Sat Aug 02 00:36:40 2014")
+  (DATE "Sat Aug 02 13:52:08 2014")
   (VENDOR "Xilinx")
   (PROGRAM "Xilinx SDF Writer")
   (VERSION "P.20131013")
@@ -131,7 +131,7 @@
       (DELAY
         (PATHPULSE (202))
         (ABSOLUTE
-          (IOPATH I O ( 67 )( 67 ))
+          (IOPATH I O ( 74 )( 74 ))
         )
       )
   )
@@ -140,7 +140,7 @@
       (DELAY
         (PATHPULSE (202))
         (ABSOLUTE
-          (IOPATH I O ( 67 )( 67 ))
+          (IOPATH I O ( 74 )( 74 ))
         )
       )
   )
@@ -149,7 +149,7 @@
       (DELAY
         (PATHPULSE (202))
         (ABSOLUTE
-          (IOPATH I O ( 67 )( 67 ))
+          (IOPATH I O ( 74 )( 74 ))
         )
       )
   )
@@ -158,7 +158,7 @@
       (DELAY
         (PATHPULSE (202))
         (ABSOLUTE
-          (IOPATH I O ( 67 )( 67 ))
+          (IOPATH I O ( 74 )( 74 ))
         )
       )
   )
@@ -166,10 +166,10 @@
     (INSTANCE XX_CARRY2_\#fulladder\#3\#k_S2\.D5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
-          (IOPATH ADR1 O ( 184 )( 184 ))
+          (PORT ADR3 ( 481 )( 481 ))
+          (PORT ADR1 ( 663 )( 663 ))
+          (IOPATH ADR3 O ( 187 )( 187 ))
+          (IOPATH ADR1 O ( 187 )( 187 ))
         )
       )
   )
@@ -177,10 +177,10 @@
     (INSTANCE XX_CARRY2_\#fulladder\#3\#k_S2\.C5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
-          (IOPATH ADR1 O ( 184 )( 184 ))
+          (PORT ADR2 ( 1706 )( 1706 ))
+          (PORT ADR0 ( 1769 )( 1769 ))
+          (IOPATH ADR2 O ( 187 )( 187 ))
+          (IOPATH ADR0 O ( 187 )( 187 ))
         )
       )
   )
@@ -188,12 +188,12 @@
     (INSTANCE XX_CARRY2_\#fulladder\#3\#k_S2\.B5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (PORT ADR2 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
-          (IOPATH ADR1 O ( 184 )( 184 ))
-          (IOPATH ADR2 O ( 184 )( 184 ))
+          (PORT ADR1 ( 1852 )( 1852 ))
+          (PORT ADR4 ( 1638 )( 1638 ))
+          (PORT ADR3 ( 726 )( 726 ))
+          (IOPATH ADR1 O ( 187 )( 187 ))
+          (IOPATH ADR4 O ( 187 )( 187 ))
+          (IOPATH ADR3 O ( 187 )( 187 ))
         )
       )
   )
@@ -201,10 +201,10 @@
     (INSTANCE XX_CARRY2_\#fulladder\#3\#k_S2\.A5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
-          (IOPATH ADR1 O ( 184 )( 184 ))
+          (PORT ADR1 ( 624 )( 624 ))
+          (PORT ADR0 ( 931 )( 931 ))
+          (IOPATH ADR1 O ( 187 )( 187 ))
+          (IOPATH ADR0 O ( 187 )( 187 ))
         )
       )
   )
@@ -248,12 +248,12 @@
     (INSTANCE S1_JJ_S0_CARRY1\.D5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (PORT ADR2 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
-          (IOPATH ADR1 O ( 184 )( 184 ))
+          (PORT ADR2 ( 1758 )( 1758 ))
+          (PORT ADR3 ( 1494 )( 1494 ))
+          (PORT ADR1 ( 1961 )( 1961 ))
           (IOPATH ADR2 O ( 184 )( 184 ))
+          (IOPATH ADR3 O ( 184 )( 184 ))
+          (IOPATH ADR1 O ( 184 )( 184 ))
         )
       )
   )
@@ -261,9 +261,9 @@
     (INSTANCE S1_JJ_S0_CARRY1\.C5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
+          (PORT ADR4 ( 377 )( 377 ))
+          (PORT ADR1 ( 1757 )( 1757 ))
+          (IOPATH ADR4 O ( 184 )( 184 ))
           (IOPATH ADR1 O ( 184 )( 184 ))
         )
       )
@@ -272,8 +272,8 @@
     (INSTANCE S1_JJ_S0_CARRY1\.B5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
+          (PORT ADR4 ( 1486 )( 1486 ))
+          (IOPATH ADR4 O ( 184 )( 184 ))
         )
       )
   )
@@ -281,8 +281,8 @@
     (INSTANCE S1_JJ_S0_CARRY1\.A5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
+          (PORT ADR2 ( 696 )( 696 ))
+          (IOPATH ADR2 O ( 184 )( 184 ))
         )
       )
   )
@@ -335,10 +335,10 @@
     (INSTANCE CARRY3_\#fulladder\#4\#k\.B5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
-          (IOPATH ADR1 O ( 184 )( 184 ))
+          (PORT ADR2 ( 549 )( 549 ))
+          (PORT ADR4 ( 1639 )( 1639 ))
+          (IOPATH ADR2 O ( 184 )( 184 ))
+          (IOPATH ADR4 O ( 184 )( 184 ))
         )
       )
   )
@@ -346,12 +346,12 @@
     (INSTANCE CARRY3_\#fulladder\#4\#k\.A5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (PORT ADR2 ( 0 )( 0 ))
+          (PORT ADR0 ( 842 )( 842 ))
+          (PORT ADR1 ( 1848 )( 1848 ))
+          (PORT ADR3 ( 459 )( 459 ))
           (IOPATH ADR0 O ( 184 )( 184 ))
           (IOPATH ADR1 O ( 184 )( 184 ))
-          (IOPATH ADR2 O ( 184 )( 184 ))
+          (IOPATH ADR3 O ( 184 )( 184 ))
         )
       )
   )
@@ -530,10 +530,10 @@
     (INSTANCE \#fulladder\#1\#k_S3_COUT_\#fulladder\#2\#k\.D5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
-          (IOPATH ADR1 O ( 184 )( 184 ))
+          (PORT ADR4 ( 1444 )( 1444 ))
+          (PORT ADR2 ( 1557 )( 1557 ))
+          (IOPATH ADR4 O ( 184 )( 184 ))
+          (IOPATH ADR2 O ( 184 )( 184 ))
         )
       )
   )
@@ -541,12 +541,12 @@
     (INSTANCE \#fulladder\#1\#k_S3_COUT_\#fulladder\#2\#k\.C5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (PORT ADR2 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
-          (IOPATH ADR1 O ( 184 )( 184 ))
+          (PORT ADR3 ( 1586 )( 1586 ))
+          (PORT ADR2 ( 1594 )( 1594 ))
+          (PORT ADR4 ( 549 )( 549 ))
+          (IOPATH ADR3 O ( 184 )( 184 ))
           (IOPATH ADR2 O ( 184 )( 184 ))
+          (IOPATH ADR4 O ( 184 )( 184 ))
         )
       )
   )
@@ -554,10 +554,10 @@
     (INSTANCE \#fulladder\#1\#k_S3_COUT_\#fulladder\#2\#k\.B5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
+          (PORT ADR0 ( 641 )( 641 ))
+          (PORT ADR3 ( 472 )( 472 ))
           (IOPATH ADR0 O ( 184 )( 184 ))
-          (IOPATH ADR1 O ( 184 )( 184 ))
+          (IOPATH ADR3 O ( 184 )( 184 ))
         )
       )
   )
@@ -565,9 +565,9 @@
     (INSTANCE \#fulladder\#1\#k_S3_COUT_\#fulladder\#2\#k\.A5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (PORT ADR1 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 184 )( 184 ))
+          (PORT ADR3 ( 1792 )( 1792 ))
+          (PORT ADR1 ( 1643 )( 1643 ))
+          (IOPATH ADR3 O ( 184 )( 184 ))
           (IOPATH ADR1 O ( 184 )( 184 ))
         )
       )
@@ -587,6 +587,51 @@
         (PATHPULSE (202))
         (ABSOLUTE
           (IOPATH I O ( 115 )( 115 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_S1_FINAL_OUTPUT_OBUF\/I)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 1710 )( 1710 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_S2_FINAL_OUTPUT_OBUF\/I)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 1823 )( 1823 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_S3_FINAL_OUTPUT_OBUF\/I)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 1594 )( 1594 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_S0_FINAL_OUTPUT_OBUF\/I)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 1737 )( 1737 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE NlwBufferBlock_COUT_FINAL_OUTPUT_OBUF\/I)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 1713 )( 1713 ))
         )
       )
   )

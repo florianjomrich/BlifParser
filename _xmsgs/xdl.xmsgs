@@ -5,58 +5,73 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">A2</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">XX_CARRY2_#fulladder#3#k_S2.DMUX-&gt;S2_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S1_FINAL_OUTPUT</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">CIN.I-&gt;S1_JJ_S0_CARRY1.C2</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">A1</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">CARRY3_#fulladder#4#k.AMUX-&gt;#fulladder#1#k_S3_COUT_#fulladder#2#k.B2</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">B3</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">S1_JJ_S0_CARRY1.DMUX-&gt;XX_CARRY2_#fulladder#3#k_S2.A2</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">A3</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">S1_JJ_S0_CARRY1.CMUX-&gt;S0_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">B2</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">A1.I-&gt;XX_CARRY2_#fulladder#3#k_S2.B1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">XX_CARRY2_#fulladder#3#k_S2</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">A0.I-&gt;S1_JJ_S0_CARRY1.D1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S1_JJ_S0_CARRY1</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">#fulladder#1#k_S3_COUT_#fulladder#2#k.CMUX-&gt;COUT_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S2_FINAL_OUTPUT</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">#fulladder#1#k_S3_COUT_#fulladder#2#k.BMUX-&gt;S3_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">CARRY3_#fulladder#4#k</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">A3.I-&gt;#fulladder#1#k_S3_COUT_#fulladder#2#k.C1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S3_FINAL_OUTPUT</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">B2.I-&gt;CARRY3_#fulladder#4#k.A2</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">S0_FINAL_OUTPUT</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">B0.I-&gt;S1_JJ_S0_CARRY1.D2</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">COUT_FINAL_OUTPUT</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">A2.I-&gt;S1_JJ_S0_CARRY1.B1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">CIN</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">#fulladder#1#k_S3_COUT_#fulladder#2#k.DMUX-&gt;#fulladder#1#k_S3_COUT_#fulladder#2#k.B1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">B0</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">XX_CARRY2_#fulladder#3#k_S2.CMUX-&gt;XX_CARRY2_#fulladder#3#k_S2.A1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">B1</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">#fulladder#1#k_S3_COUT_#fulladder#2#k.AMUX-&gt;S1_JJ_S0_CARRY1.C1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">#fulladder#1#k_S3_COUT_#fulladder#2#k</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">S1_JJ_S0_CARRY1.BMUX-&gt;CARRY3_#fulladder#4#k.A1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="794" delta="new" >Component <arg fmt="%s" index="1">A0</arg> is not placed.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">B3.I-&gt;#fulladder#1#k_S3_COUT_#fulladder#2#k.C2</arg>&gt; is completely unrouted.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">B1.I-&gt;XX_CARRY2_#fulladder#3#k_S2.B2</arg>&gt; is completely unrouted.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">S1_JJ_S0_CARRY1.AMUX-&gt;S1_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">CARRY3_#fulladder#4#k.BMUX-&gt;XX_CARRY2_#fulladder#3#k_S2.D1</arg>&gt; is completely unrouted.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">XX_CARRY2_#fulladder#3#k_S2.AMUX-&gt;S1_JJ_S0_CARRY1.A1</arg>&gt; is completely unrouted.
+</msg>
+
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">XX_CARRY2_#fulladder#3#k_S2.BMUX-&gt;XX_CARRY2_#fulladder#3#k_S2.D2</arg>&gt; is completely unrouted.
 </msg>
 
 </messages>

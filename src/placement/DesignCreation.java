@@ -30,6 +30,10 @@ public class DesignCreation {
 
 	// for mapping the gates and latches
 	String[] alphabetSelector = { "A", "B", "C", "D" };
+	
+	// My own Helper-classes for faster processing of routine steps
+	NetCreator myNetCreator = new NetCreator();
+	Placer myPlacer = null;
 
 	// the global clk
 	IOB_BLOCK_INSTANCE clk;
@@ -76,10 +80,9 @@ public class DesignCreation {
 		HashMap<String, PrimitiveSite> primitiveSites = design.getDevice()
 				.getPrimitiveSites();
 
-		// My own Helper-classes for faster processing of routine steps
-		NetCreator myNetCreator = new NetCreator();
-		Placer myPlacer = new Placer(design, primitiveSites,useOwnPlacer);
-		
+
+		//initialize the placer
+		myPlacer = new Placer(design, primitiveSites,useOwnPlacer);
 
 
 		
@@ -115,12 +118,15 @@ public class DesignCreation {
 		
 		//Now place if necessary the last latch and logic block
 		if(logicBlockCounter!=0){
+			myPlacer.placeInstance(myLogicBlock);
 			design.addInstance(myLogicBlock);
 		}
 		if(latchCounterActiveHigh_FallingEdge!=0){
+			myPlacer.placeInstance(myLatchActiveHighFallingEdgeLatch);
 			design.addInstance(myLatchActiveHighFallingEdgeLatch);
 		}
 		if(latchCounterActiveLow_RisingEdge!=0){
+			myPlacer.placeInstance(myLatchActiveLowRisingEdgeLatch);
 			design.addInstance(myLatchActiveLowRisingEdgeLatch);
 		}
 		
@@ -142,6 +148,7 @@ public class DesignCreation {
 
 		global_reset = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
 				"global_reset");
+		myPlacer.placeInstance(global_reset);
 		design.addInstance(global_reset);
 		
 	}
@@ -314,6 +321,7 @@ public class DesignCreation {
 
 			if (logicBlockCounter == 3
 					) {
+				myPlacer.placeInstance(myLogicBlock);
 				design.addInstance(myLogicBlock);
 			}
 
@@ -359,6 +367,7 @@ public class DesignCreation {
 				alphabetSelector[latchCounterActiveLow_RisingEdge]);
 
 		if (latchCounterActiveLow_RisingEdge == 3) {
+			myPlacer.placeInstance(myLatchActiveLowRisingEdgeLatch);
 			design.addInstance(myLatchActiveLowRisingEdgeLatch);
 		}
 
@@ -382,6 +391,7 @@ public class DesignCreation {
 				alphabetSelector[latchCounterActiveHigh_FallingEdge]);
 
 		if (latchCounterActiveHigh_FallingEdge == 3) {
+			myPlacer.placeInstance(myLatchActiveHighFallingEdgeLatch);
 			design.addInstance(myLatchActiveHighFallingEdgeLatch);
 		}
 
@@ -451,11 +461,12 @@ public class DesignCreation {
 		else {
 			clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT, "my_clk");
 		}
-
+		myPlacer.placeInstance(clk);
 		design.addInstance(clk);
 
 		// Setup the Buffer for the clk as shown in the example projects
 		clk_buffer = new Instance("my_clk_BUFG", PrimitiveType.BUFG);
+		myPlacer.placeInstance(clk_buffer);
 		design.addInstance(clk_buffer);
 
 		// connect the clk and the clk buffer
@@ -520,6 +531,7 @@ public class DesignCreation {
 		for (String currentInput : model.inputs) {
 			Instance myIOB_Input = new IOB_BLOCK_INSTANCE(
 					IOB_BLOCK_INSTANCE.TypeOfInstance.IOB_INPUT, currentInput);
+			myPlacer.placeInstance(myIOB_Input);
 			design.addInstance(myIOB_Input);
 			alreadyPlacedInstances.put(currentInput, myIOB_Input);
 			// allows access to the input instance
@@ -531,6 +543,7 @@ public class DesignCreation {
 			Instance myIOB2_Output = new IOB_BLOCK_INSTANCE(
 					IOB_BLOCK_INSTANCE.TypeOfInstance.IOB_OUTPUT, currentOutput
 							+ _FINAL_OUTPUT);
+			myPlacer.placeInstance(myIOB2_Output);
 			design.addInstance(myIOB2_Output);
 			// availableFinalOutputVariables.add(currentOutput);
 

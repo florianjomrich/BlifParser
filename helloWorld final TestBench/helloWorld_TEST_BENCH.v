@@ -3,38 +3,60 @@
 module TEST; 
  
 // Inputs 
-reg \in1.PAD.PAD ;
-reg \newCLK.PAD.PAD ;
-reg \global_reset.PAD.PAD ;
+reg \A2.PAD.PAD ;
+reg \A1.PAD.PAD ;
+reg \B3.PAD.PAD ;
+reg \A3.PAD.PAD ;
+reg \B2.PAD.PAD ;
+reg \CIN.PAD.PAD ;
+reg \B0.PAD.PAD ;
+reg \B1.PAD.PAD ;
+reg \A0.PAD.PAD ;
 
 // Outputs 
-wire \out1_FINAL_OUTPUT.OUTBUF.OUT ;
+wire \S1_FINAL_OUTPUT.OUTBUF.OUT ;
+wire \S2_FINAL_OUTPUT.OUTBUF.OUT ;
+wire \S3_FINAL_OUTPUT.OUTBUF.OUT ;
+wire \S0_FINAL_OUTPUT.OUTBUF.OUT ;
+wire \COUT_FINAL_OUTPUT.OUTBUF.OUT ;
  
 // Instantiate the Unit Under Test (UUT) 
  
-helloWorld uut (
-.\in1.PAD.PAD (\in1.PAD.PAD ),
-.\newCLK.PAD.PAD (\newCLK.PAD.PAD ),
-.\global_reset.PAD.PAD (\global_reset.PAD.PAD ),
-.\out1_FINAL_OUTPUT.OUTBUF.OUT (\out1_FINAL_OUTPUT.OUTBUF.OUT )
+HelloWorld uut (
+.\A2.PAD.PAD (\A2.PAD.PAD ),
+.\A1.PAD.PAD (\A1.PAD.PAD ),
+.\B3.PAD.PAD (\B3.PAD.PAD ),
+.\A3.PAD.PAD (\A3.PAD.PAD ),
+.\B2.PAD.PAD (\B2.PAD.PAD ),
+.\CIN.PAD.PAD (\CIN.PAD.PAD ),
+.\B0.PAD.PAD (\B0.PAD.PAD ),
+.\B1.PAD.PAD (\B1.PAD.PAD ),
+.\A0.PAD.PAD (\A0.PAD.PAD ),
+.\S1_FINAL_OUTPUT.OUTBUF.OUT (\S1_FINAL_OUTPUT.OUTBUF.OUT ),
+.\S2_FINAL_OUTPUT.OUTBUF.OUT (\S2_FINAL_OUTPUT.OUTBUF.OUT ),
+.\S3_FINAL_OUTPUT.OUTBUF.OUT (\S3_FINAL_OUTPUT.OUTBUF.OUT ),
+.\S0_FINAL_OUTPUT.OUTBUF.OUT (\S0_FINAL_OUTPUT.OUTBUF.OUT ),
+.\COUT_FINAL_OUTPUT.OUTBUF.OUT (\COUT_FINAL_OUTPUT.OUTBUF.OUT )
 );
 
 initial begin
 // Initialize Inputs
-\in1.PAD.PAD  = 0;
-\newCLK.PAD.PAD  = 0;
-\global_reset.PAD.PAD  = 0;
+\A2.PAD.PAD  = 0;
+\A1.PAD.PAD  = 0;
+\B3.PAD.PAD  = 0;
+\A3.PAD.PAD  = 0;
+\B2.PAD.PAD  = 0;
+\CIN.PAD.PAD  = 0;
+\B0.PAD.PAD  = 0;
+\B1.PAD.PAD  = 0;
+\A0.PAD.PAD  = 0;
 
 
 // Wait 100 ns for global reset to finish
-	#125; \in1.PAD.PAD  = 1;
-	// Add stimulus here
-	
-end
+	#100;
 
-always begin
-#50;
-\newCLK.PAD.PAD   = ~ \newCLK.PAD.PAD  ;
+	// Add stimulus here
+
 end
 
 endmodule

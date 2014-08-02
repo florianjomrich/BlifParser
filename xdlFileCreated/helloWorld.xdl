@@ -1,7 +1,7 @@
 
 # =======================================================
 # edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
-# time: Sa Aug 02 00:36:24 2014
+# time: Sa Aug 02 13:51:49 2014
 
 # =======================================================
 
@@ -38,58 +38,58 @@ design "HelloWorld" xc6slx45csg324-3 v3.2 ,
 #     instance IO1 IOB, unplaced bonded ;   # This will be bonded
 #     instance IO1 IOB, unplaced unbonded ; # This will be unbonded
 #  =======================================================
-inst "A2" "IOB",unplaced  ,
+inst "A2" "IOB",placed RIOB_X37Y87 G13  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:A2: IMUX::I "
   ;
-inst "S1_FINAL_OUTPUT" "IOB",unplaced  ,
+inst "S1_FINAL_OUTPUT" "IOB",placed LIOB_X0Y90 E4  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:S1_FINAL_OUTPUT_OBUF: PAD:S1_FINAL_OUTPUT: IMUX::I "
   ;
-inst "A1" "IOB",unplaced  ,
+inst "A1" "IOB",placed RIOB_X37Y69 G18  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:A1: IMUX::I "
   ;
-inst "B3" "IOB",unplaced  ,
+inst "B3" "IOB",placed RIOB_X37Y62 H17  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:B3: IMUX::I "
   ;
-inst "A3" "IOB",unplaced  ,
+inst "A3" "IOB",placed RIOB_X37Y90 G14  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:A3: IMUX::I "
   ;
-inst "B2" "IOB",unplaced  ,
+inst "B2" "IOB",placed RIOB_X37Y62 H18  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:B2: IMUX::I "
   ;
-inst "XX_CARRY2_#fulladder#3#k_S2" "SLICEL",unplaced  ,
+inst "XX_CARRY2_#fulladder#3#k_S2" "SLICEL",placed CLEXM_X8Y7 SLICE_X10Y7  ,
   cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*~A2)+(~A1*A2) B5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) C5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1*~A2)+(~A1*A2) "
   ;
-inst "S1_JJ_S0_CARRY1" "SLICEL",unplaced  ,
+inst "S1_JJ_S0_CARRY1" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
   cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) B5LUT::#LUT:O5=(A1) C5LUT::#LUT:O5=(A1*~A2)+(~A1*A2) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(A1) "
   ;
-inst "S2_FINAL_OUTPUT" "IOB",unplaced  ,
+inst "S2_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E1  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:S2_FINAL_OUTPUT_OBUF: PAD:S2_FINAL_OUTPUT: IMUX::I "
   ;
-inst "CARRY3_#fulladder#4#k" "SLICEL",unplaced  ,
+inst "CARRY3_#fulladder#4#k" "SLICEL",placed CLEXM_X8Y2 SLICE_X10Y2  ,
   cfg " AOUTMUX::O5 B5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) BOUTMUX::O5 A5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) "
   ;
-inst "S3_FINAL_OUTPUT" "IOB",unplaced  ,
+inst "S3_FINAL_OUTPUT" "IOB",placed RIOB_X37Y87 H12  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:S3_FINAL_OUTPUT_OBUF: PAD:S3_FINAL_OUTPUT: IMUX::I "
   ;
-inst "S0_FINAL_OUTPUT" "IOB",unplaced  ,
+inst "S0_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E3  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:S0_FINAL_OUTPUT_OBUF: PAD:S0_FINAL_OUTPUT: IMUX::I "
   ;
-inst "COUT_FINAL_OUTPUT" "IOB",unplaced  ,
+inst "COUT_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H14  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:COUT_FINAL_OUTPUT_OBUF: PAD:COUT_FINAL_OUTPUT: IMUX::I "
   ;
-inst "CIN" "IOB",unplaced  ,
+inst "CIN" "IOB",placed RIOB_X37Y71 H13  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:CIN: IMUX::I "
   ;
-inst "B0" "IOB",unplaced  ,
+inst "B0" "IOB",placed RIOB_X37Y70 H16  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:B0: IMUX::I "
   ;
-inst "B1" "IOB",unplaced  ,
+inst "B1" "IOB",placed RIOB_X37Y70 H15  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:B1: IMUX::I "
   ;
-inst "#fulladder#1#k_S3_COUT_#fulladder#2#k" "SLICEL",unplaced  ,
+inst "#fulladder#1#k_S3_COUT_#fulladder#2#k" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8  ,
   cfg " AOUTMUX::O5 DOUTMUX::O5 D5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) B5LUT::#LUT:O5=(A1*~A2)+(~A1*A2) C5LUT::#LUT:O5=(A1*A2*(~A3+A3))+(A1*(~A2+A2)*A3)+((~A1+A1)*A2*A3) BOUTMUX::O5 COUTMUX::O5 A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
   ;
-inst "A0" "IOB",unplaced  ,
+inst "A0" "IOB",placed RIOB_X37Y69 G16  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:A0: IMUX::I "
   ;
 

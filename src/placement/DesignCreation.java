@@ -3,8 +3,6 @@ package placement;
 import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import javax.crypto.spec.PSource;
-
 import commands.GenericLatch;
 import commands.LogicGate;
 import blif.Model;
@@ -46,7 +44,7 @@ public class DesignCreation {
 	IOB_BLOCK_INSTANCE global_reset;
 	Instance clk_buffer;
 
-	String _SLICEL = "_SLICEL";
+	//constant values 
 	String _LATCH = "_LATCH";
 	String _FINAL_OUTPUT = "_FINAL_OUTPUT";
 	String _LOGICBLOCK = "_LOGICBLOCK";
@@ -54,7 +52,7 @@ public class DesignCreation {
 	String _IOB_OUTPUT = "_IOB_OUTPUT";
 
 	// count how much space is left in one slice
-	// depending on the clock used
+	// depending on the clock-type used
 	int posBlockCounter = 0;
 	int negBlockCounter = 0;
 
@@ -140,6 +138,78 @@ public class DesignCreation {
 		return design;
 	}
 
+	
+	
+
+
+	private void checkModelForCorrectness(Model model) throws Exception {
+		for (LogicGate currentGateToBeChecked : model.logicGates) {
+			for (String currentInputToBeChecked : currentGateToBeChecked.inputs) {
+
+				// it's a primary input maybe ?
+				if (model.inputs.contains(currentInputToBeChecked))
+					continue;// continue with the next input
+				// it is a interconnection maybe?
+				if (!isAnInterconnectVariable(model.logicGates,
+						currentInputToBeChecked))
+					continue;
+				// it is a variable provided by a latch?
+				if (!isAnLatchVariable(model.genericLatches,
+						currentInputToBeChecked))
+					continue;
+				else {
+					System.err
+							.print("Current Model has got inputs that are not definied correct: "
+									+ currentInputToBeChecked + " ");
+					Exception modelIsIncorrect_Exception = new Exception();
+					throw (modelIsIncorrect_Exception);// stop the process
+				}
+
+			}
+		}
+	}
+
+	/*
+	 * Setup the clk for the latches
+	 */
+	private void setupGlobalClock(Model model, Design design,
+			NetCreator myNetCreator) {
+
+		// set the clock if specified
+		if (model.clocks.size() >= 1) {
+			if (!model.clocks.get(0).equals("NIL"))
+				clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
+						model.clocks.get(0));
+		}
+		// set a own clock
+		else {
+			clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT, "my_clk");
+		}
+		myPlacer.placeInstance(clk);
+		design.addInstance(clk);
+
+		// Setup the Buffer for the clk as shown in the example projects
+		clk_buffer = new Instance("my_clk_BUFG", PrimitiveType.BUFG);
+		myPlacer.placeInstance(clk_buffer);
+		design.addInstance(clk_buffer);
+
+		// connect the clk and the clk buffer
+		myNetCreator.generateNet("I", clk, "I0", clk_buffer, design,
+				alreadyPlacedNets);
+
+	}
+	
+	private void setupGlobalReset(Model model, Design design,
+			NetCreator myNetCreator) {
+
+		global_reset = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
+				"global_reset");
+		myPlacer.placeInstance(global_reset);
+		design.addInstance(global_reset);
+
+	}
+	
+	
 	private void dumpPlaceRemainingLatches(Model model, NetCreator myNetCreator,
 			Design design) {
 
@@ -161,16 +231,147 @@ public class DesignCreation {
 			
 		
 	}
+	
+	
+	private void dumpPlaceLogicGates(Model model, NetCreator myNetCreator,
+			Design design) {
+		// Setup the new logic block
 
-	private void setupGlobalReset(Model model, Design design,
-			NetCreator myNetCreator) {
+		for (LogicGate currentLogicGate : model.logicGates) {
 
-		global_reset = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
-				"global_reset");
-		myPlacer.placeInstance(global_reset);
-		design.addInstance(global_reset);
+			if (posBlockCounter == 0)
+				positiveSlice = new PositiveSLICE("");// naming is done in the
+														// .setupTheLogicBlock
 
+			if (negBlockCounter == 0)
+				negativeSlice = new NegativeSLICE("");
+
+			// check if the currentLogicGate has got at least one additional
+			// Latch
+			GenericLatch primaryLatch = null;
+			for (GenericLatch currentLatchToCheck : model.genericLatches) {
+				if (currentLogicGate.output.equals(currentLatchToCheck.input)) {
+					primaryLatch = currentLatchToCheck;
+					break;
+				}
+			}
+
+			// no Latch connected to this LogicBlock
+			if (primaryLatch == null) {
+				// choose the SLICE Type which has got the most space left
+				if (posBlockCounter < negBlockCounter) {
+					positiveSlice = (PositiveSLICE) this.setupTheLogicBlock(
+							currentLogicGate, myNetCreator, design,
+							alphabetSelector[posBlockCounter], positiveSlice);
+					
+					
+					this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, posBlockCounter, positiveSlice);
+					
+					if (posBlockCounter == 3) {
+						myPlacer.placeInstance(positiveSlice);
+						design.addInstance(positiveSlice);
+					}
+					
+					posBlockCounter=(posBlockCounter+ 1) % 4;
+					
+				} else {
+					negativeSlice = (NegativeSLICE) this.setupTheLogicBlock(
+							currentLogicGate, myNetCreator, design,
+							alphabetSelector[negBlockCounter], negativeSlice);
+				
+					this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, negBlockCounter, negativeSlice);
+					
+					if (negBlockCounter == 3) {
+						myPlacer.placeInstance(negativeSlice);
+						design.addInstance(negativeSlice);
+					}
+					
+					negBlockCounter=(negBlockCounter+ 1) % 4;
+					
+				}
+			//primary Latch available	
+			} else if (primaryLatch.type.equals("ah")
+					|| primaryLatch.type.equals("fe")) {
+				
+				positiveSlice = (PositiveSLICE) this.setupTheLogicBlock(
+						currentLogicGate, myNetCreator, design,
+						alphabetSelector[posBlockCounter], positiveSlice);
+				
+				//setup the PrimaryLatch as well
+				positiveSlice = (PositiveSLICE)  this.setupThePrimaryLatch(primaryLatch, alphabetSelector[posBlockCounter], currentLogicGate, positiveSlice);
+				
+				//remove the primary latch since does not have to be added once more
+				model.genericLatches.remove(primaryLatch);
+				
+				// check if output is final output
+				if (alreadyPlacedInstances.containsKey(primaryLatch.output
+						+ _FINAL_OUTPUT)) {
+					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+							.get(primaryLatch.output + _FINAL_OUTPUT);
+					myNetCreator.generateNet(alphabetSelector[posBlockCounter] + "Q",
+							positiveSlice, "O", otherIOB_BLOCK_INSTANCE,
+							design, alreadyPlacedNets);
+				}
+			
+				//connect the clock
+				myNetCreator.generateNet("O", clk_buffer, "CLK", negativeSlice, design, alreadyPlacedNets);
+				
+				//add the latch and the logicBlock to the placed Instances
+				this.addTheLatchToAlreadyPlacedInstances(primaryLatch, posBlockCounter, positiveSlice);
+				this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, posBlockCounter, positiveSlice);
+				
+				if (posBlockCounter == 3) {
+					myPlacer.placeInstance(positiveSlice);
+					design.addInstance(positiveSlice);
+				}
+				
+				posBlockCounter=(posBlockCounter+ 1) % 4;
+				
+			} else if (primaryLatch.type.equals("al")
+					|| primaryLatch.type.equals("re")) {
+				negativeSlice = (NegativeSLICE) this.setupTheLogicBlock(
+						currentLogicGate, myNetCreator, design,
+						alphabetSelector[negBlockCounter], negativeSlice);
+				
+				//setup the PrimaryLatch as well
+				negativeSlice = (NegativeSLICE)  this.setupThePrimaryLatch(primaryLatch, alphabetSelector[posBlockCounter], currentLogicGate, negativeSlice);
+				
+				
+				//remove the primary latch since does not have to be added once more
+				model.genericLatches.remove(primaryLatch);
+				
+				// check if output is final output
+				if (alreadyPlacedInstances.containsKey(primaryLatch.output
+						+ _FINAL_OUTPUT)) {
+					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+							.get(primaryLatch.output + _FINAL_OUTPUT);
+					myNetCreator.generateNet(alphabetSelector[negBlockCounter] + "Q",
+							negativeSlice, "O", otherIOB_BLOCK_INSTANCE,
+							design, alreadyPlacedNets);
+				}
+			
+				//connect the clock
+				myNetCreator.generateNet("O", clk_buffer, "CLK", negativeSlice, design, alreadyPlacedNets);
+				
+				this.addTheLatchToAlreadyPlacedInstances(primaryLatch, negBlockCounter, negativeSlice);
+				this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, negBlockCounter, negativeSlice);
+				
+				if (negBlockCounter == 3) {
+					myPlacer.placeInstance(negativeSlice);
+					design.addInstance(negativeSlice);
+				}
+				
+				negBlockCounter=(negBlockCounter+ 1) % 4;
+			}
+
+			
+			
+
+		
+
+		}
 	}
+	
 
 	private void connectLogicBlocks(Model model, NetCreator myNetCreator,
 			Design design) {
@@ -317,126 +518,7 @@ public class DesignCreation {
 
 	}
 
-		private void dumpPlaceLogicGates(Model model, NetCreator myNetCreator,
-			Design design) {
-		// Setup the new logic block
-
-		for (LogicGate currentLogicGate : model.logicGates) {
-
-			if (posBlockCounter == 0)
-				positiveSlice = new PositiveSLICE("");// naming is done in the
-														// .setupTheLogicBlock
-
-			if (negBlockCounter == 0)
-				negativeSlice = new NegativeSLICE("");
-
-			// check if the currentLogicGate has got at least one additional
-			// Latch
-			GenericLatch primaryLatch = null;
-			for (GenericLatch currentLatchToCheck : model.genericLatches) {
-				if (currentLogicGate.output.equals(currentLatchToCheck.input)) {
-					primaryLatch = currentLatchToCheck;
-					break;
-				}
-			}
-
-			// no Latch connected to this LogicBlock
-			if (primaryLatch == null) {
-				// choose the SLICE Type which has got the most space left
-				if (posBlockCounter < negBlockCounter) {
-					positiveSlice = (PositiveSLICE) this.setupTheLogicBlock(
-							currentLogicGate, myNetCreator, design,
-							alphabetSelector[posBlockCounter], positiveSlice);
-					
-					
-					this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, posBlockCounter, positiveSlice);
-					posBlockCounter=(posBlockCounter+ 1) % 4;
-					
-				} else {
-					negativeSlice = (NegativeSLICE) this.setupTheLogicBlock(
-							currentLogicGate, myNetCreator, design,
-							alphabetSelector[negBlockCounter], negativeSlice);
-				
-					this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, negBlockCounter, negativeSlice);
-					negBlockCounter=(negBlockCounter+ 1) % 4;
-					
-				}
-			//primary Latch available	
-			} else if (primaryLatch.type.equals("ah")
-					|| primaryLatch.type.equals("fe")) {
-				
-				positiveSlice = (PositiveSLICE) this.setupTheLogicBlock(
-						currentLogicGate, myNetCreator, design,
-						alphabetSelector[posBlockCounter], positiveSlice);
-				
-				//setup the PrimaryLatch as well
-				positiveSlice = (PositiveSLICE)  this.setupThePrimaryLatch(primaryLatch, alphabetSelector[posBlockCounter], currentLogicGate, positiveSlice);
-				
-				//remove the primary latch since does not have to be added once more
-				model.genericLatches.remove(primaryLatch);
-				
-				// check if output is final output
-				if (alreadyPlacedInstances.containsKey(primaryLatch.output
-						+ _FINAL_OUTPUT)) {
-					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
-							.get(primaryLatch.output + _FINAL_OUTPUT);
-					myNetCreator.generateNet(alphabetSelector[posBlockCounter] + "Q",
-							positiveSlice, "O", otherIOB_BLOCK_INSTANCE,
-							design, alreadyPlacedNets);
-				}
-			
-				//connect the clock
-				myNetCreator.generateNet("O", clk_buffer, "CLK", negativeSlice, design, alreadyPlacedNets);
-				
-				//add the latch and the logicBlock to the placed Instances
-				this.addTheLatchToAlreadyPlacedInstances(primaryLatch, posBlockCounter, positiveSlice);
-				this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, posBlockCounter, positiveSlice);
-				posBlockCounter=(posBlockCounter+ 1) % 4;
-				
-			} else if (primaryLatch.type.equals("al")
-					|| primaryLatch.type.equals("re")) {
-				negativeSlice = (NegativeSLICE) this.setupTheLogicBlock(
-						currentLogicGate, myNetCreator, design,
-						alphabetSelector[negBlockCounter], negativeSlice);
-				
-				//setup the PrimaryLatch as well
-				negativeSlice = (NegativeSLICE)  this.setupThePrimaryLatch(primaryLatch, alphabetSelector[posBlockCounter], currentLogicGate, negativeSlice);
-				
-				
-				//remove the primary latch since does not have to be added once more
-				model.genericLatches.remove(primaryLatch);
-				
-				// check if output is final output
-				if (alreadyPlacedInstances.containsKey(primaryLatch.output
-						+ _FINAL_OUTPUT)) {
-					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
-							.get(primaryLatch.output + _FINAL_OUTPUT);
-					myNetCreator.generateNet(alphabetSelector[negBlockCounter] + "Q",
-							negativeSlice, "O", otherIOB_BLOCK_INSTANCE,
-							design, alreadyPlacedNets);
-				}
-			
-				//connect the clock
-				myNetCreator.generateNet("O", clk_buffer, "CLK", negativeSlice, design, alreadyPlacedNets);
-				
-				this.addTheLatchToAlreadyPlacedInstances(primaryLatch, negBlockCounter, negativeSlice);
-				this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, negBlockCounter, negativeSlice);
-				negBlockCounter=(negBlockCounter+ 1) % 4;
-			}
-
-			if (posBlockCounter == 3) {
-				myPlacer.placeInstance(positiveSlice);
-				design.addInstance(positiveSlice);
-			}
-			if (negBlockCounter == 3) {
-				myPlacer.placeInstance(negativeSlice);
-				design.addInstance(negativeSlice);
-			}
-
-		
-
-		}
-	}
+	
 
 	private SLICEL_INSTANCE setupThePrimaryLatch(GenericLatch primaryLatch,
 				String LETTER_OF_THE_SELECTED_LATCH,LogicGate currentLogicGate,
@@ -587,62 +669,7 @@ public class DesignCreation {
 		return currentSlice;
 	}
 
-	/*
-	 * Setup the clk for the latches
-	 */
-	private void setupGlobalClock(Model model, Design design,
-			NetCreator myNetCreator) {
 
-		// set the clock if specified
-		if (model.clocks.size() >= 1) {
-			if (!model.clocks.get(0).equals("NIL"))
-				clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
-						model.clocks.get(0));
-		}
-		// set a own clock
-		else {
-			clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT, "my_clk");
-		}
-		myPlacer.placeInstance(clk);
-		design.addInstance(clk);
-
-		// Setup the Buffer for the clk as shown in the example projects
-		clk_buffer = new Instance("my_clk_BUFG", PrimitiveType.BUFG);
-		myPlacer.placeInstance(clk_buffer);
-		design.addInstance(clk_buffer);
-
-		// connect the clk and the clk buffer
-		myNetCreator.generateNet("I", clk, "I0", clk_buffer, design,
-				alreadyPlacedNets);
-
-	}
-
-	private void checkModelForCorrectness(Model model) throws Exception {
-		for (LogicGate currentGateToBeChecked : model.logicGates) {
-			for (String currentInputToBeChecked : currentGateToBeChecked.inputs) {
-
-				// it's a primary input maybe ?
-				if (model.inputs.contains(currentInputToBeChecked))
-					continue;// continue with the next input
-				// it is a interconnection maybe?
-				if (!isAnInterconnectVariable(model.logicGates,
-						currentInputToBeChecked))
-					continue;
-				// it is a variable provided by a latch?
-				if (!isAnLatchVariable(model.genericLatches,
-						currentInputToBeChecked))
-					continue;
-				else {
-					System.err
-							.print("Current Model has got inputs that are not definied correct: "
-									+ currentInputToBeChecked + " ");
-					Exception modelIsIncorrect_Exception = new Exception();
-					throw (modelIsIncorrect_Exception);// stop the process
-				}
-
-			}
-		}
-	}
 
 	private boolean isAnLatchVariable(
 			CopyOnWriteArrayList<GenericLatch> genericLatches,

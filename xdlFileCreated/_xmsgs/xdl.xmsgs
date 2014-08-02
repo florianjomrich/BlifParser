@@ -5,25 +5,10 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="error" file="PhysDesignRules" num="1709" delta="new" >Incomplete connectivity. The pin &lt;<arg fmt="%s" index="1">SR</arg>&gt; of comp block &lt;<arg fmt="%s" index="2">out1</arg>&gt; is used and partially connected to network &lt;<arg fmt="%s" index="3">global_reset.I-&gt;out1.SR</arg>&gt;. All networks must have complete connectivity through out the comp hierarchy and the connectivity for this pin must be removed or completed.
+<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">duplicate instance &apos;z2_u34_u36_z4&apos; encountered</arg> at line <arg fmt="%d" index="2">98</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot;</arg>&apos;
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out1.AQ-&gt;out1_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">in1.I-&gt;out1.AX</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">my_clk_BUFG.O-&gt;out1.CLK</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">global_reset.I-&gt;out1.SR</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">newCLK.I-&gt;my_clk_BUFG.I0</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="info" file="XDL" num="186" delta="new" ><arg fmt="%d" index="1">1</arg> error(s) were found in XDL file. The NCD file cannot be created.
+<msg type="error" file="XDL" num="69" delta="new" ><arg fmt="%d" index="1">1</arg> errors occurred during parsing. The NCD file cannot be created.
 </msg>
 
 </messages>

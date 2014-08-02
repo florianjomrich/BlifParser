@@ -1,38 +1,95 @@
-#:C9     
+#:C29    
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sat Aug 02 20:41:53 2014
+#:T   Sat Aug 02 22:44:54 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.02.16.11.41
+	#Design creation date: 2014.08.02.18.14.38
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'n44'
+select -k comp 'z0_FINAL_OUTPUT'
 	#2
-unselect -all
+unselect comp 'z0_FINAL_OUTPUT'
 	#3
-select comp 'n44'
-	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+select -k comp 'n44_ichKommeIndieNegativeSLICE_z5'
 	#4
-unselect -all
+unselect comp 'n44_ichKommeIndieNegativeSLICE_z5'
 	#5
-select comp 'n44'
-	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+select -k comp 'z2_z4_z3_z1'
 	#6
-post block
+unselect comp 'z2_z4_z3_z1'
 	#7
-unselect -all
+select -k comp 'n44_ichKommeIndieNegativeSLICE_z5'
 	#8
-select comp 'n44'
-	#comp "n44",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+unselect -all
 	#9
-post block
+select net 'n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O'
+	#net "n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O"
 	#10
+unselect -all
+	#11
+select net 'n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O'
+	#net "n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O"
+	#12
+post block
+	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
+	#be performed unless the selection contains only a single site
+	#or single component.  Change the selection and try again.
+	#13
+unselect -all
+	#14
+select comp 'n44_ichKommeIndieNegativeSLICE_z5'
+	#comp "n44_ichKommeIndieNegativeSLICE_z5",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+	#15
+unselect -all
+	#16
+select comp 'n44_ichKommeIndieNegativeSLICE_z5'
+	#comp "n44_ichKommeIndieNegativeSLICE_z5",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+	#17
+post block
+	#18
+unselect comp 'n44_ichKommeIndieNegativeSLICE_z5'
+	#19
+select -k comp 'z2_z4_z3_z1'
+	#20
+unselect -all
+	#21
+select comp 'z2_z4_z3_z1'
+	#comp "z2_z4_z3_z1",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+	#22
+post block
+	#23
+unselect comp 'z2_z4_z3_z1'
+	#24
+select -k comp 'n44_ichKommeIndieNegativeSLICE_z5'
+	#25
+unselect -all
+	#26
+select net 'n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O'
+	#net "n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O"
+	#27
+post block
+	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
+	#be performed unless the selection contains only a single site
+	#or single component.  Change the selection and try again.
+	#28
+unselect -all
+	#29
+select comp 'n44_ichKommeIndieNegativeSLICE_z5'
+	#comp "n44_ichKommeIndieNegativeSLICE_z5",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+	#30
+unselect -all
+	#31
+select comp 'n44_ichKommeIndieNegativeSLICE_z5'
+	#comp "n44_ichKommeIndieNegativeSLICE_z5",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+	#32
+post block
+	#33
 post open

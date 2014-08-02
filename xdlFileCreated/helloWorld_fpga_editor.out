@@ -1,1 +1,37 @@
-#:C0     
+#:C9     
+#Xilinx FPGA Editor Command Log File
+#Editor Version:
+#:V   NT M2.1 P.20131013
+#Current Working Directory:
+#:D   C:\BlifParser3\xdlFileCreated
+#Date/Time:
+#:T   Sat Aug 02 22:47:33 2014
+#------------------------------
+	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
+	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
+	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
+	#Design creation date: 2014.08.02.18.17.13
+	#Building chip graphics...
+	#Loading speed info...
+	#1
+select -k comp 'z2_ichKommeIndieNegativeSLICE_z4_z3'
+	#2
+unselect -all
+	#3
+select comp 'z2_ichKommeIndieNegativeSLICE_z4_z3'
+	#comp "z2_ichKommeIndieNegativeSLICE_z4_z3",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+	#4
+unselect -all
+	#5
+select comp 'z2_ichKommeIndieNegativeSLICE_z4_z3'
+	#comp "z2_ichKommeIndieNegativeSLICE_z4_z3",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+	#6
+post block
+	#7
+unselect comp 'z2_ichKommeIndieNegativeSLICE_z4_z3'
+	#8
+select -k comp 'n44_u33_z5'
+	#9
+unselect -all
+	#10
+select comp 'n44_u33_z5'

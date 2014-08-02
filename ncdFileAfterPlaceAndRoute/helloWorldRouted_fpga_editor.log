@@ -1,29 +1,76 @@
-#:C0     
+#:C19    
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
-#:D   C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\ncdFileAfterPlaceAndRoute
+#:D   C:\BlifParser3\ncdFileAfterPlaceAndRoute
 #Date/Time:
-#:T   Fri Aug 01 23:58:42 2014
+#:T   Sat Aug 02 22:36:37 2014
 #------------------------------
-	#Reading C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\ncdFileAfterPlaceAndRoute\HelloWorldRouted.ncd...
+	#Reading C:\BlifParser3\ncdFileAfterPlaceAndRoute\HelloWorldRouted.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.01.19.27.37
+	#Design creation date: 2014.08.02.18.00.32
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'CARRY3_#fulladder#4#k'
+select -k comp 'my_clk_BUFG'
 	#2
 unselect -all
 	#3
-unselect -all
+select -k comp 'n44_ichKommeIndieNegativeSLICE_z5_z4'
 	#4
 unselect -all
 	#5
-select -k comp 'CARRY3_#fulladder#4#k'
+select comp 'n44_ichKommeIndieNegativeSLICE_z5_z4'
+	#comp "n44_ichKommeIndieNegativeSLICE_z5_z4",  site "SLICE_X28Y2",  type = SLICEL  (RPM grid X73Y8)
 	#6
 unselect -all
 	#7
+select comp 'n44_ichKommeIndieNegativeSLICE_z5_z4'
+	#comp "n44_ichKommeIndieNegativeSLICE_z5_z4",  site "SLICE_X28Y2",  type = SLICEL  (RPM grid X73Y8)
+	#8
+post block
+	#9
+unselect comp 'n44_ichKommeIndieNegativeSLICE_z5_z4'
+	#10
+select -k comp 'global_reset'
+	#11
+unselect comp 'global_reset'
+	#12
+select -k comp 'my_clk_BUFG'
+	#13
+unselect -all
+	#14
+select comp 'my_clk_BUFG'
+	#comp "my_clk_BUFG",  site "BUFGMUX_X3Y13",  type = BUFG  (RPM grid X85Y251)
+	#15
+unselect -all
+	#16
+select comp 'my_clk_BUFG'
+	#comp "my_clk_BUFG",  site "BUFGMUX_X3Y13",  type = BUFG  (RPM grid X85Y251)
+	#17
+post block
+	#18
+unselect -all
+	#19
+select net "my_clk_BUFG.O->z1.CLK"
+	#net "my_clk_BUFG.O->z1.CLK"
+	#20
+unselect net 'my_clk_BUFG.O->z1.CLK'
+	#21
+select -k comp 'z1'
+	#22
+unselect -all
+	#23
+select comp 'z1'
+	#comp "z1",  site "SLICE_X28Y10",  type = SLICEL  (RPM grid X73Y40)
+	#24
+unselect -all
+	#25
+select comp 'z1'
+	#comp "z1",  site "SLICE_X28Y10",  type = SLICEL  (RPM grid X73Y40)
+	#26
+post block
+	#27
 post open

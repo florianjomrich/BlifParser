@@ -336,7 +336,6 @@ public class DesignCreation {
 			for (GenericLatch currentLatchToCheck : model.genericLatches) {
 				if (currentLogicGate.output.equals(currentLatchToCheck.input)) {
 					primaryLatch = currentLatchToCheck;
-					System.out.println("FOUND");
 					break;
 				}
 			}
@@ -386,6 +385,8 @@ public class DesignCreation {
 							design, alreadyPlacedNets);
 				}
 			
+				//connect the clock
+				myNetCreator.generateNet("O", clk_buffer, "CLK", negativeSlice, design, alreadyPlacedNets);
 				
 				//add the latch and the logicBlock to the placed Instances
 				this.addTheLatchToAlreadyPlacedInstances(primaryLatch, posBlockCounter, positiveSlice);
@@ -415,7 +416,8 @@ public class DesignCreation {
 							design, alreadyPlacedNets);
 				}
 			
-				
+				//connect the clock
+				myNetCreator.generateNet("O", clk_buffer, "CLK", negativeSlice, design, alreadyPlacedNets);
 				
 				this.addTheLatchToAlreadyPlacedInstances(primaryLatch, negBlockCounter, negativeSlice);
 				this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, negBlockCounter, negativeSlice);
@@ -476,7 +478,7 @@ public class DesignCreation {
 
 		System.out.println("negBlockCounter " + negBlockCounter);
 		negativeSlice = this.setupTheAdditionalLatch(currentLatch,
-				myNetCreator, design, clk_buffer,
+				myNetCreator, design,
 				alphabetSelector[negBlockCounter],
 				negativeSlice);
 
@@ -515,7 +517,7 @@ public class DesignCreation {
 		System.out
 				.println("posBlockCounter: " + posBlockCounter);
 		positiveSlice = this.setupTheAdditionalLatch(currentLatch,
-				myNetCreator, design, clk_buffer,
+				myNetCreator, design,
 				alphabetSelector[posBlockCounter],
 				positiveSlice);
 
@@ -543,7 +545,7 @@ public class DesignCreation {
 	}
 
 	private SLICEL_INSTANCE setupTheAdditionalLatch(GenericLatch currentLatch,
-			NetCreator myNetCreator, Design design, Instance clk_buffer2,
+			NetCreator myNetCreator, Design design, 
 			String SELECTED_LETTER, SLICEL_INSTANCE myLatch) {
 
 		// to name it correct
@@ -556,8 +558,7 @@ public class DesignCreation {
 		myLatch.configure_LATCH(currentLatch, SELECTED_LETTER);
 
 		// connect the clk and the reset to the LATCH
-		if (SELECTED_LETTER == "A")
-			myNetCreator.generateNet("O", clk_buffer2, "CLK", myLatch, design,
+		myNetCreator.generateNet("O", clk_buffer, "CLK", myLatch, design,
 					alreadyPlacedNets);
 		myNetCreator.generateNet("I", global_reset, "SR", myLatch, design,
 				alreadyPlacedNets);

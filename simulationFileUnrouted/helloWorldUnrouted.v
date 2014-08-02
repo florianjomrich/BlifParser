@@ -7,7 +7,7 @@
 // \   \   \/     Version: P.20131013
 //  \   \         Application: netgen
 //  /   /         Filename: HelloWorldUnrouted.v
-// /___/   /\     Timestamp: Sat Aug 02 13:52:04 2014
+// /___/   /\     Timestamp: Sat Aug 02 14:01:47 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
@@ -34,557 +34,706 @@
 `timescale 1 ns/1 ps
 
 module HelloWorld (
-  \A2.PAD.PAD , \S1_FINAL_OUTPUT.OUTBUF.OUT , \A1.PAD.PAD , \B3.PAD.PAD , \A3.PAD.PAD , \B2.PAD.PAD , \S2_FINAL_OUTPUT.OUTBUF.OUT , 
-\S3_FINAL_OUTPUT.OUTBUF.OUT , \S0_FINAL_OUTPUT.OUTBUF.OUT , \COUT_FINAL_OUTPUT.OUTBUF.OUT , \CIN.PAD.PAD , \B0.PAD.PAD , \B1.PAD.PAD , \A0.PAD.PAD 
+  \out6_FINAL_OUTPUT.OUTBUF.OUT , \out9_FINAL_OUTPUT.OUTBUF.OUT , \in1.PAD.PAD , \out11_FINAL_OUTPUT.OUTBUF.OUT , \out14_FINAL_OUTPUT.OUTBUF.OUT , 
+\out8_FINAL_OUTPUT.OUTBUF.OUT , \out15_FINAL_OUTPUT.OUTBUF.OUT , \out7_FINAL_OUTPUT.OUTBUF.OUT , \out1_FINAL_OUTPUT.OUTBUF.OUT , \newCLK.PAD.PAD , 
+\out13_FINAL_OUTPUT.OUTBUF.OUT , \out12_FINAL_OUTPUT.OUTBUF.OUT , \global_reset.PAD.PAD , \out5_FINAL_OUTPUT.OUTBUF.OUT , 
+\out10_FINAL_OUTPUT.OUTBUF.OUT , \out2_FINAL_OUTPUT.OUTBUF.OUT , \out3_FINAL_OUTPUT.OUTBUF.OUT , \out4_FINAL_OUTPUT.OUTBUF.OUT 
 );
-  input \A2.PAD.PAD ;
-  inout \S1_FINAL_OUTPUT.OUTBUF.OUT ;
-  input \A1.PAD.PAD ;
-  input \B3.PAD.PAD ;
-  input \A3.PAD.PAD ;
-  input \B2.PAD.PAD ;
-  inout \S2_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \S3_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \S0_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \COUT_FINAL_OUTPUT.OUTBUF.OUT ;
-  input \CIN.PAD.PAD ;
-  input \B0.PAD.PAD ;
-  input \B1.PAD.PAD ;
-  input \A0.PAD.PAD ;
-  wire \XX_CARRY2_#fulladder#3#k_S2.DMUX->S2_FINAL_OUTPUT.O ;
-  wire \CIN.I->S1_JJ_S0_CARRY1.C2 ;
-  wire \CARRY3_#fulladder#4#k.AMUX->#fulladder#1#k_S3_COUT_#fulladder#2#k.B2 ;
-  wire \S1_JJ_S0_CARRY1.DMUX->XX_CARRY2_#fulladder#3#k_S2.A2 ;
-  wire \S1_JJ_S0_CARRY1.CMUX->S0_FINAL_OUTPUT.O ;
-  wire \A1.I->XX_CARRY2_#fulladder#3#k_S2.B1 ;
-  wire \A0.I->S1_JJ_S0_CARRY1.D1 ;
-  wire \#fulladder#1#k_S3_COUT_#fulladder#2#k.CMUX->COUT_FINAL_OUTPUT.O ;
-  wire \#fulladder#1#k_S3_COUT_#fulladder#2#k.BMUX->S3_FINAL_OUTPUT.O ;
-  wire \A3.I->#fulladder#1#k_S3_COUT_#fulladder#2#k.C1 ;
-  wire \B2.I->CARRY3_#fulladder#4#k.A2 ;
-  wire \B0.I->S1_JJ_S0_CARRY1.D2 ;
-  wire \A2.I->S1_JJ_S0_CARRY1.B1 ;
-  wire \#fulladder#1#k_S3_COUT_#fulladder#2#k.DMUX->#fulladder#1#k_S3_COUT_#fulladder#2#k.B1 ;
-  wire \XX_CARRY2_#fulladder#3#k_S2.CMUX->XX_CARRY2_#fulladder#3#k_S2.A1 ;
-  wire \#fulladder#1#k_S3_COUT_#fulladder#2#k.AMUX->S1_JJ_S0_CARRY1.C1 ;
-  wire \S1_JJ_S0_CARRY1.BMUX->CARRY3_#fulladder#4#k.A1 ;
-  wire \B3.I->#fulladder#1#k_S3_COUT_#fulladder#2#k.C2 ;
-  wire \B1.I->XX_CARRY2_#fulladder#3#k_S2.B2 ;
-  wire \S1_JJ_S0_CARRY1.AMUX->S1_FINAL_OUTPUT.O ;
-  wire \CARRY3_#fulladder#4#k.BMUX->XX_CARRY2_#fulladder#3#k_S2.D1 ;
-  wire \XX_CARRY2_#fulladder#3#k_S2.AMUX->S1_JJ_S0_CARRY1.A1 ;
-  wire \XX_CARRY2_#fulladder#3#k_S2.BMUX->XX_CARRY2_#fulladder#3#k_S2.D2 ;
-  wire \A2.INBUF.OUT ;
-  wire \S1_FINAL_OUTPUT.INBUF.OUT ;
-  wire \A1.INBUF.OUT ;
-  wire \B3.INBUF.OUT ;
-  wire \A3.INBUF.OUT ;
-  wire \B2.INBUF.OUT ;
-  wire \XX_CARRY2_#fulladder#3#k_S2.D5LUT.O5 ;
-  wire \XX_CARRY2_#fulladder#3#k_S2.C5LUT.O5 ;
-  wire \XX_CARRY2_#fulladder#3#k_S2.B5LUT.O5 ;
-  wire \XX_CARRY2_#fulladder#3#k_S2.A5LUT.O5 ;
-  wire \S1_JJ_S0_CARRY1.D5LUT.O5 ;
-  wire \S1_JJ_S0_CARRY1.C5LUT.O5 ;
-  wire \S1_JJ_S0_CARRY1.B5LUT.O5 ;
-  wire \S1_JJ_S0_CARRY1.A5LUT.O5 ;
-  wire \S2_FINAL_OUTPUT.INBUF.OUT ;
-  wire \CARRY3_#fulladder#4#k.B5LUT.O5 ;
-  wire \CARRY3_#fulladder#4#k.A5LUT.O5 ;
-  wire \S3_FINAL_OUTPUT.INBUF.OUT ;
-  wire \S0_FINAL_OUTPUT.INBUF.OUT ;
-  wire \COUT_FINAL_OUTPUT.INBUF.OUT ;
-  wire \CIN.INBUF.OUT ;
-  wire \B0.INBUF.OUT ;
-  wire \B1.INBUF.OUT ;
-  wire \#fulladder#1#k_S3_COUT_#fulladder#2#k.D5LUT.O5 ;
-  wire \#fulladder#1#k_S3_COUT_#fulladder#2#k.C5LUT.O5 ;
-  wire \#fulladder#1#k_S3_COUT_#fulladder#2#k.B5LUT.O5 ;
-  wire \#fulladder#1#k_S3_COUT_#fulladder#2#k.A5LUT.O5 ;
-  wire \A0.INBUF.OUT ;
-  wire \NLW_S1_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_S2_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_S3_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_S0_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_COUT_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  inout \out6_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out9_FINAL_OUTPUT.OUTBUF.OUT ;
+  input \in1.PAD.PAD ;
+  inout \out11_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out14_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out8_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out15_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out7_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out1_FINAL_OUTPUT.OUTBUF.OUT ;
+  input \newCLK.PAD.PAD ;
+  inout \out13_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out12_FINAL_OUTPUT.OUTBUF.OUT ;
+  input \global_reset.PAD.PAD ;
+  inout \out5_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out10_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out2_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out3_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \out4_FINAL_OUTPUT.OUTBUF.OUT ;
+  wire \out14_out15.BQ->out15_FINAL_OUTPUT.O ;
+  wire \out8_out11_out12_out13.DQ->out13_FINAL_OUTPUT.O ;
+  wire \out2_out5_out6_out7.AQ->out2_FINAL_OUTPUT.O ;
+  wire \out8_out11_out12_out13.CQ->out12_FINAL_OUTPUT.O ;
+  wire \global_reset.I->out2.SR ;
+  wire \out2_out5_out6_out7.BQ->out5_FINAL_OUTPUT.O ;
+  wire \out3_out4_out9_out10.DQ->out10_FINAL_OUTPUT.O ;
+  wire \out2_out5_out6_out7.CQ->out6_FINAL_OUTPUT.O ;
+  wire \out14_out15.AQ->out14_FINAL_OUTPUT.O ;
+  wire \in1.I->out2_out5_out6_out7.AX ;
+  wire \out3_out4_out9_out10.BQ->out4_FINAL_OUTPUT.O ;
+  wire \out8_out11_out12_out13.AQ->out8_FINAL_OUTPUT.O ;
+  wire \out1.AMUX->out1_FINAL_OUTPUT.O ;
+  wire \my_clk_BUFG.O->out2.CLK ;
+  wire \out3_out4_out9_out10.AQ->out3_FINAL_OUTPUT.O ;
+  wire \out8_out11_out12_out13.BQ->out11_FINAL_OUTPUT.O ;
+  wire \out3_out4_out9_out10.CQ->out9_FINAL_OUTPUT.O ;
+  wire \out2_out5_out6_out7.DQ->out7_FINAL_OUTPUT.O ;
+  wire \newCLK.I->my_clk_BUFG.I0 ;
+  wire \out6_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out9_FINAL_OUTPUT.INBUF.OUT ;
+  wire \in1.INBUF.OUT ;
+  wire \out11_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out14_out15/INV_out14_out15.BFFCLK ;
+  wire \out14_out15/INV_out14_out15.AFFCLK ;
+  wire \out14_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out8_out11_out12_out13/INV_out8_out11_out12_out13.DFFCLK ;
+  wire \out8_out11_out12_out13/INV_out8_out11_out12_out13.CFFCLK ;
+  wire \out8_out11_out12_out13/INV_out8_out11_out12_out13.BFFCLK ;
+  wire \out8_out11_out12_out13/INV_out8_out11_out12_out13.AFFCLK ;
+  wire \out8_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out15_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out7_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out3_out4_out9_out10/INV_out3_out4_out9_out10.DFFCLK ;
+  wire \out3_out4_out9_out10/INV_out3_out4_out9_out10.CFFCLK ;
+  wire \out1.A5LUT.O5 ;
+  wire \out1_FINAL_OUTPUT.INBUF.OUT ;
+  wire \newCLK.INBUF.OUT ;
+  wire \out13_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out12_FINAL_OUTPUT.INBUF.OUT ;
+  wire \global_reset.INBUF.OUT ;
+  wire \out5_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out10_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out2_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out2_out5_out6_out7/INV_out2_out5_out6_out7.DFFCLK ;
+  wire \out3_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out4_FINAL_OUTPUT.INBUF.OUT ;
+  wire \NLW_out6_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out9_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out11_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire VCC;
+  wire GND;
+  wire \NLW_out14_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out8_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out15_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out7_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out1_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out13_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out12_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out5_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out10_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out2_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out3_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out4_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   initial $sdf_annotate("helloworldunrouted.sdf");
-  X_IPAD #(
-    .LOC ( "PAD84" ))
-  A2 (
-    .PAD(\A2.PAD.PAD )
-  );
-  X_BUF #(
-    .LOC ( "PAD84" ))
-  \A2.INBUF  (
-    .O(\A2.INBUF.OUT ),
-    .I(\A2.PAD.PAD )
-  );
-  X_BUF #(
-    .LOC ( "PAD84" ))
-  \A2.IMUX  (
-    .I(\A2.INBUF.OUT ),
-    .O(\A2.I->S1_JJ_S0_CARRY1.B1 )
-  );
   X_BPAD #(
-    .LOC ( "PAD337" ))
-  S1_FINAL_OUTPUT (
-    .PAD(\S1_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD93" ))
+  out6_FINAL_OUTPUT (
+    .PAD(\out6_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD337" ))
-  S1_FINAL_OUTPUT_OBUF (
-    .I(\S1_JJ_S0_CARRY1.AMUX->S1_FINAL_OUTPUT.O ),
-    .O(\S1_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD93" ))
+  out6_FINAL_OUTPUT_OBUF (
+    .I(\out2_out5_out6_out7.CQ->out6_FINAL_OUTPUT.O ),
+    .O(\out6_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD337" ))
-  \S1_FINAL_OUTPUT.INBUF  (
-    .O(\S1_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\S1_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD93" ))
+  \out6_FINAL_OUTPUT.INBUF  (
+    .O(\out6_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out6_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD337" ))
-  \S1_FINAL_OUTPUT.IMUX  (
-    .I(\S1_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_S1_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD93" ))
+  \out6_FINAL_OUTPUT.IMUX  (
+    .I(\out6_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out6_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
-  X_IPAD #(
-    .LOC ( "PAD96" ))
-  A1 (
-    .PAD(\A1.PAD.PAD )
+  X_BPAD #(
+    .LOC ( "PAD92" ))
+  out9_FINAL_OUTPUT (
+    .PAD(\out9_FINAL_OUTPUT.OUTBUF.OUT )
   );
-  X_BUF #(
-    .LOC ( "PAD96" ))
-  \A1.INBUF  (
-    .O(\A1.INBUF.OUT ),
-    .I(\A1.PAD.PAD )
-  );
-  X_BUF #(
-    .LOC ( "PAD96" ))
-  \A1.IMUX  (
-    .I(\A1.INBUF.OUT ),
-    .O(\A1.I->XX_CARRY2_#fulladder#3#k_S2.B1 )
-  );
-  X_IPAD #(
-    .LOC ( "PAD105" ))
-  B3 (
-    .PAD(\B3.PAD.PAD )
+  X_OBUF #(
+    .LOC ( "PAD92" ))
+  out9_FINAL_OUTPUT_OBUF (
+    .I(\out3_out4_out9_out10.CQ->out9_FINAL_OUTPUT.O ),
+    .O(\out9_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD105" ))
-  \B3.INBUF  (
-    .O(\B3.INBUF.OUT ),
-    .I(\B3.PAD.PAD )
+    .LOC ( "PAD92" ))
+  \out9_FINAL_OUTPUT.INBUF  (
+    .O(\out9_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out9_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD105" ))
-  \B3.IMUX  (
-    .I(\B3.INBUF.OUT ),
-    .O(\B3.I->#fulladder#1#k_S3_COUT_#fulladder#2#k.C2 )
+    .LOC ( "PAD92" ))
+  \out9_FINAL_OUTPUT.IMUX  (
+    .I(\out9_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out9_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_IPAD #(
     .LOC ( "PAD80" ))
-  A3 (
-    .PAD(\A3.PAD.PAD )
+  in1 (
+    .PAD(\in1.PAD.PAD )
   );
   X_BUF #(
     .LOC ( "PAD80" ))
-  \A3.INBUF  (
-    .O(\A3.INBUF.OUT ),
-    .I(\A3.PAD.PAD )
+  \in1.INBUF  (
+    .O(\in1.INBUF.OUT ),
+    .I(\in1.PAD.PAD )
   );
   X_BUF #(
     .LOC ( "PAD80" ))
-  \A3.IMUX  (
-    .I(\A3.INBUF.OUT ),
-    .O(\A3.I->#fulladder#1#k_S3_COUT_#fulladder#2#k.C1 )
+  \in1.IMUX  (
+    .I(\in1.INBUF.OUT ),
+    .O(\in1.I->out2_out5_out6_out7.AX )
   );
-  X_IPAD #(
-    .LOC ( "PAD106" ))
-  B2 (
-    .PAD(\B2.PAD.PAD )
+  X_BPAD #(
+    .LOC ( "PAD330" ))
+  out11_FINAL_OUTPUT (
+    .PAD(\out11_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD330" ))
+  out11_FINAL_OUTPUT_OBUF (
+    .I(\out8_out11_out12_out13.BQ->out11_FINAL_OUTPUT.O ),
+    .O(\out11_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD106" ))
-  \B2.INBUF  (
-    .O(\B2.INBUF.OUT ),
-    .I(\B2.PAD.PAD )
+    .LOC ( "PAD330" ))
+  \out11_FINAL_OUTPUT.INBUF  (
+    .O(\out11_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out11_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD106" ))
-  \B2.IMUX  (
-    .I(\B2.INBUF.OUT ),
-    .O(\B2.I->CARRY3_#fulladder#4#k.A2 )
+    .LOC ( "PAD330" ))
+  \out11_FINAL_OUTPUT.IMUX  (
+    .I(\out11_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out11_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
-  X_BUF   \XX_CARRY2_#fulladder#3#k_S2/XX_CARRY2_#fulladder#3#k_S2_DMUX_Delay  (
-    .I(\XX_CARRY2_#fulladder#3#k_S2.D5LUT.O5 ),
-    .O(\XX_CARRY2_#fulladder#3#k_S2.DMUX->S2_FINAL_OUTPUT.O )
+  X_INV   \INV_out14_out15.BFFCLK  (
+    .I(\my_clk_BUFG.O->out2.CLK ),
+    .O(\out14_out15/INV_out14_out15.BFFCLK )
   );
-  X_BUF   \XX_CARRY2_#fulladder#3#k_S2/XX_CARRY2_#fulladder#3#k_S2_CMUX_Delay  (
-    .I(\XX_CARRY2_#fulladder#3#k_S2.C5LUT.O5 ),
-    .O(\XX_CARRY2_#fulladder#3#k_S2.CMUX->XX_CARRY2_#fulladder#3#k_S2.A1 )
+  X_INV   \INV_out14_out15.AFFCLK  (
+    .I(\my_clk_BUFG.O->out2.CLK ),
+    .O(\out14_out15/INV_out14_out15.AFFCLK )
   );
-  X_BUF   \XX_CARRY2_#fulladder#3#k_S2/XX_CARRY2_#fulladder#3#k_S2_BMUX_Delay  (
-    .I(\XX_CARRY2_#fulladder#3#k_S2.B5LUT.O5 ),
-    .O(\XX_CARRY2_#fulladder#3#k_S2.BMUX->XX_CARRY2_#fulladder#3#k_S2.D2 )
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y6" ),
+    .INIT ( 1'b0 ))
+  \out14_out15.BFF  (
+    .GE(VCC),
+    .CLK(\out14_out15/INV_out14_out15.BFFCLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out14_out15.BQ->out15_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
   );
-  X_BUF   \XX_CARRY2_#fulladder#3#k_S2/XX_CARRY2_#fulladder#3#k_S2_AMUX_Delay  (
-    .I(\XX_CARRY2_#fulladder#3#k_S2.A5LUT.O5 ),
-    .O(\XX_CARRY2_#fulladder#3#k_S2.AMUX->S1_JJ_S0_CARRY1.A1 )
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y6" ),
+    .INIT ( 1'b0 ))
+  \out14_out15.AFF  (
+    .GE(VCC),
+    .CLK(\out14_out15/INV_out14_out15.AFFCLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out14_out15.AQ->out14_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
   );
-  X_LUT5 #(
+  X_CKBUF #(
+    .LOC ( "BUFGMUX_X2Y10" ))
+  \my_clk_BUFG.BUFG  (
+    .I(\newCLK.I->my_clk_BUFG.I0 ),
+    .O(\my_clk_BUFG.O->out2.CLK )
+  );
+  X_BPAD #(
+    .LOC ( "PAD30" ))
+  out14_FINAL_OUTPUT (
+    .PAD(\out14_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD30" ))
+  out14_FINAL_OUTPUT_OBUF (
+    .I(\out14_out15.AQ->out14_FINAL_OUTPUT.O ),
+    .O(\out14_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD30" ))
+  \out14_FINAL_OUTPUT.INBUF  (
+    .O(\out14_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out14_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD30" ))
+  \out14_FINAL_OUTPUT.IMUX  (
+    .I(\out14_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out14_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_INV   \INV_out8_out11_out12_out13.DFFCLK  (
+    .I(\my_clk_BUFG.O->out2.CLK ),
+    .O(\out8_out11_out12_out13/INV_out8_out11_out12_out13.DFFCLK )
+  );
+  X_INV   \INV_out8_out11_out12_out13.CFFCLK  (
+    .I(\my_clk_BUFG.O->out2.CLK ),
+    .O(\out8_out11_out12_out13/INV_out8_out11_out12_out13.CFFCLK )
+  );
+  X_INV   \INV_out8_out11_out12_out13.BFFCLK  (
+    .I(\my_clk_BUFG.O->out2.CLK ),
+    .O(\out8_out11_out12_out13/INV_out8_out11_out12_out13.BFFCLK )
+  );
+  X_INV   \INV_out8_out11_out12_out13.AFFCLK  (
+    .I(\my_clk_BUFG.O->out2.CLK ),
+    .O(\out8_out11_out12_out13/INV_out8_out11_out12_out13.AFFCLK )
+  );
+  X_LATCHE #(
     .LOC ( "SLICE_X10Y7" ),
-    .INIT ( 32'h66666666 ))
-  \XX_CARRY2_#fulladder#3#k_S2.D5LUT  (
-    .ADR0(\CARRY3_#fulladder#4#k.BMUX->XX_CARRY2_#fulladder#3#k_S2.D1 ),
-    .ADR1(\XX_CARRY2_#fulladder#3#k_S2.BMUX->XX_CARRY2_#fulladder#3#k_S2.D2 ),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\XX_CARRY2_#fulladder#3#k_S2.D5LUT.O5 )
+    .INIT ( 1'b1 ))
+  \out8_out11_out12_out13.DFF  (
+    .GE(VCC),
+    .CLK(\out8_out11_out12_out13/INV_out8_out11_out12_out13.DFFCLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out8_out11_out12_out13.DQ->out13_FINAL_OUTPUT.O ),
+    .SET(\global_reset.I->out2.SR ),
+    .RST(GND)
   );
-  X_LUT5 #(
+  X_LATCHE #(
     .LOC ( "SLICE_X10Y7" ),
-    .INIT ( 32'h66666666 ))
-  \XX_CARRY2_#fulladder#3#k_S2.C5LUT  (
-    .ADR0(\A1.I->XX_CARRY2_#fulladder#3#k_S2.B1 ),
-    .ADR1(\B1.I->XX_CARRY2_#fulladder#3#k_S2.B2 ),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\XX_CARRY2_#fulladder#3#k_S2.C5LUT.O5 )
+    .INIT ( 1'b0 ))
+  \out8_out11_out12_out13.CFF  (
+    .GE(VCC),
+    .CLK(\out8_out11_out12_out13/INV_out8_out11_out12_out13.CFFCLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out8_out11_out12_out13.CQ->out12_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
   );
-  X_LUT5 #(
+  X_LATCHE #(
     .LOC ( "SLICE_X10Y7" ),
-    .INIT ( 32'hE8E8E8E8 ))
-  \XX_CARRY2_#fulladder#3#k_S2.B5LUT  (
-    .ADR0(\A1.I->XX_CARRY2_#fulladder#3#k_S2.B1 ),
-    .ADR1(\B1.I->XX_CARRY2_#fulladder#3#k_S2.B2 ),
-    .ADR2(\S1_JJ_S0_CARRY1.DMUX->XX_CARRY2_#fulladder#3#k_S2.A2 ),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\XX_CARRY2_#fulladder#3#k_S2.B5LUT.O5 )
+    .INIT ( 1'b0 ))
+  \out8_out11_out12_out13.BFF  (
+    .GE(VCC),
+    .CLK(\out8_out11_out12_out13/INV_out8_out11_out12_out13.BFFCLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out8_out11_out12_out13.BQ->out11_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
   );
-  X_LUT5 #(
+  X_LATCHE #(
     .LOC ( "SLICE_X10Y7" ),
-    .INIT ( 32'h66666666 ))
-  \XX_CARRY2_#fulladder#3#k_S2.A5LUT  (
-    .ADR0(\XX_CARRY2_#fulladder#3#k_S2.CMUX->XX_CARRY2_#fulladder#3#k_S2.A1 ),
-    .ADR1(\S1_JJ_S0_CARRY1.DMUX->XX_CARRY2_#fulladder#3#k_S2.A2 ),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\XX_CARRY2_#fulladder#3#k_S2.A5LUT.O5 )
+    .INIT ( 1'b0 ))
+  \out8_out11_out12_out13.AFF  (
+    .GE(VCC),
+    .CLK(\out8_out11_out12_out13/INV_out8_out11_out12_out13.AFFCLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out8_out11_out12_out13.AQ->out8_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
   );
-  X_BUF   \S1_JJ_S0_CARRY1/S1_JJ_S0_CARRY1_DMUX_Delay  (
-    .I(\S1_JJ_S0_CARRY1.D5LUT.O5 ),
-    .O(\S1_JJ_S0_CARRY1.DMUX->XX_CARRY2_#fulladder#3#k_S2.A2 )
+  X_BPAD #(
+    .LOC ( "PAD91" ))
+  out8_FINAL_OUTPUT (
+    .PAD(\out8_FINAL_OUTPUT.OUTBUF.OUT )
   );
-  X_BUF   \S1_JJ_S0_CARRY1/S1_JJ_S0_CARRY1_CMUX_Delay  (
-    .I(\S1_JJ_S0_CARRY1.C5LUT.O5 ),
-    .O(\S1_JJ_S0_CARRY1.CMUX->S0_FINAL_OUTPUT.O )
+  X_OBUF #(
+    .LOC ( "PAD91" ))
+  out8_FINAL_OUTPUT_OBUF (
+    .I(\out8_out11_out12_out13.AQ->out8_FINAL_OUTPUT.O ),
+    .O(\out8_FINAL_OUTPUT.OUTBUF.OUT )
   );
-  X_BUF   \S1_JJ_S0_CARRY1/S1_JJ_S0_CARRY1_BMUX_Delay  (
-    .I(\S1_JJ_S0_CARRY1.B5LUT.O5 ),
-    .O(\S1_JJ_S0_CARRY1.BMUX->CARRY3_#fulladder#4#k.A1 )
+  X_BUF #(
+    .LOC ( "PAD91" ))
+  \out8_FINAL_OUTPUT.INBUF  (
+    .O(\out8_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out8_FINAL_OUTPUT.OUTBUF.OUT )
   );
-  X_BUF   \S1_JJ_S0_CARRY1/S1_JJ_S0_CARRY1_AMUX_Delay  (
-    .I(\S1_JJ_S0_CARRY1.A5LUT.O5 ),
-    .O(\S1_JJ_S0_CARRY1.AMUX->S1_FINAL_OUTPUT.O )
+  X_BUF #(
+    .LOC ( "PAD91" ))
+  \out8_FINAL_OUTPUT.IMUX  (
+    .I(\out8_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out8_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD339" ))
+  out15_FINAL_OUTPUT (
+    .PAD(\out15_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD339" ))
+  out15_FINAL_OUTPUT_OBUF (
+    .I(\out14_out15.BQ->out15_FINAL_OUTPUT.O ),
+    .O(\out15_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD339" ))
+  \out15_FINAL_OUTPUT.INBUF  (
+    .O(\out15_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out15_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD339" ))
+  \out15_FINAL_OUTPUT.IMUX  (
+    .I(\out15_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out15_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD94" ))
+  out7_FINAL_OUTPUT (
+    .PAD(\out7_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD94" ))
+  out7_FINAL_OUTPUT_OBUF (
+    .I(\out2_out5_out6_out7.DQ->out7_FINAL_OUTPUT.O ),
+    .O(\out7_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD94" ))
+  \out7_FINAL_OUTPUT.INBUF  (
+    .O(\out7_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out7_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD94" ))
+  \out7_FINAL_OUTPUT.IMUX  (
+    .I(\out7_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out7_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_INV   \INV_out3_out4_out9_out10.DFFCLK  (
+    .I(\my_clk_BUFG.O->out2.CLK ),
+    .O(\out3_out4_out9_out10/INV_out3_out4_out9_out10.DFFCLK )
+  );
+  X_INV   \INV_out3_out4_out9_out10.CFFCLK  (
+    .I(\my_clk_BUFG.O->out2.CLK ),
+    .O(\out3_out4_out9_out10/INV_out3_out4_out9_out10.CFFCLK )
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y8" ),
+    .INIT ( 1'b0 ))
+  \out3_out4_out9_out10.DFF  (
+    .CE(VCC),
+    .CLK(\out3_out4_out9_out10/INV_out3_out4_out9_out10.DFFCLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out3_out4_out9_out10.DQ->out10_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y8" ),
+    .INIT ( 1'b0 ))
+  \out3_out4_out9_out10.CFF  (
+    .CE(VCC),
+    .CLK(\out3_out4_out9_out10/INV_out3_out4_out9_out10.CFFCLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out3_out4_out9_out10.CQ->out9_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y8" ),
+    .INIT ( 1'b0 ))
+  \out3_out4_out9_out10.BFF  (
+    .GE(VCC),
+    .CLK(\my_clk_BUFG.O->out2.CLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out3_out4_out9_out10.BQ->out4_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y8" ),
+    .INIT ( 1'b0 ))
+  \out3_out4_out9_out10.AFF  (
+    .GE(VCC),
+    .CLK(\my_clk_BUFG.O->out2.CLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out3_out4_out9_out10.AQ->out3_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
+  );
+  X_BUF   \out1/out1_AMUX_Delay  (
+    .I(\out1.A5LUT.O5 ),
+    .O(\out1.AMUX->out1_FINAL_OUTPUT.O )
   );
   X_LUT5 #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 32'hE8E8E8E8 ))
-  \S1_JJ_S0_CARRY1.D5LUT  (
-    .ADR0(\A0.I->S1_JJ_S0_CARRY1.D1 ),
-    .ADR1(\B0.I->S1_JJ_S0_CARRY1.D2 ),
-    .ADR2(\CIN.I->S1_JJ_S0_CARRY1.C2 ),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\S1_JJ_S0_CARRY1.D5LUT.O5 )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 32'h66666666 ))
-  \S1_JJ_S0_CARRY1.C5LUT  (
-    .ADR0(\#fulladder#1#k_S3_COUT_#fulladder#2#k.AMUX->S1_JJ_S0_CARRY1.C1 ),
-    .ADR1(\CIN.I->S1_JJ_S0_CARRY1.C2 ),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\S1_JJ_S0_CARRY1.C5LUT.O5 )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y9" ),
+    .LOC ( "SLICE_X10Y2" ),
     .INIT ( 32'hAAAAAAAA ))
-  \S1_JJ_S0_CARRY1.B5LUT  (
-    .ADR0(\A2.I->S1_JJ_S0_CARRY1.B1 ),
+  \out1.A5LUT  (
+    .ADR0(\in1.I->out2_out5_out6_out7.AX ),
     .ADR1(1'b1),
     .ADR2(1'b1),
     .ADR3(1'b1),
     .ADR4(1'b1),
-    .O(\S1_JJ_S0_CARRY1.B5LUT.O5 )
+    .O(\out1.A5LUT.O5 )
   );
-  X_LUT5 #(
+  X_BPAD #(
+    .LOC ( "PAD84" ))
+  out1_FINAL_OUTPUT (
+    .PAD(\out1_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD84" ))
+  out1_FINAL_OUTPUT_OBUF (
+    .I(\out1.AMUX->out1_FINAL_OUTPUT.O ),
+    .O(\out1_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD84" ))
+  \out1_FINAL_OUTPUT.INBUF  (
+    .O(\out1_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out1_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD84" ))
+  \out1_FINAL_OUTPUT.IMUX  (
+    .I(\out1_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out1_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_IPAD #(
+    .LOC ( "PAD326" ))
+  newCLK (
+    .PAD(\newCLK.PAD.PAD )
+  );
+  X_BUF #(
+    .LOC ( "PAD326" ))
+  \newCLK.INBUF  (
+    .O(\newCLK.INBUF.OUT ),
+    .I(\newCLK.PAD.PAD )
+  );
+  X_BUF #(
+    .LOC ( "PAD326" ))
+  \newCLK.IMUX  (
+    .I(\newCLK.INBUF.OUT ),
+    .O(\newCLK.I->my_clk_BUFG.I0 )
+  );
+  X_BPAD #(
+    .LOC ( "PAD329" ))
+  out13_FINAL_OUTPUT (
+    .PAD(\out13_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD329" ))
+  out13_FINAL_OUTPUT_OBUF (
+    .I(\out8_out11_out12_out13.DQ->out13_FINAL_OUTPUT.O ),
+    .O(\out13_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD329" ))
+  \out13_FINAL_OUTPUT.INBUF  (
+    .O(\out13_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out13_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD329" ))
+  \out13_FINAL_OUTPUT.IMUX  (
+    .I(\out13_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out13_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD337" ))
+  out12_FINAL_OUTPUT (
+    .PAD(\out12_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD337" ))
+  out12_FINAL_OUTPUT_OBUF (
+    .I(\out8_out11_out12_out13.CQ->out12_FINAL_OUTPUT.O ),
+    .O(\out12_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD337" ))
+  \out12_FINAL_OUTPUT.INBUF  (
+    .O(\out12_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out12_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD337" ))
+  \out12_FINAL_OUTPUT.IMUX  (
+    .I(\out12_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out12_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_IPAD #(
+    .LOC ( "PAD340" ))
+  global_reset (
+    .PAD(\global_reset.PAD.PAD )
+  );
+  X_BUF #(
+    .LOC ( "PAD340" ))
+  \global_reset.INBUF  (
+    .O(\global_reset.INBUF.OUT ),
+    .I(\global_reset.PAD.PAD )
+  );
+  X_BUF #(
+    .LOC ( "PAD340" ))
+  \global_reset.IMUX  (
+    .I(\global_reset.INBUF.OUT ),
+    .O(\global_reset.I->out2.SR )
+  );
+  X_BPAD #(
+    .LOC ( "PAD106" ))
+  out5_FINAL_OUTPUT (
+    .PAD(\out5_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD106" ))
+  out5_FINAL_OUTPUT_OBUF (
+    .I(\out2_out5_out6_out7.BQ->out5_FINAL_OUTPUT.O ),
+    .O(\out5_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD106" ))
+  \out5_FINAL_OUTPUT.INBUF  (
+    .O(\out5_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out5_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD106" ))
+  \out5_FINAL_OUTPUT.IMUX  (
+    .I(\out5_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out5_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD83" ))
+  out10_FINAL_OUTPUT (
+    .PAD(\out10_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD83" ))
+  out10_FINAL_OUTPUT_OBUF (
+    .I(\out3_out4_out9_out10.DQ->out10_FINAL_OUTPUT.O ),
+    .O(\out10_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD83" ))
+  \out10_FINAL_OUTPUT.INBUF  (
+    .O(\out10_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out10_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD83" ))
+  \out10_FINAL_OUTPUT.IMUX  (
+    .I(\out10_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out10_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD96" ))
+  out2_FINAL_OUTPUT (
+    .PAD(\out2_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD96" ))
+  out2_FINAL_OUTPUT_OBUF (
+    .I(\out2_out5_out6_out7.AQ->out2_FINAL_OUTPUT.O ),
+    .O(\out2_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD96" ))
+  \out2_FINAL_OUTPUT.INBUF  (
+    .O(\out2_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out2_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD96" ))
+  \out2_FINAL_OUTPUT.IMUX  (
+    .I(\out2_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out2_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_INV   \INV_out2_out5_out6_out7.DFFCLK  (
+    .I(\my_clk_BUFG.O->out2.CLK ),
+    .O(\out2_out5_out6_out7/INV_out2_out5_out6_out7.DFFCLK )
+  );
+  X_LATCHE #(
     .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 32'hAAAAAAAA ))
-  \S1_JJ_S0_CARRY1.A5LUT  (
-    .ADR0(\XX_CARRY2_#fulladder#3#k_S2.AMUX->S1_JJ_S0_CARRY1.A1 ),
-    .ADR1(1'b1),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\S1_JJ_S0_CARRY1.A5LUT.O5 )
+    .INIT ( 1'b0 ))
+  \out2_out5_out6_out7.DFF  (
+    .GE(VCC),
+    .CLK(\out2_out5_out6_out7/INV_out2_out5_out6_out7.DFFCLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out2_out5_out6_out7.DQ->out7_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y9" ),
+    .INIT ( 1'b0 ))
+  \out2_out5_out6_out7.CFF  (
+    .CE(VCC),
+    .CLK(\my_clk_BUFG.O->out2.CLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out2_out5_out6_out7.CQ->out6_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y9" ),
+    .INIT ( 1'b0 ))
+  \out2_out5_out6_out7.BFF  (
+    .CE(VCC),
+    .CLK(\my_clk_BUFG.O->out2.CLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out2_out5_out6_out7.BQ->out5_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y9" ),
+    .INIT ( 1'b0 ))
+  \out2_out5_out6_out7.AFF  (
+    .CE(VCC),
+    .CLK(\my_clk_BUFG.O->out2.CLK ),
+    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .O(\out2_out5_out6_out7.AQ->out2_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out2.SR ),
+    .SET(GND)
   );
   X_BPAD #(
-    .LOC ( "PAD330" ))
-  S2_FINAL_OUTPUT (
-    .PAD(\S2_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_OBUF #(
-    .LOC ( "PAD330" ))
-  S2_FINAL_OUTPUT_OBUF (
-    .I(\XX_CARRY2_#fulladder#3#k_S2.DMUX->S2_FINAL_OUTPUT.O ),
-    .O(\S2_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD330" ))
-  \S2_FINAL_OUTPUT.INBUF  (
-    .O(\S2_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\S2_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD330" ))
-  \S2_FINAL_OUTPUT.IMUX  (
-    .I(\S2_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_S2_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
-  );
-  X_BUF   \CARRY3_#fulladder#4#k/CARRY3_#fulladder#4#k_BMUX_Delay  (
-    .I(\CARRY3_#fulladder#4#k.B5LUT.O5 ),
-    .O(\CARRY3_#fulladder#4#k.BMUX->XX_CARRY2_#fulladder#3#k_S2.D1 )
-  );
-  X_BUF   \CARRY3_#fulladder#4#k/CARRY3_#fulladder#4#k_AMUX_Delay  (
-    .I(\CARRY3_#fulladder#4#k.A5LUT.O5 ),
-    .O(\CARRY3_#fulladder#4#k.AMUX->#fulladder#1#k_S3_COUT_#fulladder#2#k.B2 )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y2" ),
-    .INIT ( 32'h66666666 ))
-  \CARRY3_#fulladder#4#k.B5LUT  (
-    .ADR0(\S1_JJ_S0_CARRY1.BMUX->CARRY3_#fulladder#4#k.A1 ),
-    .ADR1(\B2.I->CARRY3_#fulladder#4#k.A2 ),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\CARRY3_#fulladder#4#k.B5LUT.O5 )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y2" ),
-    .INIT ( 32'hE8E8E8E8 ))
-  \CARRY3_#fulladder#4#k.A5LUT  (
-    .ADR0(\S1_JJ_S0_CARRY1.BMUX->CARRY3_#fulladder#4#k.A1 ),
-    .ADR1(\B2.I->CARRY3_#fulladder#4#k.A2 ),
-    .ADR2(\XX_CARRY2_#fulladder#3#k_S2.BMUX->XX_CARRY2_#fulladder#3#k_S2.D2 ),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\CARRY3_#fulladder#4#k.A5LUT.O5 )
-  );
-  X_BPAD #(
-    .LOC ( "PAD83" ))
-  S3_FINAL_OUTPUT (
-    .PAD(\S3_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_OBUF #(
-    .LOC ( "PAD83" ))
-  S3_FINAL_OUTPUT_OBUF (
-    .I(\#fulladder#1#k_S3_COUT_#fulladder#2#k.BMUX->S3_FINAL_OUTPUT.O ),
-    .O(\S3_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD83" ))
-  \S3_FINAL_OUTPUT.INBUF  (
-    .O(\S3_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\S3_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD83" ))
-  \S3_FINAL_OUTPUT.IMUX  (
-    .I(\S3_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_S3_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
-  );
-  X_BPAD #(
-    .LOC ( "PAD329" ))
-  S0_FINAL_OUTPUT (
-    .PAD(\S0_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_OBUF #(
-    .LOC ( "PAD329" ))
-  S0_FINAL_OUTPUT_OBUF (
-    .I(\S1_JJ_S0_CARRY1.CMUX->S0_FINAL_OUTPUT.O ),
-    .O(\S0_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD329" ))
-  \S0_FINAL_OUTPUT.INBUF  (
-    .O(\S0_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\S0_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD329" ))
-  \S0_FINAL_OUTPUT.IMUX  (
-    .I(\S0_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_S0_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
-  );
-  X_BPAD #(
-    .LOC ( "PAD92" ))
-  COUT_FINAL_OUTPUT (
-    .PAD(\COUT_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_OBUF #(
-    .LOC ( "PAD92" ))
-  COUT_FINAL_OUTPUT_OBUF (
-    .I(\#fulladder#1#k_S3_COUT_#fulladder#2#k.CMUX->COUT_FINAL_OUTPUT.O ),
-    .O(\COUT_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD92" ))
-  \COUT_FINAL_OUTPUT.INBUF  (
-    .O(\COUT_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\COUT_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD92" ))
-  \COUT_FINAL_OUTPUT.IMUX  (
-    .I(\COUT_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_COUT_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
-  );
-  X_IPAD #(
-    .LOC ( "PAD91" ))
-  CIN (
-    .PAD(\CIN.PAD.PAD )
-  );
-  X_BUF #(
-    .LOC ( "PAD91" ))
-  \CIN.INBUF  (
-    .O(\CIN.INBUF.OUT ),
-    .I(\CIN.PAD.PAD )
-  );
-  X_BUF #(
-    .LOC ( "PAD91" ))
-  \CIN.IMUX  (
-    .I(\CIN.INBUF.OUT ),
-    .O(\CIN.I->S1_JJ_S0_CARRY1.C2 )
-  );
-  X_IPAD #(
-    .LOC ( "PAD94" ))
-  B0 (
-    .PAD(\B0.PAD.PAD )
-  );
-  X_BUF #(
-    .LOC ( "PAD94" ))
-  \B0.INBUF  (
-    .O(\B0.INBUF.OUT ),
-    .I(\B0.PAD.PAD )
-  );
-  X_BUF #(
-    .LOC ( "PAD94" ))
-  \B0.IMUX  (
-    .I(\B0.INBUF.OUT ),
-    .O(\B0.I->S1_JJ_S0_CARRY1.D2 )
-  );
-  X_IPAD #(
-    .LOC ( "PAD93" ))
-  B1 (
-    .PAD(\B1.PAD.PAD )
-  );
-  X_BUF #(
-    .LOC ( "PAD93" ))
-  \B1.INBUF  (
-    .O(\B1.INBUF.OUT ),
-    .I(\B1.PAD.PAD )
-  );
-  X_BUF #(
-    .LOC ( "PAD93" ))
-  \B1.IMUX  (
-    .I(\B1.INBUF.OUT ),
-    .O(\B1.I->XX_CARRY2_#fulladder#3#k_S2.B2 )
-  );
-  X_BUF   \#fulladder#1#k_S3_COUT_#fulladder#2#k/#fulladder#1#k_S3_COUT_#fulladder#2#k_DMUX_Delay  (
-    .I(\#fulladder#1#k_S3_COUT_#fulladder#2#k.D5LUT.O5 ),
-    .O(\#fulladder#1#k_S3_COUT_#fulladder#2#k.DMUX->#fulladder#1#k_S3_COUT_#fulladder#2#k.B1 )
-  );
-  X_BUF   \#fulladder#1#k_S3_COUT_#fulladder#2#k/#fulladder#1#k_S3_COUT_#fulladder#2#k_CMUX_Delay  (
-    .I(\#fulladder#1#k_S3_COUT_#fulladder#2#k.C5LUT.O5 ),
-    .O(\#fulladder#1#k_S3_COUT_#fulladder#2#k.CMUX->COUT_FINAL_OUTPUT.O )
-  );
-  X_BUF   \#fulladder#1#k_S3_COUT_#fulladder#2#k/#fulladder#1#k_S3_COUT_#fulladder#2#k_BMUX_Delay  (
-    .I(\#fulladder#1#k_S3_COUT_#fulladder#2#k.B5LUT.O5 ),
-    .O(\#fulladder#1#k_S3_COUT_#fulladder#2#k.BMUX->S3_FINAL_OUTPUT.O )
-  );
-  X_BUF   \#fulladder#1#k_S3_COUT_#fulladder#2#k/#fulladder#1#k_S3_COUT_#fulladder#2#k_AMUX_Delay  (
-    .I(\#fulladder#1#k_S3_COUT_#fulladder#2#k.A5LUT.O5 ),
-    .O(\#fulladder#1#k_S3_COUT_#fulladder#2#k.AMUX->S1_JJ_S0_CARRY1.C1 )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y8" ),
-    .INIT ( 32'h66666666 ))
-  \#fulladder#1#k_S3_COUT_#fulladder#2#k.D5LUT  (
-    .ADR0(\A3.I->#fulladder#1#k_S3_COUT_#fulladder#2#k.C1 ),
-    .ADR1(\B3.I->#fulladder#1#k_S3_COUT_#fulladder#2#k.C2 ),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\#fulladder#1#k_S3_COUT_#fulladder#2#k.D5LUT.O5 )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y8" ),
-    .INIT ( 32'hE8E8E8E8 ))
-  \#fulladder#1#k_S3_COUT_#fulladder#2#k.C5LUT  (
-    .ADR0(\A3.I->#fulladder#1#k_S3_COUT_#fulladder#2#k.C1 ),
-    .ADR1(\B3.I->#fulladder#1#k_S3_COUT_#fulladder#2#k.C2 ),
-    .ADR2(\CARRY3_#fulladder#4#k.AMUX->#fulladder#1#k_S3_COUT_#fulladder#2#k.B2 ),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\#fulladder#1#k_S3_COUT_#fulladder#2#k.C5LUT.O5 )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y8" ),
-    .INIT ( 32'h66666666 ))
-  \#fulladder#1#k_S3_COUT_#fulladder#2#k.B5LUT  (
-    .ADR0(\#fulladder#1#k_S3_COUT_#fulladder#2#k.DMUX->#fulladder#1#k_S3_COUT_#fulladder#2#k.B1 ),
-    .ADR1(\CARRY3_#fulladder#4#k.AMUX->#fulladder#1#k_S3_COUT_#fulladder#2#k.B2 ),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\#fulladder#1#k_S3_COUT_#fulladder#2#k.B5LUT.O5 )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y8" ),
-    .INIT ( 32'h66666666 ))
-  \#fulladder#1#k_S3_COUT_#fulladder#2#k.A5LUT  (
-    .ADR0(\A0.I->S1_JJ_S0_CARRY1.D1 ),
-    .ADR1(\B0.I->S1_JJ_S0_CARRY1.D2 ),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\#fulladder#1#k_S3_COUT_#fulladder#2#k.A5LUT.O5 )
-  );
-  X_IPAD #(
     .LOC ( "PAD95" ))
-  A0 (
-    .PAD(\A0.PAD.PAD )
+  out3_FINAL_OUTPUT (
+    .PAD(\out3_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD95" ))
+  out3_FINAL_OUTPUT_OBUF (
+    .I(\out3_out4_out9_out10.AQ->out3_FINAL_OUTPUT.O ),
+    .O(\out3_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
     .LOC ( "PAD95" ))
-  \A0.INBUF  (
-    .O(\A0.INBUF.OUT ),
-    .I(\A0.PAD.PAD )
+  \out3_FINAL_OUTPUT.INBUF  (
+    .O(\out3_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out3_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
     .LOC ( "PAD95" ))
-  \A0.IMUX  (
-    .I(\A0.INBUF.OUT ),
-    .O(\A0.I->S1_JJ_S0_CARRY1.D1 )
+  \out3_FINAL_OUTPUT.IMUX  (
+    .I(\out3_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out3_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD105" ))
+  out4_FINAL_OUTPUT (
+    .PAD(\out4_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD105" ))
+  out4_FINAL_OUTPUT_OBUF (
+    .I(\out3_out4_out9_out10.BQ->out4_FINAL_OUTPUT.O ),
+    .O(\out4_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD105" ))
+  \out4_FINAL_OUTPUT.INBUF  (
+    .O(\out4_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\out4_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD105" ))
+  \out4_FINAL_OUTPUT.IMUX  (
+    .I(\out4_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_out4_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_ONE   NlwBlock_HelloWorld_VCC (
+    .O(VCC)
+  );
+  X_ZERO   NlwBlock_HelloWorld_GND (
+    .O(GND)
   );
 endmodule
 

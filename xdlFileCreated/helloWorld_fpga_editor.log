@@ -1,23 +1,105 @@
-#:C0     
+#:C39    
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
-#:D   C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated
+#:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sat Aug 02 00:36:03 2014
+#:T   Sat Aug 02 14:00:08 2014
 #------------------------------
-	#Reading C:\Dokumente und Einstellungen\TestUser\workspace\BLIF Parser Rapdismith\xdlFileCreated\HelloWorld.ncd...
+	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.01.20.05.48
+	#Design creation date: 2014.08.02.09.30.00
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'COUT_FINAL_OUTPUT'
+select -k comp '#fulladder#1#k_S3_COUT_#fulladder#2#k'
 	#2
-unselect comp 'COUT_FINAL_OUTPUT'
+unselect comp '#fulladder#1#k_S3_COUT_#fulladder#2#k'
 	#3
-select -k comp 'S1_JJ_S0_CARRY1'
+select -k comp 'A0'
 	#4
+unselect comp 'A0'
+	#5
+select -k comp 'A1'
+	#6
+unselect comp 'A1'
+	#7
+select -k comp 'A2'
+	#8
+unselect comp 'A2'
+	#9
+select -k comp 'A3'
+	#10
+unselect comp 'A3'
+	#11
+select -k comp 'B0'
+	#12
+unselect comp 'B0'
+	#13
+select -k comp 'CARRY3_#fulladder#4#k'
+	#14
+unselect comp 'CARRY3_#fulladder#4#k'
+	#15
+select -k comp 'S0_FINAL_OUTPUT'
+	#16
+unselect comp 'S0_FINAL_OUTPUT'
+	#17
+select -k comp 'COUT_FINAL_OUTPUT'
+	#18
+unselect comp 'COUT_FINAL_OUTPUT'
+	#19
+select -k comp 'XX_CARRY2_#fulladder#3#k_S2'
+	#20
+unselect -all
+	#21
+select comp 'XX_CARRY2_#fulladder#3#k_S2'
+	#comp "XX_CARRY2_#fulladder#3#k_S2",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
+	#22
+unselect -all
+	#23
+select comp 'XX_CARRY2_#fulladder#3#k_S2'
+	#comp "XX_CARRY2_#fulladder#3#k_S2",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
+	#24
+post block
+	#25
+unselect comp 'XX_CARRY2_#fulladder#3#k_S2'
+	#26
+select -k comp 'S1_FINAL_OUTPUT'
+	#27
+unselect comp 'S1_FINAL_OUTPUT'
+	#28
+select -k comp 'CIN'
+	#29
+unselect comp 'CIN'
+	#30
+select -k comp 'CARRY3_#fulladder#4#k'
+	#31
+unselect -all
+	#32
+select comp 'CARRY3_#fulladder#4#k'
+	#comp "CARRY3_#fulladder#4#k",  site "SLICE_X10Y2",  type = SLICEL  (RPM grid X33Y8)
+	#33
+post block
+	#34
+unselect comp 'CARRY3_#fulladder#4#k'
+	#35
+select -k comp 'S0_FINAL_OUTPUT'
+	#36
+unselect comp 'S0_FINAL_OUTPUT'
+	#37
+select -k comp '#fulladder#1#k_S3_COUT_#fulladder#2#k'
+	#38
+unselect -all
+	#39
+select comp '#fulladder#1#k_S3_COUT_#fulladder#2#k'
+	#comp "#fulladder#1#k_S3_COUT_#fulladder#2#k",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+	#40
+post block
+	#41
+post open
+	#42
+unpost open
+	#43
 post open

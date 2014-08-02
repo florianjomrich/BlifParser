@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import commands.GenericLatch;
-
 import edu.byu.ece.rapidSmith.design.Attribute;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.device.PrimitiveType;
@@ -18,17 +17,108 @@ public class SLICEL_INSTANCE extends Instance {
 
 	}
 
+	public void configure_LATCH(GenericLatch currentLatch,
+			String LETTER_OF_THE_SELECTED_LATCH) {
+
+		//connect the latch with the input gate
+		this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LATCH + "FFMUX",
+				"", LETTER_OF_THE_SELECTED_LATCH + "X"));
+
+		// set the Latch/FlipFlop to act asyncronous
+		//otherwise a Clock Enable Signal (CE) would have to be added to the FF/Latch input as well
+		this.addAttribute(new Attribute("SYNC_ATTR", "", "ASYNC"));
+		
+		//connect the reset cable to the Latch/FlipFlop for a synchronous reset
+		this.addAttribute(new Attribute("SRUSED", "", "0"));
+		
+
+		// configuration Parameter for the latch or FlipFlop
+
+		// first select if it is an edge triggered FlipFlop or a level
+		// triggered Latch
+		System.out.println("TYPE:" + currentLatch.type);
+		switch (currentLatch.type) {
+
+		// falling edge trigered -> FF
+		case "fe":
+			this.addAttribute(new Attribute(
+					LETTER_OF_THE_SELECTED_LATCH + "FF", "", "#FF"));
+			break;
+		// rising edge trigered -> FF
+		case "re":
+			this.addAttribute(new Attribute(
+					LETTER_OF_THE_SELECTED_LATCH + "FF", "", "#FF"));
+			break;
+		// active high -> Latch
+		case "ah":
+			this.addAttribute(new Attribute(
+					LETTER_OF_THE_SELECTED_LATCH + "FF", "", "#LATCH"));
+			break;
+		// active low -> Latch
+		case "al":
+			this.addAttribute(new Attribute(
+					LETTER_OF_THE_SELECTED_LATCH + "FF", "", "#LATCH"));
+			break;
+		// asynchronous -> only a Buffer should be handeld by the parser as a
+		// Logic Block
+		// and therefore not performed in here
+		case "as":
+			System.err
+					.print("Asynchronous Latch should be handeld as a normal logic Block. Not as a Latch.");
+			break;
+
+		// if nothing is specified we assume a LATCH as well (which is
+		// triggered asyncron)
+		// per Default a latch is active low
+		default:
+			this.addAttribute(new Attribute(
+					LETTER_OF_THE_SELECTED_LATCH + "FF", "", "#LATCH"));
+			break;
+		}
+
+		// now select to which value the Latch/FlipFlop will be initializied
+		// to !!
+		switch (currentLatch.initVal) {
+		// initialze to 0
+		case 0:
+			this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LATCH
+					+ "FFSRINIT", "", "SRINIT0"));
+			break;
+		// initialze to 1
+		case 1:
+			this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LATCH
+					+ "FFSRINIT", "", "SRINIT1"));
+			break;
+		// don't care -> we assume 0
+		case 2:
+			this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LATCH
+					+ "FFSRINIT", "", "SRINIT0"));
+			break;
+		// undefined -> we also assume 0
+		case 3:
+			this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LATCH
+					+ "FFSRINIT", "", "SRINIT0"));
+			break;
+
+		default:
+			System.err.print("InitVal is unspecified");
+			break;
+		}
+
+	}
+	
+	
 	public void configure_LUT(ArrayList<String> inputs,
 			ArrayList<ArrayList<Integer>> inputTable,
 			HashMap<ArrayList<Integer>, ArrayList<Integer>> outputTable,
-			String LETTER_OF_THE_SELECTED_LUT, boolean hasALatch,
-			GenericLatch currentLatch) {
+			String LETTER_OF_THE_SELECTED_LUT) {
 
 		String selectedLUT = "";
 		String selectedOutput = "";
 		StringBuffer theBooleanFunction = new StringBuffer();
 		if (inputs.size() >= 7) {
-			System.out.print("TO MANY INPUTS FOR THE CONFIGURATION OF THE LUT");
+			System.err
+			.print("TOO MANY INPUTS FOR THE CONFIGURATION OF THE LUT");
 		} else if (inputs.size() == 6) {
 			selectedLUT = LETTER_OF_THE_SELECTED_LUT + "6LUT";
 			selectedOutput = "O6";
@@ -98,110 +188,11 @@ public class SLICEL_INSTANCE extends Instance {
 		this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT + "OUTMUX",
 				"", selectedOutput));
 
-		// if a LATCH OUTPUT is needed as well
-		if (hasALatch) {
-			this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-					+ "FFMUX", "", selectedOutput));
-
-			
-			
-			
-			
-			// configuration Parameter for the latch or FlipFlop
-
-			// first select if it is an edge triggered FlipFlop or a level
-			// triggered Latch
-			switch (currentLatch.type) {
-
-			// falling edge trigered -> FF
-			case "fe":
-				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-						+ "FF", "", "#FF"));
-				this.addAttribute(new Attribute("SYNC_ATTR", "", "SYNC"));
-				
-				//setup the clock inside
-				this.addAttribute(new Attribute("CLKINV","","CLK_B"));
-				break;
-			// rising edge trigered -> FF
-			case "re":
-				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-						+ "FF", "", "#FF"));
-				this.addAttribute(new Attribute("SYNC_ATTR", "", "SYNC"));
-				
-				//setup the clock inside
-				this.addAttribute(new Attribute("CLKINV","","CLK"));
-				break;
-			// active high -> Latch
-			case "ah":
-				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-						+ "FF", "", "#LATCH"));
-				this.addAttribute(new Attribute("SYNC_ATTR", "", "SYNC"));
-				
-				//setup the clock inside
-				this.addAttribute(new Attribute("CLKINV","","CLK"));
-				
-				break;
-			// active low -> Latch
-			case "al":
-				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-						+ "FF", "", "#LATCH"));
-				this.addAttribute(new Attribute("SYNC_ATTR", "", "SYNC"));
-				
-				//setup the clock inside
-				this.addAttribute(new Attribute("CLKINV","","CLK_B"));
-				break;
-			// asynchronous -> Latch
-			case "as":
-				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-						+ "FF", "", "#LATCH"));
-				this.addAttribute(new Attribute("SYNC_ATTR", "", "ASYNC"));
-				//setup the clock inside
-				this.addAttribute(new Attribute("CLKINV","","CLK"));
-				break;
-
-			// if nothing is specified we assume a LATCH as well (which is
-			// triggered asyncron)
-			default:
-				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-						+ "FF", "", "#LATCH"));
-				this.addAttribute(new Attribute("SYNC_ATTR", "", "ASYNC"));
-				
-				//setup the clock inside
-				this.addAttribute(new Attribute("CLKINV","","CLK"));
-				break;
-			}
-
-			
-			// now select to which value the Latch/FlipFlop will be initializied
-			// to !!
-			switch (currentLatch.initVal) {
-			//initialze to 0
-			case 0:
-				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-						+ "FFSRINIT", "", "SRINIT0"));
-				break;
-				//initialze to 1	
-			case 1:
-				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-						+ "FFSRINIT", "", "SRINIT1"));
-				break;
-			//don't care -> we assume 0 	
-			case 2:
-				this.addAttribute(new Attribute(LETTER_OF_THE_SELECTED_LUT
-						+ "FFSRINIT", "", "SRINIT0"));
-				break;
-			//undefined	-> nothing is set!
-			case 3:
-
-				break;
-
-			default:
-				break;
-			}
+		
 			
 
-		}
 
 	}
+
 
 }

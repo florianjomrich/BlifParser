@@ -3,6 +3,8 @@ package placement;
 import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import javax.crypto.spec.PSource;
+
 import commands.GenericLatch;
 import commands.LogicGate;
 import blif.Model;
@@ -10,6 +12,9 @@ import models.IOB_BLOCK_INSTANCE;
 import models.IOB_BLOCK_INSTANCE.TypeOfInstance;
 import models.LATCH_INSTANCE;
 import models.LOGIC_BLOCK_INSTANCE;
+import models.NegativeSLICE;
+import models.PositiveSLICE;
+import models.SLICEL_INSTANCE;
 import edu.byu.ece.rapidSmith.design.Design;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.design.Net;
@@ -28,9 +33,12 @@ public class DesignCreation {
 	HashMap<String, String> portNubmerOfTheAlreadyPlacedInstances = new HashMap<String, String>();
 	HashMap<String, Instance> alreadyPlacedInstances = new HashMap<String, Instance>();
 
+	// store the clk type (inverted or normal clock for each logic block)
+	HashMap<String, String> clkTypeOfAlreadyPlacedInstances = new HashMap<String, String>();
+
 	// for mapping the gates and latches
 	String[] alphabetSelector = { "A", "B", "C", "D" };
-	
+
 	// My own Helper-classes for faster processing of routine steps
 	NetCreator myNetCreator = new NetCreator();
 	Placer myPlacer = null;
@@ -43,19 +51,19 @@ public class DesignCreation {
 	String _SLICEL = "_SLICEL";
 	String _LATCH = "_LATCH";
 	String _FINAL_OUTPUT = "_FINAL_OUTPUT";
-	
-	//count how much space is left in one slice
-	int logicBlockCounter = 0;
-	int latchCounterActiveHigh_FallingEdge = 0;
-	int latchCounterActiveLow_RisingEdge = 0;
-	
-	// to iterate over the different latches and Logic BLocks
-	LOGIC_BLOCK_INSTANCE myLogicBlock = null;
-	LATCH_INSTANCE myLatchActiveHighFallingEdgeLatch = null;
-	LATCH_INSTANCE myLatchActiveLowRisingEdgeLatch = null;
-	
-	//to use an own Placer and deactivate the Random-Placer 
-	boolean useOwnPlacer = false;	
+
+	// count how much space is left in one slice
+	// depending on the clock used
+	int posBlockCounter = 0;
+	int negBlockCounter = 0;
+
+	// to iterate over the different Slice-Types (pos. clk and neg. clk
+	// triggered)
+	PositiveSLICE positiveSlice = null;
+	NegativeSLICE negativeSlice = null;
+
+	// to use an own Placer and deactivate the Random-Placer
+	boolean useOwnPlacer = false;
 
 	/**
 	 * 
@@ -80,13 +88,8 @@ public class DesignCreation {
 		HashMap<String, PrimitiveSite> primitiveSites = design.getDevice()
 				.getPrimitiveSites();
 
-
-		//initialize the placer
-		myPlacer = new Placer(design, primitiveSites,useOwnPlacer);
-
-
-		
-
+		// initialize the placer
+		myPlacer = new Placer(design, primitiveSites, useOwnPlacer);
 
 		// First check for correctness of the given model! Otherwise the later
 		// routines won't terminate
@@ -94,51 +97,44 @@ public class DesignCreation {
 		// e.g. LogicFunction A has output for B and B has output for A and both
 		// need each other as inputs
 		this.checkModelForCorrectness(model);
-		
+
 		// place the input and output IOBs
 		this.createInputAndOutputIOBs(model, design);
 
 		// setup the global clock first as well
 		// and setup a reset pin to reset all the latches/flipFlops
-		//but only do so if there is at least one latch available and therefore a clock is needed
-		if(model.genericLatches.size()>0){
-		setupGlobalClock(model, design, myNetCreator);
-		setupGlobalReset(model, design, myNetCreator);
+		// but only do so if there is at least one latch available and therefore
+		// a clock is needed
+		if (model.genericLatches.size() > 0) {
+			setupGlobalClock(model, design, myNetCreator);
+			setupGlobalReset(model, design, myNetCreator);
 		}
-
-		// Dump-Place the Latches based on SLICELs (no connection established in
-		// the beginning
-		this.dumpPlaceLatches(model, myNetCreator, design);
 
 		// Dump-Place the LogicGates based on SLICELs
+		// has to be done first BEFORE the latches
+		// since if one latch exits it is already placed
 		this.dumpPlaceLogicGates(model, myNetCreator, design);
 
-		// Dump-Place the inner models
-		this.dumpPlaceReferencesModels(model, myNetCreator, design);
-		
-		//Now place if necessary the last latch and logic block
-		if(logicBlockCounter!=0){
-			myPlacer.placeInstance(myLogicBlock);
-			design.addInstance(myLogicBlock);
+		// Dump-Place the remaining Latches based on SLICELs (no connection
+		// established in
+		// the beginning)
+		this.dumpRemainingPlaceLatches(model, myNetCreator, design);
+
+		// Now place if necessary the last latch and logic block
+		if (posBlockCounter != 0) {
+			myPlacer.placeInstance(positiveSlice);
+			design.addInstance(positiveSlice);
 		}
-		if(latchCounterActiveHigh_FallingEdge!=0){
-			myPlacer.placeInstance(myLatchActiveHighFallingEdgeLatch);
-			design.addInstance(myLatchActiveHighFallingEdgeLatch);
+		if (negBlockCounter != 0) {
+			myPlacer.placeInstance(negativeSlice);
+			design.addInstance(negativeSlice);
 		}
-		if(latchCounterActiveLow_RisingEdge!=0){
-			myPlacer.placeInstance(myLatchActiveLowRisingEdgeLatch);
-			design.addInstance(myLatchActiveLowRisingEdgeLatch);
-		}
-		
 
 		// Now connect all the Latches
 		this.connectLatches(model, myNetCreator, design);
 
 		// and the Logic-Blocks
 		this.connectLogicBlocks(model, myNetCreator, design);
-		
-		//Now connect all the refrenced Latches and LogicBlocks
-		this.connectReferenceModels(model, myNetCreator, design);
 
 		return design;
 	}
@@ -150,18 +146,7 @@ public class DesignCreation {
 				"global_reset");
 		myPlacer.placeInstance(global_reset);
 		design.addInstance(global_reset);
-		
-	}
 
-	private void connectReferenceModels(Model model, NetCreator myNetCreator,
-			Design design) {
-		for(Model currentReferenceModel:model.realModelReferences){
-			this.connectLatches(currentReferenceModel, myNetCreator, design);
-			this.connectLogicBlocks(currentReferenceModel, myNetCreator, design);
-			//recursive call
-			this.connectReferenceModels(currentReferenceModel, myNetCreator, design);
-		}
-		
 	}
 
 	private void connectLogicBlocks(Model model, NetCreator myNetCreator,
@@ -233,7 +218,8 @@ public class DesignCreation {
 		}
 	}
 
-	private void connectLatches(Model model, NetCreator myNetCreator, Design design) {
+	private void connectLatches(Model model, NetCreator myNetCreator,
+			Design design) {
 		for (GenericLatch currentLatch : model.genericLatches) {
 			String currentLATCH_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
 					.get(currentLatch.output);
@@ -279,90 +265,135 @@ public class DesignCreation {
 			}
 
 		}
-		
-	}
-
-	private void dumpPlaceReferencesModels(Model model,
-			NetCreator myNetCreator, Design design) {
-
-		for (Model currentModel : model.realModelReferences) {
-			// Dump-Place all the latches of the Model
-			this.dumpPlaceLatches(currentModel, myNetCreator, design);
-			this.dumpPlaceLogicGates(currentModel, myNetCreator, design);
-			// recursive call
-				dumpPlaceReferencesModels(currentModel,
-						myNetCreator, design);
-
-		}
 
 	}
 
-	private void dumpPlaceLogicGates(Model model, NetCreator myNetCreator,
+		private void dumpPlaceLogicGates(Model model, NetCreator myNetCreator,
 			Design design) {
 		// Setup the new logic block
-	
-		
-		
+
 		for (LogicGate currentLogicGate : model.logicGates) {
-			if (logicBlockCounter == 0)
-				myLogicBlock = new LOGIC_BLOCK_INSTANCE("");// naming is done in
-															// the
-															// .setupTheLogicBlock
-			myLogicBlock = this.setupTheLogicBlock(currentLogicGate,
-					myNetCreator, design, alphabetSelector[logicBlockCounter],
-					myLogicBlock);
 
-			alreadyPlacedInstances.put(currentLogicGate.output + "_"
-					+ alphabetSelector[logicBlockCounter], myLogicBlock);
-			portNubmerOfTheAlreadyPlacedInstances.put(currentLogicGate.output,
-					alphabetSelector[logicBlockCounter]);
+			if (posBlockCounter == 0)
+				positiveSlice = new PositiveSLICE("");// naming is done in the
+														// .setupTheLogicBlock
 
-			System.out.println("logicBLockCounter " + logicBlockCounter);
+			if (negBlockCounter == 0)
+				negativeSlice = new NegativeSLICE("");
 
-			if (logicBlockCounter == 3
-					) {
-				myPlacer.placeInstance(myLogicBlock);
-				design.addInstance(myLogicBlock);
+			// check if the currentLogicGate has got at least one additional
+			// Latch
+			GenericLatch primaryLatch = null;
+			for (GenericLatch currentLatchToCheck : model.genericLatches) {
+				if (currentLogicGate.output.equals(currentLatchToCheck.input)) {
+					primaryLatch = currentLatchToCheck;
+					break;
+				}
 			}
 
-			logicBlockCounter = (logicBlockCounter + 1) % 4;// from 0 to 3 = A
-															// to D
-			
-		}
-	}
-
-	private void dumpPlaceLatches(Model model, NetCreator myNetCreator,
-			Design design) {
-
-		for (GenericLatch currentLatch : model.genericLatches) {
-			if(currentLatch.type.equals("ah") || currentLatch.type.equals("fe")){
-				this.placeActiveHighRisingEdgeLatch(currentLatch,design,myNetCreator,model);
-			}
-			else if(currentLatch.type.equals("al") || currentLatch.type.equals("re")){
-				this.placeActiveLowFallingEdgeLatch(currentLatch,design,myNetCreator,model);
-			}
-			else{
-				System.out.println("LATCH TYPE: "+currentLatch.type);
-				System.err.print("Unknown Latch Type found!");
-				Error e = new Error();
-				throw e;
+			// no Latch connected to this LogicBlock
+			if (primaryLatch == null) {
+				// choose the SLICE Type which has got the most space left
+				if (posBlockCounter < negBlockCounter) {
+					positiveSlice = (PositiveSLICE) this.setupTheLogicBlock(
+							currentLogicGate, myNetCreator, design,
+							alphabetSelector[posBlockCounter], positiveSlice);
+					posBlockCounter=(posBlockCounter+ 1) % 4;
+					
+					this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, posBlockCounter, positiveSlice);
+					
+				} else {
+					negativeSlice = (NegativeSLICE) this.setupTheLogicBlock(
+							currentLogicGate, myNetCreator, design,
+							alphabetSelector[negBlockCounter], negativeSlice);
+					negBlockCounter=(negBlockCounter+ 1) % 4;
+					
+					this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, negBlockCounter, negativeSlice);
+				}
+			} else if (primaryLatch.type.equals("ah")
+					|| primaryLatch.type.equals("fe")) {
+				positiveSlice = (PositiveSLICE) this.setupTheLogicBlock(
+						currentLogicGate, myNetCreator, design,
+						alphabetSelector[posBlockCounter], positiveSlice);
 				
+				//setup the PrimaryLatch as well
+				positiveSlice = (PositiveSLICE)  this.setupThePrimaryLatch(
+						primaryLatch,
+						alphabetSelector[posBlockCounter], positiveSlice);
+				
+				model.genericLatches.remove(primaryLatch);
+				posBlockCounter=(posBlockCounter+ 1) % 4;
+				
+				//add the latch and the logicBlock to the placed Instances
+				this.addTheLatchToAlreadyPlacedInstances(primaryLatch, posBlockCounter, positiveSlice);
+				this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, posBlockCounter, positiveSlice);
+				
+			} else if (primaryLatch.type.equals("al")
+					|| primaryLatch.type.equals("re")) {
+				negativeSlice = (NegativeSLICE) this.setupTheLogicBlock(
+						currentLogicGate, myNetCreator, design,
+						alphabetSelector[negBlockCounter], negativeSlice);
+				model.genericLatches.remove(primaryLatch);
+				negBlockCounter=(negBlockCounter+ 1) % 4;
+				
+				this.addTheLatchToAlreadyPlacedInstances(primaryLatch, negBlockCounter, negativeSlice);
+				this.addTheLogicBlockToAlreadyPlaceInstances(currentLogicGate, negBlockCounter, negativeSlice);
 			}
+
+			if (posBlockCounter == 3) {
+				myPlacer.placeInstance(positiveSlice);
+				design.addInstance(positiveSlice);
+			}
+			if (negBlockCounter == 3) {
+				myPlacer.placeInstance(negativeSlice);
+				design.addInstance(negativeSlice);
+			}
+
+		
+
 		}
 	}
 
-	private void placeActiveLowFallingEdgeLatch(GenericLatch currentLatch, Design design, NetCreator myNetCreator, Model model) {
+	private void addTheLatchToAlreadyPlacedInstances(GenericLatch currentLatch, int BlockCounterNumber,SLICEL_INSTANCE currentLatchInstance) {
+		alreadyPlacedInstances.put(currentLatch.output + "_"
+				+ alphabetSelector[BlockCounterNumber], currentLatchInstance);
+		portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output,
+				alphabetSelector[BlockCounterNumber]);
+	}
+
+	private void addTheLogicBlockToAlreadyPlaceInstances(LogicGate currentLogicGate, int BlockCounterNumber,SLICEL_INSTANCE currentLogicBlockInstance) {
+		alreadyPlacedInstances.put(currentLogicGate.output + "_"
+				+ alphabetSelector[BlockCounterNumber], currentLogicBlockInstance);
+		portNubmerOfTheAlreadyPlacedInstances.put(currentLogicGate.output,
+				alphabetSelector[BlockCounterNumber]);
+	}
+
+	private PositiveSLICE setupThePrimaryLatch(GenericLatch primaryLatch, String LETTER_OF_THE_SELECTED_LATCH,
+			PositiveSLICE positiveSlice2) {
+		positiveSlice2.configure_LATCH(primaryLatch, LETTER_OF_THE_SELECTED_LATCH);
+		return positiveSlice2;
+	}
+
+	
+	private void placeActiveLowFallingEdgeLatch(GenericLatch currentLatch,
+			Design design, NetCreator myNetCreator, Model model) {
 		// TODO Auto-generated method stub
 		if (latchCounterActiveLow_RisingEdge == 0)
-			myLatchActiveLowRisingEdgeLatch = new LATCH_INSTANCE("");// naming is done in
-												// .setupTheLatch
+			myLatchActiveLowRisingEdgeLatch = new LATCH_INSTANCE("");// naming
+																		// is
+																		// done
+																		// in
+		// .setupTheLatch
 
 		System.out.println("latchCounter " + latchCounterActiveLow_RisingEdge);
-		myLatchActiveLowRisingEdgeLatch = this.setupTheLatch(currentLatch, myNetCreator, design,
-				clk_buffer, alphabetSelector[latchCounterActiveLow_RisingEdge], myLatchActiveLowRisingEdgeLatch);
+		myLatchActiveLowRisingEdgeLatch = this.setupTheLatch(currentLatch,
+				myNetCreator, design, clk_buffer,
+				alphabetSelector[latchCounterActiveLow_RisingEdge],
+				myLatchActiveLowRisingEdgeLatch);
 
 		alreadyPlacedInstances.put(currentLatch.output + "_"
-				+ alphabetSelector[latchCounterActiveLow_RisingEdge], myLatchActiveLowRisingEdgeLatch);
+				+ alphabetSelector[latchCounterActiveLow_RisingEdge],
+				myLatchActiveLowRisingEdgeLatch);
 		portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output,
 				alphabetSelector[latchCounterActiveLow_RisingEdge]);
 
@@ -371,22 +402,36 @@ public class DesignCreation {
 			design.addInstance(myLatchActiveLowRisingEdgeLatch);
 		}
 
-		latchCounterActiveLow_RisingEdge = (latchCounterActiveLow_RisingEdge + 1) % 4;// from 0 to 3 = A to D
-		
-		
+		latchCounterActiveLow_RisingEdge = (latchCounterActiveLow_RisingEdge + 1) % 4;// from
+																						// 0
+																						// to
+																						// 3
+																						// =
+																						// A
+																						// to
+																						// D
+
 	}
 
-	private void placeActiveHighRisingEdgeLatch(GenericLatch currentLatch, Design design, NetCreator myNetCreator, Model model) {
+	private void placeActiveHighRisingEdgeLatch(GenericLatch currentLatch,
+			Design design, NetCreator myNetCreator, Model model) {
 		if (latchCounterActiveHigh_FallingEdge == 0)
-			myLatchActiveHighFallingEdgeLatch = new LATCH_INSTANCE("");// naming is done in
-												// .setupTheLatch
+			myLatchActiveHighFallingEdgeLatch = new LATCH_INSTANCE("");// naming
+																		// is
+																		// done
+																		// in
+		// .setupTheLatch
 
-		System.out.println("latchCounter " + latchCounterActiveHigh_FallingEdge);
-		myLatchActiveHighFallingEdgeLatch = this.setupTheLatch(currentLatch, myNetCreator, design,
-				clk_buffer, alphabetSelector[latchCounterActiveHigh_FallingEdge], myLatchActiveHighFallingEdgeLatch);
+		System.out
+				.println("latchCounter " + latchCounterActiveHigh_FallingEdge);
+		myLatchActiveHighFallingEdgeLatch = this.setupTheLatch(currentLatch,
+				myNetCreator, design, clk_buffer,
+				alphabetSelector[latchCounterActiveHigh_FallingEdge],
+				myLatchActiveHighFallingEdgeLatch);
 
 		alreadyPlacedInstances.put(currentLatch.output + "_"
-				+ alphabetSelector[latchCounterActiveHigh_FallingEdge], myLatchActiveHighFallingEdgeLatch);
+				+ alphabetSelector[latchCounterActiveHigh_FallingEdge],
+				myLatchActiveHighFallingEdgeLatch);
 		portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output,
 				alphabetSelector[latchCounterActiveHigh_FallingEdge]);
 
@@ -395,9 +440,15 @@ public class DesignCreation {
 			design.addInstance(myLatchActiveHighFallingEdgeLatch);
 		}
 
-		latchCounterActiveHigh_FallingEdge = (latchCounterActiveHigh_FallingEdge + 1) % 4;// from 0 to 3 = A to D
-		
-		
+		latchCounterActiveHigh_FallingEdge = (latchCounterActiveHigh_FallingEdge + 1) % 4;// from
+																							// 0
+																							// to
+																							// 3
+																							// =
+																							// A
+																							// to
+																							// D
+
 	}
 
 	private LATCH_INSTANCE setupTheLatch(GenericLatch currentLatch,
@@ -417,34 +468,32 @@ public class DesignCreation {
 		if (SELECTED_LETTER == "A")
 			myNetCreator.generateNet("O", clk_buffer2, "CLK", myLatch, design,
 					alreadyPlacedNets);
-			myNetCreator.generateNet("I", global_reset, "SR", myLatch, design,
+		myNetCreator.generateNet("I", global_reset, "SR", myLatch, design,
 				alreadyPlacedNets);
 
 		return myLatch;
 	}
 
-	private LOGIC_BLOCK_INSTANCE setupTheLogicBlock(LogicGate currentLogicGate,
+	private SLICEL_INSTANCE setupTheLogicBlock(LogicGate currentLogicGate,
 			NetCreator myNetCreator, Design design, String SELECTED_LETTER,
-			LOGIC_BLOCK_INSTANCE myLogicBlock) {
+			SLICEL_INSTANCE currentSlice) {
 
 		// to name it correct
-		if (myLogicBlock.getName().equals("")) {
-			myLogicBlock.setName(currentLogicGate.output);
+		if (currentSlice.getName().equals("")) {
+			currentSlice.setName(currentLogicGate.output);
 		} else {
-			myLogicBlock.setName(myLogicBlock.getName() + "_"
+			currentSlice.setName(currentSlice.getName() + "_"
 					+ currentLogicGate.output);
 
 		}
 
 		// configure the logic in the LUT
-		myLogicBlock.configure_LUT(currentLogicGate.inputs,
+		currentSlice.configure_LUT(currentLogicGate.inputs,
 				currentLogicGate.outputcover.inputTable,
 				currentLogicGate.outputcover.outputTable, SELECTED_LETTER);
 
-		return myLogicBlock;
+		return currentSlice;
 	}
-
-
 
 	/*
 	 * Setup the clk for the latches
@@ -454,8 +503,9 @@ public class DesignCreation {
 
 		// set the clock if specified
 		if (model.clocks.size() >= 1) {
-			if(!model.clocks.get(0).equals("NIL"))clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
-					model.clocks.get(0));
+			if (!model.clocks.get(0).equals("NIL"))
+				clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
+						model.clocks.get(0));
 		}
 		// set a own clock
 		else {
@@ -475,8 +525,7 @@ public class DesignCreation {
 
 	}
 
-	private void checkModelForCorrectness(Model model)
-			throws Exception {
+	private void checkModelForCorrectness(Model model) throws Exception {
 		for (LogicGate currentGateToBeChecked : model.logicGates) {
 			for (String currentInputToBeChecked : currentGateToBeChecked.inputs) {
 

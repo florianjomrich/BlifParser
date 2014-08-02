@@ -7,7 +7,7 @@
 // \   \   \/     Version: P.20131013
 //  \   \         Application: netgen
 //  /   /         Filename: HelloWorldUnrouted.v
-// /___/   /\     Timestamp: Sat Aug 02 14:01:47 2014
+// /___/   /\     Timestamp: Sat Aug 02 20:16:06 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
@@ -57,59 +57,62 @@ module HelloWorld (
   inout \out2_FINAL_OUTPUT.OUTBUF.OUT ;
   inout \out3_FINAL_OUTPUT.OUTBUF.OUT ;
   inout \out4_FINAL_OUTPUT.OUTBUF.OUT ;
-  wire \out14_out15.BQ->out15_FINAL_OUTPUT.O ;
-  wire \out8_out11_out12_out13.DQ->out13_FINAL_OUTPUT.O ;
-  wire \out2_out5_out6_out7.AQ->out2_FINAL_OUTPUT.O ;
-  wire \out8_out11_out12_out13.CQ->out12_FINAL_OUTPUT.O ;
-  wire \global_reset.I->out2.SR ;
-  wire \out2_out5_out6_out7.BQ->out5_FINAL_OUTPUT.O ;
+  wire \in1.I->out1_out2_out5_out6.BX ;
+  wire \out13_out14_out15.CQ->out15_FINAL_OUTPUT.O ;
+  wire \out1_out2_out5_out6.BQ->out2_FINAL_OUTPUT.O ;
+  wire \my_clk_BUFG.O->out3.CLK ;
   wire \out3_out4_out9_out10.DQ->out10_FINAL_OUTPUT.O ;
-  wire \out2_out5_out6_out7.CQ->out6_FINAL_OUTPUT.O ;
-  wire \out14_out15.AQ->out14_FINAL_OUTPUT.O ;
-  wire \in1.I->out2_out5_out6_out7.AX ;
+  wire \out1_out2_out5_out6.AMUX->out1_FINAL_OUTPUT.O ;
+  wire \out13_out14_out15.AQ->out13_FINAL_OUTPUT.O ;
+  wire \out7_out8_out11_out12.CQ->out11_FINAL_OUTPUT.O ;
   wire \out3_out4_out9_out10.BQ->out4_FINAL_OUTPUT.O ;
-  wire \out8_out11_out12_out13.AQ->out8_FINAL_OUTPUT.O ;
-  wire \out1.AMUX->out1_FINAL_OUTPUT.O ;
-  wire \my_clk_BUFG.O->out2.CLK ;
+  wire \out7_out8_out11_out12.DQ->out12_FINAL_OUTPUT.O ;
   wire \out3_out4_out9_out10.AQ->out3_FINAL_OUTPUT.O ;
-  wire \out8_out11_out12_out13.BQ->out11_FINAL_OUTPUT.O ;
+  wire \out7_out8_out11_out12.BQ->out8_FINAL_OUTPUT.O ;
   wire \out3_out4_out9_out10.CQ->out9_FINAL_OUTPUT.O ;
-  wire \out2_out5_out6_out7.DQ->out7_FINAL_OUTPUT.O ;
+  wire \out13_out14_out15.BQ->out14_FINAL_OUTPUT.O ;
+  wire \global_reset.I->out1_out2.SR ;
+  wire \out1_out2_out5_out6.DQ->out6_FINAL_OUTPUT.O ;
+  wire \out1_out2_out5_out6.CQ->out5_FINAL_OUTPUT.O ;
+  wire \out7_out8_out11_out12.AQ->out7_FINAL_OUTPUT.O ;
   wire \newCLK.I->my_clk_BUFG.I0 ;
   wire \out6_FINAL_OUTPUT.INBUF.OUT ;
   wire \out9_FINAL_OUTPUT.INBUF.OUT ;
   wire \in1.INBUF.OUT ;
   wire \out11_FINAL_OUTPUT.INBUF.OUT ;
-  wire \out14_out15/INV_out14_out15.BFFCLK ;
-  wire \out14_out15/INV_out14_out15.AFFCLK ;
   wire \out14_FINAL_OUTPUT.INBUF.OUT ;
-  wire \out8_out11_out12_out13/INV_out8_out11_out12_out13.DFFCLK ;
-  wire \out8_out11_out12_out13/INV_out8_out11_out12_out13.CFFCLK ;
-  wire \out8_out11_out12_out13/INV_out8_out11_out12_out13.BFFCLK ;
-  wire \out8_out11_out12_out13/INV_out8_out11_out12_out13.AFFCLK ;
+  wire \out13_out14_out15/INV_out13_out14_out15.CFFCLK ;
+  wire \out13_out14_out15/INV_out13_out14_out15.BFFCLK ;
+  wire \out13_out14_out15/INV_out13_out14_out15.AFFCLK ;
+  wire \out1_out2_out5_out6.A5LUT.O5 ;
   wire \out8_FINAL_OUTPUT.INBUF.OUT ;
   wire \out15_FINAL_OUTPUT.INBUF.OUT ;
   wire \out7_FINAL_OUTPUT.INBUF.OUT ;
   wire \out3_out4_out9_out10/INV_out3_out4_out9_out10.DFFCLK ;
   wire \out3_out4_out9_out10/INV_out3_out4_out9_out10.CFFCLK ;
-  wire \out1.A5LUT.O5 ;
   wire \out1_FINAL_OUTPUT.INBUF.OUT ;
   wire \newCLK.INBUF.OUT ;
   wire \out13_FINAL_OUTPUT.INBUF.OUT ;
   wire \out12_FINAL_OUTPUT.INBUF.OUT ;
   wire \global_reset.INBUF.OUT ;
   wire \out5_FINAL_OUTPUT.INBUF.OUT ;
+  wire \out7_out8_out11_out12/INV_out7_out8_out11_out12.DFFCLK ;
+  wire \out7_out8_out11_out12/INV_out7_out8_out11_out12.CFFCLK ;
+  wire \out7_out8_out11_out12/INV_out7_out8_out11_out12.BFFCLK ;
+  wire \out7_out8_out11_out12/INV_out7_out8_out11_out12.AFFCLK ;
   wire \out10_FINAL_OUTPUT.INBUF.OUT ;
   wire \out2_FINAL_OUTPUT.INBUF.OUT ;
-  wire \out2_out5_out6_out7/INV_out2_out5_out6_out7.DFFCLK ;
   wire \out3_FINAL_OUTPUT.INBUF.OUT ;
   wire \out4_FINAL_OUTPUT.INBUF.OUT ;
   wire \NLW_out6_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_out9_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_out11_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out14_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire VCC;
   wire GND;
-  wire \NLW_out14_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_out1_out2_out5_out6.DFF_CLK_UNCONNECTED ;
+  wire \NLW_out1_out2_out5_out6.CFF_CLK_UNCONNECTED ;
+  wire \NLW_out1_out2_out5_out6.BFF_CLK_UNCONNECTED ;
   wire \NLW_out8_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_out15_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_out7_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
@@ -130,7 +133,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD93" ))
   out6_FINAL_OUTPUT_OBUF (
-    .I(\out2_out5_out6_out7.CQ->out6_FINAL_OUTPUT.O ),
+    .I(\out1_out2_out5_out6.DQ->out6_FINAL_OUTPUT.O ),
     .O(\out6_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -183,7 +186,7 @@ module HelloWorld (
     .LOC ( "PAD80" ))
   \in1.IMUX  (
     .I(\in1.INBUF.OUT ),
-    .O(\in1.I->out2_out5_out6_out7.AX )
+    .O(\in1.I->out1_out2_out5_out6.BX )
   );
   X_BPAD #(
     .LOC ( "PAD330" ))
@@ -193,7 +196,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD330" ))
   out11_FINAL_OUTPUT_OBUF (
-    .I(\out8_out11_out12_out13.BQ->out11_FINAL_OUTPUT.O ),
+    .I(\out7_out8_out11_out12.CQ->out11_FINAL_OUTPUT.O ),
     .O(\out11_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -208,41 +211,11 @@ module HelloWorld (
     .I(\out11_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_out11_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
-  X_INV   \INV_out14_out15.BFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
-    .O(\out14_out15/INV_out14_out15.BFFCLK )
-  );
-  X_INV   \INV_out14_out15.AFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
-    .O(\out14_out15/INV_out14_out15.AFFCLK )
-  );
-  X_LATCHE #(
-    .LOC ( "SLICE_X10Y6" ),
-    .INIT ( 1'b0 ))
-  \out14_out15.BFF  (
-    .GE(VCC),
-    .CLK(\out14_out15/INV_out14_out15.BFFCLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out14_out15.BQ->out15_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
-    .SET(GND)
-  );
-  X_LATCHE #(
-    .LOC ( "SLICE_X10Y6" ),
-    .INIT ( 1'b0 ))
-  \out14_out15.AFF  (
-    .GE(VCC),
-    .CLK(\out14_out15/INV_out14_out15.AFFCLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out14_out15.AQ->out14_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
-    .SET(GND)
-  );
   X_CKBUF #(
     .LOC ( "BUFGMUX_X2Y10" ))
   \my_clk_BUFG.BUFG  (
     .I(\newCLK.I->my_clk_BUFG.I0 ),
-    .O(\my_clk_BUFG.O->out2.CLK )
+    .O(\my_clk_BUFG.O->out3.CLK )
   );
   X_BPAD #(
     .LOC ( "PAD30" ))
@@ -252,7 +225,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD30" ))
   out14_FINAL_OUTPUT_OBUF (
-    .I(\out14_out15.AQ->out14_FINAL_OUTPUT.O ),
+    .I(\out13_out14_out15.BQ->out14_FINAL_OUTPUT.O ),
     .O(\out14_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -267,65 +240,98 @@ module HelloWorld (
     .I(\out14_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_out14_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
-  X_INV   \INV_out8_out11_out12_out13.DFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
-    .O(\out8_out11_out12_out13/INV_out8_out11_out12_out13.DFFCLK )
+  X_INV   \INV_out13_out14_out15.CFFCLK  (
+    .I(\my_clk_BUFG.O->out3.CLK ),
+    .O(\out13_out14_out15/INV_out13_out14_out15.CFFCLK )
   );
-  X_INV   \INV_out8_out11_out12_out13.CFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
-    .O(\out8_out11_out12_out13/INV_out8_out11_out12_out13.CFFCLK )
+  X_INV   \INV_out13_out14_out15.BFFCLK  (
+    .I(\my_clk_BUFG.O->out3.CLK ),
+    .O(\out13_out14_out15/INV_out13_out14_out15.BFFCLK )
   );
-  X_INV   \INV_out8_out11_out12_out13.BFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
-    .O(\out8_out11_out12_out13/INV_out8_out11_out12_out13.BFFCLK )
-  );
-  X_INV   \INV_out8_out11_out12_out13.AFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
-    .O(\out8_out11_out12_out13/INV_out8_out11_out12_out13.AFFCLK )
+  X_INV   \INV_out13_out14_out15.AFFCLK  (
+    .I(\my_clk_BUFG.O->out3.CLK ),
+    .O(\out13_out14_out15/INV_out13_out14_out15.AFFCLK )
   );
   X_LATCHE #(
-    .LOC ( "SLICE_X10Y7" ),
-    .INIT ( 1'b1 ))
-  \out8_out11_out12_out13.DFF  (
+    .LOC ( "SLICE_X10Y2" ),
+    .INIT ( 1'b0 ))
+  \out13_out14_out15.CFF  (
     .GE(VCC),
-    .CLK(\out8_out11_out12_out13/INV_out8_out11_out12_out13.DFFCLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out8_out11_out12_out13.DQ->out13_FINAL_OUTPUT.O ),
-    .SET(\global_reset.I->out2.SR ),
+    .CLK(\out13_out14_out15/INV_out13_out14_out15.CFFCLK ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out13_out14_out15.CQ->out15_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out1_out2.SR ),
+    .SET(GND)
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y2" ),
+    .INIT ( 1'b0 ))
+  \out13_out14_out15.BFF  (
+    .GE(VCC),
+    .CLK(\out13_out14_out15/INV_out13_out14_out15.BFFCLK ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out13_out14_out15.BQ->out14_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out1_out2.SR ),
+    .SET(GND)
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y2" ),
+    .INIT ( 1'b1 ))
+  \out13_out14_out15.AFF  (
+    .GE(VCC),
+    .CLK(\out13_out14_out15/INV_out13_out14_out15.AFFCLK ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out13_out14_out15.AQ->out13_FINAL_OUTPUT.O ),
+    .SET(\global_reset.I->out1_out2.SR ),
     .RST(GND)
   );
-  X_LATCHE #(
-    .LOC ( "SLICE_X10Y7" ),
+  X_BUF   \out1_out2_out5_out6/out1_out2_out5_out6_AMUX_Delay  (
+    .I(\out1_out2_out5_out6.A5LUT.O5 ),
+    .O(\out1_out2_out5_out6.AMUX->out1_FINAL_OUTPUT.O )
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y9" ),
     .INIT ( 1'b0 ))
-  \out8_out11_out12_out13.CFF  (
-    .GE(VCC),
-    .CLK(\out8_out11_out12_out13/INV_out8_out11_out12_out13.CFFCLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out8_out11_out12_out13.CQ->out12_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
+  \out1_out2_out5_out6.DFF  (
+    .CE(VCC),
+    .CLK(\NLW_out1_out2_out5_out6.DFF_CLK_UNCONNECTED ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out1_out2_out5_out6.DQ->out6_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out1_out2.SR ),
     .SET(GND)
   );
-  X_LATCHE #(
-    .LOC ( "SLICE_X10Y7" ),
+  X_FF #(
+    .LOC ( "SLICE_X10Y9" ),
     .INIT ( 1'b0 ))
-  \out8_out11_out12_out13.BFF  (
-    .GE(VCC),
-    .CLK(\out8_out11_out12_out13/INV_out8_out11_out12_out13.BFFCLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out8_out11_out12_out13.BQ->out11_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
+  \out1_out2_out5_out6.CFF  (
+    .CE(VCC),
+    .CLK(\NLW_out1_out2_out5_out6.CFF_CLK_UNCONNECTED ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out1_out2_out5_out6.CQ->out5_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out1_out2.SR ),
     .SET(GND)
   );
-  X_LATCHE #(
-    .LOC ( "SLICE_X10Y7" ),
+  X_FF #(
+    .LOC ( "SLICE_X10Y9" ),
     .INIT ( 1'b0 ))
-  \out8_out11_out12_out13.AFF  (
-    .GE(VCC),
-    .CLK(\out8_out11_out12_out13/INV_out8_out11_out12_out13.AFFCLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out8_out11_out12_out13.AQ->out8_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
+  \out1_out2_out5_out6.BFF  (
+    .CE(VCC),
+    .CLK(\NLW_out1_out2_out5_out6.BFF_CLK_UNCONNECTED ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out1_out2_out5_out6.BQ->out2_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out1_out2.SR ),
     .SET(GND)
+  );
+  X_LUT5 #(
+    .LOC ( "SLICE_X10Y9" ),
+    .INIT ( 32'hAAAAAAAA ))
+  \out1_out2_out5_out6.A5LUT  (
+    .ADR0(\in1.I->out1_out2_out5_out6.BX ),
+    .ADR1(1'b1),
+    .ADR2(1'b1),
+    .ADR3(1'b1),
+    .ADR4(1'b1),
+    .O(\out1_out2_out5_out6.A5LUT.O5 )
   );
   X_BPAD #(
     .LOC ( "PAD91" ))
@@ -335,7 +341,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD91" ))
   out8_FINAL_OUTPUT_OBUF (
-    .I(\out8_out11_out12_out13.AQ->out8_FINAL_OUTPUT.O ),
+    .I(\out7_out8_out11_out12.BQ->out8_FINAL_OUTPUT.O ),
     .O(\out8_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -358,7 +364,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD339" ))
   out15_FINAL_OUTPUT_OBUF (
-    .I(\out14_out15.BQ->out15_FINAL_OUTPUT.O ),
+    .I(\out13_out14_out15.CQ->out15_FINAL_OUTPUT.O ),
     .O(\out15_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -381,7 +387,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD94" ))
   out7_FINAL_OUTPUT_OBUF (
-    .I(\out2_out5_out6_out7.DQ->out7_FINAL_OUTPUT.O ),
+    .I(\out7_out8_out11_out12.AQ->out7_FINAL_OUTPUT.O ),
     .O(\out7_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -397,11 +403,11 @@ module HelloWorld (
     .O(\NLW_out7_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_INV   \INV_out3_out4_out9_out10.DFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
+    .I(\my_clk_BUFG.O->out3.CLK ),
     .O(\out3_out4_out9_out10/INV_out3_out4_out9_out10.DFFCLK )
   );
   X_INV   \INV_out3_out4_out9_out10.CFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
+    .I(\my_clk_BUFG.O->out3.CLK ),
     .O(\out3_out4_out9_out10/INV_out3_out4_out9_out10.CFFCLK )
   );
   X_FF #(
@@ -410,9 +416,9 @@ module HelloWorld (
   \out3_out4_out9_out10.DFF  (
     .CE(VCC),
     .CLK(\out3_out4_out9_out10/INV_out3_out4_out9_out10.DFFCLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
     .O(\out3_out4_out9_out10.DQ->out10_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
+    .RST(\global_reset.I->out1_out2.SR ),
     .SET(GND)
   );
   X_FF #(
@@ -421,9 +427,9 @@ module HelloWorld (
   \out3_out4_out9_out10.CFF  (
     .CE(VCC),
     .CLK(\out3_out4_out9_out10/INV_out3_out4_out9_out10.CFFCLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
     .O(\out3_out4_out9_out10.CQ->out9_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
+    .RST(\global_reset.I->out1_out2.SR ),
     .SET(GND)
   );
   X_LATCHE #(
@@ -431,10 +437,10 @@ module HelloWorld (
     .INIT ( 1'b0 ))
   \out3_out4_out9_out10.BFF  (
     .GE(VCC),
-    .CLK(\my_clk_BUFG.O->out2.CLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .CLK(\my_clk_BUFG.O->out3.CLK ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
     .O(\out3_out4_out9_out10.BQ->out4_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
+    .RST(\global_reset.I->out1_out2.SR ),
     .SET(GND)
   );
   X_LATCHE #(
@@ -442,26 +448,11 @@ module HelloWorld (
     .INIT ( 1'b0 ))
   \out3_out4_out9_out10.AFF  (
     .GE(VCC),
-    .CLK(\my_clk_BUFG.O->out2.CLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
+    .CLK(\my_clk_BUFG.O->out3.CLK ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
     .O(\out3_out4_out9_out10.AQ->out3_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
+    .RST(\global_reset.I->out1_out2.SR ),
     .SET(GND)
-  );
-  X_BUF   \out1/out1_AMUX_Delay  (
-    .I(\out1.A5LUT.O5 ),
-    .O(\out1.AMUX->out1_FINAL_OUTPUT.O )
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y2" ),
-    .INIT ( 32'hAAAAAAAA ))
-  \out1.A5LUT  (
-    .ADR0(\in1.I->out2_out5_out6_out7.AX ),
-    .ADR1(1'b1),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\out1.A5LUT.O5 )
   );
   X_BPAD #(
     .LOC ( "PAD84" ))
@@ -471,7 +462,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD84" ))
   out1_FINAL_OUTPUT_OBUF (
-    .I(\out1.AMUX->out1_FINAL_OUTPUT.O ),
+    .I(\out1_out2_out5_out6.AMUX->out1_FINAL_OUTPUT.O ),
     .O(\out1_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -511,7 +502,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD329" ))
   out13_FINAL_OUTPUT_OBUF (
-    .I(\out8_out11_out12_out13.DQ->out13_FINAL_OUTPUT.O ),
+    .I(\out13_out14_out15.AQ->out13_FINAL_OUTPUT.O ),
     .O(\out13_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -534,7 +525,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD337" ))
   out12_FINAL_OUTPUT_OBUF (
-    .I(\out8_out11_out12_out13.CQ->out12_FINAL_OUTPUT.O ),
+    .I(\out7_out8_out11_out12.DQ->out12_FINAL_OUTPUT.O ),
     .O(\out12_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -564,7 +555,7 @@ module HelloWorld (
     .LOC ( "PAD340" ))
   \global_reset.IMUX  (
     .I(\global_reset.INBUF.OUT ),
-    .O(\global_reset.I->out2.SR )
+    .O(\global_reset.I->out1_out2.SR )
   );
   X_BPAD #(
     .LOC ( "PAD106" ))
@@ -574,7 +565,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD106" ))
   out5_FINAL_OUTPUT_OBUF (
-    .I(\out2_out5_out6_out7.BQ->out5_FINAL_OUTPUT.O ),
+    .I(\out1_out2_out5_out6.CQ->out5_FINAL_OUTPUT.O ),
     .O(\out5_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -588,6 +579,66 @@ module HelloWorld (
   \out5_FINAL_OUTPUT.IMUX  (
     .I(\out5_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_out5_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_INV   \INV_out7_out8_out11_out12.DFFCLK  (
+    .I(\my_clk_BUFG.O->out3.CLK ),
+    .O(\out7_out8_out11_out12/INV_out7_out8_out11_out12.DFFCLK )
+  );
+  X_INV   \INV_out7_out8_out11_out12.CFFCLK  (
+    .I(\my_clk_BUFG.O->out3.CLK ),
+    .O(\out7_out8_out11_out12/INV_out7_out8_out11_out12.CFFCLK )
+  );
+  X_INV   \INV_out7_out8_out11_out12.BFFCLK  (
+    .I(\my_clk_BUFG.O->out3.CLK ),
+    .O(\out7_out8_out11_out12/INV_out7_out8_out11_out12.BFFCLK )
+  );
+  X_INV   \INV_out7_out8_out11_out12.AFFCLK  (
+    .I(\my_clk_BUFG.O->out3.CLK ),
+    .O(\out7_out8_out11_out12/INV_out7_out8_out11_out12.AFFCLK )
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y7" ),
+    .INIT ( 1'b0 ))
+  \out7_out8_out11_out12.DFF  (
+    .GE(VCC),
+    .CLK(\out7_out8_out11_out12/INV_out7_out8_out11_out12.DFFCLK ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out7_out8_out11_out12.DQ->out12_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out1_out2.SR ),
+    .SET(GND)
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y7" ),
+    .INIT ( 1'b0 ))
+  \out7_out8_out11_out12.CFF  (
+    .GE(VCC),
+    .CLK(\out7_out8_out11_out12/INV_out7_out8_out11_out12.CFFCLK ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out7_out8_out11_out12.CQ->out11_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out1_out2.SR ),
+    .SET(GND)
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y7" ),
+    .INIT ( 1'b0 ))
+  \out7_out8_out11_out12.BFF  (
+    .GE(VCC),
+    .CLK(\out7_out8_out11_out12/INV_out7_out8_out11_out12.BFFCLK ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out7_out8_out11_out12.BQ->out8_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out1_out2.SR ),
+    .SET(GND)
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y7" ),
+    .INIT ( 1'b0 ))
+  \out7_out8_out11_out12.AFF  (
+    .GE(VCC),
+    .CLK(\out7_out8_out11_out12/INV_out7_out8_out11_out12.AFFCLK ),
+    .I(\in1.I->out1_out2_out5_out6.BX ),
+    .O(\out7_out8_out11_out12.AQ->out7_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->out1_out2.SR ),
+    .SET(GND)
   );
   X_BPAD #(
     .LOC ( "PAD83" ))
@@ -620,7 +671,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD96" ))
   out2_FINAL_OUTPUT_OBUF (
-    .I(\out2_out5_out6_out7.AQ->out2_FINAL_OUTPUT.O ),
+    .I(\out1_out2_out5_out6.BQ->out2_FINAL_OUTPUT.O ),
     .O(\out2_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -634,54 +685,6 @@ module HelloWorld (
   \out2_FINAL_OUTPUT.IMUX  (
     .I(\out2_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_out2_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
-  );
-  X_INV   \INV_out2_out5_out6_out7.DFFCLK  (
-    .I(\my_clk_BUFG.O->out2.CLK ),
-    .O(\out2_out5_out6_out7/INV_out2_out5_out6_out7.DFFCLK )
-  );
-  X_LATCHE #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 1'b0 ))
-  \out2_out5_out6_out7.DFF  (
-    .GE(VCC),
-    .CLK(\out2_out5_out6_out7/INV_out2_out5_out6_out7.DFFCLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out2_out5_out6_out7.DQ->out7_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
-    .SET(GND)
-  );
-  X_FF #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 1'b0 ))
-  \out2_out5_out6_out7.CFF  (
-    .CE(VCC),
-    .CLK(\my_clk_BUFG.O->out2.CLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out2_out5_out6_out7.CQ->out6_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
-    .SET(GND)
-  );
-  X_FF #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 1'b0 ))
-  \out2_out5_out6_out7.BFF  (
-    .CE(VCC),
-    .CLK(\my_clk_BUFG.O->out2.CLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out2_out5_out6_out7.BQ->out5_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
-    .SET(GND)
-  );
-  X_FF #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 1'b0 ))
-  \out2_out5_out6_out7.AFF  (
-    .CE(VCC),
-    .CLK(\my_clk_BUFG.O->out2.CLK ),
-    .I(\in1.I->out2_out5_out6_out7.AX ),
-    .O(\out2_out5_out6_out7.AQ->out2_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->out2.SR ),
-    .SET(GND)
   );
   X_BPAD #(
     .LOC ( "PAD95" ))

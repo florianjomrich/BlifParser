@@ -50,6 +50,8 @@ public class DesignCreation {
 	String _LATCH = "_LATCH";
 	String _FINAL_OUTPUT = "_FINAL_OUTPUT";
 	String _LOGICBLOCK = "_LOGICBLOCK";
+	String _IOB_INPUT = "_IOB_INPUT";
+	String _IOB_OUTPUT = "_IOB_OUTPUT";
 
 	// count how much space is left in one slice
 	// depending on the clock used
@@ -172,32 +174,34 @@ public class DesignCreation {
 
 	private void connectLogicBlocks(Model model, NetCreator myNetCreator,
 			Design design) {
+		
 		for (LogicGate currentLogicGate : model.logicGates) {
 
 			String currentLOGIC_BLOCK_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
 					.get(currentLogicGate.output);
-			
-			String currentTypeOfInstance = typeOfTheAlreadyPlaceInstances.get(currentLogicGate.output);
-					
 
 			SLICEL_INSTANCE currentLogicGateInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
 					.get(currentLogicGate.output + "_"
-							+ currentLOGIC_BLOCK_OUTPUT_PORT+currentTypeOfInstance);
+							+ currentLOGIC_BLOCK_OUTPUT_PORT+_LOGICBLOCK);
 
 			int currentNumberOfInput = 1;
 			for (String currentToBeMappedInput : currentLogicGate.inputs) {
 
-				String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
-						.get(currentToBeMappedInput);
 				
 				String currentTypeOfOtherInstance = typeOfTheAlreadyPlaceInstances.get(currentToBeMappedInput);
-
-				SLICEL_INSTANCE otherInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
-						.get(currentToBeMappedInput + "_"
-								+ current_INPUT_PORT);
+				
+				
 				
 				if (currentTypeOfOtherInstance.equals(_LATCH)) {
 				
+					String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+							.get(currentToBeMappedInput);
+					
+					
+
+					SLICEL_INSTANCE otherInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
+							.get(currentToBeMappedInput + "_"
+									+ current_INPUT_PORT+_LATCH);
 
 					// now connect the current with the other Latch
 					myNetCreator
@@ -209,6 +213,16 @@ public class DesignCreation {
 									alreadyPlacedNets);
 				} else if (currentTypeOfOtherInstance.equals(_LOGICBLOCK)) {
 					
+					
+					String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+							.get(currentToBeMappedInput);
+					
+					
+
+					SLICEL_INSTANCE otherInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
+							.get(currentToBeMappedInput + "_"
+									+ current_INPUT_PORT+_LOGICBLOCK);
+					
 					myNetCreator
 							.generateNet(current_INPUT_PORT + "MUX",
 									otherInstance,
@@ -216,8 +230,12 @@ public class DesignCreation {
 											+ currentNumberOfInput,
 									currentLogicGateInstance, design,
 									alreadyPlacedNets);
-				} else {//it has to be a LogicBlock
+				//it has to be a IOB	
+				} else {
 				
+					IOB_BLOCK_INSTANCE otherInstance = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+							.get(currentToBeMappedInput);
+					
 					myNetCreator
 							.generateNet("I", otherInstance,
 									currentLOGIC_BLOCK_OUTPUT_PORT
@@ -244,27 +262,35 @@ public class DesignCreation {
 	private void connectLatches(Model model, NetCreator myNetCreator,
 			Design design) {
 		for (GenericLatch currentLatch : model.genericLatches) {
+			
 			String currentLATCH_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
 					.get(currentLatch.output);
-			LATCH_INSTANCE currentLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances
-					.get(currentLatch.output + "_" + currentLATCH_OUTPUT_PORT);
+			
+			SLICEL_INSTANCE currentLatchInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
+					.get(currentLatch.output + "_" + currentLATCH_OUTPUT_PORT+_LATCH);
 
-			String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
-					.get(currentLatch.input);
+			String current_INPUT_Type = typeOfTheAlreadyPlaceInstances.get(currentLatch.input);
+			
 
-			if (alreadyPlacedInstances.get(currentLatch.input + "_"
-					+ current_INPUT_PORT) instanceof LATCH_INSTANCE) {
-				LATCH_INSTANCE otherLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances
-						.get(currentLatch.input + "_" + current_INPUT_PORT);
+			if (current_INPUT_Type.equals(_LATCH)) {
+				String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+						.get(currentLatch.input);
+				
+				SLICEL_INSTANCE otherLatchInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
+						.get(currentLatch.input + "_" + current_INPUT_PORT+_LATCH);
 
 				// now connect the current with the other Latch
 				myNetCreator.generateNet(current_INPUT_PORT + "Q",
 						otherLatchInstance, currentLATCH_OUTPUT_PORT + "X",
 						currentLatchInstance, design, alreadyPlacedNets);
-			} else if (alreadyPlacedInstances.get(currentLatch.input + "_"
-					+ current_INPUT_PORT) instanceof LOGIC_BLOCK_INSTANCE) {
-				LOGIC_BLOCK_INSTANCE otherLogic_BLOCK_INSTANCE = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances
-						.get(currentLatch.input + "_" + current_INPUT_PORT);
+				
+				
+			} else if (current_INPUT_Type.equals(_LOGICBLOCK)) {
+				String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+						.get(currentLatch.input);
+								
+				SLICEL_INSTANCE otherLogic_BLOCK_INSTANCE = (SLICEL_INSTANCE) alreadyPlacedInstances
+						.get(currentLatch.input + "_" + current_INPUT_PORT+_LOGICBLOCK);
 				myNetCreator.generateNet(current_INPUT_PORT + "MUX",
 						otherLogic_BLOCK_INSTANCE, currentLATCH_OUTPUT_PORT
 								+ "X", currentLatchInstance, design,
@@ -624,6 +650,7 @@ public class DesignCreation {
 			myPlacer.placeInstance(myIOB_Input);
 			design.addInstance(myIOB_Input);
 			alreadyPlacedInstances.put(currentInput, myIOB_Input);
+			typeOfTheAlreadyPlaceInstances.put(currentInput, _IOB_INPUT);
 			// allows access to the input instance
 			// design.getInstance(name);
 		}
@@ -644,10 +671,11 @@ public class DesignCreation {
 
 			// place it as new Input
 			alreadyPlacedInstances.put(currentOutput, myIOB2_Output);
-
+			typeOfTheAlreadyPlaceInstances.put(currentOutput, _IOB_INPUT);
 			// place it specifically as new Final Output
 			alreadyPlacedInstances.put(currentOutput + _FINAL_OUTPUT,
 					myIOB2_Output);
+			typeOfTheAlreadyPlaceInstances.put(currentOutput + _FINAL_OUTPUT, _IOB_OUTPUT);
 
 			// allows access to the output instance
 			// design.getInstance(name);

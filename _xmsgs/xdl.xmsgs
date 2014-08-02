@@ -5,70 +5,76 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out14_out15.BQ-&gt;out15_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="822" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">out1_out2_out5_out6.BFF</arg>&gt;:&lt;<arg fmt="%s" index="2">REG_SR</arg>&gt;.  Must have a signal on the CLOCK pin.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out8_out11_out12_out13.DQ-&gt;out13_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="822" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">out1_out2_out5_out6.CFF</arg>&gt;:&lt;<arg fmt="%s" index="2">REG_SR</arg>&gt;.  Must have a signal on the CLOCK pin.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out2_out5_out6_out7.AQ-&gt;out2_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="822" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">out1_out2_out5_out6.DFF</arg>&gt;:&lt;<arg fmt="%s" index="2">REG_SR</arg>&gt;.  Must have a signal on the CLOCK pin.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out8_out11_out12_out13.CQ-&gt;out12_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">in1.I-&gt;out1_out2_out5_out6.BX</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">global_reset.I-&gt;out2.SR</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out13_out14_out15.CQ-&gt;out15_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out2_out5_out6_out7.BQ-&gt;out5_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out1_out2_out5_out6.BQ-&gt;out2_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out3_out4_out9_out10.DQ-&gt;out10_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">my_clk_BUFG.O-&gt;out3.CLK</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out2_out5_out6_out7.CQ-&gt;out6_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out3_out4_out9_out10.DQ-&gt;out10_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out14_out15.AQ-&gt;out14_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out1_out2_out5_out6.AMUX-&gt;out1_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">in1.I-&gt;out2_out5_out6_out7.AX</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out13_out14_out15.AQ-&gt;out13_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out3_out4_out9_out10.BQ-&gt;out4_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out7_out8_out11_out12.CQ-&gt;out11_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out8_out11_out12_out13.AQ-&gt;out8_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out3_out4_out9_out10.BQ-&gt;out4_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out1.AMUX-&gt;out1_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out7_out8_out11_out12.DQ-&gt;out12_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">my_clk_BUFG.O-&gt;out2.CLK</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out3_out4_out9_out10.AQ-&gt;out3_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out3_out4_out9_out10.AQ-&gt;out3_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out7_out8_out11_out12.BQ-&gt;out8_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out8_out11_out12_out13.BQ-&gt;out11_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out3_out4_out9_out10.CQ-&gt;out9_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out3_out4_out9_out10.CQ-&gt;out9_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out13_out14_out15.BQ-&gt;out14_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">out2_out5_out6_out7.DQ-&gt;out7_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">global_reset.I-&gt;out1_out2.SR</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">newCLK.I-&gt;my_clk_BUFG.I0</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out1_out2_out5_out6.DQ-&gt;out6_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="error" file="PhysDesignRules" num="1831" delta="new" >Incompatible programming. All flip-flops of comp <arg fmt="%s" index="1">out3_out4_out9_out10</arg> must be programmed the same. 
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out1_out2_out5_out6.CQ-&gt;out5_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="error" file="PhysDesignRules" num="1831" delta="new" >Incompatible programming. All flip-flops of comp <arg fmt="%s" index="1">out2_out5_out6_out7</arg> must be programmed the same. 
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">out7_out8_out11_out12.AQ-&gt;out7_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="XDL" num="184" delta="new" >Forced writing the NCD file even though <arg fmt="%d" index="1">2</arg> DRC error(s) are present.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">newCLK.I-&gt;my_clk_BUFG.I0</arg>&gt; is completely unrouted.
+</msg>
+
+<msg type="error" file="PhysDesignRules" num="1831" delta="old" >Incompatible programming. All flip-flops of comp <arg fmt="%s" index="1">out3_out4_out9_out10</arg> must be programmed the same. 
+</msg>
+
+<msg type="warning" file="XDL" num="184" delta="old" >Forced writing the NCD file even though <arg fmt="%d" index="1">1</arg> DRC error(s) are present.
 </msg>
 
 </messages>

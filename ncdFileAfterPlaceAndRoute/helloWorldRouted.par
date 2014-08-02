@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-BIE::  Sat Aug 02 14:01:30 2014
+BIE::  Sat Aug 02 20:15:53 2014
 
 par -w xdlFileCreated/HelloWorld.ncd
 ncdFileAfterPlaceAndRoute/HelloWorldRouted.ncd 
@@ -38,7 +38,7 @@ Slice Logic Utilization:
     Number used as Memory:                       0 out of   6,408    0%
 
 Slice Logic Distribution:
-  Number of occupied Slices:                     5 out of   6,822    1%
+  Number of occupied Slices:                     4 out of   6,822    1%
   Number of MUXCYs used:                         0 out of  13,644    0%
   Number of LUT Flip Flop pairs used:           15
     Number with an unused Flip Flop:             1 out of      15    6%
@@ -96,49 +96,49 @@ Total REAL time at the beginning of Placer: 4 secs
 Total CPU  time at the beginning of Placer: 4 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:119) REAL time: 5 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:102) REAL time: 5 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:119) REAL time: 5 secs 
+Phase 2.7  Design Feasibility Check (Checksum:102) REAL time: 5 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:119) REAL time: 5 secs 
+Phase 3.31  Local Placement Optimization (Checksum:102) REAL time: 5 secs 
 
 Phase 4.2  Initial Placement for Architecture Specific Features
 ...
-Phase 4.2  Initial Placement for Architecture Specific Features (Checksum:df465c8) REAL time: 6 secs 
+Phase 4.2  Initial Placement for Architecture Specific Features (Checksum:b2a070e) REAL time: 6 secs 
 
 Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:df465c8) REAL time: 6 secs 
+Phase 5.36  Local Placement Optimization (Checksum:b2a070e) REAL time: 6 secs 
 
 Phase 6.30  Global Clock Region Assignment
-Phase 6.30  Global Clock Region Assignment (Checksum:df465c8) REAL time: 6 secs 
+Phase 6.30  Global Clock Region Assignment (Checksum:b2a070e) REAL time: 6 secs 
 
 Phase 7.3  Local Placement Optimization
 ...
-Phase 7.3  Local Placement Optimization (Checksum:7e9c121e) REAL time: 7 secs 
+Phase 7.3  Local Placement Optimization (Checksum:61ab434c) REAL time: 7 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:7e9c121e) REAL time: 7 secs 
+Phase 8.5  Local Placement Optimization (Checksum:61ab434c) REAL time: 7 secs 
 
 Phase 9.8  Global Placement
 ..
 ..
-Phase 9.8  Global Placement (Checksum:d89ddc22) REAL time: 7 secs 
+Phase 9.8  Global Placement (Checksum:adffb251) REAL time: 7 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:d89ddc22) REAL time: 7 secs 
+Phase 10.5  Local Placement Optimization (Checksum:adffb251) REAL time: 7 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:db20754e) REAL time: 8 secs 
+Phase 11.18  Placement Optimization (Checksum:ade56bc4) REAL time: 7 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:db20754e) REAL time: 8 secs 
+Phase 12.5  Local Placement Optimization (Checksum:ade56bc4) REAL time: 7 secs 
 
 Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:db20754e) REAL time: 8 secs 
+Phase 13.34  Placement Validation (Checksum:ade56bc4) REAL time: 7 secs 
 
-Total REAL time to Placer completion: 8 secs 
+Total REAL time to Placer completion: 7 secs 
 Total CPU  time to Placer completion: 5 secs 
 Writing design to file ncdFileAfterPlaceAndRoute/HelloWorldRouted.ncd
 
@@ -147,28 +147,28 @@ Writing design to file ncdFileAfterPlaceAndRoute/HelloWorldRouted.ncd
 Starting Router
 
 
-Phase  1  : 39 unrouted;      REAL time: 10 secs 
+Phase  1  : 38 unrouted;      REAL time: 8 secs 
 
-Phase  2  : 34 unrouted;      REAL time: 10 secs 
+Phase  2  : 34 unrouted;      REAL time: 8 secs 
 
-Phase  3  : 0 unrouted;      REAL time: 11 secs 
+Phase  3  : 0 unrouted;      REAL time: 8 secs 
 
-Phase  4  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
+Phase  4  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
 
 Updating file: ncdFileAfterPlaceAndRoute/HelloWorldRouted.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 15 secs 
-Total REAL time to Router completion: 15 secs 
+Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 12 secs 
+Total REAL time to Router completion: 12 secs 
 Total CPU time to Router completion: 7 secs 
 
 Partition Implementation Status
@@ -198,8 +198,8 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 16 secs 
-Total CPU time to PAR completion: 7 secs 
+Total REAL time to PAR completion: 12 secs 
+Total CPU time to PAR completion: 8 secs 
 
 Peak Memory Usage:  230 MB
 

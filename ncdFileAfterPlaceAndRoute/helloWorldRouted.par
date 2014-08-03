@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-BIE::  Sun Aug 03 11:47:55 2014
+BIE::  Sun Aug 03 13:47:24 2014
 
 par -w xdlFileCreated/HelloWorld.ncd
 ncdFileAfterPlaceAndRoute/HelloWorldRouted.ncd 
@@ -146,22 +146,22 @@ Phase  2  : 3 unrouted;      REAL time: 6 secs
 
 Phase  3  : 2 unrouted;      REAL time: 6 secs 
 
-Phase  4  : 2 unrouted; (Par is working to improve performance)     REAL time: 8 secs 
+Phase  4  : 2 unrouted; (Par is working to improve performance)     REAL time: 9 secs 
 
 Updating file: ncdFileAfterPlaceAndRoute/HelloWorldRouted.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 8 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 9 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 8 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 9 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 8 secs 
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 9 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 8 secs 
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 9 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 8 secs 
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 9 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 8 secs 
-Total REAL time to Router completion: 8 secs 
+Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 9 secs 
+Total REAL time to Router completion: 9 secs 
 Total CPU time to Router completion: 7 secs 
 
 Partition Implementation Status
@@ -181,7 +181,7 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 8 secs 
+Total REAL time to PAR completion: 10 secs 
 Total CPU time to PAR completion: 7 secs 
 
 Peak Memory Usage:  229 MB

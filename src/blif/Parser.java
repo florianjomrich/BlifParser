@@ -26,7 +26,7 @@ public class Parser {
 //			model = parseFile("blif\\adder vermurkst.blif");//OK
 //			model = parseFile("blif\\xor_outOfNands.blif");//OK
 			
-			model = parseFile("blif\\flachesXor.blif");//OK
+//			model = parseFile("blif\\flachesXor.blif");//OK
 //			model = parseFile("blif\\testBlif2.blif");//OK 2
 //			model = parseFile("blif\\testBlif3.blif");//OK 2
 //			model = parseFile("blif\\testBlif4.blif");//OK 2
@@ -37,6 +37,7 @@ public class Parser {
 //			model = parseFile("blif\\bigkey.blif");//OK 2
 //			model = parseFile("blif\\registerTest.blif");//OK 2
 //			model = parseFile("blif\\refactoring.blif");//OK 2
+			model = parseFile("blif\\refactoring2.blif");//OK 2
 //			model = parseFile("blif\\registerMinimal.blif");//OK 2
 			
 			RapidsmithParser myRapidParser = new RapidsmithParser();

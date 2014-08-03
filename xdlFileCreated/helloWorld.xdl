@@ -1,7 +1,7 @@
 
 # =======================================================
 # edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
-# time: So Aug 03 13:47:21 2014
+# time: So Aug 03 14:10:36 2014
 
 # =======================================================
 
@@ -38,17 +38,59 @@ design "HelloWorld" xc6slx45csg324-3 v3.2 ,
 #     instance IO1 IOB, unplaced bonded ;   # This will be bonded
 #     instance IO1 IOB, unplaced unbonded ; # This will be unbonded
 #  =======================================================
-inst "b" "IOB",placed RIOB_X37Y87 G13  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:b: IMUX::I "
+inst "u37_FINAL_OUTPUT" "IOB",placed LIOB_X0Y90 E4  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:u37_FINAL_OUTPUT_OBUF: PAD:u37_FINAL_OUTPUT: IMUX::I "
   ;
-inst "a" "IOB",placed RIOB_X37Y90 G14  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:a: IMUX::I "
+inst "z5_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H13  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:z5_FINAL_OUTPUT_OBUF: PAD:z5_FINAL_OUTPUT: IMUX::I "
   ;
-inst "out_FINAL_OUTPUT" "IOB",placed RIOB_X37Y69 G18  ,
-  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out_FINAL_OUTPUT_OBUF: PAD:out_FINAL_OUTPUT: IMUX::I "
+inst "z0_FINAL_OUTPUT" "IOB",placed RIOB_X37Y69 G16  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:z0_FINAL_OUTPUT_OBUF: PAD:z0_FINAL_OUTPUT: IMUX::I "
   ;
-inst "out" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
-  cfg " AOUTMUX::O5 CLKINV::CLK A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) "
+inst "my_clk_BUFG" "BUFG",placed CLKC_X18Y63 BUFGMUX_X2Y10  ,
+  cfg " "
+  ;
+inst "u36_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E1  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:u36_FINAL_OUTPUT_OBUF: PAD:u36_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "u34_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H14  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:u34_FINAL_OUTPUT_OBUF: PAD:u34_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "u35_FINAL_OUTPUT" "IOB",placed RIOB_X37Y87 H12  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:u35_FINAL_OUTPUT_OBUF: PAD:u35_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "bertaClock" "IOB",placed TIOB_SINGLE_X20Y127 F9  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:bertaClock: IMUX::I "
+  ;
+inst "z2_FINAL_OUTPUT" "IOB",placed RIOB_X37Y62 H18  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:z2_FINAL_OUTPUT_OBUF: PAD:z2_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "n44_x3_z0" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
+  cfg " AFFSRINIT::SRINIT0 SRUSED::0 AFFMUX::O5 AOUTMUX::O5 SYNC_ATTR::ASYNC BFFSRINIT::SRINIT0 CLKINV::CLK BFFMUX::BX BFF::#FF AFF::#FF A5LUT::#LUT:O5=(A1) "
+  ;
+inst "global_reset" "IOB",placed LIOB_X0Y92 F6  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:global_reset: IMUX::I "
+  ;
+inst "u38_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E3  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:u38_FINAL_OUTPUT_OBUF: PAD:u38_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "z4_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H16  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:z4_FINAL_OUTPUT_OBUF: PAD:z4_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "x25" "IOB",placed RIOB_X37Y69 G18  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:x25: IMUX::I "
+  ;
+inst "z1_FINAL_OUTPUT" "IOB",placed RIOB_X37Y62 H17  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:z1_FINAL_OUTPUT_OBUF: PAD:z1_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "z3_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H15  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:z3_FINAL_OUTPUT_OBUF: PAD:z3_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "x24" "IOB",placed RIOB_X37Y87 G13  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:x24: IMUX::I "
+  ;
+inst "x23" "IOB",placed RIOB_X37Y90 G14  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:x23: IMUX::I "
   ;
 
 #  ================================================
@@ -86,28 +128,45 @@ inst "out" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
 # 
 #  No pips exist for unrouted nets.
 #  ================================================
-  net "b.I->out.A2" ,
-    inpin "out" A2 ,
-    outpin "b" I ,
+  net "global_reset.I->n44_x3_z0.SR" ,
+    inpin "n44_x3_z0" SR ,
+    outpin "global_reset" I ,
     ;
-  net "out.AMUX->out_FINAL_OUTPUT.O" ,
-    inpin "out_FINAL_OUTPUT" O ,
-    outpin "out" AMUX ,
+  net "null" ,
     ;
-  net "a.I->out.A1" ,
-    inpin "out" A1 ,
-    outpin "a" I ,
+  net "n44_x3_z0.BQ->z0_FINAL_OUTPUT.O" ,
+    inpin "z0_FINAL_OUTPUT" O ,
+    outpin "n44_x3_z0" BQ ,
+    inpin "z5_FINAL_OUTPUT" O ,
+    ;
+  net "n44_x3_z0.AMUX->n44_x3_z0.BX" ,
+    inpin "n44_x3_z0" BX ,
+    outpin "n44_x3_z0" AMUX ,
+    inpin "n44_x3_z0" BX ,
+    ;
+  net "my_clk_BUFG.O->n44_x3.CLK" ,
+    inpin "n44_x3_z0" CLK ,
+    outpin "my_clk_BUFG" O ,
+    inpin "n44_x3_z0" CLK ,
+    ;
+  net "bertaClock.I->my_clk_BUFG.I0" ,
+    inpin "my_clk_BUFG" I0 ,
+    outpin "bertaClock" I ,
+    ;
+  net "x23.I->n44_x3_z0.A1" ,
+    inpin "n44_x3_z0" A1 ,
+    outpin "x23" I ,
     ;
 
 # =======================================================
 # SUMMARY
 # Number of Module Defs: 0
 # Number of Module Insts: 0
-# Number of Primitive Insts: 4
+# Number of Primitive Insts: 18
 #     Number of SLICES: 1
 #     Number of DSP48s: 0
 #     Number of BRAMs: 0
-# Number of Nets: 3
+# Number of Nets: 7
 # =======================================================
 
 

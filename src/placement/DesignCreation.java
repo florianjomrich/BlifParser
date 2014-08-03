@@ -369,8 +369,11 @@ public class DesignCreation {
 					GenericLatch alreadyPlacedOtherLatch = alreadyPlacedActiveHighLatches.get(currentLatch.input);
 					String thePortNumberOfTheOtherLatch = portNubmerOfTheAlreadyPlacedInstances.get(alreadyPlacedOtherLatch.output);
 					Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances.get(alreadyPlacedOtherLatch.output+"_"+thePortNumberOfTheOtherLatch+_LATCH);
+					
 					//just place a reference to the already existing Latch/FlipFlop
 					alreadyPlacedInstances.put(currentLatch.output+"_"+thePortNumberOfTheOtherLatch+_LATCH, alreadyPlacedOtherLatchInstance);
+					portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output, thePortNumberOfTheOtherLatch);
+					typeOfTheAlreadyPlaceInstances.put(currentLatch.output, _LATCH);
 				
 				} else {
 					SLICEL_INSTANCE latchToBeAdded = this
@@ -389,7 +392,9 @@ public class DesignCreation {
 					Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances.get(alreadyPlacedOtherLatch.output+"_"+thePortNumberOfTheOtherLatch+_LATCH);
 					//just place a reference to the already existing Latch/FlipFlop
 					alreadyPlacedInstances.put(currentLatch.output+"_"+thePortNumberOfTheOtherLatch+_LATCH, alreadyPlacedOtherLatchInstance);
-				
+					portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output, thePortNumberOfTheOtherLatch);
+					typeOfTheAlreadyPlaceInstances.put(currentLatch.output, _LATCH);
+					
 				} else {
 					SLICEL_INSTANCE latchToBeAdded = this
 							.placeActiveHighFallingEdgeLatch(currentLatch,
@@ -406,7 +411,8 @@ public class DesignCreation {
 					Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances.get(alreadyPlacedOtherLatch.output+"_"+thePortNumberOfTheOtherLatch+_LATCH);
 					//just place a reference to the already existing Latch/FlipFlop
 					alreadyPlacedInstances.put(currentLatch.output+"_"+thePortNumberOfTheOtherLatch+_LATCH, alreadyPlacedOtherLatchInstance);
-				
+					portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output, thePortNumberOfTheOtherLatch);
+					typeOfTheAlreadyPlaceInstances.put(currentLatch.output, _LATCH);
 				} else {
 					SLICEL_INSTANCE latchToBeAdded = this
 							.placeActiveLowRisingEdgeLatch(currentLatch,
@@ -424,7 +430,8 @@ public class DesignCreation {
 					Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances.get(alreadyPlacedOtherLatch.output+"_"+thePortNumberOfTheOtherLatch+_LATCH);
 					//just place a reference to the already existing Latch/FlipFlop
 					alreadyPlacedInstances.put(currentLatch.output+"_"+thePortNumberOfTheOtherLatch+_LATCH, alreadyPlacedOtherLatchInstance);
-					
+					portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output, thePortNumberOfTheOtherLatch);
+					typeOfTheAlreadyPlaceInstances.put(currentLatch.output, _LATCH);	
 				}else{
 					SLICEL_INSTANCE latchToBeAdded = this.placeActiveLowRisingEdgeLatch(currentLatch, design,
 							myNetCreator, model);

@@ -5,10 +5,11 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="error" file="XDL" num="122" delta="new" ><arg fmt="%s" index="1">undefined net instance &apos;&apos; encountered</arg> at line <arg fmt="%d" index="2">179</arg> in &apos;<arg fmt="%s" index="3">helloWorld.xdl</arg>&apos; around token &apos;<arg fmt="%s" index="4">&quot;</arg>&apos;
+<msg type="error" file="XDL" num="161" delta="new" >Configuration string cannot be processed for comp of type <arg fmt="%s" index="1">SLICEL</arg> around line <arg fmt="%d" index="2">68</arg> of file <arg fmt="%s" index="3">helloWorld.xdl</arg>. Config string = 
+<arg fmt="%s" index="4">A5LUT:#LUT:O5= AFF:#FF AFFMUX:O5 AFFSRINIT:SRINIT0 AOUTMUX:O5 BFF:#FF BFFMUX:BX BFFSRINIT:SRINIT0 CLKINV:CLK SRUSED:0 SYNC_ATTR:ASYNC </arg>
 </msg>
 
-<msg type="error" file="XDL" num="69" delta="new" ><arg fmt="%d" index="1">1</arg> errors occurred during parsing. The NCD file cannot be created.
+<msg type="info" file="XDL" num="186" delta="new" ><arg fmt="%d" index="1">1</arg> error(s) were found in XDL file. The NCD file cannot be created.
 </msg>
 
 </messages>

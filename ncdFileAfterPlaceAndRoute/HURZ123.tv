@@ -1,0 +1,73 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____
+//  /   /\/   /
+// /___/  \  /    Vendor: Xilinx
+// \   \   \/     Version: P.20131013
+//  \   \         Application: netgen
+//  /   /         Timestamp: Sun Aug 03 11:41:34 2014
+// /___/   /\     
+// \   \  /  \ 
+//  \___\/\___\
+//             
+// Command: -w -tb -ofmt verilog HelloWorldRouted.ncd HURZ123.v 
+// Design Name: HelloWorld
+//             
+// Purpose:    
+//     Xilinx TestFixture Template produced by program netgen P.20131013
+//             
+//     ATTENTION: This file was created by netgen and may therefore be 
+//     overwritten by subsequent runs of netgen. Xilinx recommends that you 
+//     copy this file to a new name, or 'paste' this text into another file, 
+//     to avoid accidental loss of data.
+//             
+////////////////////////////////////////////////////////////////////////////////
+
+`include "F:/Xilinix/14.7/ISE_DS/ISE/verilog/src/glbl.v"
+`timescale 1 ns/1 ps
+
+  module test;
+    reg \b.PAD.PAD ;
+    reg \a.PAD.PAD ;
+    wire \out_FINAL_OUTPUT.OUTBUF.OUT ;
+    HelloWorld uut (
+      .\b.PAD.PAD  (\b.PAD.PAD ),
+      .\a.PAD.PAD  (\a.PAD.PAD ),
+      .\out_FINAL_OUTPUT.OUTBUF.OUT  (\out_FINAL_OUTPUT.OUTBUF.OUT )
+    );
+    initial begin
+      $display("           T bao");
+      $display("           i ..u");
+      $display("           m PPt");
+      $display("           e AA_");
+      $display("             DDF");
+      $display("             ..I");
+      $display("             PPN");
+      $display("             AAA");
+      $display("             DDL");
+      $display("               _");
+      $display("               O");
+      $display("               U");
+      $display("               T");
+      $display("               P");
+      $display("               U");
+      $display("               T");
+      $display("               .");
+      $display("               O");
+      $display("               U");
+      $display("               T");
+      $display("               B");
+      $display("               U");
+      $display("               F");
+      $display("               .");
+      $display("               O");
+      $display("               U");
+      $display("               T");
+      $monitor("%t",$realtime,,\b.PAD.PAD ,\a.PAD.PAD ,\out_FINAL_OUTPUT.OUTBUF.OUT );
+    end
+    initial begin
+    #1000 $stop;
+    // #1000 $finish;
+  end
+endmodule

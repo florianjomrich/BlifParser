@@ -6,15 +6,15 @@
 // /___/  \  /    Vendor: Xilinx
 // \   \   \/     Version: P.20131013
 //  \   \         Application: netgen
-//  /   /         Filename: HelloWorldUnrouted.v
-// /___/   /\     Timestamp: Sun Aug 03 11:11:08 2014
+//  /   /         Filename: HURZ123.v
+// /___/   /\     Timestamp: Sun Aug 03 11:44:48 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
-// Command	: -w -ofmt verilog xdlFileCreated/HelloWorld.ncd simulationFileUnrouted/HelloWorldUnrouted.v 
+// Command	: -w -sim -ofmt verilog HelloWorldRouted.ncd HURZ123.v 
 // Device	: 6slx45csg324-3 (PRODUCTION 1.23 2013-10-13)
-// Input file	: xdlFileCreated/HelloWorld.ncd
-// Output file	: simulationFileUnrouted/HelloWorldUnrouted.v
+// Input file	: HelloWorldRouted.ncd
+// Output file	: HURZ123.v
 // # of Modules	: 1
 // Design Name	: HelloWorld
 // Xilinx        : F:\Xilinix\14.7\ISE_DS\ISE\
@@ -46,61 +46,62 @@ module HelloWorld (
   wire \a.INBUF.OUT ;
   wire \out_FINAL_OUTPUT.INBUF.OUT ;
   wire \out.A5LUT.O5 ;
+  wire \NlwBufferSignal_out_FINAL_OUTPUT_OBUF/I ;
   wire \NLW_out_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  initial $sdf_annotate("helloworldunrouted.sdf");
+  initial $sdf_annotate("hurz123.sdf");
   X_IPAD #(
-    .LOC ( "PAD84" ))
+    .LOC ( "PAD209" ))
   b (
     .PAD(\b.PAD.PAD )
   );
   X_BUF #(
-    .LOC ( "PAD84" ))
+    .LOC ( "PAD209" ))
   \b.INBUF  (
     .O(\b.INBUF.OUT ),
     .I(\b.PAD.PAD )
   );
   X_BUF #(
-    .LOC ( "PAD84" ))
+    .LOC ( "PAD209" ))
   \b.IMUX  (
     .I(\b.INBUF.OUT ),
     .O(\b.I->out.A2 )
   );
   X_IPAD #(
-    .LOC ( "PAD80" ))
+    .LOC ( "PAD212" ))
   a (
     .PAD(\a.PAD.PAD )
   );
   X_BUF #(
-    .LOC ( "PAD80" ))
+    .LOC ( "PAD212" ))
   \a.INBUF  (
     .O(\a.INBUF.OUT ),
     .I(\a.PAD.PAD )
   );
   X_BUF #(
-    .LOC ( "PAD80" ))
+    .LOC ( "PAD212" ))
   \a.IMUX  (
     .I(\a.INBUF.OUT ),
     .O(\a.I->out.A1 )
   );
   X_BPAD #(
-    .LOC ( "PAD96" ))
+    .LOC ( "PAD211" ))
   out_FINAL_OUTPUT (
     .PAD(\out_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD96" ))
+    .LOC ( "PAD211" ))
   out_FINAL_OUTPUT_OBUF (
-    .I(\out.AMUX->out_FINAL_OUTPUT.O ),
+    .I(\NlwBufferSignal_out_FINAL_OUTPUT_OBUF/I ),
     .O(\out_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD96" ))
+    .LOC ( "PAD211" ))
   \out_FINAL_OUTPUT.INBUF  (
     .O(\out_FINAL_OUTPUT.INBUF.OUT ),
     .I(\out_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD96" ))
+    .LOC ( "PAD211" ))
   \out_FINAL_OUTPUT.IMUX  (
     .I(\out_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_out_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
@@ -110,15 +111,19 @@ module HelloWorld (
     .O(\out.AMUX->out_FINAL_OUTPUT.O )
   );
   X_LUT5 #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 32'h66666666 ))
+    .LOC ( "SLICE_X24Y1" ),
+    .INIT ( 32'h3C3C3C3C ))
   \out.A5LUT  (
-    .ADR0(\a.I->out.A1 ),
-    .ADR1(\b.I->out.A2 ),
-    .ADR2(1'b1),
+    .ADR1(\a.I->out.A1 ),
+    .ADR2(\b.I->out.A2 ),
+    .ADR0(1'b1),
     .ADR3(1'b1),
     .ADR4(1'b1),
     .O(\out.A5LUT.O5 )
+  );
+  X_BUF   \NlwBufferBlock_out_FINAL_OUTPUT_OBUF/I  (
+    .I(\out.AMUX->out_FINAL_OUTPUT.O ),
+    .O(\NlwBufferSignal_out_FINAL_OUTPUT_OBUF/I )
   );
 endmodule
 

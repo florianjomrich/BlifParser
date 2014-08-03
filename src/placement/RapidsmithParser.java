@@ -122,7 +122,7 @@ public class RapidsmithParser{
 	}
 	
 	private void createSimulationModel(String ncdFileName, String VerilogFileName, String buildingMessage){
-		String command = xilinxPath+"netgen -w -ofmt verilog " + ncdFileName + " " + VerilogFileName;
+		String command = xilinxPath+"netgen -w -ofmt  verilog " + ncdFileName + " " + VerilogFileName;
 
 		
 		Process p = null;

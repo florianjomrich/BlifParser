@@ -1,0 +1,7 @@
+.model flachesXor
+.inputs a b 
+.outputs out
+.names a b out
+01 1
+10 1
+.end

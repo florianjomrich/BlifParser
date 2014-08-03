@@ -19,13 +19,17 @@ public class Parser {
 	public static void main(String[] args) {
 		try {
 			Model model = null;
+			
+//STILL TO TEST !!			
 //			model = parseFile("blif\\nandGate.blif");//OK
 //			model = parseFile("blif\\adder.blif");//OK
 //			model = parseFile("blif\\adder vermurkst.blif");//OK
 //			model = parseFile("blif\\xor_outOfNands.blif");//OK
-//			model = parseFile("blif\\testBlif2.blif");//OK
-//			model = parseFile("blif\\testBlif3.blif");//OK
-			model = parseFile("blif\\testBlif4.blif");//OK
+			
+			model = parseFile("blif\\flachesXor.blif");//OK
+//			model = parseFile("blif\\testBlif2.blif");//OK 2
+//			model = parseFile("blif\\testBlif3.blif");//OK 2
+//			model = parseFile("blif\\testBlif4.blif");//OK 2
 //			model = parseFile("blif\\blifSim.blif");//OK 2
 //			model = parseFile("blif\\alu4_map_sp6.blif");//OK 2
 //			model = parseFile("blif\\s38417.blif"); //Ok 2

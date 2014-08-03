@@ -708,13 +708,14 @@ public class DesignCreation {
 													// is
 													// done
 													// in
+		
 		// .setupTheLatch
-
 		System.out.println("negBlockCounter " + negBlockCounter);
 		negativeSlice = this.setupTheAdditionalLatch(currentLatch,
 				myNetCreator, design, alphabetSelector[negBlockCounter],
 				negativeSlice);
 
+		//add a reference to the new element
 		alreadyPlacedInstances.put(currentLatch.output + "_"
 				+ alphabetSelector[negBlockCounter] + _LATCH, negativeSlice);
 		typeOfTheAlreadyPlaceInstances.put(currentLatch.output, _LATCH);
@@ -726,14 +727,10 @@ public class DesignCreation {
 			design.addInstance(negativeSlice);
 		}
 
-		negBlockCounter = (negBlockCounter + 1) % 4;// from
-													// 0
-													// to
-													// 3
-													// =
-													// A
-													// to
-													// D
+		negBlockCounter = (negBlockCounter + 1) % 4;
+	/*
+	 * form 0 to 3 = A to D
+	 */
 
 		return negativeSlice;
 	}
@@ -764,14 +761,11 @@ public class DesignCreation {
 			design.addInstance(positiveSlice);
 		}
 
-		posBlockCounter = (posBlockCounter + 1) % 4;// from
-													// 0
-													// to
-													// 3
-													// =
-													// A
-													// to
-													// D
+		posBlockCounter = (posBlockCounter + 1) % 4;
+		/*
+		 * form 0 to 3 = A to D
+		 */
+
 
 		return positiveSlice;
 

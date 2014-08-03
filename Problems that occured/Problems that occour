@@ -46,3 +46,7 @@ property if you want to place the design as part of the Map process.
 
 -> d.h. um par für Spartan 6 aufrufen zu können müssen wir gemapped haben. D.h. der bessere Mapper muss dann später
 dann genau an dieser Stelle einsetzen !!! Eine entsprechende Selektions-Variable habe ich für uns eingefügt
+
+
+
+Inputs die direkt Outputs sind werden nicht unterstützt !!!

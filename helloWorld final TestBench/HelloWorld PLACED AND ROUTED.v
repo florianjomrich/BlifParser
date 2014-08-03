@@ -7,7 +7,7 @@
 // \   \   \/     Version: P.20131013
 //  \   \         Application: netgen
 //  /   /         Filename: HelloWorldPlaceAndRouted.v
-// /___/   /\     Timestamp: Sun Aug 03 14:38:08 2014
+// /___/   /\     Timestamp: Sun Aug 03 17:23:33 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
@@ -34,248 +34,381 @@
 `timescale 1 ns/1 ps
 
 module HelloWorld (
-  \u37_FINAL_OUTPUT.OUTBUF.OUT , \z5_FINAL_OUTPUT.OUTBUF.OUT , \z0_FINAL_OUTPUT.OUTBUF.OUT , \u36_FINAL_OUTPUT.OUTBUF.OUT , 
-\u34_FINAL_OUTPUT.OUTBUF.OUT , \u35_FINAL_OUTPUT.OUTBUF.OUT , \bertaClock.PAD.PAD , \z2_FINAL_OUTPUT.OUTBUF.OUT , \global_reset.PAD.PAD , 
-\u38_FINAL_OUTPUT.OUTBUF.OUT , \z4_FINAL_OUTPUT.OUTBUF.OUT , \x25.PAD.PAD , \z1_FINAL_OUTPUT.OUTBUF.OUT , \z3_FINAL_OUTPUT.OUTBUF.OUT , \x24.PAD.PAD 
-, \x23.PAD.PAD 
+  \u38ah_FINAL_OUTPUT.OUTBUF.OUT , \z4re_FINAL_OUTPUT.OUTBUF.OUT , \test.PAD.PAD , \z2re_FINAL_OUTPUT.OUTBUF.OUT , \z0re_FINAL_OUTPUT.OUTBUF.OUT , 
+\u39ah_FINAL_OUTPUT.OUTBUF.OUT , \z5re_FINAL_OUTPUT.OUTBUF.OUT , \u34fe_FINAL_OUTPUT.OUTBUF.OUT , \z50al_FINAL_OUTPUT.OUTBUF.OUT , 
+\z51al_FINAL_OUTPUT.OUTBUF.OUT , \n44_FINAL_OUTPUT.OUTBUF.OUT , \bertaClock.PAD.PAD , \u37ah_FINAL_OUTPUT.OUTBUF.OUT , \global_reset.PAD.PAD , 
+\z3re_FINAL_OUTPUT.OUTBUF.OUT , \test_FINAL_OUTPUT.OUTBUF.OUT , \x25.PAD.PAD , \z1re_FINAL_OUTPUT.OUTBUF.OUT , \u35fe_FINAL_OUTPUT.OUTBUF.OUT , 
+\x24.PAD.PAD , \x23.PAD.PAD , \u36fe_FINAL_OUTPUT.OUTBUF.OUT 
 );
-  inout \u37_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \z5_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \z0_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \u36_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \u34_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \u35_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \u38ah_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \z4re_FINAL_OUTPUT.OUTBUF.OUT ;
+  input \test.PAD.PAD ;
+  inout \z2re_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \z0re_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \u39ah_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \z5re_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \u34fe_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \z50al_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \z51al_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \n44_FINAL_OUTPUT.OUTBUF.OUT ;
   input \bertaClock.PAD.PAD ;
-  inout \z2_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \u37ah_FINAL_OUTPUT.OUTBUF.OUT ;
   input \global_reset.PAD.PAD ;
-  inout \u38_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \z4_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \z3re_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \test_FINAL_OUTPUT.OUTBUF.OUT ;
   input \x25.PAD.PAD ;
-  inout \z1_FINAL_OUTPUT.OUTBUF.OUT ;
-  inout \z3_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \z1re_FINAL_OUTPUT.OUTBUF.OUT ;
+  inout \u35fe_FINAL_OUTPUT.OUTBUF.OUT ;
   input \x24.PAD.PAD ;
   input \x23.PAD.PAD ;
-  wire \my_clk_BUFG.O->n44_z0.CLK ;
-  wire \n44_z0.AMUX->n44_z0.AX ;
-  wire \n44_z0.AQ->z0_FINAL_OUTPUT.O ;
+  inout \u36fe_FINAL_OUTPUT.OUTBUF.OUT ;
+  wire \my_clk_BUFG.O->n44_z0re.CLK ;
+  wire \n44_z0re.AQ->z0re_FINAL_OUTPUT.O ;
+  wire \n44_z0re.AMUX->n44_FINAL_OUTPUT.O ;
   wire \bertaClock.I->my_clk_BUFG.I0 ;
-  wire \x23.I->n44_z0.A1 ;
-  wire \n44_z0.A5LUT.O5 ;
-  wire \u37_FINAL_OUTPUT.INBUF.OUT ;
-  wire \z5_FINAL_OUTPUT.INBUF.OUT ;
-  wire \z0_FINAL_OUTPUT.INBUF.OUT ;
-  wire \u36_FINAL_OUTPUT.INBUF.OUT ;
-  wire \u34_FINAL_OUTPUT.INBUF.OUT ;
-  wire \u35_FINAL_OUTPUT.INBUF.OUT ;
+  wire \x23.I->n44_z0re.A1 ;
+  wire \u38ah_FINAL_OUTPUT.INBUF.OUT ;
+  wire \z4re_FINAL_OUTPUT.INBUF.OUT ;
+  wire \test.INBUF.OUT ;
+  wire \z2re_FINAL_OUTPUT.INBUF.OUT ;
+  wire \z0re_FINAL_OUTPUT.INBUF.OUT ;
+  wire \u39ah_FINAL_OUTPUT.INBUF.OUT ;
+  wire \z5re_FINAL_OUTPUT.INBUF.OUT ;
+  wire \u34fe_FINAL_OUTPUT.INBUF.OUT ;
+  wire \z50al_FINAL_OUTPUT.INBUF.OUT ;
+  wire \n44_z0re.A5LUT.O5 ;
+  wire \z51al_FINAL_OUTPUT.INBUF.OUT ;
+  wire \n44_FINAL_OUTPUT.INBUF.OUT ;
   wire \bertaClock.INBUF.OUT ;
-  wire \z2_FINAL_OUTPUT.INBUF.OUT ;
+  wire \u37ah_FINAL_OUTPUT.INBUF.OUT ;
   wire \global_reset.INBUF.OUT ;
-  wire \u38_FINAL_OUTPUT.INBUF.OUT ;
-  wire \z4_FINAL_OUTPUT.INBUF.OUT ;
+  wire \z3re_FINAL_OUTPUT.INBUF.OUT ;
+  wire \test_FINAL_OUTPUT.INBUF.OUT ;
   wire \x25.INBUF.OUT ;
-  wire \z1_FINAL_OUTPUT.INBUF.OUT ;
-  wire \z3_FINAL_OUTPUT.INBUF.OUT ;
+  wire \z1re_FINAL_OUTPUT.INBUF.OUT ;
+  wire \u35fe_FINAL_OUTPUT.INBUF.OUT ;
   wire \x24.INBUF.OUT ;
   wire \x23.INBUF.OUT ;
-  wire \NlwBufferSignal_n44_z0.AFF/CLK ;
-  wire \NlwBufferSignal_z5_FINAL_OUTPUT_OBUF/I ;
-  wire \NlwBufferSignal_z0_FINAL_OUTPUT_OBUF/I ;
+  wire \u36fe_FINAL_OUTPUT.INBUF.OUT ;
   wire \NlwBufferSignal_my_clk_BUFG.BUFG/IN ;
-  wire \NlwBufferSignal_z2_FINAL_OUTPUT_OBUF/I ;
-  wire \NlwBufferSignal_z4_FINAL_OUTPUT_OBUF/I ;
-  wire \NlwBufferSignal_z1_FINAL_OUTPUT_OBUF/I ;
-  wire \NlwBufferSignal_z3_FINAL_OUTPUT_OBUF/I ;
+  wire \NlwBufferSignal_z0re_FINAL_OUTPUT_OBUF/I ;
+  wire \NlwBufferSignal_n44_z0re.AFF/CLK ;
+  wire \NlwBufferSignal_n44_FINAL_OUTPUT_OBUF/I ;
+  wire NLW_u38ah_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_u38ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_z4re_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_z4re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_test.IMUX_O_UNCONNECTED ;
+  wire NLW_z2re_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_z2re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_z0re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_u39ah_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_u39ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_z5re_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_z5re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_u34fe_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_u34fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_z50al_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_z50al_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire VCC;
   wire GND;
-  wire NLW_u37_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
-  wire \NLW_u37_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_z5_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_z0_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire NLW_u36_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
-  wire \NLW_u36_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire NLW_u34_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
-  wire \NLW_u34_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire NLW_u35_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
-  wire \NLW_u35_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_z2_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_z51al_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_z51al_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire \NLW_n44_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_u37ah_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_u37ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_global_reset.IMUX_O_UNCONNECTED ;
-  wire NLW_u38_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
-  wire \NLW_u38_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_z4_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_z3re_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_z3re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_test_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_test_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_x25.IMUX_O_UNCONNECTED ;
-  wire \NLW_z1_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_z3_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_z1re_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_z1re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire NLW_u35fe_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_u35fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_x24.IMUX_O_UNCONNECTED ;
+  wire NLW_u36fe_FINAL_OUTPUT_OBUF_I_UNCONNECTED;
+  wire \NLW_u36fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   initial $sdf_annotate("helloworldplaceandrouted.sdf");
-  X_BUF   \n44_z0/n44_z0_AMUX_Delay  (
-    .I(\n44_z0.A5LUT.O5 ),
-    .O(\n44_z0.AMUX->n44_z0.AX )
-  );
-  X_FF #(
-    .LOC ( "SLICE_X28Y6" ),
-    .INIT ( 1'b0 ))
-  \n44_z0.AFF  (
-    .CE(VCC),
-    .CLK(\NlwBufferSignal_n44_z0.AFF/CLK ),
-    .I(\n44_z0.A5LUT.O5 ),
-    .O(\n44_z0.AQ->z0_FINAL_OUTPUT.O ),
-    .RST(GND),
-    .SET(GND)
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X28Y6" ),
-    .INIT ( 32'hFF00FF00 ))
-  \n44_z0.A5LUT  (
-    .ADR3(\x23.I->n44_z0.A1 ),
-    .ADR1(1'b1),
-    .ADR2(1'b1),
-    .ADR0(1'b1),
-    .ADR4(1'b1),
-    .O(\n44_z0.A5LUT.O5 )
-  );
   X_BPAD #(
-    .LOC ( "PAD219" ))
-  u37_FINAL_OUTPUT (
-    .PAD(\u37_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD228" ))
+  u38ah_FINAL_OUTPUT (
+    .PAD(\u38ah_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD219" ))
-  u37_FINAL_OUTPUT_OBUF (
-    .I(NLW_u37_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
-    .O(\u37_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD228" ))
+  u38ah_FINAL_OUTPUT_OBUF (
+    .I(NLW_u38ah_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\u38ah_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD219" ))
-  \u37_FINAL_OUTPUT.INBUF  (
-    .O(\u37_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\u37_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD228" ))
+  \u38ah_FINAL_OUTPUT.INBUF  (
+    .O(\u38ah_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\u38ah_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD219" ))
-  \u37_FINAL_OUTPUT.IMUX  (
-    .I(\u37_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_u37_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD228" ))
+  \u38ah_FINAL_OUTPUT.IMUX  (
+    .I(\u38ah_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_u38ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_BPAD #(
-    .LOC ( "PAD211" ))
-  z5_FINAL_OUTPUT (
-    .PAD(\z5_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD221" ))
+  z4re_FINAL_OUTPUT (
+    .PAD(\z4re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD211" ))
-  z5_FINAL_OUTPUT_OBUF (
-    .I(\NlwBufferSignal_z5_FINAL_OUTPUT_OBUF/I ),
-    .O(\z5_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD221" ))
+  z4re_FINAL_OUTPUT_OBUF (
+    .I(NLW_z4re_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\z4re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD211" ))
-  \z5_FINAL_OUTPUT.INBUF  (
-    .O(\z5_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\z5_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD221" ))
+  \z4re_FINAL_OUTPUT.INBUF  (
+    .O(\z4re_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\z4re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD211" ))
-  \z5_FINAL_OUTPUT.IMUX  (
-    .I(\z5_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_z5_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
-  );
-  X_BPAD #(
-    .LOC ( "PAD215" ))
-  z0_FINAL_OUTPUT (
-    .PAD(\z0_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_OBUF #(
-    .LOC ( "PAD215" ))
-  z0_FINAL_OUTPUT_OBUF (
-    .I(\NlwBufferSignal_z0_FINAL_OUTPUT_OBUF/I ),
-    .O(\z0_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD215" ))
-  \z0_FINAL_OUTPUT.INBUF  (
-    .O(\z0_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\z0_FINAL_OUTPUT.OUTBUF.OUT )
-  );
-  X_BUF #(
-    .LOC ( "PAD215" ))
-  \z0_FINAL_OUTPUT.IMUX  (
-    .I(\z0_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_z0_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD221" ))
+  \z4re_FINAL_OUTPUT.IMUX  (
+    .I(\z4re_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_z4re_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_CKBUF #(
     .LOC ( "BUFGMUX_X3Y13" ))
   \my_clk_BUFG.BUFG  (
     .I(\NlwBufferSignal_my_clk_BUFG.BUFG/IN ),
-    .O(\my_clk_BUFG.O->n44_z0.CLK )
+    .O(\my_clk_BUFG.O->n44_z0re.CLK )
+  );
+  X_IPAD #(
+    .LOC ( "PAD229" ))
+  test (
+    .PAD(\test.PAD.PAD )
+  );
+  X_BUF #(
+    .LOC ( "PAD229" ))
+  \test.INBUF  (
+    .O(\test.INBUF.OUT ),
+    .I(\test.PAD.PAD )
+  );
+  X_BUF #(
+    .LOC ( "PAD229" ))
+  \test.IMUX  (
+    .I(\test.INBUF.OUT ),
+    .O(\NLW_test.IMUX_O_UNCONNECTED )
   );
   X_BPAD #(
-    .LOC ( "PAD221" ))
-  u36_FINAL_OUTPUT (
-    .PAD(\u36_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD210" ))
+  z2re_FINAL_OUTPUT (
+    .PAD(\z2re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD221" ))
-  u36_FINAL_OUTPUT_OBUF (
-    .I(NLW_u36_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
-    .O(\u36_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD210" ))
+  z2re_FINAL_OUTPUT_OBUF (
+    .I(NLW_z2re_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\z2re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD221" ))
-  \u36_FINAL_OUTPUT.INBUF  (
-    .O(\u36_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\u36_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD210" ))
+  \z2re_FINAL_OUTPUT.INBUF  (
+    .O(\z2re_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\z2re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD221" ))
-  \u36_FINAL_OUTPUT.IMUX  (
-    .I(\u36_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_u36_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD210" ))
+  \z2re_FINAL_OUTPUT.IMUX  (
+    .I(\z2re_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_z2re_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_BPAD #(
-    .LOC ( "PAD220" ))
-  u34_FINAL_OUTPUT (
-    .PAD(\u34_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD211" ))
+  z0re_FINAL_OUTPUT (
+    .PAD(\z0re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD220" ))
-  u34_FINAL_OUTPUT_OBUF (
-    .I(NLW_u34_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
-    .O(\u34_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD211" ))
+  z0re_FINAL_OUTPUT_OBUF (
+    .I(\NlwBufferSignal_z0re_FINAL_OUTPUT_OBUF/I ),
+    .O(\z0re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD220" ))
-  \u34_FINAL_OUTPUT.INBUF  (
-    .O(\u34_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\u34_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD211" ))
+  \z0re_FINAL_OUTPUT.INBUF  (
+    .O(\z0re_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\z0re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD220" ))
-  \u34_FINAL_OUTPUT.IMUX  (
-    .I(\u34_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_u34_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD211" ))
+  \z0re_FINAL_OUTPUT.IMUX  (
+    .I(\z0re_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_z0re_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD231" ))
+  u39ah_FINAL_OUTPUT (
+    .PAD(\u39ah_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD231" ))
+  u39ah_FINAL_OUTPUT_OBUF (
+    .I(NLW_u39ah_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\u39ah_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD231" ))
+  \u39ah_FINAL_OUTPUT.INBUF  (
+    .O(\u39ah_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\u39ah_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD231" ))
+  \u39ah_FINAL_OUTPUT.IMUX  (
+    .I(\u39ah_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_u39ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD230" ))
+  z5re_FINAL_OUTPUT (
+    .PAD(\z5re_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD230" ))
+  z5re_FINAL_OUTPUT_OBUF (
+    .I(NLW_z5re_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\z5re_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD230" ))
+  \z5re_FINAL_OUTPUT.INBUF  (
+    .O(\z5re_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\z5re_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD230" ))
+  \z5re_FINAL_OUTPUT.IMUX  (
+    .I(\z5re_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_z5re_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD225" ))
+  u34fe_FINAL_OUTPUT (
+    .PAD(\u34fe_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD225" ))
+  u34fe_FINAL_OUTPUT_OBUF (
+    .I(NLW_u34fe_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\u34fe_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD225" ))
+  \u34fe_FINAL_OUTPUT.INBUF  (
+    .O(\u34fe_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\u34fe_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD225" ))
+  \u34fe_FINAL_OUTPUT.IMUX  (
+    .I(\u34fe_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_u34fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD227" ))
+  z50al_FINAL_OUTPUT (
+    .PAD(\z50al_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD227" ))
+  z50al_FINAL_OUTPUT_OBUF (
+    .I(NLW_z50al_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\z50al_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD227" ))
+  \z50al_FINAL_OUTPUT.INBUF  (
+    .O(\z50al_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\z50al_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD227" ))
+  \z50al_FINAL_OUTPUT.IMUX  (
+    .I(\z50al_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_z50al_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BUF   \n44_z0re/n44_z0re_AMUX_Delay  (
+    .I(\n44_z0re.A5LUT.O5 ),
+    .O(\n44_z0re.AMUX->n44_FINAL_OUTPUT.O )
+  );
+  X_FF #(
+    .LOC ( "SLICE_X28Y5" ),
+    .INIT ( 1'b0 ))
+  \n44_z0re.AFF  (
+    .CE(VCC),
+    .CLK(\NlwBufferSignal_n44_z0re.AFF/CLK ),
+    .I(\n44_z0re.A5LUT.O5 ),
+    .O(\n44_z0re.AQ->z0re_FINAL_OUTPUT.O ),
+    .RST(GND),
+    .SET(GND)
+  );
+  X_LUT5 #(
+    .LOC ( "SLICE_X28Y5" ),
+    .INIT ( 32'hFF00FF00 ))
+  \n44_z0re.A5LUT  (
+    .ADR3(\x23.I->n44_z0re.A1 ),
+    .ADR1(1'b1),
+    .ADR2(1'b1),
+    .ADR0(1'b1),
+    .ADR4(1'b1),
+    .O(\n44_z0re.A5LUT.O5 )
   );
   X_BPAD #(
     .LOC ( "PAD224" ))
-  u35_FINAL_OUTPUT (
-    .PAD(\u35_FINAL_OUTPUT.OUTBUF.OUT )
+  z51al_FINAL_OUTPUT (
+    .PAD(\z51al_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
     .LOC ( "PAD224" ))
-  u35_FINAL_OUTPUT_OBUF (
-    .I(NLW_u35_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
-    .O(\u35_FINAL_OUTPUT.OUTBUF.OUT )
+  z51al_FINAL_OUTPUT_OBUF (
+    .I(NLW_z51al_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\z51al_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
     .LOC ( "PAD224" ))
-  \u35_FINAL_OUTPUT.INBUF  (
-    .O(\u35_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\u35_FINAL_OUTPUT.OUTBUF.OUT )
+  \z51al_FINAL_OUTPUT.INBUF  (
+    .O(\z51al_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\z51al_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
     .LOC ( "PAD224" ))
-  \u35_FINAL_OUTPUT.IMUX  (
-    .I(\u35_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_u35_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  \z51al_FINAL_OUTPUT.IMUX  (
+    .I(\z51al_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_z51al_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_BPAD #(
+    .LOC ( "PAD209" ))
+  n44_FINAL_OUTPUT (
+    .PAD(\n44_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_OBUF #(
+    .LOC ( "PAD209" ))
+  n44_FINAL_OUTPUT_OBUF (
+    .I(\NlwBufferSignal_n44_FINAL_OUTPUT_OBUF/I ),
+    .O(\n44_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD209" ))
+  \n44_FINAL_OUTPUT.INBUF  (
+    .O(\n44_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\n44_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD209" ))
+  \n44_FINAL_OUTPUT.IMUX  (
+    .I(\n44_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_n44_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_IPAD #(
     .LOC ( "PAD314" ))
@@ -295,153 +428,153 @@ module HelloWorld (
     .O(\bertaClock.I->my_clk_BUFG.I0 )
   );
   X_BPAD #(
-    .LOC ( "PAD213" ))
-  z2_FINAL_OUTPUT (
-    .PAD(\z2_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD215" ))
+  u37ah_FINAL_OUTPUT (
+    .PAD(\u37ah_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD213" ))
-  z2_FINAL_OUTPUT_OBUF (
-    .I(\NlwBufferSignal_z2_FINAL_OUTPUT_OBUF/I ),
-    .O(\z2_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD215" ))
+  u37ah_FINAL_OUTPUT_OBUF (
+    .I(NLW_u37ah_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\u37ah_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD213" ))
-  \z2_FINAL_OUTPUT.INBUF  (
-    .O(\z2_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\z2_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD215" ))
+  \u37ah_FINAL_OUTPUT.INBUF  (
+    .O(\u37ah_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\u37ah_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD213" ))
-  \z2_FINAL_OUTPUT.IMUX  (
-    .I(\z2_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_z2_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD215" ))
+  \u37ah_FINAL_OUTPUT.IMUX  (
+    .I(\u37ah_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_u37ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_IPAD #(
-    .LOC ( "PAD222" ))
+    .LOC ( "PAD223" ))
   global_reset (
     .PAD(\global_reset.PAD.PAD )
   );
   X_BUF #(
-    .LOC ( "PAD222" ))
+    .LOC ( "PAD223" ))
   \global_reset.INBUF  (
     .O(\global_reset.INBUF.OUT ),
     .I(\global_reset.PAD.PAD )
   );
   X_BUF #(
-    .LOC ( "PAD222" ))
+    .LOC ( "PAD223" ))
   \global_reset.IMUX  (
     .I(\global_reset.INBUF.OUT ),
     .O(\NLW_global_reset.IMUX_O_UNCONNECTED )
   );
   X_BPAD #(
-    .LOC ( "PAD225" ))
-  u38_FINAL_OUTPUT (
-    .PAD(\u38_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD220" ))
+  z3re_FINAL_OUTPUT (
+    .PAD(\z3re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD225" ))
-  u38_FINAL_OUTPUT_OBUF (
-    .I(NLW_u38_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
-    .O(\u38_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD220" ))
+  z3re_FINAL_OUTPUT_OBUF (
+    .I(NLW_z3re_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\z3re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD225" ))
-  \u38_FINAL_OUTPUT.INBUF  (
-    .O(\u38_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\u38_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD220" ))
+  \z3re_FINAL_OUTPUT.INBUF  (
+    .O(\z3re_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\z3re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD225" ))
-  \u38_FINAL_OUTPUT.IMUX  (
-    .I(\u38_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_u38_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD220" ))
+  \z3re_FINAL_OUTPUT.IMUX  (
+    .I(\z3re_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_z3re_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_BPAD #(
-    .LOC ( "PAD216" ))
-  z4_FINAL_OUTPUT (
-    .PAD(\z4_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD222" ))
+  test_FINAL_OUTPUT (
+    .PAD(\test_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD216" ))
-  z4_FINAL_OUTPUT_OBUF (
-    .I(\NlwBufferSignal_z4_FINAL_OUTPUT_OBUF/I ),
-    .O(\z4_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD222" ))
+  test_FINAL_OUTPUT_OBUF (
+    .I(NLW_test_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\test_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD216" ))
-  \z4_FINAL_OUTPUT.INBUF  (
-    .O(\z4_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\z4_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD222" ))
+  \test_FINAL_OUTPUT.INBUF  (
+    .O(\test_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\test_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD216" ))
-  \z4_FINAL_OUTPUT.IMUX  (
-    .I(\z4_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_z4_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD222" ))
+  \test_FINAL_OUTPUT.IMUX  (
+    .I(\test_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_test_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_IPAD #(
-    .LOC ( "PAD223" ))
+    .LOC ( "PAD213" ))
   x25 (
     .PAD(\x25.PAD.PAD )
   );
   X_BUF #(
-    .LOC ( "PAD223" ))
+    .LOC ( "PAD213" ))
   \x25.INBUF  (
     .O(\x25.INBUF.OUT ),
     .I(\x25.PAD.PAD )
   );
   X_BUF #(
-    .LOC ( "PAD223" ))
+    .LOC ( "PAD213" ))
   \x25.IMUX  (
     .I(\x25.INBUF.OUT ),
     .O(\NLW_x25.IMUX_O_UNCONNECTED )
   );
   X_BPAD #(
-    .LOC ( "PAD210" ))
-  z1_FINAL_OUTPUT (
-    .PAD(\z1_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD219" ))
+  z1re_FINAL_OUTPUT (
+    .PAD(\z1re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD210" ))
-  z1_FINAL_OUTPUT_OBUF (
-    .I(\NlwBufferSignal_z1_FINAL_OUTPUT_OBUF/I ),
-    .O(\z1_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD219" ))
+  z1re_FINAL_OUTPUT_OBUF (
+    .I(NLW_z1re_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\z1re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD210" ))
-  \z1_FINAL_OUTPUT.INBUF  (
-    .O(\z1_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\z1_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD219" ))
+  \z1re_FINAL_OUTPUT.INBUF  (
+    .O(\z1re_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\z1re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD210" ))
-  \z1_FINAL_OUTPUT.IMUX  (
-    .I(\z1_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_z1_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD219" ))
+  \z1re_FINAL_OUTPUT.IMUX  (
+    .I(\z1re_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_z1re_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_BPAD #(
-    .LOC ( "PAD209" ))
-  z3_FINAL_OUTPUT (
-    .PAD(\z3_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD226" ))
+  u35fe_FINAL_OUTPUT (
+    .PAD(\u35fe_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_OBUF #(
-    .LOC ( "PAD209" ))
-  z3_FINAL_OUTPUT_OBUF (
-    .I(\NlwBufferSignal_z3_FINAL_OUTPUT_OBUF/I ),
-    .O(\z3_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD226" ))
+  u35fe_FINAL_OUTPUT_OBUF (
+    .I(NLW_u35fe_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\u35fe_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD209" ))
-  \z3_FINAL_OUTPUT.INBUF  (
-    .O(\z3_FINAL_OUTPUT.INBUF.OUT ),
-    .I(\z3_FINAL_OUTPUT.OUTBUF.OUT )
+    .LOC ( "PAD226" ))
+  \u35fe_FINAL_OUTPUT.INBUF  (
+    .O(\u35fe_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\u35fe_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
-    .LOC ( "PAD209" ))
-  \z3_FINAL_OUTPUT.IMUX  (
-    .I(\z3_FINAL_OUTPUT.INBUF.OUT ),
-    .O(\NLW_z3_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+    .LOC ( "PAD226" ))
+  \u35fe_FINAL_OUTPUT.IMUX  (
+    .I(\u35fe_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_u35fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_IPAD #(
     .LOC ( "PAD214" ))
@@ -475,39 +608,46 @@ module HelloWorld (
     .LOC ( "PAD212" ))
   \x23.IMUX  (
     .I(\x23.INBUF.OUT ),
-    .O(\x23.I->n44_z0.A1 )
+    .O(\x23.I->n44_z0re.A1 )
   );
-  X_BUF   \NlwBufferBlock_n44_z0.AFF/CLK  (
-    .I(\my_clk_BUFG.O->n44_z0.CLK ),
-    .O(\NlwBufferSignal_n44_z0.AFF/CLK )
+  X_BPAD #(
+    .LOC ( "PAD216" ))
+  u36fe_FINAL_OUTPUT (
+    .PAD(\u36fe_FINAL_OUTPUT.OUTBUF.OUT )
   );
-  X_BUF   \NlwBufferBlock_z5_FINAL_OUTPUT_OBUF/I  (
-    .I(\n44_z0.AQ->z0_FINAL_OUTPUT.O ),
-    .O(\NlwBufferSignal_z5_FINAL_OUTPUT_OBUF/I )
+  X_OBUF #(
+    .LOC ( "PAD216" ))
+  u36fe_FINAL_OUTPUT_OBUF (
+    .I(NLW_u36fe_FINAL_OUTPUT_OBUF_I_UNCONNECTED),
+    .O(\u36fe_FINAL_OUTPUT.OUTBUF.OUT )
   );
-  X_BUF   \NlwBufferBlock_z0_FINAL_OUTPUT_OBUF/I  (
-    .I(\n44_z0.AQ->z0_FINAL_OUTPUT.O ),
-    .O(\NlwBufferSignal_z0_FINAL_OUTPUT_OBUF/I )
+  X_BUF #(
+    .LOC ( "PAD216" ))
+  \u36fe_FINAL_OUTPUT.INBUF  (
+    .O(\u36fe_FINAL_OUTPUT.INBUF.OUT ),
+    .I(\u36fe_FINAL_OUTPUT.OUTBUF.OUT )
+  );
+  X_BUF #(
+    .LOC ( "PAD216" ))
+  \u36fe_FINAL_OUTPUT.IMUX  (
+    .I(\u36fe_FINAL_OUTPUT.INBUF.OUT ),
+    .O(\NLW_u36fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_BUF   \NlwBufferBlock_my_clk_BUFG.BUFG/IN  (
     .I(\bertaClock.I->my_clk_BUFG.I0 ),
     .O(\NlwBufferSignal_my_clk_BUFG.BUFG/IN )
   );
-  X_BUF   \NlwBufferBlock_z2_FINAL_OUTPUT_OBUF/I  (
-    .I(\n44_z0.AQ->z0_FINAL_OUTPUT.O ),
-    .O(\NlwBufferSignal_z2_FINAL_OUTPUT_OBUF/I )
+  X_BUF   \NlwBufferBlock_z0re_FINAL_OUTPUT_OBUF/I  (
+    .I(\n44_z0re.AQ->z0re_FINAL_OUTPUT.O ),
+    .O(\NlwBufferSignal_z0re_FINAL_OUTPUT_OBUF/I )
   );
-  X_BUF   \NlwBufferBlock_z4_FINAL_OUTPUT_OBUF/I  (
-    .I(\n44_z0.AQ->z0_FINAL_OUTPUT.O ),
-    .O(\NlwBufferSignal_z4_FINAL_OUTPUT_OBUF/I )
+  X_BUF   \NlwBufferBlock_n44_z0re.AFF/CLK  (
+    .I(\my_clk_BUFG.O->n44_z0re.CLK ),
+    .O(\NlwBufferSignal_n44_z0re.AFF/CLK )
   );
-  X_BUF   \NlwBufferBlock_z1_FINAL_OUTPUT_OBUF/I  (
-    .I(\n44_z0.AQ->z0_FINAL_OUTPUT.O ),
-    .O(\NlwBufferSignal_z1_FINAL_OUTPUT_OBUF/I )
-  );
-  X_BUF   \NlwBufferBlock_z3_FINAL_OUTPUT_OBUF/I  (
-    .I(\n44_z0.AQ->z0_FINAL_OUTPUT.O ),
-    .O(\NlwBufferSignal_z3_FINAL_OUTPUT_OBUF/I )
+  X_BUF   \NlwBufferBlock_n44_FINAL_OUTPUT_OBUF/I  (
+    .I(\n44_z0re.AMUX->n44_FINAL_OUTPUT.O ),
+    .O(\NlwBufferSignal_n44_FINAL_OUTPUT_OBUF/I )
   );
   X_ONE   NlwBlock_HelloWorld_VCC (
     .O(VCC)

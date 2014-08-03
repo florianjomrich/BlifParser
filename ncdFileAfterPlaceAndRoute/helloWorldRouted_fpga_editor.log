@@ -5,72 +5,59 @@
 #Current Working Directory:
 #:D   C:\BlifParser3\ncdFileAfterPlaceAndRoute
 #Date/Time:
-#:T   Sat Aug 02 22:36:37 2014
+#:T   Sun Aug 03 14:41:55 2014
 #------------------------------
 	#Reading C:\BlifParser3\ncdFileAfterPlaceAndRoute\HelloWorldRouted.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.02.18.00.32
+	#Design creation date: 2014.08.03.10.10.28
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'my_clk_BUFG'
+select -k comp 'n44_z0'
 	#2
 unselect -all
 	#3
-select -k comp 'n44_ichKommeIndieNegativeSLICE_z5_z4'
+select -k comp 'n44_z0'
 	#4
-unselect -all
+unselect comp 'n44_z0'
 	#5
-select comp 'n44_ichKommeIndieNegativeSLICE_z5_z4'
-	#comp "n44_ichKommeIndieNegativeSLICE_z5_z4",  site "SLICE_X28Y2",  type = SLICEL  (RPM grid X73Y8)
+select -k comp 'u34_u37'
 	#6
 unselect -all
 	#7
-select comp 'n44_ichKommeIndieNegativeSLICE_z5_z4'
-	#comp "n44_ichKommeIndieNegativeSLICE_z5_z4",  site "SLICE_X28Y2",  type = SLICEL  (RPM grid X73Y8)
+unselect -all
 	#8
-post block
+select net 'n44_z0.AMUX->n44_z0.AX'
+	#net "n44_z0.AMUX->n44_z0.AX"
 	#9
-unselect comp 'n44_ichKommeIndieNegativeSLICE_z5_z4'
+unselect -all
 	#10
-select -k comp 'global_reset'
+select comp 'u34_u37'
+	#comp "u34_u37",  site "SLICE_X26Y2",  type = SLICEL  (RPM grid X69Y8)
 	#11
-unselect comp 'global_reset'
+unselect -all
 	#12
-select -k comp 'my_clk_BUFG'
+select pin 'SLICE_X26Y2.AX'
+	#site.pin = SLICE_X26Y2.AX, comp.pin = u34_u37.AX, delay = 0.615ns on net "n44_z0.AMUX->n44_z0.AX"
 	#13
 unselect -all
 	#14
-select comp 'my_clk_BUFG'
-	#comp "my_clk_BUFG",  site "BUFGMUX_X3Y13",  type = BUFG  (RPM grid X85Y251)
+unselect -all
 	#15
 unselect -all
 	#16
-select comp 'my_clk_BUFG'
-	#comp "my_clk_BUFG",  site "BUFGMUX_X3Y13",  type = BUFG  (RPM grid X85Y251)
+select pin 'SLICE_X26Y2.AMUX'
+	#site.pin = SLICE_X26Y2.AMUX, comp.pin = u34_u37.AMUX
 	#17
-post block
+unselect -all
 	#18
-unselect -all
+select pin 'SLICE_X26Y2.AQ'
+	#site.pin = SLICE_X26Y2.AQ, comp.pin = u34_u37.AQ, delay = driver on net "u34_u37.AQ->u34_FINAL_OUTPUT.O"
 	#19
-select net "my_clk_BUFG.O->z1.CLK"
-	#net "my_clk_BUFG.O->z1.CLK"
+unselect -all
 	#20
-unselect net 'my_clk_BUFG.O->z1.CLK'
+select pin 'SLICE_X26Y2.BQ'
+	#site.pin = SLICE_X26Y2.BQ, comp.pin = u34_u37.BQ, delay = driver on net "u34_u37.BQ->u37_FINAL_OUTPUT.O"
 	#21
-select -k comp 'z1'
-	#22
-unselect -all
-	#23
-select comp 'z1'
-	#comp "z1",  site "SLICE_X28Y10",  type = SLICEL  (RPM grid X73Y40)
-	#24
-unselect -all
-	#25
-select comp 'z1'
-	#comp "z1",  site "SLICE_X28Y10",  type = SLICEL  (RPM grid X73Y40)
-	#26
-post block
-	#27
 post open

@@ -1,17 +1,16 @@
 # Benchmark "testset/apex2" written by ABC on Fri Jun 22 12:04:36 2012
 .model testset/apex2
-.inputs x23 x24 x25
-.outputs z0 z1 z2 z3 z4 z5 u34 u35 u36 u37 u38
+.inputs x23 x24 x25 test
+.outputs n44 z0re z1re z2re z3re z4re z5re u34fe u35fe u36fe u37ah u38ah u39ah z50al z51al test
+
 .names x23 n44
 1 1 
 .clock bertaClock
 
-.latch n44 z0 re bertaClock 0
-.latch n44 z1 re bertaClock 0
-.latch n44 z2 re bertaClock 0
-.latch n44 z3 re bertaClock 0
-.latch n44 z4 re bertaClock 0
-.latch n44 z5 re bertaClock 0
+.latch n44 z0re re bertaClock 0
+
+
+
 #.latch x3 z4 ah bertaClock 0
 #.latch n44 z3 ah bertaClock 0
 #.latch n44 z1 ah bertaClock 0

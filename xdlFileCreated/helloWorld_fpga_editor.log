@@ -1,111 +1,35 @@
-#:C39    
+#:C0     
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sun Aug 03 14:17:49 2014
+#:T   Sun Aug 03 17:10:27 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.03.09.47.23
+	#Design creation date: 2014.08.03.12.40.05
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'n44_z0_z1'
+select -k comp 'test'
 	#2
-unselect -all
+unselect comp 'test'
 	#3
-select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
+select -k comp 'test_FINAL_OUTPUT'
 	#4
 unselect -all
 	#5
-select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
+select comp 'test_FINAL_OUTPUT'
+	#comp "test_FINAL_OUTPUT",  site "F3",  bonded type = IOB,  pad name = PAD332,  pin name = F3  (RPM grid X1Y344)
 	#6
-post block
-	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
-	#be performed unless the selection contains only a single site
-	#or single component.  Change the selection and try again.
+unselect -all
 	#7
-unselect -all
+select comp 'test_FINAL_OUTPUT'
+	#comp "test_FINAL_OUTPUT",  site "F3",  bonded type = IOB,  pad name = PAD332,  pin name = F3  (RPM grid X1Y344)
 	#8
-select comp 'n44_z0_z1'
-	#comp "n44_z0_z1",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
-	#9
-unselect -all
-	#10
-select comp 'n44_z0_z1'
-	#comp "n44_z0_z1",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
-	#11
 post block
-	#12
-unselect -all
-	#13
-select net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
-	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
-	#14
-unselect net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#15
-select -k comp 'z0_FINAL_OUTPUT'
-	#16
-unselect -all
-	#17
-select net 'n44_z0.AQ->z0_FINAL_OUTPUT.O'
-	#net "n44_z0.AQ->z0_FINAL_OUTPUT.O"
-	#18
-unselect net 'n44_z0.AQ->z0_FINAL_OUTPUT.O'
-	#19
-select -k comp 'z1_FINAL_OUTPUT'
-	#20
-unselect -all
-	#21
-select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
-	#22
-unselect -all
-	#23
-select -k comp 'z2_FINAL_OUTPUT'
-	#24
-unselect -all
-	#25
-select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
-	#26
-unselect net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#27
-select -k comp 'z2_FINAL_OUTPUT'
-	#28
-unselect comp 'z2_FINAL_OUTPUT'
-	#29
-select -k comp 'z3_FINAL_OUTPUT'
-	#30
-unselect -all
-	#31
-select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
-	#32
-unselect net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#33
-select -k comp 'z4_FINAL_OUTPUT'
-	#34
-unselect -all
-	#35
-unselect -all
-	#36
-select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
-	#37
-unselect net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#38
-select -k comp 'z5_FINAL_OUTPUT'
-	#39
-unselect -all
-	#40
-select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
-	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
-	#41
+	#9
 post open

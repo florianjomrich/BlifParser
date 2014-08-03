@@ -1,5 +1,6 @@
 package placement;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -65,6 +66,8 @@ public class DesignCreation {
 	HashMap<String, GenericLatch> alreadyPlacedActiveLowLatches = new HashMap<String, GenericLatch>();
 	HashMap<String, GenericLatch> alreadyPlacedRisingEdgeFlipFlop = new HashMap<String, GenericLatch>();
 	HashMap<String, GenericLatch> alreadyPlacedFallingEdgeFlipFlop = new HashMap<String, GenericLatch>();
+
+	ArrayList<GenericLatch> primaryLatches = new ArrayList<GenericLatch>();
 
 	// to use an own Placer and deactivate the Random-Placer
 	boolean useOwnPlacer = false;
@@ -280,23 +283,9 @@ public class DesignCreation {
 						primaryLatch, alphabetSelector[posBlockCounter],
 						currentLogicGate, positiveSlice);
 
-				// remove the primary latch since does not have to be added once
-				// more
-				model.genericLatches.remove(primaryLatch);
-
-				// check if output is final output
-				if (alreadyPlacedInstances.containsKey(primaryLatch.output
-						+ _FINAL_OUTPUT)) {
-					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
-							.get(primaryLatch.output + _FINAL_OUTPUT);
-					myNetCreator.generateNet(alphabetSelector[posBlockCounter]
-							+ "Q", positiveSlice, "O", otherIOB_BLOCK_INSTANCE,
-							design, alreadyPlacedNets);
-				}
-
-				// connect the clock
-				myNetCreator.generateNet("O", clk_buffer, "CLK", negativeSlice,
-						design, alreadyPlacedNets);
+				// add the primary Latch for special treatment afterwards in the
+				// connection process
+				primaryLatches.add(primaryLatch);
 
 				// add the latch and the logicBlock to the placed Instances
 				this.addTheLatchToAlreadyPlacedInstances(primaryLatch,
@@ -327,23 +316,11 @@ public class DesignCreation {
 						primaryLatch, alphabetSelector[posBlockCounter],
 						currentLogicGate, negativeSlice);
 
-				// remove the primary latch since does not have to be added once
-				// more
-				model.genericLatches.remove(primaryLatch);
+				// add the primary Latch for special treatment afterwards in the
+				// connection process
+				primaryLatches.add(primaryLatch);
 
-				// check if output is final output
-				if (alreadyPlacedInstances.containsKey(primaryLatch.output
-						+ _FINAL_OUTPUT)) {
-					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
-							.get(primaryLatch.output + _FINAL_OUTPUT);
-					myNetCreator.generateNet(alphabetSelector[negBlockCounter]
-							+ "Q", negativeSlice, "O", otherIOB_BLOCK_INSTANCE,
-							design, alreadyPlacedNets);
-				}
-
-				// connect the clock
-				myNetCreator.generateNet("O", clk_buffer, "CLK", negativeSlice,
-						design, alreadyPlacedNets);
+			
 
 				this.addTheLatchToAlreadyPlacedInstances(primaryLatch,
 						negBlockCounter, negativeSlice);
@@ -379,13 +356,13 @@ public class DesignCreation {
 					primaryLatch);
 			break;
 		case "ah":
-			alreadyPlacedActiveHighLatches.put(primaryLatch.input,
-					primaryLatch);
-			break;	
+			alreadyPlacedActiveHighLatches
+					.put(primaryLatch.input, primaryLatch);
+			break;
 		case "fe":
 			alreadyPlacedFallingEdgeFlipFlop.put(primaryLatch.input,
 					primaryLatch);
-			break;	
+			break;
 
 		default:
 			System.err.print("Failure LatchType is unspecified");
@@ -403,117 +380,122 @@ public class DesignCreation {
 			NetCreator myNetCreator, Design design) {
 
 		for (GenericLatch currentLatch : model.genericLatches) {
+			
+			//only perform action if it is no primaryLatch and has already been set
+			if(!primaryLatches.contains(currentLatch)){
+				switch (currentLatch.type) {
+				case "ah":
+					// just make a reference if it already exists
+					if (alreadyPlacedActiveHighLatches
+							.containsKey(currentLatch.input)) {
+						GenericLatch alreadyPlacedOtherLatch = alreadyPlacedActiveHighLatches
+								.get(currentLatch.input);
+						String thePortNumberOfTheOtherLatch = portNubmerOfTheAlreadyPlacedInstances
+								.get(alreadyPlacedOtherLatch.output);
+						Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances
+								.get(alreadyPlacedOtherLatch.output + "_"
+										+ thePortNumberOfTheOtherLatch + _LATCH);
 
-			switch (currentLatch.type) {
-			case "ah":
-				// just make a reference if it already exists
-				if (alreadyPlacedActiveHighLatches
-						.containsKey(currentLatch.input)) {
-					GenericLatch alreadyPlacedOtherLatch = alreadyPlacedActiveHighLatches
-							.get(currentLatch.input);
-					String thePortNumberOfTheOtherLatch = portNubmerOfTheAlreadyPlacedInstances
-							.get(alreadyPlacedOtherLatch.output);
-					Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances
-							.get(alreadyPlacedOtherLatch.output + "_"
-									+ thePortNumberOfTheOtherLatch + _LATCH);
+						// just place a reference to the already existing
+						// Latch/FlipFlop
+						this.placeReferenceToAlreadyExistingLatch(currentLatch,
+								thePortNumberOfTheOtherLatch,
+								alreadyPlacedOtherLatchInstance);
 
-					// just place a reference to the already existing
-					// Latch/FlipFlop
-					this.placeReferenceToAlreadyExistingLatch(currentLatch,
-							thePortNumberOfTheOtherLatch,
-							alreadyPlacedOtherLatchInstance);
+					} else {
+						SLICEL_INSTANCE latchToBeAdded = this
+								.placeActiveHighFallingEdgeLatch(currentLatch,
+										design, myNetCreator, model);
+						alreadyPlacedActiveHighLatches.put(currentLatch.input,
+								currentLatch);
+					}
 
-				} else {
-					SLICEL_INSTANCE latchToBeAdded = this
-							.placeActiveHighFallingEdgeLatch(currentLatch,
-									design, myNetCreator, model);
-					alreadyPlacedActiveHighLatches.put(currentLatch.input,
-							currentLatch);
+					break;
+				case "fe":
+					if (alreadyPlacedFallingEdgeFlipFlop
+							.containsKey(currentLatch.input)) {
+						GenericLatch alreadyPlacedOtherLatch = alreadyPlacedFallingEdgeFlipFlop
+								.get(currentLatch.input);
+						String thePortNumberOfTheOtherLatch = portNubmerOfTheAlreadyPlacedInstances
+								.get(alreadyPlacedOtherLatch.output);
+						Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances
+								.get(alreadyPlacedOtherLatch.output + "_"
+										+ thePortNumberOfTheOtherLatch + _LATCH);
+						// just place a reference to the already existing
+						// Latch/FlipFlop
+						this.placeReferenceToAlreadyExistingLatch(currentLatch,
+								thePortNumberOfTheOtherLatch,
+								alreadyPlacedOtherLatchInstance);
+
+					} else {
+						SLICEL_INSTANCE latchToBeAdded = this
+								.placeActiveHighFallingEdgeLatch(currentLatch,
+										design, myNetCreator, model);
+						alreadyPlacedFallingEdgeFlipFlop.put(currentLatch.input,
+								currentLatch);
+					}
+					break;
+				case "al":
+					if (alreadyPlacedActiveLowLatches
+							.containsKey(currentLatch.input)) {
+						GenericLatch alreadyPlacedOtherLatch = alreadyPlacedActiveLowLatches
+								.get(currentLatch.input);
+						String thePortNumberOfTheOtherLatch = portNubmerOfTheAlreadyPlacedInstances
+								.get(alreadyPlacedOtherLatch.output);
+						Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances
+								.get(alreadyPlacedOtherLatch.output + "_"
+										+ thePortNumberOfTheOtherLatch + _LATCH);
+						// just place a reference to the already existing
+						// Latch/FlipFlop
+						this.placeReferenceToAlreadyExistingLatch(currentLatch,
+								thePortNumberOfTheOtherLatch,
+								alreadyPlacedOtherLatchInstance);
+
+					} else {
+						SLICEL_INSTANCE latchToBeAdded = this
+								.placeActiveLowRisingEdgeLatch(currentLatch,
+										design, myNetCreator, model);
+						alreadyPlacedActiveLowLatches.put(currentLatch.input,
+								currentLatch);
+					}
+
+					break;
+				case "re":
+					if (alreadyPlacedRisingEdgeFlipFlop
+							.containsKey(currentLatch.input)) {
+						GenericLatch alreadyPlacedOtherLatch = alreadyPlacedRisingEdgeFlipFlop
+								.get(currentLatch.input);
+						String thePortNumberOfTheOtherLatch = portNubmerOfTheAlreadyPlacedInstances
+								.get(alreadyPlacedOtherLatch.output);
+						Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances
+								.get(alreadyPlacedOtherLatch.output + "_"
+										+ thePortNumberOfTheOtherLatch + _LATCH);
+						// just place a reference to the already existing
+						// Latch/FlipFlop
+						this.placeReferenceToAlreadyExistingLatch(currentLatch,
+								thePortNumberOfTheOtherLatch,
+								alreadyPlacedOtherLatchInstance);
+
+					} else {
+						SLICEL_INSTANCE latchToBeAdded = this
+								.placeActiveLowRisingEdgeLatch(currentLatch,
+										design, myNetCreator, model);
+						alreadyPlacedRisingEdgeFlipFlop.put(currentLatch.input,
+								currentLatch);
+					}
+
+					break;
+
+				default:
+					System.out.println("LATCH TYPE: " + currentLatch.type);
+					System.err.print("Unknown Latch Type found!");
+					Error e = new Error();
+					throw e;
+
 				}
-
-				break;
-			case "fe":
-				if (alreadyPlacedFallingEdgeFlipFlop
-						.containsKey(currentLatch.input)) {
-					GenericLatch alreadyPlacedOtherLatch = alreadyPlacedFallingEdgeFlipFlop
-							.get(currentLatch.input);
-					String thePortNumberOfTheOtherLatch = portNubmerOfTheAlreadyPlacedInstances
-							.get(alreadyPlacedOtherLatch.output);
-					Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances
-							.get(alreadyPlacedOtherLatch.output + "_"
-									+ thePortNumberOfTheOtherLatch + _LATCH);
-					// just place a reference to the already existing
-					// Latch/FlipFlop
-					this.placeReferenceToAlreadyExistingLatch(currentLatch,
-							thePortNumberOfTheOtherLatch,
-							alreadyPlacedOtherLatchInstance);
-
-				} else {
-					SLICEL_INSTANCE latchToBeAdded = this
-							.placeActiveHighFallingEdgeLatch(currentLatch,
-									design, myNetCreator, model);
-					alreadyPlacedFallingEdgeFlipFlop.put(currentLatch.input,
-							currentLatch);
-				}
-				break;
-			case "al":
-				if (alreadyPlacedActiveLowLatches
-						.containsKey(currentLatch.input)) {
-					GenericLatch alreadyPlacedOtherLatch = alreadyPlacedActiveLowLatches
-							.get(currentLatch.input);
-					String thePortNumberOfTheOtherLatch = portNubmerOfTheAlreadyPlacedInstances
-							.get(alreadyPlacedOtherLatch.output);
-					Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances
-							.get(alreadyPlacedOtherLatch.output + "_"
-									+ thePortNumberOfTheOtherLatch + _LATCH);
-					// just place a reference to the already existing
-					// Latch/FlipFlop
-					this.placeReferenceToAlreadyExistingLatch(currentLatch,
-							thePortNumberOfTheOtherLatch,
-							alreadyPlacedOtherLatchInstance);
-
-				} else {
-					SLICEL_INSTANCE latchToBeAdded = this
-							.placeActiveLowRisingEdgeLatch(currentLatch,
-									design, myNetCreator, model);
-					alreadyPlacedActiveLowLatches.put(currentLatch.input,
-							currentLatch);
-				}
-
-				break;
-			case "re":
-				if (alreadyPlacedRisingEdgeFlipFlop
-						.containsKey(currentLatch.input)) {
-					GenericLatch alreadyPlacedOtherLatch = alreadyPlacedRisingEdgeFlipFlop
-							.get(currentLatch.input);
-					String thePortNumberOfTheOtherLatch = portNubmerOfTheAlreadyPlacedInstances
-							.get(alreadyPlacedOtherLatch.output);
-					Instance alreadyPlacedOtherLatchInstance = alreadyPlacedInstances
-							.get(alreadyPlacedOtherLatch.output + "_"
-									+ thePortNumberOfTheOtherLatch + _LATCH);
-					// just place a reference to the already existing
-					// Latch/FlipFlop
-					this.placeReferenceToAlreadyExistingLatch(currentLatch,
-							thePortNumberOfTheOtherLatch,
-							alreadyPlacedOtherLatchInstance);
-
-				} else {
-					SLICEL_INSTANCE latchToBeAdded = this
-							.placeActiveLowRisingEdgeLatch(currentLatch,
-									design, myNetCreator, model);
-					alreadyPlacedRisingEdgeFlipFlop.put(currentLatch.input,
-							currentLatch);
-				}
-
-				break;
-
-			default:
-				System.out.println("LATCH TYPE: " + currentLatch.type);
-				System.err.print("Unknown Latch Type found!");
-				Error e = new Error();
-				throw e;
-
 			}
+
+			
 
 		}
 
@@ -716,14 +698,14 @@ public class DesignCreation {
 													// is
 													// done
 													// in
-		
+
 		// .setupTheLatch
 		System.out.println("negBlockCounter " + negBlockCounter);
 		negativeSlice = this.setupTheAdditionalLatch(currentLatch,
 				myNetCreator, design, alphabetSelector[negBlockCounter],
 				negativeSlice);
 
-		//add a reference to the new element
+		// add a reference to the new element
 		alreadyPlacedInstances.put(currentLatch.output + "_"
 				+ alphabetSelector[negBlockCounter] + _LATCH, negativeSlice);
 		typeOfTheAlreadyPlaceInstances.put(currentLatch.output, _LATCH);
@@ -736,9 +718,9 @@ public class DesignCreation {
 		}
 
 		negBlockCounter = (negBlockCounter + 1) % 4;
-	/*
-	 * form 0 to 3 = A to D
-	 */
+		/*
+		 * form 0 to 3 = A to D
+		 */
 
 		return negativeSlice;
 	}
@@ -773,7 +755,6 @@ public class DesignCreation {
 		/*
 		 * form 0 to 3 = A to D
 		 */
-
 
 		return positiveSlice;
 

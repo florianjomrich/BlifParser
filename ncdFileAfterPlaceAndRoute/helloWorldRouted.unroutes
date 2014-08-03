@@ -1,13 +1,9 @@
 Release 14.7 - par P.20131013 (nt)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Sun Aug 03 18:00:06 2014
+Sun Aug 03 18:51:26 2014
 
 All signals are completely routed.
 
-WARNING:ParHelpers:362 - There are 1 sourceless signals in this design. This design will not pass the DRC check run by
-   Bitgen.
-
-   n44_z0re.AQ->z0re_FINAL_OUTPUT.O
 
 

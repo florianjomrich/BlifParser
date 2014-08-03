@@ -1,16 +1,16 @@
-#:C9     
+#:C19    
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sun Aug 03 17:59:59 2014
+#:T   Sun Aug 03 18:51:18 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.03.13.29.47
+	#Design creation date: 2014.08.03.14.21.06
 	#Building chip graphics...
 	#Loading speed info...
 	#1
@@ -18,23 +18,40 @@ select -k comp 'z0re_FINAL_OUTPUT'
 	#2
 unselect comp 'z0re_FINAL_OUTPUT'
 	#3
-select -k comp 'n44_z0re_z50al'
+select -k comp 'z1re_FINAL_OUTPUT'
 	#4
-unselect -all
+unselect comp 'z1re_FINAL_OUTPUT'
 	#5
-select net 'n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O'
-	#net "n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O"
+select -k comp 'z2re_FINAL_OUTPUT'
 	#6
-unselect -all
+unselect comp 'z2re_FINAL_OUTPUT'
 	#7
-select net 'n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O'
-	#net "n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O"
+select -k comp 'z3re_FINAL_OUTPUT'
 	#8
-post block
-	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
-	#be performed unless the selection contains only a single site
-	#or single component.  Change the selection and try again.
+unselect comp 'z3re_FINAL_OUTPUT'
 	#9
-unselect -all
+select -k comp 'u36fe_FINAL_OUTPUT'
 	#10
+unselect comp 'u36fe_FINAL_OUTPUT'
+	#11
+select -k comp 'n44_z0re_z50al'
+	#12
+unselect -all
+	#13
 select comp 'n44_z0re_z50al'
+	#comp "n44_z0re_z50al",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+	#14
+unselect -all
+	#15
+select comp 'n44_z0re_z50al'
+	#comp "n44_z0re_z50al",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+	#16
+post block
+	#17
+unselect comp 'n44_z0re_z50al'
+	#18
+select -k comp 'u36fe_FINAL_OUTPUT'
+	#19
+unselect comp 'u36fe_FINAL_OUTPUT'
+	#20
+select -k comp 'z0re_FINAL_OUTPUT'

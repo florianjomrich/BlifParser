@@ -1,7 +1,7 @@
 
 # =======================================================
 # edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
-# time: So Aug 03 17:59:46 2014
+# time: So Aug 03 18:51:04 2014
 
 # =======================================================
 
@@ -151,9 +151,16 @@ inst "x23" "IOB",placed RIOB_X37Y90 G14  ,
 #  ================================================
   net "null" ,
     ;
+  net "my_clk_BUFG.O->u34fe.CLK" ,
+    inpin "u34fe_u37ah" CLK ,
+    outpin "my_clk_BUFG" O ,
+    inpin "u34fe_u37ah" CLK ,
+    inpin "n44_z0re_z50al" CLK ,
+    ;
   net "n44_z0re_z50al.AMUX->n44_z0re_z50al.AX" ,
     inpin "n44_z0re_z50al" AX ,
     outpin "n44_z0re_z50al" AMUX ,
+    inpin "n44_z0re_z50al" AX ,
     inpin "n44_z0re_z50al" AX ,
     inpin "n44_z0re_z50al" AX ,
     inpin "n44_z0re_z50al" AX ,
@@ -166,30 +173,11 @@ inst "x23" "IOB",placed RIOB_X37Y90 G14  ,
     inpin "u34fe_u37ah" BX ,
     inpin "n44_FINAL_OUTPUT" O ,
     ;
-  net "my_clk_BUFG.O->n44_z0re.CLK" ,
-    inpin "n44_z0re_z50al" CLK ,
-    outpin "my_clk_BUFG" O ,
-    inpin "u34fe_u37ah" CLK ,
-    inpin "u34fe_u37ah" CLK ,
-    inpin "n44_z0re_z50al" CLK ,
-    ;
-  net "n44_z0re.AQ->z0re_FINAL_OUTPUT.O" ,
-    inpin "z0re_FINAL_OUTPUT" O ,
-    outpin "n44_z0re_z50al" AQ ,
-    ;
   net "u34fe_u37ah.BQ->u37ah_FINAL_OUTPUT.O" ,
     inpin "u37ah_FINAL_OUTPUT" O ,
     outpin "u34fe_u37ah" BQ ,
     inpin "u38ah_FINAL_OUTPUT" O ,
     inpin "u39ah_FINAL_OUTPUT" O ,
-    ;
-  net "n44_z0re_z50al.AQ->z1re_FINAL_OUTPUT.O" ,
-    inpin "z1re_FINAL_OUTPUT" O ,
-    outpin "n44_z0re_z50al" AQ ,
-    inpin "z2re_FINAL_OUTPUT" O ,
-    inpin "z3re_FINAL_OUTPUT" O ,
-    inpin "z4re_FINAL_OUTPUT" O ,
-    inpin "z5re_FINAL_OUTPUT" O ,
     ;
   net "global_reset.I->u34fe.SR" ,
     inpin "u34fe_u37ah" SR ,
@@ -218,6 +206,15 @@ inst "x23" "IOB",placed RIOB_X37Y90 G14  ,
     outpin "n44_z0re_z50al" BQ ,
     inpin "z51al_FINAL_OUTPUT" O ,
     ;
+  net "n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O" ,
+    inpin "z0re_FINAL_OUTPUT" O ,
+    outpin "n44_z0re_z50al" AQ ,
+    inpin "z1re_FINAL_OUTPUT" O ,
+    inpin "z2re_FINAL_OUTPUT" O ,
+    inpin "z3re_FINAL_OUTPUT" O ,
+    inpin "z4re_FINAL_OUTPUT" O ,
+    inpin "z5re_FINAL_OUTPUT" O ,
+    ;
 
 # =======================================================
 # SUMMARY
@@ -227,7 +224,7 @@ inst "x23" "IOB",placed RIOB_X37Y90 G14  ,
 #     Number of SLICES: 2
 #     Number of DSP48s: 0
 #     Number of BRAMs: 0
-# Number of Nets: 11
+# Number of Nets: 10
 # =======================================================
 
 

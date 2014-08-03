@@ -5,46 +5,47 @@
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sun Aug 03 17:52:13 2014
+#:T   Sun Aug 03 18:43:07 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.03.12.55.08
+	#Design creation date: 2014.08.03.14.12.59
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'x25'
+select -k comp 'n44_z0re_z50al'
 	#2
-unselect comp 'x25'
+unselect comp 'n44_z0re_z50al'
 	#3
 select -k comp 'z0re_FINAL_OUTPUT'
 	#4
 unselect comp 'z0re_FINAL_OUTPUT'
 	#5
-select -k comp 'x25'
+select -k comp 'z1re_FINAL_OUTPUT'
 	#6
-unselect comp 'x25'
+unselect comp 'z1re_FINAL_OUTPUT'
 	#7
-select -k comp 'z0re_FINAL_OUTPUT'
+select -k comp 'z2re_FINAL_OUTPUT'
 	#8
-unselect -all
+unselect comp 'z2re_FINAL_OUTPUT'
 	#9
-select comp 'z0re_FINAL_OUTPUT'
-	#comp "z0re_FINAL_OUTPUT",  site "H18",  bonded type = IOB,  pad name = PAD106,  pin name = H18  (RPM grid X161Y248)
+select -k comp 'z3re_FINAL_OUTPUT'
 	#10
-unselect -all
+unselect comp 'z3re_FINAL_OUTPUT'
 	#11
-select comp 'z0re_FINAL_OUTPUT'
-	#comp "z0re_FINAL_OUTPUT",  site "H18",  bonded type = IOB,  pad name = PAD106,  pin name = H18  (RPM grid X161Y248)
+select -k comp 'z4re_FINAL_OUTPUT'
 	#12
-post block
+unselect comp 'z4re_FINAL_OUTPUT'
 	#13
-unselect -all
+select -k comp 'z5re_FINAL_OUTPUT'
 	#14
-select comp 'z0re_FINAL_OUTPUT'
-	#comp "z0re_FINAL_OUTPUT",  site "H18",  bonded type = IOB,  pad name = PAD106,  pin name = H18  (RPM grid X161Y248)
+unselect comp 'z5re_FINAL_OUTPUT'
 	#15
-post block
+select -k comp 'z50al_FINAL_OUTPUT'
 	#16
+unselect comp 'z50al_FINAL_OUTPUT'
+	#17
+select -k comp 'z51al_FINAL_OUTPUT'
+	#18
 post open

@@ -7,7 +7,7 @@
 // \   \   \/     Version: P.20131013
 //  \   \         Application: netgen
 //  /   /         Filename: HelloWorldUnrouted.v
-// /___/   /\     Timestamp: Sun Aug 03 18:00:04 2014
+// /___/   /\     Timestamp: Sun Aug 03 18:51:22 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
@@ -62,16 +62,15 @@ module HelloWorld (
   input \x24.PAD.PAD ;
   inout \u35fe_FINAL_OUTPUT.OUTBUF.OUT ;
   input \x23.PAD.PAD ;
+  wire \my_clk_BUFG.O->u34fe.CLK ;
   wire \n44_z0re_z50al.AMUX->n44_z0re_z50al.AX ;
-  wire \my_clk_BUFG.O->n44_z0re.CLK ;
-  wire \n44_z0re.AQ->z0re_FINAL_OUTPUT.O ;
   wire \u34fe_u37ah.BQ->u37ah_FINAL_OUTPUT.O ;
-  wire \n44_z0re_z50al.AQ->z1re_FINAL_OUTPUT.O ;
   wire \global_reset.I->u34fe.SR ;
   wire \u34fe_u37ah.AQ->u34fe_FINAL_OUTPUT.O ;
   wire \x23.I->n44_z0re_z50al.BX ;
   wire \bertaClock.I->my_clk_BUFG.I0 ;
   wire \n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O ;
+  wire \n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ;
   wire \z2re_FINAL_OUTPUT.INBUF.OUT ;
   wire \test.INBUF.OUT ;
   wire \z5re_FINAL_OUTPUT.INBUF.OUT ;
@@ -128,7 +127,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD94" ))
   z2re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z1re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z2re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -168,7 +167,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD83" ))
   z5re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z1re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z5re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -323,7 +322,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD91" ))
   z3re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z1re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z3re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -402,7 +401,7 @@ module HelloWorld (
     .O(\NLW_u36fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
   X_INV   \INV_u34fe_u37ah.AFFCLK  (
-    .I(\my_clk_BUFG.O->n44_z0re.CLK ),
+    .I(\my_clk_BUFG.O->u34fe.CLK ),
     .O(\u34fe_u37ah/INV_u34fe_u37ah.AFFCLK )
   );
   X_LATCHE #(
@@ -410,7 +409,7 @@ module HelloWorld (
     .INIT ( 1'b0 ))
   \u34fe_u37ah.BFF  (
     .GE(VCC),
-    .CLK(\my_clk_BUFG.O->n44_z0re.CLK ),
+    .CLK(\my_clk_BUFG.O->u34fe.CLK ),
     .I(\n44_z0re_z50al.AMUX->n44_z0re_z50al.AX ),
     .O(\u34fe_u37ah.BQ->u37ah_FINAL_OUTPUT.O ),
     .RST(\global_reset.I->u34fe.SR ),
@@ -435,7 +434,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD92" ))
   z4re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z1re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z4re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -477,10 +476,10 @@ module HelloWorld (
     .LOC ( "BUFGMUX_X2Y10" ))
   \my_clk_BUFG.BUFG  (
     .I(\bertaClock.I->my_clk_BUFG.I0 ),
-    .O(\my_clk_BUFG.O->n44_z0re.CLK )
+    .O(\my_clk_BUFG.O->u34fe.CLK )
   );
   X_INV   \INV_n44_z0re_z50al.BFFCLK  (
-    .I(\my_clk_BUFG.O->n44_z0re.CLK ),
+    .I(\my_clk_BUFG.O->u34fe.CLK ),
     .O(\n44_z0re_z50al/INV_n44_z0re_z50al.BFFCLK )
   );
   X_BUF   \n44_z0re_z50al/n44_z0re_z50al_AMUX_Delay  (
@@ -503,9 +502,9 @@ module HelloWorld (
     .INIT ( 1'b0 ))
   \n44_z0re_z50al.AFF  (
     .CE(VCC),
-    .CLK(\my_clk_BUFG.O->n44_z0re.CLK ),
+    .CLK(\my_clk_BUFG.O->u34fe.CLK ),
     .I(\n44_z0re_z50al.A5LUT.O5 ),
-    .O(\n44_z0re_z50al.AQ->z1re_FINAL_OUTPUT.O ),
+    .O(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .RST(\global_reset.I->u34fe.SR ),
     .SET(GND)
   );
@@ -528,7 +527,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD106" ))
   z0re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re.AQ->z0re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z0re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -574,7 +573,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD93" ))
   z1re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z1re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z1re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(

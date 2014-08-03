@@ -5,34 +5,36 @@
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sun Aug 03 17:23:40 2014
+#:T   Sun Aug 03 17:59:59 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.03.12.53.15
+	#Design creation date: 2014.08.03.13.29.47
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'n44_z0re'
+select -k comp 'z0re_FINAL_OUTPUT'
 	#2
-unselect -all
+unselect comp 'z0re_FINAL_OUTPUT'
 	#3
-select comp 'n44_z0re'
-	#comp "n44_z0re",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+select -k comp 'n44_z0re_z50al'
 	#4
 unselect -all
 	#5
-select comp 'n44_z0re'
-	#comp "n44_z0re",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+select net 'n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O'
+	#net "n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O"
 	#6
-post block
-	#7
 unselect -all
+	#7
+select net 'n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O'
+	#net "n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O"
 	#8
-select net "n44_z0re.AQ->z0re_FINAL_OUTPUT.O"
-	#net "n44_z0re.AQ->z0re_FINAL_OUTPUT.O"
+post block
+	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
+	#be performed unless the selection contains only a single site
+	#or single component.  Change the selection and try again.
 	#9
 unselect -all
 	#10
-select net "n44_z0re.AMUX->n44_FINAL_OUTPUT.O"
+select comp 'n44_z0re_z50al'

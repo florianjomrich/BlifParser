@@ -378,6 +378,14 @@ public class DesignCreation {
 			alreadyPlacedRisingEdgeFlipFlop.put(primaryLatch.input,
 					primaryLatch);
 			break;
+		case "ah":
+			alreadyPlacedActiveHighLatches.put(primaryLatch.input,
+					primaryLatch);
+			break;	
+		case "fe":
+			alreadyPlacedFallingEdgeFlipFlop.put(primaryLatch.input,
+					primaryLatch);
+			break;	
 
 		default:
 			System.err.print("Failure LatchType is unspecified");

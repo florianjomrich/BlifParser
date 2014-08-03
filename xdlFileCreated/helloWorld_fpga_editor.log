@@ -1,35 +1,50 @@
-#:C0     
+#:C9     
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sun Aug 03 17:10:27 2014
+#:T   Sun Aug 03 17:52:13 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.03.12.40.05
+	#Design creation date: 2014.08.03.12.55.08
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'test'
+select -k comp 'x25'
 	#2
-unselect comp 'test'
+unselect comp 'x25'
 	#3
-select -k comp 'test_FINAL_OUTPUT'
+select -k comp 'z0re_FINAL_OUTPUT'
 	#4
-unselect -all
+unselect comp 'z0re_FINAL_OUTPUT'
 	#5
-select comp 'test_FINAL_OUTPUT'
-	#comp "test_FINAL_OUTPUT",  site "F3",  bonded type = IOB,  pad name = PAD332,  pin name = F3  (RPM grid X1Y344)
+select -k comp 'x25'
 	#6
-unselect -all
+unselect comp 'x25'
 	#7
-select comp 'test_FINAL_OUTPUT'
-	#comp "test_FINAL_OUTPUT",  site "F3",  bonded type = IOB,  pad name = PAD332,  pin name = F3  (RPM grid X1Y344)
+select -k comp 'z0re_FINAL_OUTPUT'
 	#8
-post block
+unselect -all
 	#9
+select comp 'z0re_FINAL_OUTPUT'
+	#comp "z0re_FINAL_OUTPUT",  site "H18",  bonded type = IOB,  pad name = PAD106,  pin name = H18  (RPM grid X161Y248)
+	#10
+unselect -all
+	#11
+select comp 'z0re_FINAL_OUTPUT'
+	#comp "z0re_FINAL_OUTPUT",  site "H18",  bonded type = IOB,  pad name = PAD106,  pin name = H18  (RPM grid X161Y248)
+	#12
+post block
+	#13
+unselect -all
+	#14
+select comp 'z0re_FINAL_OUTPUT'
+	#comp "z0re_FINAL_OUTPUT",  site "H18",  bonded type = IOB,  pad name = PAD106,  pin name = H18  (RPM grid X161Y248)
+	#15
+post block
+	#16
 post open

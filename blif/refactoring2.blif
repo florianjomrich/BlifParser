@@ -8,7 +8,22 @@
 .clock bertaClock
 
 .latch n44 z0re re bertaClock 0
+.latch n44 z1re re bertaClock 0
+.latch n44 z2re re bertaClock 0
+.latch n44 z3re re bertaClock 0
+.latch n44 z4re re bertaClock 0
+.latch n44 z5re re bertaClock 0
 
+.latch n44 u34fe fe bertaClock 0
+.latch n44 u35fe fe bertaClock 0
+.latch n44 u36fe fe bertaClock 0
+
+.latch n44 u37ah ah bertaClock 0
+.latch n44 u38ah ah bertaClock 0
+.latch n44 u39ah ah bertaClock 0
+
+.latch x23 z50al al bertaClock 0
+.latch x23 z51al al bertaClock 0
 
 
 #.latch x3 z4 ah bertaClock 0

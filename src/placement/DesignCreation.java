@@ -103,7 +103,8 @@ public class DesignCreation {
 		// Does not help if Loops are done in the specification
 		// e.g. LogicFunction A has output for B and B has output for A and both
 		// need each other as inputs
-		this.checkModelForCorrectness(model);
+		CorrectnessChecker checker = new CorrectnessChecker();
+		checker.checkModelForCorrectness(model);
 
 		// place the input and output IOBs
 		this.createInputAndOutputIOBs(model, design);
@@ -146,32 +147,7 @@ public class DesignCreation {
 		return design;
 	}
 
-	private void checkModelForCorrectness(Model model) throws Exception {
-		for (LogicGate currentGateToBeChecked : model.logicGates) {
-			for (String currentInputToBeChecked : currentGateToBeChecked.inputs) {
 
-				// it's a primary input maybe ?
-				if (model.inputs.contains(currentInputToBeChecked))
-					continue;// continue with the next input
-				// it is a interconnection maybe?
-				if (!isAnInterconnectVariable(model.logicGates,
-						currentInputToBeChecked))
-					continue;
-				// it is a variable provided by a latch?
-				if (!isAnLatchVariable(model.genericLatches,
-						currentInputToBeChecked))
-					continue;
-				else {
-					System.err
-							.print("Current Model has got inputs that are not definied correct: "
-									+ currentInputToBeChecked + " ");
-					Exception modelIsIncorrect_Exception = new Exception();
-					throw (modelIsIncorrect_Exception);// stop the process
-				}
-
-			}
-		}
-	}
 
 	/*
 	 * Setup the clk for the latches
@@ -284,7 +260,8 @@ public class DesignCreation {
 						currentLogicGate, positiveSlice);
 
 				// add the primary Latch for special treatment afterwards in the
-				// connection process
+				// placing process of the remaining latches
+				//connection process then happens for all together
 				primaryLatches.add(primaryLatch);
 
 				// add the latch and the logicBlock to the placed Instances
@@ -317,7 +294,8 @@ public class DesignCreation {
 						currentLogicGate, negativeSlice);
 
 				// add the primary Latch for special treatment afterwards in the
-				// connection process
+				// placing process of the remaining latches
+				//connection process then happens for all together
 				primaryLatches.add(primaryLatch);
 
 			
@@ -803,30 +781,10 @@ public class DesignCreation {
 		return currentSlice;
 	}
 
-	private boolean isAnLatchVariable(
-			CopyOnWriteArrayList<GenericLatch> genericLatches,
-			String currentInputToBeChecked) {
-		for (GenericLatch currentLatchToBeChecked : genericLatches) {
-			if (currentLatchToBeChecked.output.equals(currentInputToBeChecked))
-				return true;
-		}
-		return false;
-	}
 
-	private boolean isAnInterconnectVariable(
-			CopyOnWriteArrayList<LogicGate> logicGatesToIterateOver,
-			String currentInputToBeChecked) {
-
-		for (LogicGate otherGateToBeComparedWith : logicGatesToIterateOver) {
-			if (otherGateToBeComparedWith.output
-					.equals(currentInputToBeChecked))
-				return true;
-
-		}
-		return false;
-	}
 
 	private void createInputAndOutputIOBs(Model model, Design design) {
+		
 		// Create Input IOBs:
 		for (String currentInput : model.inputs) {
 			Instance myIOB_Input = new IOB_BLOCK_INSTANCE(

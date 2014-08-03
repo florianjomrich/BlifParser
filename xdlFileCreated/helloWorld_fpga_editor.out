@@ -1,57 +1,37 @@
-#:C19    
+#:C9     
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sun Aug 03 18:51:18 2014
+#:T   Sun Aug 03 19:01:33 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.03.14.21.06
+	#Design creation date: 2014.08.03.14.31.04
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'z0re_FINAL_OUTPUT'
+select -k comp 'n44_z0re'
 	#2
-unselect comp 'z0re_FINAL_OUTPUT'
+unselect -all
 	#3
-select -k comp 'z1re_FINAL_OUTPUT'
+select comp 'n44_z0re'
+	#comp "n44_z0re",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#4
-unselect comp 'z1re_FINAL_OUTPUT'
+unselect -all
 	#5
-select -k comp 'z2re_FINAL_OUTPUT'
+select comp 'n44_z0re'
+	#comp "n44_z0re",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#6
-unselect comp 'z2re_FINAL_OUTPUT'
-	#7
-select -k comp 'z3re_FINAL_OUTPUT'
-	#8
-unselect comp 'z3re_FINAL_OUTPUT'
-	#9
-select -k comp 'u36fe_FINAL_OUTPUT'
-	#10
-unselect comp 'u36fe_FINAL_OUTPUT'
-	#11
-select -k comp 'n44_z0re_z50al'
-	#12
-unselect -all
-	#13
-select comp 'n44_z0re_z50al'
-	#comp "n44_z0re_z50al",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#14
-unselect -all
-	#15
-select comp 'n44_z0re_z50al'
-	#comp "n44_z0re_z50al",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#16
 post block
-	#17
-unselect comp 'n44_z0re_z50al'
-	#18
-select -k comp 'u36fe_FINAL_OUTPUT'
-	#19
-unselect comp 'u36fe_FINAL_OUTPUT'
-	#20
+	#7
+unselect comp 'n44_z0re'
+	#8
 select -k comp 'z0re_FINAL_OUTPUT'
+	#9
+unselect comp 'z0re_FINAL_OUTPUT'
+	#10
+select -k comp 'n44_FINAL_OUTPUT'

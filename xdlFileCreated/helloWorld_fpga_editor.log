@@ -1,51 +1,66 @@
-#:C9     
+#:C19    
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sun Aug 03 18:43:07 2014
+#:T   Sun Aug 03 18:55:49 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.03.14.12.59
+	#Design creation date: 2014.08.03.14.25.38
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'n44_z0re_z50al'
-	#2
-unselect comp 'n44_z0re_z50al'
-	#3
 select -k comp 'z0re_FINAL_OUTPUT'
-	#4
+	#2
 unselect comp 'z0re_FINAL_OUTPUT'
+	#3
+select -k comp 'n44_z0re'
+	#4
+unselect -all
 	#5
-select -k comp 'z1re_FINAL_OUTPUT'
+select net 'x23.I->n44_z0re.A1'
+	#net "x23.I->n44_z0re.A1"
 	#6
-unselect comp 'z1re_FINAL_OUTPUT'
+unselect -all
 	#7
-select -k comp 'z2re_FINAL_OUTPUT'
+select net 'x23.I->n44_z0re.A1'
+	#net "x23.I->n44_z0re.A1"
 	#8
-unselect comp 'z2re_FINAL_OUTPUT'
+post block
+	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
+	#be performed unless the selection contains only a single site
+	#or single component.  Change the selection and try again.
 	#9
-select -k comp 'z3re_FINAL_OUTPUT'
+unselect -all
 	#10
-unselect comp 'z3re_FINAL_OUTPUT'
+select comp 'n44_z0re'
+	#comp "n44_z0re",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#11
-select -k comp 'z4re_FINAL_OUTPUT'
+unselect -all
 	#12
-unselect comp 'z4re_FINAL_OUTPUT'
+select comp 'n44_z0re'
+	#comp "n44_z0re",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
 	#13
-select -k comp 'z5re_FINAL_OUTPUT'
+post block
 	#14
-unselect comp 'z5re_FINAL_OUTPUT'
+unselect comp 'n44_z0re'
 	#15
-select -k comp 'z50al_FINAL_OUTPUT'
+select -k comp 'n44_FINAL_OUTPUT'
 	#16
-unselect comp 'z50al_FINAL_OUTPUT'
+unselect -all
 	#17
-select -k comp 'z51al_FINAL_OUTPUT'
+select comp 'n44_FINAL_OUTPUT'
+	#comp "n44_FINAL_OUTPUT",  site "H17",  bonded type = IOB,  pad name = PAD105,  pin name = H17  (RPM grid X161Y250)
 	#18
+post block
+	#19
+unselect -all
+	#20
+select net "n44_z0re.AMUX->n44_z0re.AX"
+	#net "n44_z0re.AMUX->n44_z0re.AX"
+	#21
 post open

@@ -68,8 +68,9 @@ initial begin
 // Wait 100 ns for global reset to finish
 	#100;
 
-	// Add stimulus here
+
 
 end
+
 
 endmodule

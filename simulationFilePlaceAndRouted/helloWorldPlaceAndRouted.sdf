@@ -1,7 +1,7 @@
 (DELAYFILE
   (SDFVERSION "3.0")
   (DESIGN "HelloWorld")
-  (DATE "Sun Aug 03 18:51:30 2014")
+  (DATE "Sun Aug 03 19:17:18 2014")
   (VENDOR "Xilinx")
   (PROGRAM "Xilinx SDF Writer")
   (VERSION "P.20131013")
@@ -347,7 +347,7 @@
         (ABSOLUTE
           (PORT CLK ( 154 )( 154 ))
           (PORT I ( 119 )( 119 ))
-          (PORT RST ( 2488 )( 2488 ))
+          (PORT RST ( 367 )( 367 ))
           (IOPATH CLK O ( 344 )( 344 ))
           (IOPATH I O ( 364 )( 364 ))
           (IOPATH RST O ( 208 )( 208 ))
@@ -368,7 +368,7 @@
         (ABSOLUTE
           (PORT CLK ( 154 )( 154 ))
           (PORT I ( 119 )( 119 ))
-          (PORT RST ( 2471 )( 2471 ))
+          (PORT RST ( 350 )( 350 ))
           (IOPATH CLK O ( 293 )( 293 ))
           (IOPATH RST O ( 183 )( 183 ))
         )
@@ -470,7 +470,7 @@
         (ABSOLUTE
           (PORT CLK ( 154 )( 154 ))
           (PORT I ( 119 )( 119 ))
-          (PORT RST ( 2327 )( 2327 ))
+          (PORT RST ( 367 )( 367 ))
           (IOPATH CLK O ( 344 )( 344 ))
           (IOPATH I O ( 364 )( 364 ))
           (IOPATH RST O ( 208 )( 208 ))
@@ -491,7 +491,7 @@
         (ABSOLUTE
           (PORT CLK ( 154 )( 154 ))
           (PORT I ( 119 )( 119 ))
-          (PORT RST ( 2310 )( 2310 ))
+          (PORT RST ( 350 )( 350 ))
           (IOPATH CLK O ( 293 )( 293 ))
           (IOPATH RST O ( 183 )( 183 ))
         )
@@ -509,8 +509,8 @@
     (INSTANCE n44_z0re_z50al\.A5LUT)
       (DELAY
         (ABSOLUTE
-          (PORT ADR1 ( 1879 )( 1879 ))
-          (IOPATH ADR1 O ( 187 )( 187 ))
+          (PORT ADR0 ( 0 )( 0 ))
+          (IOPATH ADR0 O ( 187 )( 187 ))
         )
       )
   )
@@ -673,213 +673,6 @@
         (PATHPULSE (202))
         (ABSOLUTE
           (IOPATH I O ( 115 )( 115 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_z2re_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 2343 )( 2343 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_z5re_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1564 )( 1564 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u39ah_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1892 )( 1892 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u34fe_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1980 )( 1980 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_z50al_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1898 )( 1898 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_z51al_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1672 )( 1672 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u37ah_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1919 )( 1919 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_z3re_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1707 )( 1707 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u36fe_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1706 )( 1706 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u34fe_u37ah\.BFF\/CLK)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1274 )( 1274 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u34fe_u37ah\.BFF\/IN)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 453 )( 453 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u34fe_u37ah\.AFF\/CLK)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1274 )( 1274 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u34fe_u37ah\.AFF\/IN)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 459 )( 459 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_z4re_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 2204 )( 2204 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u38ah_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 2080 )( 2080 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_my_clk_BUFG\.BUFG\/IN)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 835 )( 835 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_n44_z0re_z50al\.BFF\/CLK)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1276 )( 1276 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_n44_z0re_z50al\.BFF\/IN)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1698 )( 1698 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_n44_z0re_z50al\.AFF\/CLK)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1276 )( 1276 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_z0re_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1992 )( 1992 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_n44_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1538 )( 1538 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_z1re_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1975 )( 1975 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE NlwBufferBlock_u35fe_FINAL_OUTPUT_OBUF\/I)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 1916 )( 1916 ))
         )
       )
   )

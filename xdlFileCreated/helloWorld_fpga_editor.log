@@ -1,95 +1,111 @@
-#:C29    
+#:C39    
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Sat Aug 02 22:44:54 2014
+#:T   Sun Aug 03 14:17:49 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.02.18.14.38
+	#Design creation date: 2014.08.03.09.47.23
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'z0_FINAL_OUTPUT'
+select -k comp 'n44_z0_z1'
 	#2
-unselect comp 'z0_FINAL_OUTPUT'
+unselect -all
 	#3
-select -k comp 'n44_ichKommeIndieNegativeSLICE_z5'
+select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
+	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
 	#4
-unselect comp 'n44_ichKommeIndieNegativeSLICE_z5'
+unselect -all
 	#5
-select -k comp 'z2_z4_z3_z1'
+select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
+	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
 	#6
-unselect comp 'z2_z4_z3_z1'
-	#7
-select -k comp 'n44_ichKommeIndieNegativeSLICE_z5'
-	#8
-unselect -all
-	#9
-select net 'n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O'
-	#net "n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O"
-	#10
-unselect -all
-	#11
-select net 'n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O'
-	#net "n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O"
-	#12
 post block
 	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
 	#be performed unless the selection contains only a single site
 	#or single component.  Change the selection and try again.
-	#13
+	#7
 unselect -all
-	#14
-select comp 'n44_ichKommeIndieNegativeSLICE_z5'
-	#comp "n44_ichKommeIndieNegativeSLICE_z5",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#15
+	#8
+select comp 'n44_z0_z1'
+	#comp "n44_z0_z1",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+	#9
 unselect -all
-	#16
-select comp 'n44_ichKommeIndieNegativeSLICE_z5'
-	#comp "n44_ichKommeIndieNegativeSLICE_z5",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#17
+	#10
+select comp 'n44_z0_z1'
+	#comp "n44_z0_z1",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+	#11
 post block
+	#12
+unselect -all
+	#13
+select net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
+	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
+	#14
+unselect net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
+	#15
+select -k comp 'z0_FINAL_OUTPUT'
+	#16
+unselect -all
+	#17
+select net 'n44_z0.AQ->z0_FINAL_OUTPUT.O'
+	#net "n44_z0.AQ->z0_FINAL_OUTPUT.O"
 	#18
-unselect comp 'n44_ichKommeIndieNegativeSLICE_z5'
+unselect net 'n44_z0.AQ->z0_FINAL_OUTPUT.O'
 	#19
-select -k comp 'z2_z4_z3_z1'
+select -k comp 'z1_FINAL_OUTPUT'
 	#20
 unselect -all
 	#21
-select comp 'z2_z4_z3_z1'
-	#comp "z2_z4_z3_z1",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
+select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
+	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
 	#22
-post block
+unselect -all
 	#23
-unselect comp 'z2_z4_z3_z1'
+select -k comp 'z2_FINAL_OUTPUT'
 	#24
-select -k comp 'n44_ichKommeIndieNegativeSLICE_z5'
+unselect -all
 	#25
-unselect -all
+select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
+	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
 	#26
-select net 'n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O'
-	#net "n44_ichKommeIndieNegativeSLICE.BQ->z0_FINAL_OUTPUT.O"
+unselect net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
 	#27
-post block
-	#ERROR:FPGAEditor:79 - The "post block" command without any other arguments cannot
-	#be performed unless the selection contains only a single site
-	#or single component.  Change the selection and try again.
+select -k comp 'z2_FINAL_OUTPUT'
 	#28
-unselect -all
+unselect comp 'z2_FINAL_OUTPUT'
 	#29
-select comp 'n44_ichKommeIndieNegativeSLICE_z5'
-	#comp "n44_ichKommeIndieNegativeSLICE_z5",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+select -k comp 'z3_FINAL_OUTPUT'
 	#30
 unselect -all
 	#31
-select comp 'n44_ichKommeIndieNegativeSLICE_z5'
-	#comp "n44_ichKommeIndieNegativeSLICE_z5",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
+select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
+	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
 	#32
-post block
+unselect net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
 	#33
+select -k comp 'z4_FINAL_OUTPUT'
+	#34
+unselect -all
+	#35
+unselect -all
+	#36
+select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
+	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
+	#37
+unselect net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
+	#38
+select -k comp 'z5_FINAL_OUTPUT'
+	#39
+unselect -all
+	#40
+select net 'n44_z0_z1.BQ->z1_FINAL_OUTPUT.O'
+	#net "n44_z0_z1.BQ->z1_FINAL_OUTPUT.O"
+	#41
 post open

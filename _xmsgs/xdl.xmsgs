@@ -5,52 +5,40 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u37_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
+<msg type="error" file="PhysDesignRules" num="1709" delta="new" >Incomplete connectivity. The pin &lt;<arg fmt="%s" index="1">AX</arg>&gt; of comp block &lt;<arg fmt="%s" index="2">n44_z0</arg>&gt; is used and partially connected to network &lt;<arg fmt="%s" index="3">n44_z0.AMUX-&gt;n44_z0.AX</arg>&gt;. All networks must have complete connectivity through out the comp hierarchy and the connectivity for this pin must be removed or completed.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u36_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
+<msg type="warning" file="PhysDesignRules" num="972" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u37_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u34_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
+<msg type="warning" file="PhysDesignRules" num="972" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u36_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u35_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
+<msg type="warning" file="PhysDesignRules" num="972" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u34_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">z2_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
+<msg type="warning" file="PhysDesignRules" num="972" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u35_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="1761" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">n44_x3_z0.AFF</arg>&gt;:&lt;<arg fmt="%s" index="2">REG_SR</arg>&gt;.  Dangling output. The flip-flop is configured but the Q output is not used.
+<msg type="warning" file="PhysDesignRules" num="972" delta="old" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u38_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">u38_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">my_clk_BUFG.O-&gt;n44_z0.CLK</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">z4_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">n44_z0.AMUX-&gt;n44_z0.AX</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">z1_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">n44_z0.AQ-&gt;z0_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="972" delta="new" >Issue with pin connections and/or configuration on block:&lt;<arg fmt="%s" index="1">z3_FINAL_OUTPUT_OBUF</arg>&gt;:&lt;<arg fmt="%s" index="2">IOB_OUTBUF</arg>&gt;.  The input and output pins are required.
+<msg type="warning" file="PhysDesignRules" num="10" delta="old" >The network &lt;<arg fmt="%s" index="1">bertaClock.I-&gt;my_clk_BUFG.I0</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">global_reset.I-&gt;n44_x3_z0.SR</arg>&gt; is completely unrouted.
+<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">x23.I-&gt;n44_z0.A1</arg>&gt; is completely unrouted.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">n44_x3_z0.BQ-&gt;z0_FINAL_OUTPUT.O</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">n44_x3_z0.AMUX-&gt;n44_x3_z0.BX</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">my_clk_BUFG.O-&gt;n44_x3.CLK</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">bertaClock.I-&gt;my_clk_BUFG.I0</arg>&gt; is completely unrouted.
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="10" delta="new" >The network &lt;<arg fmt="%s" index="1">x23.I-&gt;n44_x3_z0.A1</arg>&gt; is completely unrouted.
+<msg type="warning" file="XDL" num="184" delta="new" >Forced writing the NCD file even though <arg fmt="%d" index="1">1</arg> DRC error(s) are present.
 </msg>
 
 </messages>

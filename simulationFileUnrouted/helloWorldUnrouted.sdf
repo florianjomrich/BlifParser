@@ -1,7 +1,7 @@
 (DELAYFILE
   (SDFVERSION "3.0")
   (DESIGN "HelloWorld")
-  (DATE "Sun Aug 03 14:10:51 2014")
+  (DATE "Sun Aug 03 14:38:02 2014")
   (VENDOR "Xilinx")
   (PROGRAM "Xilinx SDF Writer")
   (VERSION "P.20131013")
@@ -9,6 +9,42 @@
   (VOLTAGE 1.14)
   (TEMPERATURE 85)
   (TIMESCALE 1 ps)
+  (CELL (CELLTYPE "X_BUF")
+    (INSTANCE n44_z0\/n44_z0_AMUX_Delay)
+      (DELAY
+        (PATHPULSE (202))
+        (ABSOLUTE
+          (IOPATH I O ( 74 )( 74 ))
+        )
+      )
+  )
+  (CELL (CELLTYPE "X_FF")
+    (INSTANCE n44_z0\.AFF)
+      (DELAY
+        (ABSOLUTE
+          (PORT CLK ( 154 )( 154 ))
+          (PORT I ( 119 )( 119 ))
+          (IOPATH CLK O ( 293 )( 293 ))
+        )
+      )
+      (TIMINGCHECK
+        (PERIOD (posedge CLK) (430))
+        (SETUPHOLD(posedge CE) (posedge CLK) (61)(490))
+        (SETUPHOLD(negedge CE) (posedge CLK) (61)(490))
+        (SETUPHOLD(posedge I) (posedge CLK) (112)(-92))
+        (SETUPHOLD(negedge I) (posedge CLK) (112)(-92))
+        (RECREM(negedge RST) (posedge CLK) (6)(0))
+      )
+  )
+  (CELL (CELLTYPE "X_LUT5")
+    (INSTANCE n44_z0\.A5LUT)
+      (DELAY
+        (ABSOLUTE
+          (PORT ADR0 ( 0 )( 0 ))
+          (IOPATH ADR0 O ( 187 )( 187 ))
+        )
+      )
+  )
   (CELL (CELLTYPE "X_OBUF")
     (INSTANCE u37_FINAL_OUTPUT_OBUF)
       (DELAY
@@ -199,7 +235,8 @@
     (INSTANCE z2_FINAL_OUTPUT_OBUF)
       (DELAY
         (ABSOLUTE
-          (IOPATH I O ( 0 )( 0 ))
+          (PORT I ( 0 )( 0 ))
+          (IOPATH I O ( 2001 )( 2001 ))
         )
       )
   )
@@ -218,64 +255,6 @@
         (PATHPULSE (202))
         (ABSOLUTE
           (IOPATH I O ( 115 )( 115 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_BUF")
-    (INSTANCE n44_x3_z0\/n44_x3_z0_AMUX_Delay)
-      (DELAY
-        (PATHPULSE (202))
-        (ABSOLUTE
-          (IOPATH I O ( 74 )( 74 ))
-        )
-      )
-  )
-  (CELL (CELLTYPE "X_FF")
-    (INSTANCE n44_x3_z0\.BFF)
-      (DELAY
-        (ABSOLUTE
-          (PORT CLK ( 154 )( 154 ))
-          (PORT I ( 119 )( 119 ))
-          (PORT RST ( 367 )( 367 ))
-          (IOPATH CLK O ( 293 )( 293 ))
-          (IOPATH RST O ( 183 )( 183 ))
-        )
-      )
-      (TIMINGCHECK
-        (PERIOD (posedge CLK) (430))
-        (SETUPHOLD(posedge CE) (posedge CLK) (61)(490))
-        (SETUPHOLD(negedge CE) (posedge CLK) (61)(490))
-        (SETUPHOLD(posedge I) (posedge CLK) (112)(-92))
-        (SETUPHOLD(negedge I) (posedge CLK) (112)(-92))
-        (RECREM(negedge RST) (posedge CLK) (6)(0))
-      )
-  )
-  (CELL (CELLTYPE "X_FF")
-    (INSTANCE n44_x3_z0\.AFF)
-      (DELAY
-        (ABSOLUTE
-          (PORT CLK ( 154 )( 154 ))
-          (PORT I ( 119 )( 119 ))
-          (PORT RST ( 350 )( 350 ))
-          (IOPATH CLK O ( 293 )( 293 ))
-          (IOPATH RST O ( 183 )( 183 ))
-        )
-      )
-      (TIMINGCHECK
-        (PERIOD (posedge CLK) (430))
-        (SETUPHOLD(posedge CE) (posedge CLK) (61)(490))
-        (SETUPHOLD(negedge CE) (posedge CLK) (61)(490))
-        (SETUPHOLD(posedge I) (posedge CLK) (112)(-92))
-        (SETUPHOLD(negedge I) (posedge CLK) (112)(-92))
-        (RECREM(negedge RST) (posedge CLK) (6)(0))
-      )
-  )
-  (CELL (CELLTYPE "X_LUT5")
-    (INSTANCE n44_x3_z0\.A5LUT)
-      (DELAY
-        (ABSOLUTE
-          (PORT ADR0 ( 0 )( 0 ))
-          (IOPATH ADR0 O ( 187 )( 187 ))
         )
       )
   )
@@ -327,7 +306,8 @@
     (INSTANCE z4_FINAL_OUTPUT_OBUF)
       (DELAY
         (ABSOLUTE
-          (IOPATH I O ( 0 )( 0 ))
+          (PORT I ( 0 )( 0 ))
+          (IOPATH I O ( 2001 )( 2001 ))
         )
       )
   )
@@ -371,7 +351,8 @@
     (INSTANCE z1_FINAL_OUTPUT_OBUF)
       (DELAY
         (ABSOLUTE
-          (IOPATH I O ( 0 )( 0 ))
+          (PORT I ( 0 )( 0 ))
+          (IOPATH I O ( 2001 )( 2001 ))
         )
       )
   )
@@ -397,7 +378,8 @@
     (INSTANCE z3_FINAL_OUTPUT_OBUF)
       (DELAY
         (ABSOLUTE
-          (IOPATH I O ( 0 )( 0 ))
+          (PORT I ( 0 )( 0 ))
+          (IOPATH I O ( 2001 )( 2001 ))
         )
       )
   )

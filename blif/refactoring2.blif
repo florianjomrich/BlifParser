@@ -6,8 +6,11 @@
 1 1 
 .clock bertaClock
 
-.latch n44 x3 re bertaClock 0
 .latch n44 z0 re bertaClock 0
+.latch n44 z1 re bertaClock 0
+.latch n44 z2 re bertaClock 0
+.latch n44 z3 re bertaClock 0
+.latch n44 z4 re bertaClock 0
 .latch n44 z5 re bertaClock 0
 #.latch x3 z4 ah bertaClock 0
 #.latch n44 z3 ah bertaClock 0

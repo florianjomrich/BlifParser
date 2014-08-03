@@ -3,14 +3,14 @@
 .model testset/apex2
 .inputs in1 in2 in3 in4 in5 in6
 .outputs out1 out2 out3 out4 out5 out6
-.clock myCLK
+#.clock myCLK
 
 #OK
 .names in1 in2 in3 out1
 01- 1
 -10 0
 
-.names in1 in2 in3 out4
+.names in1 in2 in3 inbetween1
 011 1
 
 .names in1 in2 in3 out5
@@ -20,7 +20,10 @@
 011 1
 
 #OK
-.latch out1 out2 ah clk 1
+.latch in1 out2 ah 1
+
+#OK
+.latch inbetween1 out4 ah 1
 
 #OK
 .names in1 in2 in3 in4 in5 in6 out3

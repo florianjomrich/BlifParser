@@ -210,28 +210,6 @@ public class DesignCreation {
 	}
 	
 	
-	private void dumpPlaceRemainingLatches(Model model, NetCreator myNetCreator,
-			Design design) {
-
-				for (GenericLatch currentLatch : model.genericLatches) {
-					if(currentLatch.type.equals("ah") || currentLatch.type.equals("fe")){
-						this.placeActiveHighFallingEdgeLatch(currentLatch,design,myNetCreator,model);
-					}
-					else if(currentLatch.type.equals("al") || currentLatch.type.equals("re")){
-						this.placeActiveLowRisingEdgeLatch(currentLatch,design,myNetCreator,model);
-					}
-					else{
-						System.out.println("LATCH TYPE: "+currentLatch.type);
-						System.err.print("Unknown Latch Type found!");
-						Error e = new Error();
-						throw e;
-						
-					}
-				}
-			
-		
-	}
-	
 	
 	private void dumpPlaceLogicGates(Model model, NetCreator myNetCreator,
 			Design design) {
@@ -299,6 +277,8 @@ public class DesignCreation {
 				
 				//setup the PrimaryLatch as well
 				positiveSlice = (PositiveSLICE)  this.setupThePrimaryLatch(primaryLatch, alphabetSelector[posBlockCounter], currentLogicGate, positiveSlice);
+				
+				
 				
 				//remove the primary latch since does not have to be added once more
 				model.genericLatches.remove(primaryLatch);
@@ -372,6 +352,30 @@ public class DesignCreation {
 		}
 	}
 	
+	
+	private void dumpPlaceRemainingLatches(Model model, NetCreator myNetCreator,
+			Design design) {
+
+				for (GenericLatch currentLatch : model.genericLatches) {
+					if(currentLatch.type.equals("ah") || currentLatch.type.equals("fe")){
+						this.placeActiveHighFallingEdgeLatch(currentLatch,design,myNetCreator,model);
+					}
+					else if(currentLatch.type.equals("al") || currentLatch.type.equals("re")){
+						this.placeActiveLowRisingEdgeLatch(currentLatch,design,myNetCreator,model);
+					}
+					else{
+						System.out.println("LATCH TYPE: "+currentLatch.type);
+						System.err.print("Unknown Latch Type found!");
+						Error e = new Error();
+						throw e;
+						
+					}
+				}
+			
+		
+	}
+	
+	
 
 	private void connectLogicBlocks(Model model, NetCreator myNetCreator,
 			Design design) {
@@ -391,10 +395,10 @@ public class DesignCreation {
 				
 				String currentTypeOfOtherInstance = typeOfTheAlreadyPlaceInstances.get(currentToBeMappedInput);
 				
-				System.out.println(currentToBeMappedInput+" OUtput");
+//				System.out.println(currentToBeMappedInput+" OUtput");
 				
 				if (currentTypeOfOtherInstance.equals(_LATCH)) {
-					System.out.println("Hallo");
+//					System.out.println("Hallo");
 					String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
 							.get(currentToBeMappedInput);
 					
@@ -524,6 +528,9 @@ public class DesignCreation {
 				String LETTER_OF_THE_SELECTED_LATCH,LogicGate currentLogicGate,
 				SLICEL_INSTANCE currentSLICEL) {
 		
+		//add the name of the output of the latch
+		currentSLICEL.setName(currentSLICEL.getName() + "_"
+				+ primaryLatch.output);
 		
 		currentSLICEL.configure_PRIMARY_LATCH(primaryLatch, currentLogicGate, LETTER_OF_THE_SELECTED_LATCH);
 			return currentSLICEL;

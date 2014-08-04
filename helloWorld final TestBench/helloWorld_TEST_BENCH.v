@@ -60,28 +60,13 @@ initial begin
 \x25.PAD.PAD  = 0;
 \x24.PAD.PAD  = 0;
 \x23.PAD.PAD  = 0;
-#25;
-\global_reset.PAD.PAD  = 1;
 
 
-#10;
-\global_reset.PAD.PAD  = 0;
 // Wait 100 ns for global reset to finish
 	#100;
 
 	// Add stimulus here
-	\x23.PAD.PAD  = 1;
-	#100;
-		\x24.PAD.PAD  = 1;
-
 
 end
-
-always begin
-#50  \bertaClock.PAD.PAD  = ~\bertaClock.PAD.PAD ;
-end
-
-
-
 
 endmodule

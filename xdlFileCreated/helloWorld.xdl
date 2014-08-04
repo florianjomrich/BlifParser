@@ -1,7 +1,7 @@
 
 # =======================================================
 # edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
-# time: So Aug 03 22:30:51 2014
+# time: Mo Aug 04 20:15:17 2014
 
 # =======================================================
 
@@ -50,9 +50,6 @@ inst "my_clk_BUFG" "BUFG",placed CLKC_X18Y63 BUFGMUX_X2Y10  ,
 inst "z2re_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H15  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:z2re_FINAL_OUTPUT_OBUF: PAD:z2re_FINAL_OUTPUT: IMUX::I "
   ;
-inst "n44_z0re_z50al" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8  ,
-  cfg " AFFSRINIT::SRINIT0 SRUSED::0 AFFMUX::O5 AOUTMUX::O5 SYNC_ATTR::ASYNC BFFSRINIT::SRINIT0 CLKINV::CLK BFFMUX::BX BFF::#LATCH AFF::#FF A5LUT::#LUT:O5=(A1) "
-  ;
 inst "z0re_FINAL_OUTPUT" "IOB",placed RIOB_X37Y62 H17  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:z0re_FINAL_OUTPUT_OBUF: PAD:z0re_FINAL_OUTPUT: IMUX::I "
   ;
@@ -74,6 +71,9 @@ inst "z51al_FINAL_OUTPUT" "IOB",placed LIOB_X0Y92 F5  ,
 inst "n44_FINAL_OUTPUT" "IOB",placed RIOB_X37Y69 G16  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:n44_FINAL_OUTPUT_OBUF: PAD:n44_FINAL_OUTPUT: IMUX::I "
   ;
+inst "xorOutput_u34fe_u35fe_u37ah" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
+  cfg " SRUSED::0 AOUTMUX::O5 SYNC_ATTR::ASYNC DFF::#LATCH CLKINV::CLK_B BFFSRINIT::SRINIT0 DFFMUX::DX CFFSRINIT::SRINIT0 DFFSRINIT::SRINIT0 BFFMUX::BX BFF::#FF CFFMUX::CX A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) CFF::#FF "
+  ;
 inst "bertaClock" "IOB",placed LIOB_X0Y86 F3  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:bertaClock: IMUX::I "
   ;
@@ -82,6 +82,12 @@ inst "xorOutput_FINAL_OUTPUT" "IOB",placed LIOB_X0Y86 F4  ,
   ;
 inst "u37ah_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E3  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:u37ah_FINAL_OUTPUT_OBUF: PAD:u37ah_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "n44_z0re_n30_z4re_z50al" "SLICEL",placed CLEXM_X8Y7 SLICE_X10Y7  ,
+  cfg " SRUSED::0 AOUTMUX::O5 AFFMUX::O5 SYNC_ATTR::ASYNC BFFSRINIT::SRINIT0 CLKINV::CLK B5LUT::#LUT:O5=(A1) BOUTMUX::O5 CFFSRINIT::SRINIT0 AFFSRINIT::SRINIT0 BFFMUX::O5 CFFMUX::CX BFF::#FF AFF::#FF CFF::#LATCH A5LUT::#LUT:O5=(A1) "
+  ;
+inst "u38ah" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8  ,
+  cfg " AFFSRINIT::SRINIT0 SRUSED::0 AFFMUX::AX SYNC_ATTR::ASYNC CLKINV::CLK_B AFF::#LATCH "
   ;
 inst "global_reset" "IOB",placed LIOB_X0Y71 F2  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:global_reset: IMUX::I "
@@ -100,9 +106,6 @@ inst "x24" "IOB",placed RIOB_X37Y87 G13  ,
   ;
 inst "u35fe_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E1  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:u35fe_FINAL_OUTPUT_OBUF: PAD:u35fe_FINAL_OUTPUT: IMUX::I "
-  ;
-inst "xorOutput_u34fe_u37ah" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
-  cfg " SRUSED::0 AOUTMUX::O5 SYNC_ATTR::ASYNC BFFSRINIT::SRINIT0 CLKINV::CLK_B BFFMUX::BX CFFMUX::CX BFF::#FF CFF::#LATCH A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) CFFSRINIT::SRINIT0 "
   ;
 inst "x23" "IOB",placed RIOB_X37Y90 G14  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:x23: IMUX::I "
@@ -146,91 +149,111 @@ inst "u36fe_FINAL_OUTPUT" "IOB",placed LIOB_X0Y90 E4  ,
 # 
 #  No pips exist for unrouted nets.
 #  ================================================
-  net "xorOutput_u34fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O" ,
-    inpin "u34fe_FINAL_OUTPUT" O ,
-    outpin "xorOutput_u34fe_u37ah" BQ ,
-    inpin "u35fe_FINAL_OUTPUT" O ,
-    inpin "u36fe_FINAL_OUTPUT" O ,
-    ;
   net "null" ,
     ;
-  net "n44_z0re_z50al.AMUX->n44_z0re_z50al.AX" ,
-    inpin "n44_z0re_z50al" AX ,
-    outpin "n44_z0re_z50al" AMUX ,
-    inpin "n44_z0re_z50al" AX ,
-    inpin "n44_z0re_z50al" AX ,
-    inpin "n44_z0re_z50al" AX ,
-    inpin "n44_z0re_z50al" AX ,
-    inpin "n44_z0re_z50al" AX ,
-    inpin "xorOutput_u34fe_u37ah" BX ,
-    inpin "xorOutput_u34fe_u37ah" BX ,
-    inpin "xorOutput_u34fe_u37ah" BX ,
-    inpin "xorOutput_u34fe_u37ah" CX ,
-    inpin "xorOutput_u34fe_u37ah" CX ,
-    inpin "xorOutput_u34fe_u37ah" CX ,
-    inpin "n44_FINAL_OUTPUT" O ,
+  net "xorOutput_u34fe_u35fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O" ,
+    inpin "u34fe_FINAL_OUTPUT" O ,
+    outpin "xorOutput_u34fe_u35fe_u37ah" BQ ,
     ;
-  net "x24.I->xorOutput_u34fe_u37ah.A2" ,
-    inpin "xorOutput_u34fe_u37ah" A2 ,
-    outpin "x24" I ,
+  net "x25.I->n44_z0re_n30_z4re_z50al.B1" ,
+    inpin "n44_z0re_n30_z4re_z50al" B1 ,
+    outpin "x25" I ,
+    ;
+  net "n44_z0re_n30_z4re_z50al.CQ->z50al_FINAL_OUTPUT.O" ,
+    inpin "z50al_FINAL_OUTPUT" O ,
+    outpin "n44_z0re_n30_z4re_z50al" CQ ,
+    inpin "z51al_FINAL_OUTPUT" O ,
+    ;
+  net "x23.I->n44_z0re_n30_z4re_z50al.CX" ,
+    inpin "n44_z0re_n30_z4re_z50al" CX ,
+    outpin "x23" I ,
+    inpin "n44_z0re_n30_z4re_z50al" CX ,
+    inpin "n44_z0re_n30_z4re_z50al" A1 ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" A1 ,
     ;
   net "my_clk_BUFG.O->xorOutput_u34fe.CLK" ,
-    inpin "xorOutput_u34fe_u37ah" CLK ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" CLK ,
     outpin "my_clk_BUFG" O ,
-    inpin "xorOutput_u34fe_u37ah" CLK ,
-    inpin "n44_z0re_z50al" CLK ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" CLK ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" CLK ,
+    inpin "u38ah" CLK ,
+    inpin "n44_z0re_n30_z4re_z50al" CLK ,
     ;
-  net "x23.I->n44_z0re_z50al.BX" ,
-    inpin "n44_z0re_z50al" BX ,
-    outpin "x23" I ,
-    inpin "n44_z0re_z50al" BX ,
-    inpin "n44_z0re_z50al" A1 ,
-    inpin "xorOutput_u34fe_u37ah" A1 ,
+  net "n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX" ,
+    inpin "n44_z0re_n30_z4re_z50al" BX ,
+    outpin "n44_z0re_n30_z4re_z50al" BMUX ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" BX ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" DX ,
     ;
-  net "global_reset.I->xorOutput_u34fe.SR" ,
-    inpin "xorOutput_u34fe_u37ah" SR ,
-    outpin "global_reset" I ,
-    inpin "xorOutput_u34fe_u37ah" SR ,
-    inpin "n44_z0re_z50al" SR ,
+  net "x24.I->xorOutput_u34fe_u35fe_u37ah.A2" ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" A2 ,
+    outpin "x24" I ,
     ;
   net "bertaClock.I->my_clk_BUFG.I0" ,
     inpin "my_clk_BUFG" I0 ,
     outpin "bertaClock" I ,
     ;
-  net "xorOutput_u34fe_u37ah.AMUX->xorOutput_FINAL_OUTPUT.O" ,
-    inpin "xorOutput_FINAL_OUTPUT" O ,
-    outpin "xorOutput_u34fe_u37ah" AMUX ,
+  net "n44_z0re_n30_z4re_z50al.BQ->z4re_FINAL_OUTPUT.O" ,
+    inpin "z4re_FINAL_OUTPUT" O ,
+    outpin "n44_z0re_n30_z4re_z50al" BQ ,
     ;
-  net "n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O" ,
-    inpin "z50al_FINAL_OUTPUT" O ,
-    outpin "n44_z0re_z50al" BQ ,
-    inpin "z51al_FINAL_OUTPUT" O ,
+  net "n44_z0re_n30_z4re_z50al.AMUX->n44_z0re_n30_z4re_z50al.AX" ,
+    inpin "n44_z0re_n30_z4re_z50al" AX ,
+    outpin "n44_z0re_n30_z4re_z50al" AMUX ,
+    inpin "n44_z0re_n30_z4re_z50al" AX ,
+    inpin "n44_z0re_n30_z4re_z50al" AX ,
+    inpin "n44_z0re_n30_z4re_z50al" AX ,
+    inpin "n44_z0re_n30_z4re_z50al" AX ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" CX ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" CX ,
+    inpin "u38ah" AX ,
+    inpin "u38ah" AX ,
+    inpin "n44_FINAL_OUTPUT" O ,
     ;
-  net "xorOutput_u34fe_u37ah.CQ->u37ah_FINAL_OUTPUT.O" ,
-    inpin "u37ah_FINAL_OUTPUT" O ,
-    outpin "xorOutput_u34fe_u37ah" CQ ,
+  net "u38ah.AQ->u38ah_FINAL_OUTPUT.O" ,
     inpin "u38ah_FINAL_OUTPUT" O ,
+    outpin "u38ah" AQ ,
     inpin "u39ah_FINAL_OUTPUT" O ,
     ;
-  net "n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O" ,
+  net "xorOutput_u34fe_u35fe_u37ah.DQ->u37ah_FINAL_OUTPUT.O" ,
+    inpin "u37ah_FINAL_OUTPUT" O ,
+    outpin "xorOutput_u34fe_u35fe_u37ah" DQ ,
+    ;
+  net "global_reset.I->xorOutput_u34fe.SR" ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" SR ,
+    outpin "global_reset" I ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" SR ,
+    inpin "xorOutput_u34fe_u35fe_u37ah" SR ,
+    inpin "u38ah" SR ,
+    inpin "n44_z0re_n30_z4re_z50al" SR ,
+    ;
+  net "n44_z0re_n30_z4re_z50al.AQ->z0re_FINAL_OUTPUT.O" ,
     inpin "z0re_FINAL_OUTPUT" O ,
-    outpin "n44_z0re_z50al" AQ ,
+    outpin "n44_z0re_n30_z4re_z50al" AQ ,
     inpin "z1re_FINAL_OUTPUT" O ,
     inpin "z2re_FINAL_OUTPUT" O ,
     inpin "z3re_FINAL_OUTPUT" O ,
-    inpin "z4re_FINAL_OUTPUT" O ,
     inpin "z5re_FINAL_OUTPUT" O ,
+    ;
+  net "xorOutput_u34fe_u35fe_u37ah.AMUX->xorOutput_FINAL_OUTPUT.O" ,
+    inpin "xorOutput_FINAL_OUTPUT" O ,
+    outpin "xorOutput_u34fe_u35fe_u37ah" AMUX ,
+    ;
+  net "xorOutput_u34fe_u35fe_u37ah.CQ->u35fe_FINAL_OUTPUT.O" ,
+    inpin "u35fe_FINAL_OUTPUT" O ,
+    outpin "xorOutput_u34fe_u35fe_u37ah" CQ ,
+    inpin "u36fe_FINAL_OUTPUT" O ,
     ;
 
 # =======================================================
 # SUMMARY
 # Number of Module Defs: 0
 # Number of Module Insts: 0
-# Number of Primitive Insts: 24
-#     Number of SLICES: 2
+# Number of Primitive Insts: 25
+#     Number of SLICES: 3
 #     Number of DSP48s: 0
 #     Number of BRAMs: 0
-# Number of Nets: 12
+# Number of Nets: 17
 # =======================================================
 
 

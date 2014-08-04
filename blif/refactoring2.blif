@@ -6,6 +6,9 @@
 .names x23 n44
 1 1 
 
+.names x25 n30
+1 1 
+
 .names x23 x24 xorOutput
 01 1 
 10 1
@@ -16,15 +19,15 @@
 .latch n44 z1re re bertaClock 0
 .latch n44 z2re re bertaClock 0
 .latch n44 z3re re bertaClock 0
-.latch n44 z4re re bertaClock 0
+.latch n30 z4re re bertaClock 0
 .latch n44 z5re re bertaClock 0
 
 
-.latch n44 u34fe fe bertaClock 0
+.latch n30 u34fe fe bertaClock 0
 .latch n44 u35fe fe bertaClock 0
 .latch n44 u36fe fe bertaClock 0
 
-.latch n44 u37ah ah bertaClock 0
+.latch n30 u37ah ah bertaClock 0
 .latch n44 u38ah ah bertaClock 0
 .latch n44 u39ah ah bertaClock 0
 

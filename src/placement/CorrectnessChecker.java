@@ -6,6 +6,12 @@ import blif.Model;
 import commands.GenericLatch;
 import commands.LogicGate;
 
+/**
+ * To check if the inputs to the gates exist.
+ * Does not check latches at the moment. 
+ * @author TestUser
+ *
+ */
 public class CorrectnessChecker {
 
 	public void checkModelForCorrectness(Model model) throws Exception {

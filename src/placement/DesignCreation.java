@@ -20,9 +20,6 @@ import edu.byu.ece.rapidSmith.device.PrimitiveType;
 
 public class DesignCreation {
 
-	// ArrayList<String> availableFinalOutputVariables = new
-	// ArrayList<String>();
-
 	// stores the nets already placed
 	HashMap<String, Net> alreadyPlacedNets = new HashMap<String, Net>();
 
@@ -40,10 +37,12 @@ public class DesignCreation {
 
 	// the global clk
 	IOB_BLOCK_INSTANCE clk;
-	IOB_BLOCK_INSTANCE global_reset;
 	Instance clk_buffer;
+	
+	// the global reset
+	IOB_BLOCK_INSTANCE global_reset;
 
-	// constant values
+	// constant values for identifiaction of the different building blocks
 	String _LATCH = "_LATCH";
 	String _FINAL_OUTPUT = "_FINAL_OUTPUT";
 	String _LOGICBLOCK = "_LOGICBLOCK";
@@ -74,6 +73,8 @@ public class DesignCreation {
 
 	/**
 	 * 
+	 * To create the design representation used by Rapidsmith to create the final .NCD file.
+	 * 
 	 * @param model
 	 *            - The model created by the File-Parser which now has to be
 	 *            mapped onto the FPGA
@@ -87,11 +88,12 @@ public class DesignCreation {
 
 		// When we set the part name, it loads the corresponding Device and
 		// WireEnumerator
-		// Always include package and speed grade with the part name
+		// Always include package and speed grade (here -3) with the part name 
+	
 		// load the Spartan 6 Device
-
 		design.setPartName("xc6slx45csg324-3");
 
+		//store the positions for the random placer used by Rapidsmith - not needed if own placer is used
 		HashMap<String, PrimitiveSite> primitiveSites = design.getDevice()
 				.getPrimitiveSites();
 
@@ -208,6 +210,7 @@ public class DesignCreation {
 			for (GenericLatch currentLatchToCheck : model.genericLatches) {
 				if (currentLogicGate.output.equals(currentLatchToCheck.input)) {
 					primaryLatch = currentLatchToCheck;
+					System.out.println("Latch: "+currentLatchToCheck.output+" is primary Latch for function: "+currentLogicGate.output);
 					break;
 				}
 			}
@@ -284,13 +287,14 @@ public class DesignCreation {
 
 			} else if (primaryLatch.type.equals("al")
 					|| primaryLatch.type.equals("re")) {
+				System.out.println("primary latch Type is:"+primaryLatch.type);
 				negativeSlice = (NegativeSLICE) this.setupTheLogicBlock(
 						currentLogicGate, myNetCreator, design,
 						alphabetSelector[negBlockCounter], negativeSlice);
 
 				// setup the PrimaryLatch as well
 				negativeSlice = (NegativeSLICE) this.setupThePrimaryLatch(
-						primaryLatch, alphabetSelector[posBlockCounter],
+						primaryLatch, alphabetSelector[negBlockCounter],
 						currentLogicGate, negativeSlice);
 
 				// add the primary Latch for special treatment afterwards in the
@@ -782,7 +786,11 @@ public class DesignCreation {
 	}
 
 
-
+/**
+ * Introduces the InputOutputBlocks to the FPGA design as connection points.
+ * @param model - The internal model representation created by the parser from the blif file
+ * @param design - The design on which the input/output blocks are placed
+ */
 	private void createInputAndOutputIOBs(Model model, Design design) {
 		
 		// Create Input IOBs:
@@ -793,8 +801,7 @@ public class DesignCreation {
 			design.addInstance(myIOB_Input);
 			alreadyPlacedInstances.put(currentInput, myIOB_Input);
 			typeOfTheAlreadyPlaceInstances.put(currentInput, _IOB_INPUT);
-			// allows access to the input instance
-			// design.getInstance(name);
+	
 		}
 
 		// Create Output IOBs:
@@ -809,7 +816,7 @@ public class DesignCreation {
 			// since the final outputs can also be used as input variables to
 			// other functions
 			// also add them to the available inputs as well!
-			// Interconnection has to be done as well !
+			
 
 			// place it as new Input
 			alreadyPlacedInstances.put(currentOutput, myIOB2_Output);
@@ -820,9 +827,7 @@ public class DesignCreation {
 			typeOfTheAlreadyPlaceInstances.put(currentOutput + _FINAL_OUTPUT,
 					_IOB_OUTPUT);
 
-			// allows access to the output instance
-			// design.getInstance(name);
-		}
+			}
 
 	}
 }

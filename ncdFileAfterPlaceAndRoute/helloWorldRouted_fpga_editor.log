@@ -1,63 +1,164 @@
-#:C19    
+#:C69    
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\ncdFileAfterPlaceAndRoute
 #Date/Time:
-#:T   Sun Aug 03 14:41:55 2014
+#:T   Sun Aug 03 22:58:21 2014
 #------------------------------
 	#Reading C:\BlifParser3\ncdFileAfterPlaceAndRoute\HelloWorldRouted.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.03.10.10.28
+	#Design creation date: 2014.08.03.18.27.21
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'n44_z0'
+select -k comp 'g3220'
 	#2
-unselect -all
+unselect comp 'g3220'
 	#3
-select -k comp 'n44_z0'
+select -k comp 'g3993_g4088_g4090_g4200'
 	#4
-unselect comp 'n44_z0'
+unselect comp 'g3993_g4088_g4090_g4200'
 	#5
-select -k comp 'u34_u37'
+select -k comp 'global_reset'
 	#6
-unselect -all
+unselect comp 'global_reset'
 	#7
-unselect -all
+select -k comp 'my_clk_BUFG'
 	#8
-select net 'n44_z0.AMUX->n44_z0.AX'
-	#net "n44_z0.AMUX->n44_z0.AX"
+unselect comp 'my_clk_BUFG'
 	#9
-unselect -all
+select -k comp 'n269_g2814_n354_g2930_n359_g2929_n369_g2934'
 	#10
-select comp 'u34_u37'
-	#comp "u34_u37",  site "SLICE_X26Y2",  type = SLICEL  (RPM grid X69Y8)
+unselect comp 'n269_g2814_n354_g2930_n359_g2929_n369_g2934'
 	#11
-unselect -all
+select -k comp 'my_clk_BUFG'
 	#12
-select pin 'SLICE_X26Y2.AX'
-	#site.pin = SLICE_X26Y2.AX, comp.pin = u34_u37.AX, delay = 0.615ns on net "n44_z0.AMUX->n44_z0.AX"
+unselect comp 'my_clk_BUFG'
 	#13
-unselect -all
+select -k comp 'my_clk'
 	#14
-unselect -all
+unselect comp 'my_clk'
 	#15
-unselect -all
+select -k comp 'global_reset'
 	#16
-select pin 'SLICE_X26Y2.AMUX'
-	#site.pin = SLICE_X26Y2.AMUX, comp.pin = u34_u37.AMUX
+unselect comp 'global_reset'
 	#17
-unselect -all
+select -k comp 'g26149_n5095_n5096_n5097'
 	#18
-select pin 'SLICE_X26Y2.AQ'
-	#site.pin = SLICE_X26Y2.AQ, comp.pin = u34_u37.AQ, delay = driver on net "u34_u37.AQ->u34_FINAL_OUTPUT.O"
+unselect comp 'g26149_n5095_n5096_n5097'
 	#19
-unselect -all
+select -k comp 'n334_g2924_n339_g2920_n344_g2984_n5133'
 	#20
-select pin 'SLICE_X26Y2.BQ'
-	#site.pin = SLICE_X26Y2.BQ, comp.pin = u34_u37.BQ, delay = driver on net "u34_u37.BQ->u37_FINAL_OUTPUT.O"
+unselect comp 'n334_g2924_n339_g2920_n344_g2984_n5133'
 	#21
+select -k comp 'n699_g2185_n704_g2180_n709_g2175_n714_g2170'
+	#22
+unselect -all
+	#23
+select -k comp 'n719_g2165_n724_g2878_n744_g3210_n749_g3211'
+	#24
+unselect comp 'n719_g2165_n724_g2878_n744_g3210_n749_g3211'
+	#25
+select -k comp 'g3212'
+	#26
+unselect comp 'g3212'
+	#27
+select -k comp 'g7014_g7052_g7084_g7161'
+	#28
+unselect -all
+	#29
+select comp 'g7014_g7052_g7084_g7161'
+	#comp "g7014_g7052_g7084_g7161",  site "SLICE_X58Y62",  type = SLICEL  (RPM grid X157Y248)
+	#30
+unselect -all
+	#31
+select comp 'g7014_g7052_g7084_g7161'
+	#comp "g7014_g7052_g7084_g7161",  site "SLICE_X58Y62",  type = SLICEL  (RPM grid X157Y248)
+	#32
+post block
+	#33
+unselect comp 'g7014_g7052_g7084_g7161'
+	#34
+select -k comp 'g7194_g7229_g7264_g7302'
+	#35
+unselect comp 'g7194_g7229_g7264_g7302'
+	#36
+select -k comp 'n4649_g1530_n4654_g1531_n4659_g1529_n4664_g1533'
+	#37
+unselect -all
+	#38
+select comp 'n4649_g1530_n4654_g1531_n4659_g1529_n4664_g1533'
+	#comp "n4649_g1530_n4654_g1531_n4659_g1529_n4664_g1533",  site "SLICE_X52Y37",  type = SLICEL  (RPM grid X141Y148)
+	#39
+post block
+	#40
+unselect comp 'n4649_g1530_n4654_g1531_n4659_g1529_n4664_g1533'
+	#41
+select -k comp 'n4629_g1523_n4634_g1527_n4639_g1528_n4644_g1526'
+	#42
+unselect comp 'n4629_g1523_n4634_g1527_n4639_g1528_n4644_g1526'
+	#43
+select -k comp 'n4669_g1534_n4674_g1532_n4679_g1536_n4684_g1537'
+	#44
+unselect comp 'n4669_g1534_n4674_g1532_n4679_g1536_n4684_g1537'
+	#45
+select -k comp 'n8204_g3067_n7203_n8209_g3068_n7205'
+	#46
+unselect comp 'n8204_g3067_n7203_n8209_g3068_n7205'
+	#47
+select -k comp 'n8189_g3064_n7195_n7196_n8194_g3065'
+	#48
+unselect comp 'n8189_g3064_n7195_n7196_n8194_g3065'
+	#49
+select -k comp 'n8204_g3067_n7203_n8209_g3068_n7205'
+	#50
+unselect -all
+	#51
+select comp 'n8204_g3067_n7203_n8209_g3068_n7205'
+	#comp "n8204_g3067_n7203_n8209_g3068_n7205",  site "SLICE_X20Y36",  type = SLICEL  (RPM grid X57Y144)
+	#52
+post block
+	#53
+unselect comp 'n8204_g3067_n7203_n8209_g3068_n7205'
+	#54
+select -k comp 'n8399_g20_n8404_g17_n8409_g11_n8414_g14'
+	#55
+unselect -all
+	#56
+select comp 'n8399_g20_n8404_g17_n8409_g11_n8414_g14'
+	#comp "n8399_g20_n8404_g17_n8409_g11_n8414_g14",  site "SLICE_X32Y40",  type = SLICEL  (RPM grid X93Y160)
+	#57
+post block
+	#58
+unselect comp 'n8399_g20_n8404_g17_n8409_g11_n8414_g14'
+	#59
+select -k comp 'n8419_g5_n8424_g8_n8429_g2_n8434_g2990'
+	#60
+unselect comp 'n8419_g5_n8424_g8_n8429_g2_n8434_g2990'
+	#61
+select -k comp 'n8399_g20_n8404_g17_n8409_g11_n8414_g14'
+	#62
+unselect comp 'n8399_g20_n8404_g17_n8409_g11_n8414_g14'
+	#63
+select -k comp 'n8419_g5_n8424_g8_n8429_g2_n8434_g2990'
+	#64
+unselect comp 'n8419_g5_n8424_g8_n8429_g2_n8434_g2990'
+	#65
+select -k comp 'n6909_g2516_n6914_g2519_n6919_g2523_n6861'
+	#66
+unselect -all
+	#67
+select comp 'n6909_g2516_n6914_g2519_n6919_g2523_n6861'
+	#comp "n6909_g2516_n6914_g2519_n6919_g2523_n6861",  site "SLICE_X10Y20",  type = SLICEL  (RPM grid X33Y80)
+	#68
+post block
+	#69
+unselect -all
+	#70
+select net "n6909_g2516_n6914_g2519_n6919_g2523_n6861.AQ->n6854_1_n6855_n6856_n6857.A5"
+	#net "n6909_g2516_n6914_g2519_n6919_g2523_n6861.AQ->n6854_1_n6855_n6856_n6857.A5"
+	#71
 post open

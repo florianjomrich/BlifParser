@@ -7,7 +7,7 @@
 // \   \   \/     Version: P.20131013
 //  \   \         Application: netgen
 //  /   /         Filename: HelloWorldUnrouted.v
-// /___/   /\     Timestamp: Sun Aug 03 22:31:06 2014
+// /___/   /\     Timestamp: Mon Aug 04 20:15:33 2014
 // \   \  /  \ 
 //  \___\/\___\
 //             
@@ -61,22 +61,25 @@ module HelloWorld (
   inout \u35fe_FINAL_OUTPUT.OUTBUF.OUT ;
   input \x23.PAD.PAD ;
   inout \u36fe_FINAL_OUTPUT.OUTBUF.OUT ;
-  wire \xorOutput_u34fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O ;
-  wire \n44_z0re_z50al.AMUX->n44_z0re_z50al.AX ;
-  wire \x24.I->xorOutput_u34fe_u37ah.A2 ;
+  wire \xorOutput_u34fe_u35fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O ;
+  wire \x25.I->n44_z0re_n30_z4re_z50al.B1 ;
+  wire \n44_z0re_n30_z4re_z50al.CQ->z50al_FINAL_OUTPUT.O ;
+  wire \x23.I->n44_z0re_n30_z4re_z50al.CX ;
   wire \my_clk_BUFG.O->xorOutput_u34fe.CLK ;
-  wire \x23.I->n44_z0re_z50al.BX ;
-  wire \global_reset.I->xorOutput_u34fe.SR ;
+  wire \n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX ;
+  wire \x24.I->xorOutput_u34fe_u35fe_u37ah.A2 ;
   wire \bertaClock.I->my_clk_BUFG.I0 ;
-  wire \xorOutput_u34fe_u37ah.AMUX->xorOutput_FINAL_OUTPUT.O ;
-  wire \n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O ;
-  wire \xorOutput_u34fe_u37ah.CQ->u37ah_FINAL_OUTPUT.O ;
-  wire \n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ;
+  wire \n44_z0re_n30_z4re_z50al.BQ->z4re_FINAL_OUTPUT.O ;
+  wire \n44_z0re_n30_z4re_z50al.AMUX->n44_z0re_n30_z4re_z50al.AX ;
+  wire \u38ah.AQ->u38ah_FINAL_OUTPUT.O ;
+  wire \xorOutput_u34fe_u35fe_u37ah.DQ->u37ah_FINAL_OUTPUT.O ;
+  wire \global_reset.I->xorOutput_u34fe.SR ;
+  wire \n44_z0re_n30_z4re_z50al.AQ->z0re_FINAL_OUTPUT.O ;
+  wire \xorOutput_u34fe_u35fe_u37ah.AMUX->xorOutput_FINAL_OUTPUT.O ;
+  wire \xorOutput_u34fe_u35fe_u37ah.CQ->u35fe_FINAL_OUTPUT.O ;
   wire \u38ah_FINAL_OUTPUT.INBUF.OUT ;
   wire \z4re_FINAL_OUTPUT.INBUF.OUT ;
   wire \z2re_FINAL_OUTPUT.INBUF.OUT ;
-  wire \n44_z0re_z50al/INV_n44_z0re_z50al.BFFCLK ;
-  wire \n44_z0re_z50al.A5LUT.O5 ;
   wire \z0re_FINAL_OUTPUT.INBUF.OUT ;
   wire \u39ah_FINAL_OUTPUT.INBUF.OUT ;
   wire \z5re_FINAL_OUTPUT.INBUF.OUT ;
@@ -84,24 +87,26 @@ module HelloWorld (
   wire \z50al_FINAL_OUTPUT.INBUF.OUT ;
   wire \z51al_FINAL_OUTPUT.INBUF.OUT ;
   wire \n44_FINAL_OUTPUT.INBUF.OUT ;
+  wire \xorOutput_u34fe_u35fe_u37ah/INV_xorOutput_u34fe_u35fe_u37ah.CFFCLK ;
+  wire \xorOutput_u34fe_u35fe_u37ah/INV_xorOutput_u34fe_u35fe_u37ah.BFFCLK ;
+  wire \xorOutput_u34fe_u35fe_u37ah.A5LUT.O5 ;
   wire \bertaClock.INBUF.OUT ;
   wire \xorOutput_FINAL_OUTPUT.INBUF.OUT ;
   wire \u37ah_FINAL_OUTPUT.INBUF.OUT ;
+  wire \n44_z0re_n30_z4re_z50al/INV_n44_z0re_n30_z4re_z50al.CFFCLK ;
+  wire \n44_z0re_n30_z4re_z50al.B5LUT.O5 ;
+  wire \n44_z0re_n30_z4re_z50al.A5LUT.O5 ;
   wire \global_reset.INBUF.OUT ;
   wire \z3re_FINAL_OUTPUT.INBUF.OUT ;
   wire \x25.INBUF.OUT ;
   wire \z1re_FINAL_OUTPUT.INBUF.OUT ;
   wire \x24.INBUF.OUT ;
   wire \u35fe_FINAL_OUTPUT.INBUF.OUT ;
-  wire \xorOutput_u34fe_u37ah/INV_xorOutput_u34fe_u37ah.BFFCLK ;
-  wire \xorOutput_u34fe_u37ah.A5LUT.O5 ;
   wire \x23.INBUF.OUT ;
   wire \u36fe_FINAL_OUTPUT.INBUF.OUT ;
   wire \NLW_u38ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_z4re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_z2re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire VCC;
-  wire GND;
   wire \NLW_z0re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_u39ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_z5re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
@@ -109,10 +114,11 @@ module HelloWorld (
   wire \NLW_z50al_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_z51al_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_n44_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
+  wire VCC;
+  wire GND;
   wire \NLW_xorOutput_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_u37ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_z3re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
-  wire \NLW_x25.IMUX_O_UNCONNECTED ;
   wire \NLW_z1re_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_u35fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
   wire \NLW_u36fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED ;
@@ -125,7 +131,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD30" ))
   u38ah_FINAL_OUTPUT_OBUF (
-    .I(\xorOutput_u34fe_u37ah.CQ->u37ah_FINAL_OUTPUT.O ),
+    .I(\u38ah.AQ->u38ah_FINAL_OUTPUT.O ),
     .O(\u38ah_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -148,7 +154,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD91" ))
   z4re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_n30_z4re_z50al.BQ->z4re_FINAL_OUTPUT.O ),
     .O(\z4re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -177,7 +183,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD93" ))
   z2re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_n30_z4re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z2re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -192,47 +198,6 @@ module HelloWorld (
     .I(\z2re_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_z2re_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
   );
-  X_INV   \INV_n44_z0re_z50al.BFFCLK  (
-    .I(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
-    .O(\n44_z0re_z50al/INV_n44_z0re_z50al.BFFCLK )
-  );
-  X_BUF   \n44_z0re_z50al/n44_z0re_z50al_AMUX_Delay  (
-    .I(\n44_z0re_z50al.A5LUT.O5 ),
-    .O(\n44_z0re_z50al.AMUX->n44_z0re_z50al.AX )
-  );
-  X_LATCHE #(
-    .LOC ( "SLICE_X10Y8" ),
-    .INIT ( 1'b0 ))
-  \n44_z0re_z50al.BFF  (
-    .GE(VCC),
-    .CLK(\n44_z0re_z50al/INV_n44_z0re_z50al.BFFCLK ),
-    .I(\x23.I->n44_z0re_z50al.BX ),
-    .O(\n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->xorOutput_u34fe.SR ),
-    .SET(GND)
-  );
-  X_FF #(
-    .LOC ( "SLICE_X10Y8" ),
-    .INIT ( 1'b0 ))
-  \n44_z0re_z50al.AFF  (
-    .CE(VCC),
-    .CLK(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
-    .I(\n44_z0re_z50al.A5LUT.O5 ),
-    .O(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->xorOutput_u34fe.SR ),
-    .SET(GND)
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y8" ),
-    .INIT ( 32'hAAAAAAAA ))
-  \n44_z0re_z50al.A5LUT  (
-    .ADR0(\x23.I->n44_z0re_z50al.BX ),
-    .ADR1(1'b1),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\n44_z0re_z50al.A5LUT.O5 )
-  );
   X_BPAD #(
     .LOC ( "PAD105" ))
   z0re_FINAL_OUTPUT (
@@ -241,7 +206,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD105" ))
   z0re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_n30_z4re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z0re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -264,7 +229,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD339" ))
   u39ah_FINAL_OUTPUT_OBUF (
-    .I(\xorOutput_u34fe_u37ah.CQ->u37ah_FINAL_OUTPUT.O ),
+    .I(\u38ah.AQ->u38ah_FINAL_OUTPUT.O ),
     .O(\u39ah_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -287,7 +252,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD92" ))
   z5re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_n30_z4re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z5re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -310,7 +275,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD83" ))
   u34fe_FINAL_OUTPUT_OBUF (
-    .I(\xorOutput_u34fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O ),
+    .I(\xorOutput_u34fe_u35fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O ),
     .O(\u34fe_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -333,7 +298,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD326" ))
   z50al_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_n30_z4re_z50al.CQ->z50al_FINAL_OUTPUT.O ),
     .O(\z50al_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -356,7 +321,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD340" ))
   z51al_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.BQ->z50al_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_n30_z4re_z50al.CQ->z50al_FINAL_OUTPUT.O ),
     .O(\z51al_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -379,7 +344,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD95" ))
   n44_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AMUX->n44_z0re_z50al.AX ),
+    .I(\n44_z0re_n30_z4re_z50al.AMUX->n44_z0re_n30_z4re_z50al.AX ),
     .O(\n44_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -393,6 +358,62 @@ module HelloWorld (
   \n44_FINAL_OUTPUT.IMUX  (
     .I(\n44_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_n44_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_INV   \INV_xorOutput_u34fe_u35fe_u37ah.CFFCLK  (
+    .I(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
+    .O(\xorOutput_u34fe_u35fe_u37ah/INV_xorOutput_u34fe_u35fe_u37ah.CFFCLK )
+  );
+  X_INV   \INV_xorOutput_u34fe_u35fe_u37ah.BFFCLK  (
+    .I(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
+    .O(\xorOutput_u34fe_u35fe_u37ah/INV_xorOutput_u34fe_u35fe_u37ah.BFFCLK )
+  );
+  X_BUF   \xorOutput_u34fe_u35fe_u37ah/xorOutput_u34fe_u35fe_u37ah_AMUX_Delay  (
+    .I(\xorOutput_u34fe_u35fe_u37ah.A5LUT.O5 ),
+    .O(\xorOutput_u34fe_u35fe_u37ah.AMUX->xorOutput_FINAL_OUTPUT.O )
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y9" ),
+    .INIT ( 1'b0 ))
+  \xorOutput_u34fe_u35fe_u37ah.DFF  (
+    .GE(VCC),
+    .CLK(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
+    .I(\n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX ),
+    .O(\xorOutput_u34fe_u35fe_u37ah.DQ->u37ah_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->xorOutput_u34fe.SR ),
+    .SET(GND)
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y9" ),
+    .INIT ( 1'b0 ))
+  \xorOutput_u34fe_u35fe_u37ah.CFF  (
+    .CE(VCC),
+    .CLK(\xorOutput_u34fe_u35fe_u37ah/INV_xorOutput_u34fe_u35fe_u37ah.CFFCLK ),
+    .I(\n44_z0re_n30_z4re_z50al.AMUX->n44_z0re_n30_z4re_z50al.AX ),
+    .O(\xorOutput_u34fe_u35fe_u37ah.CQ->u35fe_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->xorOutput_u34fe.SR ),
+    .SET(GND)
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y9" ),
+    .INIT ( 1'b0 ))
+  \xorOutput_u34fe_u35fe_u37ah.BFF  (
+    .CE(VCC),
+    .CLK(\xorOutput_u34fe_u35fe_u37ah/INV_xorOutput_u34fe_u35fe_u37ah.BFFCLK ),
+    .I(\n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX ),
+    .O(\xorOutput_u34fe_u35fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->xorOutput_u34fe.SR ),
+    .SET(GND)
+  );
+  X_LUT5 #(
+    .LOC ( "SLICE_X10Y9" ),
+    .INIT ( 32'h66666666 ))
+  \xorOutput_u34fe_u35fe_u37ah.A5LUT  (
+    .ADR0(\x23.I->n44_z0re_n30_z4re_z50al.CX ),
+    .ADR1(\x24.I->xorOutput_u34fe_u35fe_u37ah.A2 ),
+    .ADR2(1'b1),
+    .ADR3(1'b1),
+    .ADR4(1'b1),
+    .O(\xorOutput_u34fe_u35fe_u37ah.A5LUT.O5 )
   );
   X_IPAD #(
     .LOC ( "PAD332" ))
@@ -419,7 +440,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD331" ))
   xorOutput_FINAL_OUTPUT_OBUF (
-    .I(\xorOutput_u34fe_u37ah.AMUX->xorOutput_FINAL_OUTPUT.O ),
+    .I(\xorOutput_u34fe_u35fe_u37ah.AMUX->xorOutput_FINAL_OUTPUT.O ),
     .O(\xorOutput_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -442,7 +463,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD329" ))
   u37ah_FINAL_OUTPUT_OBUF (
-    .I(\xorOutput_u34fe_u37ah.CQ->u37ah_FINAL_OUTPUT.O ),
+    .I(\xorOutput_u34fe_u35fe_u37ah.DQ->u37ah_FINAL_OUTPUT.O ),
     .O(\u37ah_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -456,6 +477,84 @@ module HelloWorld (
   \u37ah_FINAL_OUTPUT.IMUX  (
     .I(\u37ah_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_u37ah_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
+  );
+  X_INV   \INV_n44_z0re_n30_z4re_z50al.CFFCLK  (
+    .I(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
+    .O(\n44_z0re_n30_z4re_z50al/INV_n44_z0re_n30_z4re_z50al.CFFCLK )
+  );
+  X_BUF   \n44_z0re_n30_z4re_z50al/n44_z0re_n30_z4re_z50al_BMUX_Delay  (
+    .I(\n44_z0re_n30_z4re_z50al.B5LUT.O5 ),
+    .O(\n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX )
+  );
+  X_BUF   \n44_z0re_n30_z4re_z50al/n44_z0re_n30_z4re_z50al_AMUX_Delay  (
+    .I(\n44_z0re_n30_z4re_z50al.A5LUT.O5 ),
+    .O(\n44_z0re_n30_z4re_z50al.AMUX->n44_z0re_n30_z4re_z50al.AX )
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y7" ),
+    .INIT ( 1'b0 ))
+  \n44_z0re_n30_z4re_z50al.CFF  (
+    .GE(VCC),
+    .CLK(\n44_z0re_n30_z4re_z50al/INV_n44_z0re_n30_z4re_z50al.CFFCLK ),
+    .I(\x23.I->n44_z0re_n30_z4re_z50al.CX ),
+    .O(\n44_z0re_n30_z4re_z50al.CQ->z50al_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->xorOutput_u34fe.SR ),
+    .SET(GND)
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y7" ),
+    .INIT ( 1'b0 ))
+  \n44_z0re_n30_z4re_z50al.BFF  (
+    .CE(VCC),
+    .CLK(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
+    .I(\n44_z0re_n30_z4re_z50al.B5LUT.O5 ),
+    .O(\n44_z0re_n30_z4re_z50al.BQ->z4re_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->xorOutput_u34fe.SR ),
+    .SET(GND)
+  );
+  X_LUT5 #(
+    .LOC ( "SLICE_X10Y7" ),
+    .INIT ( 32'hAAAAAAAA ))
+  \n44_z0re_n30_z4re_z50al.B5LUT  (
+    .ADR0(\x25.I->n44_z0re_n30_z4re_z50al.B1 ),
+    .ADR1(1'b1),
+    .ADR2(1'b1),
+    .ADR3(1'b1),
+    .ADR4(1'b1),
+    .O(\n44_z0re_n30_z4re_z50al.B5LUT.O5 )
+  );
+  X_FF #(
+    .LOC ( "SLICE_X10Y7" ),
+    .INIT ( 1'b0 ))
+  \n44_z0re_n30_z4re_z50al.AFF  (
+    .CE(VCC),
+    .CLK(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
+    .I(\n44_z0re_n30_z4re_z50al.A5LUT.O5 ),
+    .O(\n44_z0re_n30_z4re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->xorOutput_u34fe.SR ),
+    .SET(GND)
+  );
+  X_LUT5 #(
+    .LOC ( "SLICE_X10Y7" ),
+    .INIT ( 32'hAAAAAAAA ))
+  \n44_z0re_n30_z4re_z50al.A5LUT  (
+    .ADR0(\x23.I->n44_z0re_n30_z4re_z50al.CX ),
+    .ADR1(1'b1),
+    .ADR2(1'b1),
+    .ADR3(1'b1),
+    .ADR4(1'b1),
+    .O(\n44_z0re_n30_z4re_z50al.A5LUT.O5 )
+  );
+  X_LATCHE #(
+    .LOC ( "SLICE_X10Y8" ),
+    .INIT ( 1'b0 ))
+  \u38ah.AFF  (
+    .GE(VCC),
+    .CLK(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
+    .I(\n44_z0re_n30_z4re_z50al.AMUX->n44_z0re_n30_z4re_z50al.AX ),
+    .O(\u38ah.AQ->u38ah_FINAL_OUTPUT.O ),
+    .RST(\global_reset.I->xorOutput_u34fe.SR ),
+    .SET(GND)
   );
   X_IPAD #(
     .LOC ( "PAD325" ))
@@ -482,7 +581,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD94" ))
   z3re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_n30_z4re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z3re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -512,7 +611,7 @@ module HelloWorld (
     .LOC ( "PAD96" ))
   \x25.IMUX  (
     .I(\x25.INBUF.OUT ),
-    .O(\NLW_x25.IMUX_O_UNCONNECTED )
+    .O(\x25.I->n44_z0re_n30_z4re_z50al.B1 )
   );
   X_BPAD #(
     .LOC ( "PAD106" ))
@@ -522,7 +621,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD106" ))
   z1re_FINAL_OUTPUT_OBUF (
-    .I(\n44_z0re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
+    .I(\n44_z0re_n30_z4re_z50al.AQ->z0re_FINAL_OUTPUT.O ),
     .O(\z1re_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -552,7 +651,7 @@ module HelloWorld (
     .LOC ( "PAD84" ))
   \x24.IMUX  (
     .I(\x24.INBUF.OUT ),
-    .O(\x24.I->xorOutput_u34fe_u37ah.A2 )
+    .O(\x24.I->xorOutput_u34fe_u35fe_u37ah.A2 )
   );
   X_BPAD #(
     .LOC ( "PAD330" ))
@@ -562,7 +661,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD330" ))
   u35fe_FINAL_OUTPUT_OBUF (
-    .I(\xorOutput_u34fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O ),
+    .I(\xorOutput_u34fe_u35fe_u37ah.CQ->u35fe_FINAL_OUTPUT.O ),
     .O(\u35fe_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(
@@ -576,47 +675,6 @@ module HelloWorld (
   \u35fe_FINAL_OUTPUT.IMUX  (
     .I(\u35fe_FINAL_OUTPUT.INBUF.OUT ),
     .O(\NLW_u35fe_FINAL_OUTPUT.IMUX_O_UNCONNECTED )
-  );
-  X_INV   \INV_xorOutput_u34fe_u37ah.BFFCLK  (
-    .I(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
-    .O(\xorOutput_u34fe_u37ah/INV_xorOutput_u34fe_u37ah.BFFCLK )
-  );
-  X_BUF   \xorOutput_u34fe_u37ah/xorOutput_u34fe_u37ah_AMUX_Delay  (
-    .I(\xorOutput_u34fe_u37ah.A5LUT.O5 ),
-    .O(\xorOutput_u34fe_u37ah.AMUX->xorOutput_FINAL_OUTPUT.O )
-  );
-  X_LATCHE #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 1'b0 ))
-  \xorOutput_u34fe_u37ah.CFF  (
-    .GE(VCC),
-    .CLK(\my_clk_BUFG.O->xorOutput_u34fe.CLK ),
-    .I(\n44_z0re_z50al.AMUX->n44_z0re_z50al.AX ),
-    .O(\xorOutput_u34fe_u37ah.CQ->u37ah_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->xorOutput_u34fe.SR ),
-    .SET(GND)
-  );
-  X_FF #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 1'b0 ))
-  \xorOutput_u34fe_u37ah.BFF  (
-    .CE(VCC),
-    .CLK(\xorOutput_u34fe_u37ah/INV_xorOutput_u34fe_u37ah.BFFCLK ),
-    .I(\n44_z0re_z50al.AMUX->n44_z0re_z50al.AX ),
-    .O(\xorOutput_u34fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O ),
-    .RST(\global_reset.I->xorOutput_u34fe.SR ),
-    .SET(GND)
-  );
-  X_LUT5 #(
-    .LOC ( "SLICE_X10Y9" ),
-    .INIT ( 32'h66666666 ))
-  \xorOutput_u34fe_u37ah.A5LUT  (
-    .ADR0(\x23.I->n44_z0re_z50al.BX ),
-    .ADR1(\x24.I->xorOutput_u34fe_u37ah.A2 ),
-    .ADR2(1'b1),
-    .ADR3(1'b1),
-    .ADR4(1'b1),
-    .O(\xorOutput_u34fe_u37ah.A5LUT.O5 )
   );
   X_IPAD #(
     .LOC ( "PAD80" ))
@@ -633,7 +691,7 @@ module HelloWorld (
     .LOC ( "PAD80" ))
   \x23.IMUX  (
     .I(\x23.INBUF.OUT ),
-    .O(\x23.I->n44_z0re_z50al.BX )
+    .O(\x23.I->n44_z0re_n30_z4re_z50al.CX )
   );
   X_BPAD #(
     .LOC ( "PAD337" ))
@@ -643,7 +701,7 @@ module HelloWorld (
   X_OBUF #(
     .LOC ( "PAD337" ))
   u36fe_FINAL_OUTPUT_OBUF (
-    .I(\xorOutput_u34fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O ),
+    .I(\xorOutput_u34fe_u35fe_u37ah.CQ->u35fe_FINAL_OUTPUT.O ),
     .O(\u36fe_FINAL_OUTPUT.OUTBUF.OUT )
   );
   X_BUF #(

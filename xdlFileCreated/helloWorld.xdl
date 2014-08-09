@@ -1,7 +1,7 @@
 
 # =======================================================
 # edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
-# time: Mo Aug 04 20:15:17 2014
+# time: Sa Aug 09 10:53:45 2014
 
 # =======================================================
 
@@ -74,9 +74,6 @@ inst "n44_FINAL_OUTPUT" "IOB",placed RIOB_X37Y69 G16  ,
 inst "xorOutput_u34fe_u35fe_u37ah" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
   cfg " SRUSED::0 AOUTMUX::O5 SYNC_ATTR::ASYNC DFF::#LATCH CLKINV::CLK_B BFFSRINIT::SRINIT0 DFFMUX::DX CFFSRINIT::SRINIT0 DFFSRINIT::SRINIT0 BFFMUX::BX BFF::#FF CFFMUX::CX A5LUT::#LUT:O5=(~A1*A2)+(A1*~A2) CFF::#FF "
   ;
-inst "bertaClock" "IOB",placed LIOB_X0Y86 F3  ,
-  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:bertaClock: IMUX::I "
-  ;
 inst "xorOutput_FINAL_OUTPUT" "IOB",placed LIOB_X0Y86 F4  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:xorOutput_FINAL_OUTPUT_OBUF: PAD:xorOutput_FINAL_OUTPUT: IMUX::I "
   ;
@@ -94,6 +91,9 @@ inst "global_reset" "IOB",placed LIOB_X0Y71 F2  ,
   ;
 inst "z3re_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H16  ,
   cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:z3re_FINAL_OUTPUT_OBUF: PAD:z3re_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "hermanClock" "IOB",placed LIOB_X0Y86 F3  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:hermanClock: IMUX::I "
   ;
 inst "x25" "IOB",placed RIOB_X37Y69 G18  ,
   cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:x25: IMUX::I "
@@ -151,6 +151,10 @@ inst "u36fe_FINAL_OUTPUT" "IOB",placed LIOB_X0Y90 E4  ,
 #  ================================================
   net "null" ,
     ;
+  net "hermanClock.I->my_clk_BUFG.I0" ,
+    inpin "my_clk_BUFG" I0 ,
+    outpin "hermanClock" I ,
+    ;
   net "xorOutput_u34fe_u35fe_u37ah.BQ->u34fe_FINAL_OUTPUT.O" ,
     inpin "u34fe_FINAL_OUTPUT" O ,
     outpin "xorOutput_u34fe_u35fe_u37ah" BQ ,
@@ -188,10 +192,6 @@ inst "u36fe_FINAL_OUTPUT" "IOB",placed LIOB_X0Y90 E4  ,
   net "x24.I->xorOutput_u34fe_u35fe_u37ah.A2" ,
     inpin "xorOutput_u34fe_u35fe_u37ah" A2 ,
     outpin "x24" I ,
-    ;
-  net "bertaClock.I->my_clk_BUFG.I0" ,
-    inpin "my_clk_BUFG" I0 ,
-    outpin "bertaClock" I ,
     ;
   net "n44_z0re_n30_z4re_z50al.BQ->z4re_FINAL_OUTPUT.O" ,
     inpin "z4re_FINAL_OUTPUT" O ,

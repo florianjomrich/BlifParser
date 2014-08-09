@@ -580,58 +580,66 @@ public class DesignCreation {
 			Design design) {
 		for (GenericLatch currentLatch : model.genericLatches) {
 
-			String currentLATCH_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
-					.get(currentLatch.output);
+				String currentLATCH_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+						.get(currentLatch.output);
 
-			SLICEL_INSTANCE currentLatchInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
-					.get(currentLatch.output + "_" + currentLATCH_OUTPUT_PORT
-							+ _LATCH);
-
-			String current_INPUT_Type = typeOfTheAlreadyPlaceInstances
-					.get(currentLatch.input);
-
-			if (current_INPUT_Type.equals(_LATCH)) {
-				String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
-						.get(currentLatch.input);
-
-				SLICEL_INSTANCE otherLatchInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
-						.get(currentLatch.input + "_" + current_INPUT_PORT
+				SLICEL_INSTANCE currentLatchInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
+						.get(currentLatch.output + "_" + currentLATCH_OUTPUT_PORT
 								+ _LATCH);
 
-				// now connect the current with the other Latch
-				myNetCreator.generateNet(current_INPUT_PORT + "Q",
-						otherLatchInstance, currentLATCH_OUTPUT_PORT + "X",
-						currentLatchInstance, design, alreadyPlacedNets);
-
-			} else if (current_INPUT_Type.equals(_LOGICBLOCK)) {
-				String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+				String current_INPUT_Type = typeOfTheAlreadyPlaceInstances
 						.get(currentLatch.input);
+				
+			
+				//only perform the input connection action if it is no
+				//primaryLatch and has already been connected to it's logic block
+				if(!primaryLatches.contains(currentLatch)){
+				if (current_INPUT_Type.equals(_LATCH)) {
+					String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+							.get(currentLatch.input);
 
-				SLICEL_INSTANCE otherLogic_BLOCK_INSTANCE = (SLICEL_INSTANCE) alreadyPlacedInstances
-						.get(currentLatch.input + "_" + current_INPUT_PORT
-								+ _LOGICBLOCK);
-				myNetCreator.generateNet(current_INPUT_PORT + "MUX",
-						otherLogic_BLOCK_INSTANCE, currentLATCH_OUTPUT_PORT
-								+ "X", currentLatchInstance, design,
-						alreadyPlacedNets);
-			} else {
-				IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
-						.get(currentLatch.input);
-				myNetCreator.generateNet("I", otherIOB_BLOCK_INSTANCE,
-						currentLATCH_OUTPUT_PORT + "X", currentLatchInstance,
-						design, alreadyPlacedNets);
-			}
+					SLICEL_INSTANCE otherLatchInstance = (SLICEL_INSTANCE) alreadyPlacedInstances
+							.get(currentLatch.input + "_" + current_INPUT_PORT
+									+ _LATCH);
 
-			// check if output is final output
-			if (alreadyPlacedInstances.containsKey(currentLatch.output
-					+ _FINAL_OUTPUT)) {
-				IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
-						.get(currentLatch.output + _FINAL_OUTPUT);
-				myNetCreator.generateNet(currentLATCH_OUTPUT_PORT + "Q",
-						currentLatchInstance, "O", otherIOB_BLOCK_INSTANCE,
-						design, alreadyPlacedNets);
-			}
+					// now connect the current with the other Latch
+					myNetCreator.generateNet(current_INPUT_PORT + "Q",
+							otherLatchInstance, currentLATCH_OUTPUT_PORT + "X",
+							currentLatchInstance, design, alreadyPlacedNets);
 
+				} else if (current_INPUT_Type.equals(_LOGICBLOCK)) {
+					String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+							.get(currentLatch.input);
+
+					SLICEL_INSTANCE otherLogic_BLOCK_INSTANCE = (SLICEL_INSTANCE) alreadyPlacedInstances
+							.get(currentLatch.input + "_" + current_INPUT_PORT
+									+ _LOGICBLOCK);
+					myNetCreator.generateNet(current_INPUT_PORT + "MUX",
+							otherLogic_BLOCK_INSTANCE, currentLATCH_OUTPUT_PORT
+									+ "X", currentLatchInstance, design,
+							alreadyPlacedNets);
+				} else {
+					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+							.get(currentLatch.input);
+					myNetCreator.generateNet("I", otherIOB_BLOCK_INSTANCE,
+							currentLATCH_OUTPUT_PORT + "X", currentLatchInstance,
+							design, alreadyPlacedNets);
+				}
+
+			}	
+				
+				// check if output is final output - this has to be done for primary latches as well
+				if (alreadyPlacedInstances.containsKey(currentLatch.output
+						+ _FINAL_OUTPUT)) {
+					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+							.get(currentLatch.output + _FINAL_OUTPUT);
+					myNetCreator.generateNet(currentLATCH_OUTPUT_PORT + "Q",
+							currentLatchInstance, "O", otherIOB_BLOCK_INSTANCE,
+							design, alreadyPlacedNets);
+				}
+
+		
+			
 		}
 
 	}

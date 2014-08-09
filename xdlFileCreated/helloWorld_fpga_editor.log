@@ -1,158 +1,23 @@
-#:C59    
+#:C0     
 #Xilinx FPGA Editor Command Log File
 #Editor Version:
 #:V   NT M2.1 P.20131013
 #Current Working Directory:
 #:D   C:\BlifParser3\xdlFileCreated
 #Date/Time:
-#:T   Mon Aug 04 10:27:16 2014
+#:T   Sat Aug 09 11:01:36 2014
 #------------------------------
 	#Reading C:\BlifParser3\xdlFileCreated\HelloWorld.ncd...
 	#Loading device for application Rf_Device from file '6slx45.nph' in environment F:\Xilinix\14.7\ISE_DS\ISE\.
 	#   "HelloWorld" is an NCD, version 3.2, device xc6slx45, package csg324, speed -3
-	#Design creation date: 2014.08.04.05.56.23
+	#Design creation date: 2014.08.09.06.23.47
 	#Building chip graphics...
 	#Loading speed info...
 	#1
-select -k comp 'xorOutput_FINAL_OUTPUT'
+select -k comp 'u35fe_FINAL_OUTPUT'
 	#2
-unselect comp 'xorOutput_FINAL_OUTPUT'
+unselect comp 'u35fe_FINAL_OUTPUT'
 	#3
-select -k comp 'x23'
+select -k comp 'n44_z0re_n30_z4re_z50al'
 	#4
-unselect comp 'x23'
-	#5
-select -k comp 'x24'
-	#6
-unselect comp 'x24'
-	#7
-select -k comp 'x25'
-	#8
-unselect comp 'x25'
-	#9
-select -k comp 'z0re_FINAL_OUTPUT'
-	#10
-unselect comp 'z0re_FINAL_OUTPUT'
-	#11
-select -k comp 'z1re_FINAL_OUTPUT'
-	#12
-unselect comp 'z1re_FINAL_OUTPUT'
-	#13
-select -k comp 'z2re_FINAL_OUTPUT'
-	#14
-unselect comp 'z2re_FINAL_OUTPUT'
-	#15
-select -k comp 'z3re_FINAL_OUTPUT'
-	#16
-unselect comp 'z3re_FINAL_OUTPUT'
-	#17
-select -k comp 'z4re_FINAL_OUTPUT'
-	#18
-unselect comp 'z4re_FINAL_OUTPUT'
-	#19
-select -k comp 'z5re_FINAL_OUTPUT'
-	#20
-unselect comp 'z5re_FINAL_OUTPUT'
-	#21
-select -k comp 'z50al_FINAL_OUTPUT'
-	#22
-unselect comp 'z50al_FINAL_OUTPUT'
-	#23
-select -k comp 'u38ah'
-	#24
-unselect comp 'u38ah'
-	#25
-select -k comp 'xorOutput_u34fe_u35fe_u37ah'
-	#26
-unselect -all
-	#27
-select comp 'xorOutput_u34fe_u35fe_u37ah'
-	#comp "xorOutput_u34fe_u35fe_u37ah",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
-	#28
-unselect -all
-	#29
-select comp 'xorOutput_u34fe_u35fe_u37ah'
-	#comp "xorOutput_u34fe_u35fe_u37ah",  site "SLICE_X10Y9",  type = SLICEL  (RPM grid X33Y36)
-	#30
-post block
-	#31
-unselect comp 'xorOutput_u34fe_u35fe_u37ah'
-	#32
-select -k comp 'u38ah'
-	#33
-unselect -all
-	#34
-select comp 'u38ah'
-	#comp "u38ah",  site "SLICE_X10Y8",  type = SLICEL  (RPM grid X33Y32)
-	#35
-post block
-	#36
-unselect comp 'u38ah'
-	#37
-select -k comp 'xorOutput_u34fe_u35fe_u37ah'
-	#38
-unselect comp 'xorOutput_u34fe_u35fe_u37ah'
-	#39
-select -k comp 'z3re_FINAL_OUTPUT'
-	#40
-unselect comp 'z3re_FINAL_OUTPUT'
-	#41
-select -k comp 'n44_z0re_n30_z4re_z50al'
-	#42
-unselect -all
-	#43
-select comp 'n44_z0re_n30_z4re_z50al'
-	#comp "n44_z0re_n30_z4re_z50al",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
-	#44
-post block
-	#45
-unselect -all
-	#46
-select net "n44_z0re_n30_z4re_z50al.BQ->z4re_FINAL_OUTPUT.O"
-	#net "n44_z0re_n30_z4re_z50al.BQ->z4re_FINAL_OUTPUT.O"
-	#47
-unselect -all
-	#48
-select net "n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX"
-	#net "n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX"
-	#49
-unselect -all
-	#50
-select net "n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX"
-	#net "n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX"
-	#51
-unselect -all
-	#52
-select net "n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX"
-	#net "n44_z0re_n30_z4re_z50al.BMUX->n44_z0re_n30_z4re_z50al.BX"
-	#53
-unselect -all
-	#54
-select net "x25.I->n44_z0re_n30_z4re_z50al.B1"
-	#net "x25.I->n44_z0re_n30_z4re_z50al.B1"
-	#55
-unselect net 'x25.I->n44_z0re_n30_z4re_z50al.B1'
-	#56
-select -k comp 'n44_z0re_n30_z4re_z50al'
-	#57
-unselect -all
-	#58
-select comp 'n44_z0re_n30_z4re_z50al'
-	#comp "n44_z0re_n30_z4re_z50al",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
-	#59
-post block
-	#<BFF>; bel <n44_z0re_n30_z4re_z50al.AFF>; bel <n44_z0re_n30_z4re_z50al.CFF>.
-	#60
-unselect -all
-	#61
-select net "x25.I->n44_z0re_n30_z4re_z50al.B1"
-	#net "x25.I->n44_z0re_n30_z4re_z50al.B1"
-	#62
-unselect -all
-	#63
-select comp 'n44_z0re_n30_z4re_z50al'
-	#comp "n44_z0re_n30_z4re_z50al",  site "SLICE_X10Y7",  type = SLICEL  (RPM grid X33Y28)
-	#64
-post block
-	#65
 post open

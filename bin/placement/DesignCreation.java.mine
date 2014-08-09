@@ -1,0 +1,566 @@
+package placement;
+
+import java.util.HashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import commands.GenericLatch;
+import commands.LogicGate;
+import blif.Model;
+import models.IOB_BLOCK_INSTANCE;
+import models.IOB_BLOCK_INSTANCE.TypeOfInstance;
+import models.LATCH_INSTANCE;
+import models.LOGIC_BLOCK_INSTANCE;
+import edu.byu.ece.rapidSmith.design.Design;
+import edu.byu.ece.rapidSmith.design.Instance;
+import edu.byu.ece.rapidSmith.design.Net;
+import edu.byu.ece.rapidSmith.device.PrimitiveSite;
+import edu.byu.ece.rapidSmith.device.PrimitiveType;
+
+public class DesignCreation {
+
+	// ArrayList<String> availableFinalOutputVariables = new
+	// ArrayList<String>();
+
+	// stores the nets already placed
+	HashMap<String, Net> alreadyPlacedNets = new HashMap<String, Net>();
+
+	// stores the latches and logic gates already placed
+	HashMap<String, String> portNubmerOfTheAlreadyPlacedInstances = new HashMap<String, String>();
+	HashMap<String, Instance> alreadyPlacedInstances = new HashMap<String, Instance>();
+
+	// for mapping the gates and latches
+	String[] alphabetSelector = { "A", "B", "C", "D" };
+
+	// the global clk
+	IOB_BLOCK_INSTANCE clk;
+	IOB_BLOCK_INSTANCE global_reset;
+	Instance clk_buffer;
+
+	String _SLICEL = "_SLICEL";
+	String _LATCH = "_LATCH";
+	String _FINAL_OUTPUT = "_FINAL_OUTPUT";
+	
+	//count how much space is left in one slice
+	int logicBlockCounter = 0;
+	int latchCounterActiveHigh_FallingEdge = 0;
+	int latchCounterActiveLow_RisingEdge = 0;
+	
+	// to iterate over the different latches and Logic BLocks
+	LOGIC_BLOCK_INSTANCE myLogicBlock = null;
+	LATCH_INSTANCE myLatchActiveHighFallingEdgeLatch = null;
+	LATCH_INSTANCE myLatchActiveLowRisingEdgeLatch = null;
+	
+	//to use an own Placer and deactivate the Random-Placer 
+	boolean useOwnPlacer = false;	
+
+	/**
+	 * 
+	 * @param model
+	 *            - The model created by the File-Parser which now has to be
+	 *            mapped onto the FPGA
+	 * @throws Exception
+	 */
+	public Design createDesign(Model model, String name) throws Exception {
+		// Create a new Design from scratch rather than load an existing design
+		Design design = new Design();
+		// Set its name
+		design.setName(name);
+
+		// When we set the part name, it loads the corresponding Device and
+		// WireEnumerator
+		// Always include package and speed grade with the part name
+		// load the Spartan 6 Device
+
+		design.setPartName("xc6slx45csg324-3");
+
+		HashMap<String, PrimitiveSite> primitiveSites = design.getDevice()
+				.getPrimitiveSites();
+
+		// My own Helper-classes for faster processing of routine steps
+		NetCreator myNetCreator = new NetCreator();
+		Placer myPlacer = new Placer(design, primitiveSites,useOwnPlacer);
+		
+
+		
+
+
+		// First check for correctness of the given model! Otherwise the later
+		// routines won't terminate
+		// Does not help if Loops are done in the specification
+		// e.g. LogicFunction A has output for B and B has output for A and both
+		// need each other as inputs
+		this.checkModelForCorrectness(model);
+		
+		// place the input and output IOBs
+		this.createInputAndOutputIOBs(model, myPlacer, design);
+
+		// setup the global clock first as well
+		// and setup a reset pin to reset all the latches/flipFlops
+		//but only do so if there is at least one latch available and therefore a clock is needed
+		if(model.genericLatches.size()>0){
+		setupGlobalClock(model, design, myNetCreator, myPlacer);
+		setupGlobalReset(model, design, myNetCreator, myPlacer);
+		}
+
+		// Dump-Place the Latches based on SLICELs (no connection established in
+		// the beginning
+		this.dumpPlaceLatches(model, myNetCreator, design, myPlacer);
+
+		// Dump-Place the LogicGates based on SLICELs
+		this.dumpPlaceLogicGates(model, myNetCreator, design, myPlacer);
+
+		// Dump-Place the inner models
+		this.dumpPlaceReferencesModels(model, myNetCreator, design, myPlacer);
+		
+		//Now place if necessary the last latch and logic block
+		if(logicBlockCounter!=0){
+			myPlacer.placeInstance(myLogicBlock);
+			design.addInstance(myLogicBlock);
+		}
+		if(latchCounterActiveHigh_FallingEdge!=0){
+			myPlacer.placeInstance(myLatchActiveHighFallingEdgeLatch);
+			design.addInstance(myLatchActiveHighFallingEdgeLatch);
+		}
+		if(latchCounterActiveLow_RisingEdge!=0){
+			myPlacer.placeInstance(myLatchActiveLowRisingEdgeLatch);
+			design.addInstance(myLatchActiveLowRisingEdgeLatch);
+		}
+		
+
+		// Now connect all the Latches
+		this.connectLatches(model, myNetCreator, design, myPlacer);
+
+		// and the Logic-Blocks
+		this.connectLogicBlocks(model, myNetCreator, design, myPlacer);
+		
+		//Now connect all the refrenced Latches and LogicBlocks
+		this.connectReferenceModels(model, myNetCreator, design, myPlacer);
+
+		return design;
+	}
+
+	private void setupGlobalReset(Model model, Design design,
+			NetCreator myNetCreator, Placer myPlacer) {
+
+		global_reset = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
+				"global_reset");
+		myPlacer.placeInstance(global_reset);
+		design.addInstance(global_reset);
+		
+	}
+
+	private void connectReferenceModels(Model model, NetCreator myNetCreator,
+			Design design, Placer myPlacer) {
+		for(Model currentReferenceModel:model.realModelReferences){
+			this.connectLatches(currentReferenceModel, myNetCreator, design, myPlacer);
+			this.connectLogicBlocks(currentReferenceModel, myNetCreator, design, myPlacer);
+			//recursive call
+			this.connectReferenceModels(currentReferenceModel, myNetCreator, design, myPlacer);
+		}
+		
+	}
+
+	private void connectLogicBlocks(Model model, NetCreator myNetCreator,
+			Design design, Placer myPlacer) {
+		for (LogicGate currentLogicGate : model.logicGates) {
+
+			String currentLOGIC_BLOCK_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+					.get(currentLogicGate.output);
+
+			LOGIC_BLOCK_INSTANCE currentLogicGateInstance = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances
+					.get(currentLogicGate.output + "_"
+							+ currentLOGIC_BLOCK_OUTPUT_PORT);
+
+			int currentNumberOfInput = 1;
+			for (String currentToBeMappedInput : currentLogicGate.inputs) {
+
+				String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+						.get(currentToBeMappedInput);
+
+				if (alreadyPlacedInstances.get(currentToBeMappedInput + "_"
+						+ current_INPUT_PORT) instanceof LATCH_INSTANCE) {
+					LATCH_INSTANCE otherLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances
+							.get(currentToBeMappedInput + "_"
+									+ current_INPUT_PORT);
+
+					// now connect the current with the other Latch
+					myNetCreator
+							.generateNet(current_INPUT_PORT + "Q",
+									otherLatchInstance,
+									currentLOGIC_BLOCK_OUTPUT_PORT
+											+ currentNumberOfInput,
+									currentLogicGateInstance, design,
+									alreadyPlacedNets);
+				} else if (alreadyPlacedInstances.get(currentToBeMappedInput
+						+ "_" + current_INPUT_PORT) instanceof LOGIC_BLOCK_INSTANCE) {
+					LOGIC_BLOCK_INSTANCE otherLogic_BLOCK_INSTANCE = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances
+							.get(currentToBeMappedInput + "_"
+									+ current_INPUT_PORT);
+					myNetCreator
+							.generateNet(current_INPUT_PORT + "MUX",
+									otherLogic_BLOCK_INSTANCE,
+									currentLOGIC_BLOCK_OUTPUT_PORT
+											+ currentNumberOfInput,
+									currentLogicGateInstance, design,
+									alreadyPlacedNets);
+				} else {
+					IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+							.get(currentToBeMappedInput);
+					myNetCreator
+							.generateNet("I", otherIOB_BLOCK_INSTANCE,
+									currentLOGIC_BLOCK_OUTPUT_PORT
+											+ currentNumberOfInput,
+									currentLogicGateInstance, design,
+									alreadyPlacedNets);
+				}
+				currentNumberOfInput++;
+			}
+
+			// check if output is final output
+			if (alreadyPlacedInstances.containsKey(currentLogicGate.output
+					+ _FINAL_OUTPUT)) {
+				IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+						.get(currentLogicGate.output + _FINAL_OUTPUT);
+				myNetCreator.generateNet(
+						currentLOGIC_BLOCK_OUTPUT_PORT + "MUX",
+						currentLogicGateInstance, "O", otherIOB_BLOCK_INSTANCE,
+						design, alreadyPlacedNets);
+			}
+		}
+	}
+
+	private void connectLatches(Model model, NetCreator myNetCreator, Design design, Placer myPlacer) {
+		for (GenericLatch currentLatch : model.genericLatches) {
+			String currentLATCH_OUTPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+					.get(currentLatch.output);
+			LATCH_INSTANCE currentLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances
+					.get(currentLatch.output + "_" + currentLATCH_OUTPUT_PORT);
+
+			String current_INPUT_PORT = portNubmerOfTheAlreadyPlacedInstances
+					.get(currentLatch.input);
+
+			if (alreadyPlacedInstances.get(currentLatch.input + "_"
+					+ current_INPUT_PORT) instanceof LATCH_INSTANCE) {
+				LATCH_INSTANCE otherLatchInstance = (LATCH_INSTANCE) alreadyPlacedInstances
+						.get(currentLatch.input + "_" + current_INPUT_PORT);
+
+				// now connect the current with the other Latch
+				myNetCreator.generateNet(current_INPUT_PORT + "Q",
+						otherLatchInstance, currentLATCH_OUTPUT_PORT + "X",
+						currentLatchInstance, design, alreadyPlacedNets);
+			} else if (alreadyPlacedInstances.get(currentLatch.input + "_"
+					+ current_INPUT_PORT) instanceof LOGIC_BLOCK_INSTANCE) {
+				LOGIC_BLOCK_INSTANCE otherLogic_BLOCK_INSTANCE = (LOGIC_BLOCK_INSTANCE) alreadyPlacedInstances
+						.get(currentLatch.input + "_" + current_INPUT_PORT);
+				myNetCreator.generateNet(current_INPUT_PORT + "MUX",
+						otherLogic_BLOCK_INSTANCE, currentLATCH_OUTPUT_PORT
+								+ "X", currentLatchInstance, design,
+						alreadyPlacedNets);
+			} else {
+				IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+						.get(currentLatch.input);
+				myNetCreator.generateNet("I", otherIOB_BLOCK_INSTANCE,
+						currentLATCH_OUTPUT_PORT + "X", currentLatchInstance,
+						design, alreadyPlacedNets);
+			}
+
+			// check if output is final output
+			if (alreadyPlacedInstances.containsKey(currentLatch.output
+					+ _FINAL_OUTPUT)) {
+				IOB_BLOCK_INSTANCE otherIOB_BLOCK_INSTANCE = (IOB_BLOCK_INSTANCE) alreadyPlacedInstances
+						.get(currentLatch.output + _FINAL_OUTPUT);
+				myNetCreator.generateNet(currentLATCH_OUTPUT_PORT + "Q",
+						currentLatchInstance, "O", otherIOB_BLOCK_INSTANCE,
+						design, alreadyPlacedNets);
+			}
+
+		}
+		
+	}
+
+	private void dumpPlaceReferencesModels(Model model,
+			NetCreator myNetCreator, Design design, Placer myPlacer) {
+
+		for (Model currentModel : model.realModelReferences) {
+			// Dump-Place all the latches of the Model
+			this.dumpPlaceLatches(currentModel, myNetCreator, design, myPlacer);
+			this.dumpPlaceLogicGates(currentModel, myNetCreator, design,
+					myPlacer);
+			// recursive call
+				dumpPlaceReferencesModels(currentModel,
+						myNetCreator, design, myPlacer);
+
+		}
+
+	}
+
+	private void dumpPlaceLogicGates(Model model, NetCreator myNetCreator,
+			Design design, Placer myPlacer) {
+		// Setup the new logic block
+	
+		
+		
+		for (LogicGate currentLogicGate : model.logicGates) {
+			if (logicBlockCounter == 0)
+				myLogicBlock = new LOGIC_BLOCK_INSTANCE("");// naming is done in
+															// the
+															// .setupTheLogicBlock
+			myLogicBlock = this.setupTheLogicBlock(currentLogicGate,
+					myNetCreator, design, alphabetSelector[logicBlockCounter],
+					myLogicBlock);
+
+			alreadyPlacedInstances.put(currentLogicGate.output + "_"
+					+ alphabetSelector[logicBlockCounter], myLogicBlock);
+			portNubmerOfTheAlreadyPlacedInstances.put(currentLogicGate.output,
+					alphabetSelector[logicBlockCounter]);
+
+			System.out.println("logicBLockCounter " + logicBlockCounter);
+
+			if (logicBlockCounter == 3
+					) {
+				myPlacer.placeInstance(myLogicBlock);
+				design.addInstance(myLogicBlock);
+			}
+
+			logicBlockCounter = (logicBlockCounter + 1) % 4;// from 0 to 3 = A
+															// to D
+			
+		}
+	}
+
+	private void dumpPlaceLatches(Model model, NetCreator myNetCreator,
+			Design design, Placer myPlacer) {
+
+		for (GenericLatch currentLatch : model.genericLatches) {
+			if(currentLatch.type.equals("ah") || currentLatch.type.equals("fe")){
+				this.placeActiveHighRisingEdgeLatch(currentLatch,design,myNetCreator,model,myPlacer);
+			}
+			else if(currentLatch.type.equals("al") || currentLatch.type.equals("re")){
+				this.placeActiveLowFallingEdgeLatch(currentLatch,design,myNetCreator,model,myPlacer);
+			}
+			else{
+				System.out.println("LATCH TYPE: "+currentLatch.type);
+				System.err.print("Unknown Latch Type found!");
+				Error e = new Error();
+				throw e;
+				
+			}
+		}
+	}
+
+	private void placeActiveLowFallingEdgeLatch(GenericLatch currentLatch, Design design, NetCreator myNetCreator, Model model, Placer myPlacer) {
+		// TODO Auto-generated method stub
+		if (latchCounterActiveLow_RisingEdge == 0)
+			myLatchActiveLowRisingEdgeLatch = new LATCH_INSTANCE("");// naming is done in
+												// .setupTheLatch
+
+		System.out.println("latchCounter " + latchCounterActiveLow_RisingEdge);
+		myLatchActiveLowRisingEdgeLatch = this.setupTheLatch(currentLatch, myNetCreator, design,
+				clk_buffer, alphabetSelector[latchCounterActiveLow_RisingEdge], myLatchActiveLowRisingEdgeLatch);
+
+		alreadyPlacedInstances.put(currentLatch.output + "_"
+				+ alphabetSelector[latchCounterActiveLow_RisingEdge], myLatchActiveLowRisingEdgeLatch);
+		portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output,
+				alphabetSelector[latchCounterActiveLow_RisingEdge]);
+
+		if (latchCounterActiveLow_RisingEdge == 3) {
+			myPlacer.placeInstance(myLatchActiveLowRisingEdgeLatch);
+			design.addInstance(myLatchActiveLowRisingEdgeLatch);
+		}
+
+		latchCounterActiveLow_RisingEdge = (latchCounterActiveLow_RisingEdge + 1) % 4;// from 0 to 3 = A to D
+		
+		
+	}
+
+	private void placeActiveHighRisingEdgeLatch(GenericLatch currentLatch, Design design, NetCreator myNetCreator, Model model, Placer myPlacer) {
+		if (latchCounterActiveHigh_FallingEdge == 0)
+			myLatchActiveHighFallingEdgeLatch = new LATCH_INSTANCE("");// naming is done in
+												// .setupTheLatch
+
+		System.out.println("latchCounter " + latchCounterActiveHigh_FallingEdge);
+		myLatchActiveHighFallingEdgeLatch = this.setupTheLatch(currentLatch, myNetCreator, design,
+				clk_buffer, alphabetSelector[latchCounterActiveHigh_FallingEdge], myLatchActiveHighFallingEdgeLatch);
+
+		alreadyPlacedInstances.put(currentLatch.output + "_"
+				+ alphabetSelector[latchCounterActiveHigh_FallingEdge], myLatchActiveHighFallingEdgeLatch);
+		portNubmerOfTheAlreadyPlacedInstances.put(currentLatch.output,
+				alphabetSelector[latchCounterActiveHigh_FallingEdge]);
+
+		if (latchCounterActiveHigh_FallingEdge == 3) {
+			myPlacer.placeInstance(myLatchActiveHighFallingEdgeLatch);
+			design.addInstance(myLatchActiveHighFallingEdgeLatch);
+		}
+
+		latchCounterActiveHigh_FallingEdge = (latchCounterActiveHigh_FallingEdge + 1) % 4;// from 0 to 3 = A to D
+		
+		
+	}
+
+	private LATCH_INSTANCE setupTheLatch(GenericLatch currentLatch,
+			NetCreator myNetCreator, Design design, Instance clk_buffer2,
+			String SELECTED_LETTER, LATCH_INSTANCE myLatch) {
+
+		// to name it correct
+		if (myLatch.getName().equals("")) {
+			myLatch.setName(currentLatch.output);
+		} else {
+			myLatch.setName(myLatch.getName() + "_" + currentLatch.output);
+		}
+
+		myLatch.configure_LATCH(currentLatch, SELECTED_LETTER);
+
+		// connect the clk and the reset to the LATCH
+		if (SELECTED_LETTER == "A")
+			myNetCreator.generateNet("O", clk_buffer2, "CLK", myLatch, design,
+					alreadyPlacedNets);
+			myNetCreator.generateNet("I", global_reset, "SR", myLatch, design,
+				alreadyPlacedNets);
+
+		return myLatch;
+	}
+
+	private LOGIC_BLOCK_INSTANCE setupTheLogicBlock(LogicGate currentLogicGate,
+			NetCreator myNetCreator, Design design, String SELECTED_LETTER,
+			LOGIC_BLOCK_INSTANCE myLogicBlock) {
+
+		// to name it correct
+		if (myLogicBlock.getName().equals("")) {
+			myLogicBlock.setName(currentLogicGate.output);
+		} else {
+			myLogicBlock.setName(myLogicBlock.getName() + "_"
+					+ currentLogicGate.output);
+
+		}
+
+		// configure the logic in the LUT
+		myLogicBlock.configure_LUT(currentLogicGate.inputs,
+				currentLogicGate.outputcover.inputTable,
+				currentLogicGate.outputcover.outputTable, SELECTED_LETTER);
+
+		return myLogicBlock;
+	}
+
+
+
+	/*
+	 * Setup the clk for the latches
+	 */
+	private void setupGlobalClock(Model model, Design design,
+			NetCreator myNetCreator, Placer myPlacer) {
+
+		// set the clock if specified
+		if (model.clocks.size() >= 1) {
+			if(!model.clocks.get(0).equals("NIL"))clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT,
+					model.clocks.get(0));
+		}
+		// set a own clock
+		else {
+			clk = new IOB_BLOCK_INSTANCE(TypeOfInstance.IOB_INPUT, "my_clk");
+		}
+
+		myPlacer.placeInstance(clk);
+		design.addInstance(clk);
+
+		// Setup the Buffer for the clk as shown in the example projects
+		clk_buffer = new Instance("my_clk_BUFG", PrimitiveType.BUFG);
+		myPlacer.placeInstance(clk_buffer);
+		design.addInstance(clk_buffer);
+
+		// connect the clk and the clk buffer
+		myNetCreator.generateNet("I", clk, "I0", clk_buffer, design,
+				alreadyPlacedNets);
+
+	}
+
+	private void checkModelForCorrectness(Model model)
+			throws Exception {
+		for (LogicGate currentGateToBeChecked : model.logicGates) {
+			for (String currentInputToBeChecked : currentGateToBeChecked.inputs) {
+
+				// it's a primary input maybe ?
+				if (model.inputs.contains(currentInputToBeChecked))
+					continue;// continue with the next input
+				// it is a interconnection maybe?
+				if (!isAnInterconnectVariable(model.logicGates,
+						currentInputToBeChecked))
+					continue;
+				// it is a variable provided by a latch?
+				if (!isAnLatchVariable(model.genericLatches,
+						currentInputToBeChecked))
+					continue;
+				else {
+					System.err
+							.print("Current Model has got inputs that are not definied correct: "
+									+ currentInputToBeChecked + " ");
+					Exception modelIsIncorrect_Exception = new Exception();
+					throw (modelIsIncorrect_Exception);// stop the process
+				}
+
+			}
+		}
+	}
+
+	private boolean isAnLatchVariable(
+			CopyOnWriteArrayList<GenericLatch> genericLatches,
+			String currentInputToBeChecked) {
+		for (GenericLatch currentLatchToBeChecked : genericLatches) {
+			if (currentLatchToBeChecked.output.equals(currentInputToBeChecked))
+				return true;
+		}
+		return false;
+	}
+
+	private boolean isAnInterconnectVariable(
+			CopyOnWriteArrayList<LogicGate> logicGatesToIterateOver,
+			String currentInputToBeChecked) {
+
+		for (LogicGate otherGateToBeComparedWith : logicGatesToIterateOver) {
+			if (otherGateToBeComparedWith.output
+					.equals(currentInputToBeChecked))
+				return true;
+
+		}
+		return false;
+	}
+
+	private void createInputAndOutputIOBs(Model model, Placer myPlacer,
+			Design design) {
+		// Create Input IOBs:
+		for (String currentInput : model.inputs) {
+			Instance myIOB_Input = new IOB_BLOCK_INSTANCE(
+					IOB_BLOCK_INSTANCE.TypeOfInstance.IOB_INPUT, currentInput);
+			myPlacer.placeInstance(myIOB_Input);
+			design.addInstance(myIOB_Input);
+			alreadyPlacedInstances.put(currentInput, myIOB_Input);
+			// allows access to the input instance
+			// design.getInstance(name);
+		}
+
+		// Create Output IOBs:
+		for (String currentOutput : model.outputs) {
+			Instance myIOB2_Output = new IOB_BLOCK_INSTANCE(
+					IOB_BLOCK_INSTANCE.TypeOfInstance.IOB_OUTPUT, currentOutput
+							+ _FINAL_OUTPUT);
+			myPlacer.placeInstance(myIOB2_Output);
+			design.addInstance(myIOB2_Output);
+			// availableFinalOutputVariables.add(currentOutput);
+
+			// since the final outputs can also be used as input variables to
+			// other functions
+			// also add them to the available inputs as well!
+			// Interconnection has to be done as well !
+
+			// place it as new Input
+			alreadyPlacedInstances.put(currentOutput, myIOB2_Output);
+
+			// place it specifically as new Final Output
+			alreadyPlacedInstances.put(currentOutput + _FINAL_OUTPUT,
+					myIOB2_Output);
+
+			// allows access to the output instance
+			// design.getInstance(name);
+		}
+
+	}
+}

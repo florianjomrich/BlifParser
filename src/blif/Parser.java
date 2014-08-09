@@ -25,6 +25,7 @@ public class Parser {
 //			model = parseFile("blif\\adder.blif");//OK
 //			model = parseFile("blif\\adder vermurkst.blif");//OK
 //			model = parseFile("blif\\xor_outOfNands.blif");//OK
+
 			
 //			model = parseFile("blif\\flachesXor.blif");//OK
 //			model = parseFile("blif\\testBlif2.blif");//OK 2
@@ -37,7 +38,8 @@ public class Parser {
 //			model = parseFile("blif\\bigkey.blif");//OK 2
 //			model = parseFile("blif\\registerTest.blif");//OK 2
 //			model = parseFile("blif\\refactoring.blif");//OK 2
-			model = parseFile("blif\\refactoring2.blif");//OK 2
+//			model = parseFile("blif\\refactoring2.blif");//OK 2
+			model = parseFile("blif\\refactoring3.blif");//OK 2
 //			model = parseFile("blif\\registerMinimal.blif");//OK 2
 			
 			RapidsmithParser myRapidParser = new RapidsmithParser();
@@ -284,6 +286,7 @@ public class Parser {
 			}
 		}
 		if(modelDescriptions.length > 2) {
+			Model rootModel = null;
 			outerloop: for(int i = 0; i < modelList.size(); i++) {							//iterate over all models.
 				for(int j = 0; j < modelList.size(); j++) {									//check for every other model...
 					if(i != j) {
@@ -295,18 +298,26 @@ public class Parser {
 					}
 				}
 				
-				model = modelList.get(i);
+				rootModel = modelList.get(i);
 				break;
 			}
 			
-			if(model == null) {
+			if(rootModel == null) {
 				throw new Exception("Error: All models are referenced in .subckt-references. No root-model found!");
 			}
 			
-			modelList.remove(model);
+			modelList.remove(rootModel);
 			HashMap<String, Integer> modelCount = new HashMap<String, Integer>();
-			for(int i = 0; i < model.modelReferences.size(); i++) {
-				addModelToModel(modelList, modelCount, model, model.modelReferences.get(i));
+			for(int i = 0; i < rootModel.modelReferences.size(); i++) {
+				addModelToModel(modelList, modelCount, rootModel, rootModel.modelReferences.get(i));
+			}
+			model = new Model();
+			flattenModel(model, rootModel);
+			for(String input : rootModel.inputs) {
+				model.inputs.add(input);
+			}
+			for(String output : rootModel.outputs) {
+				model.outputs.add(output);
 			}
 		}
 		else {
@@ -317,6 +328,18 @@ public class Parser {
 		return model;
 	}
 	
+	private static void flattenModel(Model flatModel, Model recursiveModel) {
+		for(LogicGate gate : recursiveModel.logicGates) {
+			flatModel.logicGates.add(gate);
+		}
+		for(GenericLatch latch : recursiveModel.genericLatches) {
+			flatModel.genericLatches.add(latch);
+		}
+		for(Model subModel : recursiveModel.realModelReferences) {
+			flattenModel(flatModel, subModel);
+		}
+	}
+
 	private static void addModelToModel(CopyOnWriteArrayList<Model> allModels, HashMap<String, Integer> modelCount, Model rootModel, ModelReference addModel) throws Exception {
 		Model modelTemplate = null;
 		for(int i = 0; i < allModels.size(); i++) {

@@ -1,0 +1,30 @@
+# Benchmark "testset/apex2" written by ABC on Fri Jun 22 12:04:36 2012
+.model testset/apex2
+.inputs x23 x24 x25 test1 r a b c d
+.outputs n44  z0re z1re z2re z3re z4re z5re u34fe u35fe u36fe u37ah u38ah u39ah z50al z51al xorOutput test3
+
+.names a b c d r x23 n44
+000011 1 
+
+.names test1 test2
+1 1
+
+.names test2 test2 test3
+11 1
+
+.names x25 n30
+1 1 
+
+.names x23 x24 xorInBetween
+01 1 
+10 1
+
+.clock bertaClock
+
+.latch n44 z0re re bertaClock 0
+.latch z0re z1re re bertaClock 0
+
+.latch xorInBetween xorOutput fe bertaClock 0
+
+
+.end

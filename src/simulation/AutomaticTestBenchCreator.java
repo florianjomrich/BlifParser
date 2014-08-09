@@ -16,12 +16,7 @@ public class AutomaticTestBenchCreator {
 	public void setupAutomaticTestBench(String verilogFileNameRouted,
 			Design design) {
 
-		File testBenchFolder = new File(design.getName() + " final TestBench"); // Verzeichnis
-																				// kann
-																				// ohne
-																				// Probleme
-																				// erstellt
-																				// werden
+		File testBenchFolder = new File(design.getName() + " final TestBench"); //create a folder named like the project
 		testBenchFolder.mkdir();
 
 		// wait for the external routing and placing process to be finished

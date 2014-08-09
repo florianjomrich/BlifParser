@@ -39,6 +39,29 @@ public class CorrectnessChecker {
 
 			}
 		}
+		
+		for (GenericLatch currentLatchToBeChecked : model.genericLatches) {
+				// it's a primary input maybe ?
+				if (model.inputs.contains(currentLatchToBeChecked.input))
+					continue;// continue with the next input
+				// it is a interconnection maybe?
+				if (!isAnInterconnectVariable(model.logicGates,
+						currentLatchToBeChecked.input))
+					continue;
+				// it is a variable provided by a latch?
+				if (!isAnLatchVariable(model.genericLatches,
+						currentLatchToBeChecked.input))
+					continue;
+				else {
+					System.err
+							.print("Current Model has got inputs that are not definied correct: "
+									+ currentLatchToBeChecked.input + " ");
+					Exception modelIsIncorrect_Exception = new Exception();
+					throw (modelIsIncorrect_Exception);// stop the process
+				}
+
+			
+		}
 	}
 	
 	private boolean isAnLatchVariable(

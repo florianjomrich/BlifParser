@@ -6,6 +6,13 @@ import edu.byu.ece.rapidSmith.design.Design;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.device.PrimitiveSite;
 
+/**
+ * Helper class that makes all the necessary steps to put a SLICE on the FPGA
+ * It has to be selected whether or not another placer should be used in the 
+ * Design Creation class by setting the useOwnPlacer variable correctly 
+ * @author Florian Jomrich
+ *
+ */
 public class Placer {
 	boolean useOwnPlacer;
 
@@ -19,6 +26,10 @@ public class Placer {
 		this.useOwnPlacer = useOwnPlacer;
 	}
 
+	/**
+	 * Places the given instance on the FPGA
+	 * @param myInstance
+	 */
 	public void placeInstance(Instance myInstance) {
 		// place it on the FPGA using a Random placer
 		//if no own placer is used

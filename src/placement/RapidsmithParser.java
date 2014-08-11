@@ -21,23 +21,16 @@ package placement;
  */
 
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-
 import simulation.AutomaticTestBenchCreator;
 import blif.Model;
 import edu.byu.ece.rapidSmith.design.*;
-import edu.byu.ece.rapidSmith.device.*;
 import edu.byu.ece.rapidSmith.util.FileConverter;
 import edu.byu.ece.rapidSmith.util.StreamGobbler;
 
 /**
- * A simple class to illustrate how to use some of the basic methods in RapidSmith.
- * @author Chris Lavin
+ * The class which invokes all the necessary processing steps to get from the BLIF-model representation to 
+ * the the xdl file and form there to the ncd file and finally to the verilog simulation file
+ * @author Florian Jomrich
  */
 
 public class RapidsmithParser{
@@ -46,7 +39,8 @@ public class RapidsmithParser{
 	String xilinxPath = "F:\\Xilinix\\14.7\\ISE_DS\\ISE\\bin\\nt\\";
 	
 	/**
-	 * 
+	 * Starts all the necessary steps which are processed to receive finally an simulateable Verilog 
+	 * representation of the BLIF-file
 	 * @param model - The model created by the File-Parser which
 	 * now has to be mapped onto the FPGA
 	 * @throws Exception 
@@ -55,8 +49,8 @@ public class RapidsmithParser{
 		DesignCreation myDesignCreater = new DesignCreation();
 		
 		//remove / seperators for easier handling of files
-		String name = "HelloWorld";
-//		String name = model.modelName.replace("/", "");
+//		String name = "HelloWorld";
+		String name = model.modelName.replace("/", "");
 		
 		//create the rapidsmith model
 		Design design = myDesignCreater.createDesign(model,name);
@@ -99,7 +93,9 @@ public class RapidsmithParser{
 
 	
 
-
+	/**
+	 * Creates a placed and routed version of the current unrouted ncdFile
+	 */
 	private void placeAndRoute(String ncdFileName,String ncdRoutedFileName){
 		//-w to overwrite already existing files
 		String command = xilinxPath+"par -w " + ncdFileName + " " + ncdRoutedFileName;
@@ -121,6 +117,9 @@ public class RapidsmithParser{
 	
 	}
 	
+	/**
+	 * Creates the Verilog-simulation file 
+	 */
 	private void createSimulationModel(String ncdFileName, String VerilogFileName, String buildingMessage){
 		String command = xilinxPath+"netgen -w -ofmt  verilog " + ncdFileName + " " + VerilogFileName;
 

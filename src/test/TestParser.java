@@ -5,6 +5,12 @@ import commands.LogicGate;
 import blif.Model;
 import blif.Parser;
 
+/**
+ * To test if the model is read correct. Just used for debugging not 
+ * used in the direct placing process anymore. 
+ * @author Florian Jomrich
+ *
+ */
 public class TestParser {
 
 	public static void main(String[] args) {

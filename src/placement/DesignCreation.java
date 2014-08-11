@@ -2,7 +2,6 @@ package placement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import commands.GenericLatch;
 import commands.LogicGate;
@@ -17,6 +16,13 @@ import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.design.Net;
 import edu.byu.ece.rapidSmith.device.PrimitiveSite;
 import edu.byu.ece.rapidSmith.device.PrimitiveType;
+
+/**
+ * The class which does the main design creation part. Places the elements (Logic-Blocks, Latches, IOBs) on the FPGA  and
+ * connects them  
+ * @author Florian Jomrich
+ *
+ */
 
 public class DesignCreation {
 
@@ -151,7 +157,7 @@ public class DesignCreation {
 
 
 
-	/*
+	/**
 	 * Setup the clk for the latches
 	 */
 	private void setupGlobalClock(Model model, Design design,
@@ -180,7 +186,12 @@ public class DesignCreation {
 				alreadyPlacedNets);
 
 	}
-
+/**
+ * Setup the global reset  for all latches/flipflops
+ * @param model - the current model which was created out of the BLIF-File
+ * @param design - the current Rapidsmith-Design-File
+ * @param myNetCreator - helping class that connects the elemnts with each other
+ */
 	private void setupGlobalReset(Model model, Design design,
 			NetCreator myNetCreator) {
 
@@ -191,6 +202,10 @@ public class DesignCreation {
 
 	}
 
+	/**
+	 * Places the logic gates on the FPGA, if necessary configures also the first latch that
+	 * is connected to the logic gate.
+	 */
 	private void dumpPlaceLogicGates(Model model, NetCreator myNetCreator,
 			Design design) {
 		// Setup the new logic block
@@ -326,6 +341,10 @@ public class DesignCreation {
 		}
 	}
 
+	/**
+	 * Marks the latch as a primary latch. Latch than to be handled in a different way 
+	 * in the connecting procedure that comes afterwards.
+	 */
 	private void addReferenceToPrimaryLatch(GenericLatch primaryLatch) {
 		// add a reference to the primary latch as already placed:
 		// so no new flipflop gets created if it has got the same configuration
@@ -358,6 +377,9 @@ public class DesignCreation {
 		}
 	}
 
+	/**
+	 * Place all the latches that where no primary latches and were already placed on the FPGA.
+	 */
 	private void dumpPlaceRemainingLatches(Model model,
 			NetCreator myNetCreator, Design design) {
 
@@ -385,8 +407,7 @@ public class DesignCreation {
 								alreadyPlacedOtherLatchInstance);
 
 					} else {
-						SLICEL_INSTANCE latchToBeAdded = this
-								.placeActiveHighFallingEdgeLatch(currentLatch,
+						this.placeActiveHighFallingEdgeLatch(currentLatch,
 										design, myNetCreator, model);
 						alreadyPlacedActiveHighLatches.put(currentLatch.input,
 								currentLatch);
@@ -410,8 +431,7 @@ public class DesignCreation {
 								alreadyPlacedOtherLatchInstance);
 
 					} else {
-						SLICEL_INSTANCE latchToBeAdded = this
-								.placeActiveHighFallingEdgeLatch(currentLatch,
+						this.placeActiveHighFallingEdgeLatch(currentLatch,
 										design, myNetCreator, model);
 						alreadyPlacedFallingEdgeFlipFlop.put(currentLatch.input,
 								currentLatch);
@@ -434,8 +454,7 @@ public class DesignCreation {
 								alreadyPlacedOtherLatchInstance);
 
 					} else {
-						SLICEL_INSTANCE latchToBeAdded = this
-								.placeActiveLowRisingEdgeLatch(currentLatch,
+						this.placeActiveLowRisingEdgeLatch(currentLatch,
 										design, myNetCreator, model);
 						alreadyPlacedActiveLowLatches.put(currentLatch.input,
 								currentLatch);
@@ -459,8 +478,7 @@ public class DesignCreation {
 								alreadyPlacedOtherLatchInstance);
 
 					} else {
-						SLICEL_INSTANCE latchToBeAdded = this
-								.placeActiveLowRisingEdgeLatch(currentLatch,
+						this.placeActiveLowRisingEdgeLatch(currentLatch,
 										design, myNetCreator, model);
 						alreadyPlacedRisingEdgeFlipFlop.put(currentLatch.input,
 								currentLatch);
@@ -483,6 +501,9 @@ public class DesignCreation {
 
 	}
 
+	/**
+	 * Marks the given latch as an already placed instance.
+	 */
 	private void placeReferenceToAlreadyExistingLatch(
 			GenericLatch currentLatch, String thePortNumberOfTheOtherLatch,
 			Instance alreadyPlacedOtherLatchInstance) {
@@ -494,6 +515,10 @@ public class DesignCreation {
 		typeOfTheAlreadyPlaceInstances.put(currentLatch.output, _LATCH);
 	}
 
+	/**
+	 * Connect the dumplaced logic blocks now with a wire connection 
+	 * where it is needed.
+	 */
 	private void connectLogicBlocks(Model model, NetCreator myNetCreator,
 			Design design) {
 
@@ -576,6 +601,10 @@ public class DesignCreation {
 		}
 	}
 
+	/**
+	 * Connect the dumplaced latches now with a wire connection 
+	 * where it is needed.
+	 */
 	private void connectLatches(Model model, NetCreator myNetCreator,
 			Design design) {
 		for (GenericLatch currentLatch : model.genericLatches) {
@@ -644,6 +673,9 @@ public class DesignCreation {
 
 	}
 
+	/**
+	 * Configures the current latch as the primary latch of the given logic gate
+	 */
 	private SLICEL_INSTANCE setupThePrimaryLatch(GenericLatch primaryLatch,
 			String LETTER_OF_THE_SELECTED_LATCH, LogicGate currentLogicGate,
 			SLICEL_INSTANCE currentSLICEL) {
@@ -657,6 +689,9 @@ public class DesignCreation {
 		return currentSLICEL;
 	}
 
+	/**
+	 * Add the current latch to the already placed elements.
+	 */
 	private void addTheLatchToAlreadyPlacedInstances(GenericLatch currentLatch,
 			int BlockCounterNumber, SLICEL_INSTANCE currentLatchInstance) {
 		alreadyPlacedInstances.put(currentLatch.output + "_"
@@ -667,6 +702,9 @@ public class DesignCreation {
 				alphabetSelector[BlockCounterNumber]);
 	}
 
+	/**
+	 * Add the current logic block to the already placed elements.
+	 */
 	private void addTheLogicBlockToAlreadyPlaceInstances(
 			LogicGate currentLogicGate, int BlockCounterNumber,
 			SLICEL_INSTANCE currentLogicBlockInstance) {
@@ -679,6 +717,9 @@ public class DesignCreation {
 				alphabetSelector[BlockCounterNumber]);
 	}
 
+	/**
+	 *Places a latch that needs an active low clock
+	 */
 	private SLICEL_INSTANCE placeActiveLowRisingEdgeLatch(
 			GenericLatch currentLatch, Design design, NetCreator myNetCreator,
 			Model model) {
@@ -715,6 +756,9 @@ public class DesignCreation {
 		return negativeSlice;
 	}
 
+	/**
+	 *Places a latch that needs an active high clock
+	 */
 	private SLICEL_INSTANCE placeActiveHighFallingEdgeLatch(
 			GenericLatch currentLatch, Design design, NetCreator myNetCreator,
 			Model model) {
@@ -750,6 +794,9 @@ public class DesignCreation {
 
 	}
 
+	/**
+	 * Configures the latch, that is no primary latch.
+	 */
 	private SLICEL_INSTANCE setupTheAdditionalLatch(GenericLatch currentLatch,
 			NetCreator myNetCreator, Design design, String SELECTED_LETTER,
 			SLICEL_INSTANCE myLatch) {
@@ -772,6 +819,9 @@ public class DesignCreation {
 		return myLatch;
 	}
 
+	/**
+	 * Internal configuration of the logic block in his SLICE.
+	 */
 	private SLICEL_INSTANCE setupTheLogicBlock(LogicGate currentLogicGate,
 			NetCreator myNetCreator, Design design, String SELECTED_LETTER,
 			SLICEL_INSTANCE currentSlice) {

@@ -20,9 +20,9 @@ public class Parser {
 		try {
 			Model model = null;
 			
-//STILL TO TEST !!			
+		
 //			model = parseFile("blif\\nandGate.blif");//OK
-//			model = parseFile("blif\\adder.blif");//OK
+			model = parseFile("blif\\adder.blif");//OK
 //			model = parseFile("blif\\adder vermurkst.blif");//OK
 //			model = parseFile("blif\\xor_outOfNands.blif");//OK
 
@@ -35,8 +35,8 @@ public class Parser {
 //			model = parseFile("blif\\alu4_map_sp6.blif");//OK 2
 //			model = parseFile("blif\\s38417.blif"); //Ok 2
 //			model = parseFile("blif\\S3388BENCHMARK.blif"); // OK 2
-			model = parseFile("blif\\bigkey.blif");//OK 2
-//			model = parseFile("blif\\registerTest.blif");//OK 2
+//			model = parseFile("blif\\bigkey.blif");//OK 2
+			model = parseFile("blif\\registerTest.blif");//OK 2
 //			model = parseFile("blif\\refactoring.blif");//OK 2
 //			model = parseFile("blif\\refactoring2.blif");//OK 2
 //			model = parseFile("blif\\refactoring3.blif");//OK 2

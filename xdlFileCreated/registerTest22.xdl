@@ -1,0 +1,220 @@
+
+# =======================================================
+# edu.byu.ece.rapidSmith.design.Design XDL Generation $Revision: 1.01$
+# time: Mo Aug 11 21:09:49 2014
+
+# =======================================================
+
+
+# =======================================================
+# The syntax for the design statement is:                
+# design <design_name> <part> <ncd version>;             
+# or                                                     
+# design <design_name> <device> <package> <speed> <ncd_version>
+# =======================================================
+design "registerTest22" xc6slx45csg324-3 v3.2 ,
+  cfg "";
+
+
+#  =======================================================
+#  The syntax for instances is:
+#      instance <name> <sitedef>, placed <tile> <site>, cfg <string> ;
+#  or
+#      instance <name> <sitedef>, unplaced, cfg <string> ;
+# 
+#  For typing convenience you can abbreviate instance to inst.
+# 
+#  For IOs there are two special keywords: bonded and unbonded
+#  that can be used to designate whether the PAD of an unplaced IO is
+#  bonded out. If neither keyword is specified, bonded is assumed.
+# 
+#  The bonding of placed IOs is determined by the site they are placed in.
+# 
+#  If you specify bonded or unbonded for an instance that is not an
+#  IOB it is ignored.
+# 
+#  Shown below are three examples for IOs. 
+#     instance IO1 IOB, unplaced ;          # This will be bonded
+#     instance IO1 IOB, unplaced bonded ;   # This will be bonded
+#     instance IO1 IOB, unplaced unbonded ; # This will be unbonded
+#  =======================================================
+inst "out6_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H15  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out6_FINAL_OUTPUT_OBUF: PAD:out6_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out9_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H14  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out9_FINAL_OUTPUT_OBUF: PAD:out9_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "in1" "IOB",placed RIOB_X37Y90 G14  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:in1: IMUX::I "
+  ;
+inst "out11_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E1  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out11_FINAL_OUTPUT_OBUF: PAD:out11_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "my_clk_BUFG" "BUFG",placed CLKC_X18Y63 BUFGMUX_X2Y10  ,
+  cfg " "
+  ;
+inst "out14_FINAL_OUTPUT" "IOB",placed TIOB_SINGLE_X20Y127 F9  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out14_FINAL_OUTPUT_OBUF: PAD:out14_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out8_FINAL_OUTPUT" "IOB",placed RIOB_X37Y71 H13  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out8_FINAL_OUTPUT_OBUF: PAD:out8_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out15_FINAL_OUTPUT" "IOB",placed LIOB_X0Y92 F6  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out15_FINAL_OUTPUT_OBUF: PAD:out15_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out7_FINAL_OUTPUT" "IOB",placed RIOB_X37Y70 H16  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out7_FINAL_OUTPUT_OBUF: PAD:out7_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out1_FINAL_OUTPUT" "IOB",placed RIOB_X37Y87 G13  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out1_FINAL_OUTPUT_OBUF: PAD:out1_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out3_out9" "SLICEL",placed CLEXM_X8Y9 SLICE_X10Y9  ,
+  cfg " AFFSRINIT::SRINIT0 SRUSED::0 AFFMUX::AX SYNC_ATTR::ASYNC BFFSRINIT::SRINIT0 CLKINV::CLK_B BFFMUX::BX BFF::#FF AFF::#LATCH "
+  ;
+inst "newCLK" "IOB",placed LIOB_X0Y71 F1  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:newCLK: IMUX::I "
+  ;
+inst "out13_FINAL_OUTPUT" "IOB",placed LIOB_X0Y85 E3  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out13_FINAL_OUTPUT_OBUF: PAD:out13_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out12_FINAL_OUTPUT" "IOB",placed LIOB_X0Y90 E4  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out12_FINAL_OUTPUT_OBUF: PAD:out12_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "global_reset" "IOB",placed LIOB_X0Y92 F5  ,
+  cfg " ISTANDARD::LVCMOS25 BYPASS_MUX::I PAD:global_reset: IMUX::I "
+  ;
+inst "out5_FINAL_OUTPUT" "IOB",placed RIOB_X37Y62 H18  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out5_FINAL_OUTPUT_OBUF: PAD:out5_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out10_FINAL_OUTPUT" "IOB",placed RIOB_X37Y87 H12  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out10_FINAL_OUTPUT_OBUF: PAD:out10_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out2_FINAL_OUTPUT" "IOB",placed RIOB_X37Y69 G18  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out2_FINAL_OUTPUT_OBUF: PAD:out2_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out3_FINAL_OUTPUT" "IOB",placed RIOB_X37Y69 G16  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out3_FINAL_OUTPUT_OBUF: PAD:out3_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out4_FINAL_OUTPUT" "IOB",placed RIOB_X37Y62 H17  ,
+  cfg " OSTANDARD::LVCMOS25 ISTANDARD::LVCMOS25 OUSED::0 DRIVEATTRBOX::12 BYPASS_MUX::I SLEW::SLOW OUTBUF:out4_FINAL_OUTPUT_OBUF: PAD:out4_FINAL_OUTPUT: IMUX::I "
+  ;
+inst "out1_out2_out7" "SLICEL",placed CLEXM_X8Y8 SLICE_X10Y8  ,
+  cfg " SRUSED::0 AOUTMUX::O5 SYNC_ATTR::ASYNC BFFSRINIT::SRINIT0 CLKINV::CLK BFFMUX::BX CFFMUX::CX BFF::#FF CFF::#LATCH A5LUT::#LUT:O5=(A1) CFFSRINIT::SRINIT0 "
+  ;
+
+#  ================================================
+#  The syntax for nets is:
+#     net <name> <type>,
+#       outpin <inst_name> <inst_pin>,
+#       .
+#       .
+#       inpin <inst_name> <inst_pin>,
+#       .
+#       .
+#       pip <tile> <wire0> <dir> <wire1> , # [<rt>]
+#       .
+#       .
+#       ;
+# 
+#  There are three available wire types: wire, power and ground.
+#  If no type is specified, wire is assumed.
+# 
+#  Wire indicates that this a normal wire.
+#  Power indicates that this net is tied to a DC power source.
+#  You can use "power", "vcc" or "vdd" to specify a power net.
+# 
+#  Ground indicates that this net is tied to ground.
+#  You can use "ground", or "gnd" to specify a ground net.
+# 
+#  The <dir> token will be one of the following:
+# 
+#     Symbol Description
+#     ====== ==========================================
+#       ==   Bidirectional, unbuffered.
+#       =>   Bidirectional, buffered in one direction.
+#       =-   Bidirectional, buffered in both directions.
+#       ->   Directional, buffered.
+# 
+#  No pips exist for unrouted nets.
+#  ================================================
+  net "out3_out9.AQ->out3_FINAL_OUTPUT.O" ,
+    inpin "out3_FINAL_OUTPUT" O ,
+    outpin "out3_out9" AQ ,
+    inpin "out4_FINAL_OUTPUT" O ,
+    ;
+  net "null" ,
+    ;
+  net "out1_out2_out7.AMUX->out1_FINAL_OUTPUT.O" ,
+    inpin "out1_FINAL_OUTPUT" O ,
+    outpin "out1_out2_out7" AMUX ,
+    ;
+  net "out3_out9.BQ->out9_FINAL_OUTPUT.O" ,
+    inpin "out9_FINAL_OUTPUT" O ,
+    outpin "out3_out9" BQ ,
+    inpin "out10_FINAL_OUTPUT" O ,
+    ;
+  net "my_clk_BUFG.O->out1_out2.CLK" ,
+    inpin "out1_out2_out7" CLK ,
+    outpin "my_clk_BUFG" O ,
+    inpin "out3_out9" CLK ,
+    inpin "out1_out2_out7" CLK ,
+    inpin "out3_out9" CLK ,
+    ;
+  net "out1_out2_out7.CQ->out7_FINAL_OUTPUT.O" ,
+    inpin "out7_FINAL_OUTPUT" O ,
+    outpin "out1_out2_out7" CQ ,
+    inpin "out8_FINAL_OUTPUT" O ,
+    inpin "out11_FINAL_OUTPUT" O ,
+    inpin "out12_FINAL_OUTPUT" O ,
+    inpin "out13_FINAL_OUTPUT" O ,
+    inpin "out14_FINAL_OUTPUT" O ,
+    inpin "out15_FINAL_OUTPUT" O ,
+    ;
+  net "global_reset.I->out1_out2.SR" ,
+    inpin "out1_out2_out7" SR ,
+    outpin "global_reset" I ,
+    inpin "out3_out9" SR ,
+    inpin "out1_out2_out7" SR ,
+    inpin "out3_out9" SR ,
+    ;
+  net "in1.I->out1_out2_out7.BX" ,
+    inpin "out1_out2_out7" BX ,
+    outpin "in1" I ,
+    inpin "out3_out9" AX ,
+    inpin "out3_out9" AX ,
+    inpin "out1_out2_out7" BX ,
+    inpin "out1_out2_out7" BX ,
+    inpin "out1_out2_out7" CX ,
+    inpin "out1_out2_out7" CX ,
+    inpin "out3_out9" BX ,
+    inpin "out3_out9" BX ,
+    inpin "out1_out2_out7" CX ,
+    inpin "out1_out2_out7" CX ,
+    inpin "out1_out2_out7" CX ,
+    inpin "out1_out2_out7" CX ,
+    inpin "out1_out2_out7" CX ,
+    inpin "out1_out2_out7" A1 ,
+    ;
+  net "out1_out2_out7.BQ->out2_FINAL_OUTPUT.O" ,
+    inpin "out2_FINAL_OUTPUT" O ,
+    outpin "out1_out2_out7" BQ ,
+    inpin "out5_FINAL_OUTPUT" O ,
+    inpin "out6_FINAL_OUTPUT" O ,
+    ;
+  net "newCLK.I->my_clk_BUFG.I0" ,
+    inpin "my_clk_BUFG" I0 ,
+    outpin "newCLK" I ,
+    ;
+
+# =======================================================
+# SUMMARY
+# Number of Module Defs: 0
+# Number of Module Insts: 0
+# Number of Primitive Insts: 21
+#     Number of SLICES: 2
+#     Number of DSP48s: 0
+#     Number of BRAMs: 0
+# Number of Nets: 10
+# =======================================================
+
+

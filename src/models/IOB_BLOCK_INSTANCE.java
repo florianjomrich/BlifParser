@@ -7,6 +7,11 @@ import edu.byu.ece.rapidSmith.design.Attribute;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.device.PrimitiveType;
 
+/**
+ * Model representatino of an InputOutput Block
+ * @author Florian Jomrich
+ *
+ */
 public class IOB_BLOCK_INSTANCE extends Instance{
 	public  enum TypeOfInstance {
 		IOB_INPUT,IOB_OUTPUT, UNKOWN
@@ -23,7 +28,7 @@ public class IOB_BLOCK_INSTANCE extends Instance{
 
 		
 		/*
-		 * Initailiserung des Bausteins gemäß festgelegten Typ
+		 * Initialisation of the block based on his type
 		 */
 		switch (iob_Type) {
 		case IOB_INPUT:
@@ -39,39 +44,38 @@ public class IOB_BLOCK_INSTANCE extends Instance{
 		}
 	}
 
-	/*
-	 * Initialisiert einen IOB auf dem FPGA,
-	 * der boolsche Parameter gibt an, ob es sich um einen Input oder einen Output handelt
-	 * danach werden die Eingabe bzw. Ausgabe - Konfigurationsparameter von Xilinx gesetzt
+	/** 
+	 * Initialise an IOB on the FPGA,
+	 * the boolean parameter says if it an input or an output 
+	 * based on this the parameters for the xdl file of Xilinx are set.
 	 */
 	private void initialize_a_IOB(boolean input) {
 		this.setType(PrimitiveType.IOB);
 		
-		//alle nicht benötigten Parameter mit #OFF initialisieren ?? notwendig ??
-		
-		//Eingabe 
+		//It is an input
 		if(input){
 			
-			/*
-			 * verbinde bereits vorab das PAD des IOBs mit dem Ausgang I
-			 * eine weiterführende Kabelverbindung muss dann später hinzugefügt werden
+			/* 
+			 * Connect the PADs of the IOB with the Output I 
+			 * the further net connections are added in the connectino process in
+			 * the Design Creation class
 			 */
 			this.addAttribute(new Attribute("BYPASS_MUX", "", "I"));
 			this.addAttribute(new Attribute("IMUX", "", "I"));
 			this.addAttribute(new Attribute("PAD",this.getName(),""));
+			
 			/*
-			 * Konfigurationsparameter von Xilinx
-			 * ggf. weglassen
+			 *configuration parameter of Xilinx
 			 */
 			this.addAttribute(new Attribute("ISTANDARD","", "LVCMOS25")) ;
 		}
 		
-		//Ausgabe
+		//Output
 		else{
 			this.addAttribute(new Attribute("PAD",this.getName(),""));
 			this.addAttribute(new Attribute("OUTBUF",this.getName()+"_OBUF",""));
 			this.addAttribute(new Attribute("OUSED","","0"));
-//			
+		
 			/*
 			 * Since the outputs can also be used as interconnect variables the output also has to be 
 			 * available as input 
@@ -80,8 +84,7 @@ public class IOB_BLOCK_INSTANCE extends Instance{
 			this.addAttribute(new Attribute("IMUX", "", "I"));
 			
 			/*
-			 * Konfigurationsparameter von Xilinx
-			 * ggf. weglassen
+			 *configuration parameter of Xilinx
 			 */
 			this.addAttribute(new Attribute("DRIVEATTRBOX","","12"));
 			this.addAttribute(new Attribute("SLEW","","SLOW"));

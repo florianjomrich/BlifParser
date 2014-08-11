@@ -3,12 +3,15 @@ package models;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import commands.GenericLatch;
-
 import edu.byu.ece.rapidSmith.design.Attribute;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.device.PrimitiveType;
 
+/**
+ * Internal representation for a logic block
+ * @author Florian Jomrich
+ *
+ */
 public class LOGIC_BLOCK_INSTANCE extends Instance {
 
 	public LOGIC_BLOCK_INSTANCE(String name_of_the_module) {

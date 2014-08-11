@@ -11,8 +11,18 @@ import java.util.ArrayList;
 
 import edu.byu.ece.rapidSmith.design.Design;
 
+/**
+ * Class that creates a Verilog-Test-Bench for the user to 
+ * test the created verilog file which is based on the given BLIF-file
+ * @author Florian Jomrich
+ *
+ */
 public class AutomaticTestBenchCreator {
 
+	/**
+	 * Setups the Testbench by reading out the given verilog-file that
+	 * describes the BLIF-model.
+	 */
 	public void setupAutomaticTestBench(String verilogFileNameRouted,
 			Design design) {
 
@@ -68,6 +78,10 @@ public class AutomaticTestBenchCreator {
 
 	}
 
+	/**
+	 * Creates the Testbench by reading out the given verilog-file that
+	 * describes the BLIF-model.
+	 */
 	private void createTestBenchFile(Path fileName, Design design,
 			File testBenchFolder) {
 		byte[] encoded = null;
@@ -153,6 +167,9 @@ public class AutomaticTestBenchCreator {
 				testBenchFolder, design);
 	}
 
+	/**
+	 * Finally writes the created test-bench in the folder 
+	 */
 	private void writeTheFile(String testBenchContent, File testBenchFolder,
 			Design design) {
 

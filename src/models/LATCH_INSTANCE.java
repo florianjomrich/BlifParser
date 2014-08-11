@@ -1,7 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import commands.GenericLatch;
 
@@ -9,6 +7,11 @@ import edu.byu.ece.rapidSmith.design.Attribute;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.device.PrimitiveType;
 
+/**
+ * Internal representation of a latch/flipflop
+ * @author Florian Jomrich
+ *
+ */
 public class LATCH_INSTANCE extends Instance {
 
 	public LATCH_INSTANCE(String name_of_the_module) {

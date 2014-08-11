@@ -8,9 +8,17 @@ import edu.byu.ece.rapidSmith.design.Net;
 import edu.byu.ece.rapidSmith.design.NetType;
 import edu.byu.ece.rapidSmith.design.Pin;
 
-
+/**
+ * 
+ * @author Florian Jomrich
+ *
+ */
 public class NetCreator {
 
+	/**
+	 * Method that combines all the necessary single steps to make a cable connection.
+	 * Distinguish between a first connection or a added connection to an already existing connection.
+	 */
 	public Net generateNet(String outputPort,Instance outputBlock,String inputPort, Instance inputBlock, Design design, HashMap<String, Net> alreadyPlacedNets){
 		Net myNewNet = new Net();
 		//first cable connection already exists

@@ -7,13 +7,17 @@ import commands.GenericLatch;
 import commands.LogicGate;
 
 /**
- * To check if the inputs to the gates exist.
- * Does not check latches at the moment. 
- * @author TestUser
+ * To check if the needed inputs to the gates and latches
+ * really exist in the model.
+  * @author Florian Jomrich
  *
  */
 public class CorrectnessChecker {
 
+	/**
+	 * To check if the needed inputs to the gates and latches
+	 * really exist in the model.
+	 */
 	public void checkModelForCorrectness(Model model) throws Exception {
 		for (LogicGate currentGateToBeChecked : model.logicGates) {
 			for (String currentInputToBeChecked : currentGateToBeChecked.inputs) {
@@ -64,6 +68,12 @@ public class CorrectnessChecker {
 		}
 	}
 	
+	/**
+	 * Checks if the current Input-Variable to be checked is a latch
+	 * @param genericLatches - the latches from the model
+	 * @param currentInputToBeChecked - the current Input which has to be checked 
+	 * @return
+	 */
 	private boolean isAnLatchVariable(
 			CopyOnWriteArrayList<GenericLatch> genericLatches,
 			String currentInputToBeChecked) {
@@ -74,6 +84,12 @@ public class CorrectnessChecker {
 		return false;
 	}
 
+	/**
+	 * Checks if the current Input-Varialbe is an interconnect variable
+	 * @param logicGatesToIterateOver - the logic gates from the model 
+	 * @param currentInputToBeChecked -  the current Input which has to be checked 
+	 * @return
+	 */
 	private boolean isAnInterconnectVariable(
 			CopyOnWriteArrayList<LogicGate> logicGatesToIterateOver,
 			String currentInputToBeChecked) {

@@ -8,7 +8,11 @@ import commands.LogicGate;
 import edu.byu.ece.rapidSmith.design.Attribute;
 import edu.byu.ece.rapidSmith.design.Instance;
 import edu.byu.ece.rapidSmith.device.PrimitiveType;
-
+/**
+ * Internal SLICE representation 
+ * @author Florian Jomrich
+ *
+ */
 public class SLICEL_INSTANCE extends Instance {
 	
 	String TypeOfBlock;
@@ -20,6 +24,9 @@ public class SLICEL_INSTANCE extends Instance {
 
 	}
 
+	/**
+	 * Sets the internal configuration of  the latch if it is a primary latch
+	 */
 	public void configure_PRIMARY_LATCH(GenericLatch currentLatch,LogicGate currentLogicBlock,
 			String LETTER_OF_THE_SELECTED_LATCH) {
 
@@ -49,6 +56,9 @@ public class SLICEL_INSTANCE extends Instance {
 
 	}
 	
+	/**
+	 * Sets the internal configuration of  the latch if it is NO primary latch
+	 */
 	public void configure_LATCH(GenericLatch currentLatch,
 			String LETTER_OF_THE_SELECTED_LATCH) {
 
@@ -60,6 +70,10 @@ public class SLICEL_INSTANCE extends Instance {
 
 	}
 	
+	/**
+	 * Configuration steps that have to be done for each type of LATCh
+	 * whether it is a primary latch or not 
+	 */
 	private void configure_TheRestOfTheLatch(GenericLatch currentLatch, String LETTER_OF_THE_SELECTED_LATCH) {
 		// set the Latch/FlipFlop to act asyncronous
 				//otherwise a Clock Enable Signal (CE) would have to be added to the FF/Latch input as well
@@ -144,7 +158,10 @@ public class SLICEL_INSTANCE extends Instance {
 	}
 
 
-	
+	/**
+	 * Configure the LUT which contains the boolean functions
+	 * given through the .name specification in the 
+	 */
 	public void configure_LUT(ArrayList<String> inputs,
 			ArrayList<ArrayList<Integer>> inputTable,
 			HashMap<ArrayList<Integer>, ArrayList<Integer>> outputTable,
